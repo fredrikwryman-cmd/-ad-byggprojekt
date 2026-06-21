@@ -4,7 +4,7 @@ const words = ['NYBYGGE', 'RENOVERING', 'PROJEKTLEDNING', 'RÅDGIVNING', 'KVALIT
 
 export default function MarqueeSection() {
   return (
-    <section className="py-10 overflow-hidden relative z-30">
+    <section aria-hidden="true" className="py-10 overflow-hidden relative z-30">
       <div className="marquee-track">
         {[...words, ...words, ...words, ...words].map((word, i) => (
           <div key={i} className="flex items-center gap-8 px-8">

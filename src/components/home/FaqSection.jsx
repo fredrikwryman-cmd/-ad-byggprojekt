@@ -39,7 +39,7 @@ export default function FaqSection() {
     <section className="py-16 md:py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden">
       <div className="max-w-3xl mx-auto px-safe relative z-10">
         <div className="text-center mb-12">
-          <span className="eyebrow mb-3 font-bold">Vanliga frågor</span>
+          <span className="eyebrow mb-3 font-bold" style={{ color: '#005A9E' }}>Vanliga frågor</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[#020617]">
             Bra att <span className="gradient-text">veta</span>
           </h2>
