@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+import CVPage from '../components/pages/CVPage.jsx';
+---
+
+<Layout
+  title="CV | Andreas Dahlgren | AD Byggprojekt Stockholm AB"
+  description="Läs om Andreas Dahlgrens bakgrund inom byggbranschen — projektledare och grundare av AD Byggprojekt Stockholm AB."
+>
+  <Navbar client:idle />
+  <PageHeader
+    client:idle
+    eyebrow="CV"
+    title="Andreas Dahlgren"
+    subtitle="Grundare och projektledare med lång erfarenhet av nybyggnation, renovering och projektledning."
+  />
+  <CVPage client:idle />
+  <Footer />
+</Layout>

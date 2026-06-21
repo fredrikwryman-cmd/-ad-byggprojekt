@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+
+const updated = '21 juni 2026';
+---
+
+<Layout
+  title="Integritetspolicy | AD Byggprojekt Stockholm AB"
+  description="Så samlar AD Byggprojekt Stockholm AB in, använder och skyddar dina personuppgifter enligt GDPR."
+>
+  <Navbar client:idle />
+  <PageHeader
+    client:idle
+    eyebrow="Integritet"
+    title="Integritetspolicy"
+    subtitle="Så samlar vi in, använder och skyddar dina personuppgifter."
+  />
+
+  <section class="policy">
+    <div class="policy-inner">
+      <p class="updated">Senast uppdaterad: {updated}</p>
+
+      <h2>Personuppgiftsansvarig</h2>
+      <p>
+        AD Byggprojekt Stockholm AB (org.nr 559131-8695), Kantarellvägen 4,
+        184 34 Åkersberga, ansvarar för behandlingen av dina personuppgifter.
+        Har du frågor är du välkommen att kontakta oss på
+        <a href="mailto:andreas@adbyggprojekt.se">andreas@adbyggprojekt.se</a>.
+      </p>
+
+      <h2>Vilka uppgifter vi samlar in</h2>
+      <p>
+        När du fyller i vårt kontaktformulär behandlar vi de uppgifter du själv
+        lämnar: namn, e-postadress, telefonnummer och innehållet i ditt
+        meddelande. Vi samlar inte in fler uppgifter än så.
+      </p>
+
+      <h2>Varför vi behandlar dem</h2>
+      <p>
+        Uppgifterna används enbart för att besvara din förfrågan, lämna offert
+        och kommunicera kring ett eventuellt projekt. Den rättsliga grunden är
+        att behandlingen sker på din begäran och för vårt och ditt berättigade
+        intresse av att kunna ha kontakt (artikel 6.1 b och f i GDPR).
+      </p>
+
+      <h2>Hur länge vi sparar dem</h2>
+      <p>
+        Vi sparar dina uppgifter så länge det behövs för att hantera din
+        förfrågan och ett eventuellt avtal. Leder kontakten inte vidare gallrar
+        vi uppgifterna när de inte längre är aktuella.
+      </p>
+
+      <h2>Vilka som kan ta del av uppgifterna</h2>
+      <p>
+        För att driva webbplatsen och ta emot formulärsvar anlitar vi
+        tjänsteleverantörer som behandlar uppgifter för vår räkning, bland annat
+        Web3Forms (formulärhantering) och GitHub (webbhotell). Dessa kan
+        behandla uppgifter utanför EU/EES, och i sådana fall säkerställs en
+        adekvat skyddsnivå genom EU:s standardavtalsklausuler. Vi säljer aldrig
+        dina uppgifter vidare.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        Webbplatsen använder i nuläget inga spårnings- eller
+        marknadsföringskakor.
+      </p>
+
+      <h2>Dina rättigheter</h2>
+      <p>
+        Du har rätt att begära tillgång till, rättelse eller radering av dina
+        uppgifter, samt att invända mot eller begära begränsning av
+        behandlingen. Hör av dig till
+        <a href="mailto:andreas@adbyggprojekt.se">andreas@adbyggprojekt.se</a> så
+        hjälper vi dig. Är du missnöjd med hur vi hanterar dina uppgifter kan du
+        vända dig till Integritetsskyddsmyndigheten (IMY),
+        <a href="https://www.imy.se" target="_blank" rel="noopener">imy.se</a>.
+      </p>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .policy {
+    background: #020617;
+    color: #cbd5e1;
+    padding: 0 1.5rem 6rem;
+  }
+  .policy-inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    line-height: 1.75;
+    font-size: 1.0625rem;
+  }
+  .policy .updated {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
+  }
+  .policy h2 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    color: #ffffff;
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    margin: 2.25rem 0 0.75rem;
+  }
+  .policy p {
+    margin-bottom: 1rem;
+  }
+  .policy a {
+    color: #4f97cc;
+    text-decoration: underline;
+  }
+  .policy a:hover {
+    color: #7bb6e0;
+  }
+</style>

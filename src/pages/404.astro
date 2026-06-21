@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Sidan hittades inte | AD Byggprojekt Stockholm AB"
+  description="Sidan du letar efter finns inte."
+>
+  <Navbar client:idle />
+
+  <section class="notfound">
+    <div class="notfound-inner">
+      <p class="code">404</p>
+      <h1>Sidan kunde inte hittas</h1>
+      <p class="lead">
+        Sidan du letar efter har flyttat eller finns inte längre. Men oroa dig
+        inte – vi hjälper dig vidare.
+      </p>
+      <div class="actions">
+        <a href={base} class="btn-primary">Till startsidan</a>
+        <a href={base + 'kontakt'} class="btn-ghost">Kontakta oss</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .notfound {
+    background: #020617;
+    color: #cbd5e1;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem;
+  }
+  .notfound-inner {
+    max-width: 34rem;
+  }
+  .notfound .code {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    font-size: clamp(5rem, 18vw, 10rem);
+    line-height: 1;
+    color: #15619A;
+    letter-spacing: 0.05em;
+  }
+  .notfound h1 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    margin: 0.5rem 0 1rem;
+  }
+  .notfound .lead {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .notfound .actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .notfound .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 1.125rem 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    color: #ffffff;
+    font-weight: 600;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .notfound .btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+</style>

@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+
+const base = import.meta.env.BASE_URL;
+
+const trust = [
+  'Godkänd för F-skatt',
+  'Ansvarsförsäkring',
+  'ID06',
+  'Medlem i Byggföretagen',
+  'Garanti enligt branschregler',
+];
+
+const reasons = [
+  {
+    title: 'Erfaren platsledning',
+    text: 'Med över 20 år i branschen – från hantverk till platschef på projekt upp mot 270 mkr – vet vi hur ett bygge faktiskt drivs i mål.',
+  },
+  {
+    title: 'Ordning på ekonomi och tid',
+    text: 'Tydliga avtal, fast pris i de flesta fall och löpande uppföljning. Du har alltid koll på kostnader, tidplan och nästa steg.',
+  },
+  {
+    title: 'Personlig kontakt',
+    text: 'Du får en namngiven kontaktperson som känner ditt projekt – inte ett ärendenummer i en växel.',
+  },
+  {
+    title: 'Kvalitet hela vägen',
+    text: 'Vi tar genvägar med ingenting. Arbetet utförs av erfarna hantverkare och kontrolleras innan överlämning.',
+  },
+  {
+    title: 'Helhet under ett tak',
+    text: 'Nybyggnation, renovering, projektledning och rådgivning – hela byggprocessen samlad hos en och samma partner.',
+  },
+  {
+    title: 'Trygg och säker arbetsplats',
+    text: 'Ordnade, säkra arbetsplatser med tydliga rutiner – med omsorg om både vårt team och din egendom.',
+  },
+];
+---
+
+<Layout
+  title="Om oss | AD Byggprojekt Stockholm AB"
+  description="AD Byggprojekt Stockholm AB är ett byggföretag i Stockholm med fokus på kvalitet, trygghet och personlig projektledning. Lär känna oss."
+>
+  <Navbar client:idle />
+  <PageHeader
+    client:idle
+    eyebrow="Om oss"
+    title="Med hantverk som grund"
+    subtitle="Ett byggföretag i Stockholm byggt på erfarenhet, ordning och långsiktiga relationer."
+  />
+
+  <section class="about-page">
+    <div class="about-inner">
+      <div class="intro">
+        <p>
+          AD Byggprojekt Stockholm AB drivs sedan starten av samma drivkraft:
+          att skapa byggnader som höjer standard och håller i generationer. Vi
+          arbetar med nybyggnation, renovering, projektledning och rådgivning åt
+          både privatpersoner, bostadsrättsföreningar och fastighetsägare i
+          Stockholm med omnejd.
+        </p>
+        <p>
+          Vår styrka är den samlade erfarenheten av att leda byggprojekt från
+          första spadtag till slutbesiktning – stora som små. Vi tror på raka
+          besked, tät dialog och att alltid lämna efter oss ett resultat vi själva
+          är stolta över.
+        </p>
+      </div>
+
+      <div class="trust">
+        {trust.map((t) => <span class="trust-pill">{t}</span>)}
+      </div>
+
+      <h2 class="section-title">Varför välja oss</h2>
+      <div class="reasons">
+        {reasons.map((r) => (
+          <div class="reason-card">
+            <h3>{r.title}</h3>
+            <p>{r.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="founder">
+        <h2 class="section-title">Bakom företaget</h2>
+        <p>
+          AD Byggprojekt grundades och drivs av Andreas Dahlgren, med en
+          bakgrund som
+          byggnadssnickare, arbetsledare och platschef. Vill du veta mer om
+          erfarenheten bakom företaget kan du läsa hela hans CV.
+        </p>
+        <a href={base + 'cv'} class="btn-ghost">Läs Andreas CV</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>Redo att börja?</h2>
+      <p>Berätta om ditt projekt så återkommer vi med en kostnadsfri offert.</p>
+      <a href={base + 'kontakt'} class="btn-primary">Kontakta oss</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .about-page {
+    background: #020617;
+    color: #cbd5e1;
+    padding: 0 1.5rem 5rem;
+  }
+  .about-inner {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .intro p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+  .trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2.5rem 0 3.5rem;
+  }
+  .trust-pill {
+    border: 1px solid rgba(79, 151, 204, 0.35);
+    background: rgba(21, 97, 154, 0.12);
+    color: #cfe3f3;
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    color: #ffffff;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    letter-spacing: 0.02em;
+    margin: 0 0 1.5rem;
+  }
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+  .reason-card {
+    background: #0b1220;
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 1rem;
+    padding: 1.75rem;
+  }
+  .reason-card h3 {
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .reason-card p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: #94a3b8;
+  }
+  .founder p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem;
+    color: #ffffff;
+    font-weight: 600;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .cta {
+    background: #020617;
+    text-align: center;
+    padding: 4rem 1.5rem 6rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.12);
+  }
+  .cta h2 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+  }
+  .cta p {
+    color: #94a3b8;
+    font-size: 1.0625rem;
+    margin-bottom: 2rem;
+  }
+</style>

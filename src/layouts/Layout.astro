@@ -1,0 +1,83 @@
+---
+const {
+  title = 'AD Byggprojekt Stockholm AB',
+  description = 'AD Byggprojekt Stockholm AB – erfaren platsledning för nybyggnation, renovering och projektledning i Stockholm med omnejd. Tydliga avtal, fast pris och personlig kontakt – från idé till inflyttning.',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteRoot = new URL(import.meta.env.BASE_URL, Astro.site).href;
+const ogImage = new URL(`${import.meta.env.BASE_URL}og-hero.jpg`, Astro.site).href;
+const logoURL = new URL(`${import.meta.env.BASE_URL}favicon-ad.png`, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  '@id': siteRoot,
+  name: 'AD Byggprojekt Stockholm AB',
+  url: siteRoot,
+  logo: logoURL,
+  image: ogImage,
+  telephone: '+46708953136',
+  email: 'andreas@adbyggprojekt.se',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Kantarellvägen 4',
+    postalCode: '184 34',
+    addressLocality: 'Åkersberga',
+    addressRegion: 'Stockholms län',
+    addressCountry: 'SE',
+  },
+  areaServed: { '@type': 'City', name: 'Stockholm' },
+  identifier: { '@type': 'PropertyValue', name: 'Organisationsnummer', value: '559131-8695' },
+  sameAs: ['https://se.linkedin.com/in/andreas-dahlgren-067948105'],
+};
+---
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#020617" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon-ad.png`} />
+
+    <title>{title}</title>
+
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AD Byggprojekt Stockholm AB" />
+    <meta property="og:locale" content="sv_SE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Strukturerad data (LocalBusiness) -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Analys (förberedd, ej aktiv):
+         När en egen domän är kopplad kan webbanalys läggas till här.
+         Plausible rekommenderas (GDPR-vänlig, ingen cookie-banner behövs).
+         Be assistenten om den exakta script-raden när domänen är på plats. -->
+
+    <style is:global>
+      @import '../styles/global.css';
+    </style>
+  </head>
+  <body class="bg-white text-[#020617] antialiased">
+    <slot />
+  </body>
+</html>

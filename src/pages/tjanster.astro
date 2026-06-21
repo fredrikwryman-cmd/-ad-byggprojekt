@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+import ServicesPage from '../components/pages/ServicesPage.jsx';
+---
+
+<Layout
+  title="Våra tjänster | AD Byggprojekt Stockholm AB"
+  description="AD Byggprojekt Stockholm AB erbjuder nybygge, renovering, projektledning och rådgivning — kompletta bygglösningar för varje fas."
+>
+  <Navbar client:idle />
+  <PageHeader
+    client:idle
+    eyebrow="Vad vi gör"
+    title="Våra tjänster"
+    subtitle="Kompletta bygglösningar för varje fas av ditt projekt — från första idé till färdig överlämning."
+  />
+  <ServicesPage client:idle />
+  <Footer />
+</Layout>

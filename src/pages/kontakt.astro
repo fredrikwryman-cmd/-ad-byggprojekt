@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+import ContactPage from '../components/pages/ContactPage.jsx';
+---
+
+<Layout
+  title="Kontakt | AD Byggprojekt Stockholm AB"
+  description="Kontakta AD Byggprojekt Stockholm AB för en kostnadsfri offert. Vi bygger bostäder, kommersiella lokaler och renoverar i Stockholm med omnejd."
+>
+  <Navbar client:idle />
+  <PageHeader
+    client:idle
+    eyebrow="Kontakta oss"
+    title="Låt oss prata"
+    subtitle="Berätta om dina planer så återkommer vi med en kostnadsfri offert inom 24 timmar."
+  />
+  <ContactPage client:idle />
+  <Footer />
+</Layout>

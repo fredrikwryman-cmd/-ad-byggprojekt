@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+import ProjectsPage from '../components/pages/ProjectsPage.jsx';
+---
+
+<Layout
+  title="Referensprojekt | AD Byggprojekt Stockholm AB"
+  description="Se utvalda referensprojekt från AD Byggprojekt Stockholm AB — bostäder, kommersiella fastigheter, renoveringar och nybyggnationer."
+>
+  <Navbar client:idle />
+  <PageHeader
+    client:idle
+    eyebrow="Portfolio"
+    title="Referensprojekt"
+    subtitle="Från ikoniska bostadshus till kommersiella landmärken — upptäck vad vi har skapat tillsammans med våra kunder."
+  />
+  <ProjectsPage client:idle />
+  <Footer />
+</Layout>
