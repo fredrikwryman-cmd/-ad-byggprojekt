@@ -203,6 +203,22 @@ h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
+/* === Mobil-fix: knappar ska aldrig spilla över skärmkanten === */
+@media (max-width: 600px) {
+  .btn-primary,
+  .btn-outline,
+  .btn-outline-light,
+  .btn-ghost {
+    min-width: 0;
+    max-width: 100%;
+    white-space: normal;
+    box-sizing: border-box;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: center;
+  }
+}
+
 .btn-outline-light {
   display: inline-flex;
   align-items: center;
@@ -1031,6 +1047,30 @@ h3, h4, h5, h6 {
 
 .white-info-card {
   background: #ffffff;
+}
+
+/* === Mobil-fix: hindra att kontaktsektionen/formuläret pushar bredden === */
+.contact-card,
+.form-container,
+.form-group,
+.form-row,
+.form-input {
+  min-width: 0;
+}
+
+.info-card {
+  min-width: 0;
+}
+
+.info-card > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-card .info-value,
+.info-card .info-label {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .form-container {

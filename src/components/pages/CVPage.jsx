@@ -179,11 +179,11 @@ export default function CVPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}
           >
-            <a href={import.meta.env.BASE_URL + 'kontakt'} className="btn-primary" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+            <a href={import.meta.env.BASE_URL + 'kontakt'} className="btn-primary" style={{ padding: '1rem clamp(1.25rem, 5vw, 2.5rem)', fontSize: '1rem', maxWidth: '100%', boxSizing: 'border-box' }}>
               Kontakta mig
               <ArrowRight size={18} />
             </a>
-            <a href={import.meta.env.BASE_URL + 'cv-andreas-dahlgren.pdf'} download className="btn-outline" style={{ padding: '1rem 2.5rem', fontSize: '1rem' }}>
+            <a href={import.meta.env.BASE_URL + 'cv-andreas-dahlgren.pdf'} download className="btn-outline" style={{ padding: '1rem clamp(1.25rem, 5vw, 2.5rem)', fontSize: '1rem', maxWidth: '100%', boxSizing: 'border-box' }}>
               <Download size={18} />
               Ladda ner CV
             </a>
@@ -438,7 +438,7 @@ export default function CVPage() {
             <p style={{ color: '#94a3b8', fontSize: '1.125rem', maxWidth: '28rem', margin: '0 auto 2rem', lineHeight: 1.7 }}>
               Hör av dig så berättar jag mer om min bakgrund och hur jag kan hjälpa dig med ditt projekt.
             </p>
-            <a href={import.meta.env.BASE_URL + 'kontakt'} className="btn-primary" style={{ padding: '1.125rem 3rem', fontSize: '1.0625rem' }}>
+            <a href={import.meta.env.BASE_URL + 'kontakt'} className="btn-primary" style={{ padding: '1.125rem clamp(1.5rem, 6vw, 3rem)', fontSize: '1.0625rem', maxWidth: '100%', boxSizing: 'border-box' }}>
               Kontakta AD Byggprojekt
               <ArrowRight size={20} />
             </a>
