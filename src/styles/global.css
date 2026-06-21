@@ -473,6 +473,13 @@ h3, h4, h5, h6 {
   padding-right: clamp(1.25rem, 6vw, 6rem);
 }
 
+/* === Tillgänglighet: tydlig fokusmarkering vid tangentbordsnavigering === */
+:focus-visible {
+  outline: 3px solid #4a9eff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* ===== DESIGN SYSTEM ===== */
 :root {
   --brand: #0078D4;

@@ -137,13 +137,19 @@ export default function ContactPage() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="form-layout">
+              <form onSubmit={handleSubmit} method="post" action="https://api.web3forms.com/submit" className="form-layout">
+                <input type="hidden" name="access_key" value="ef4a060a-38a9-4591-add1-5a39a8ef7148" />
+                <input type="hidden" name="subject" value="Ny förfrågan från adbyggprojekt.se" />
+                <input type="hidden" name="from_name" value="AD Byggprojekt webbplats" />
+                <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">Namn</label>
+                    <label htmlFor="name">Namn <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
                     <input
                       id="name"
+                      name="name"
                       type="text"
+                      autoComplete="name"
                       className="form-input"
                       placeholder="Ditt namn"
                       value={form.name}
@@ -152,10 +158,12 @@ export default function ContactPage() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">E-post</label>
+                    <label htmlFor="email">E-post <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
                     <input
                       id="email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
                       className="form-input"
                       placeholder="Din e-post"
                       value={form.email}
@@ -169,7 +177,9 @@ export default function ContactPage() {
                   <label htmlFor="phone">Telefon</label>
                   <input
                     id="phone"
+                    name="phone"
                     type="tel"
+                    autoComplete="tel"
                     className="form-input"
                     placeholder="Ditt telefonnummer"
                     value={form.phone}
@@ -196,9 +206,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="form-group message-group">
-                  <label htmlFor="message">Meddelande</label>
+                  <label htmlFor="message">Meddelande <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
                   <textarea
                     id="message"
+                    name="message"
                     className="form-input"
                     placeholder="Beskriv ditt projekt..."
                     value={form.message}
@@ -207,6 +218,9 @@ export default function ContactPage() {
                   />
                 </div>
 
+                <p className="text-white/45 text-xs" style={{ marginBottom: '4px' }}>
+                  <span aria-hidden="true" style={{ color: '#f87171' }}>*</span> Obligatoriska fält
+                </p>
                 <button type="submit" disabled={submitting} className="submit-btn disabled:opacity-60 disabled:cursor-not-allowed">
                   {submitting ? 'Skickar…' : 'Skicka förfrågan'}
                   <Send size={18} />

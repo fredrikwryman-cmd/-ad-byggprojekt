@@ -124,14 +124,19 @@ export default function ContactSection() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="form-layout">
+              <form onSubmit={handleSubmit} method="post" action="https://api.web3forms.com/submit" className="form-layout">
+                <input type="hidden" name="access_key" value="ef4a060a-38a9-4591-add1-5a39a8ef7148" />
+                <input type="hidden" name="subject" value="Ny förfrågan från adbyggprojekt.se" />
+                <input type="hidden" name="from_name" value="AD Byggprojekt webbplats" />
+                <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">Namn</label>
+                    <label htmlFor="name">Namn <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
                     <input
                       type="text"
                       id="name"
                       name="name"
+                      autoComplete="name"
                       value={form.name}
                       onChange={handleChange}
                       placeholder="Ditt namn"
@@ -140,11 +145,12 @@ export default function ContactSection() {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">E-post</label>
+                    <label htmlFor="email">E-post <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
                     <input
                       type="email"
                       id="email"
                       name="email"
+                      autoComplete="email"
                       value={form.email}
                       onChange={handleChange}
                       placeholder="din@epost.se"
@@ -160,6 +166,7 @@ export default function ContactSection() {
                     type="tel"
                     id="phone"
                     name="phone"
+                    autoComplete="tel"
                     value={form.phone}
                     onChange={handleChange}
                     placeholder="070-123 45 67"
@@ -186,7 +193,7 @@ export default function ContactSection() {
                 </div>
 
                 <div className="form-group message-group">
-                  <label htmlFor="message">Meddelande</label>
+                  <label htmlFor="message">Meddelande <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
                   <textarea
                     id="message"
                     name="message"
@@ -197,6 +204,10 @@ export default function ContactSection() {
                     required
                   />
                 </div>
+
+                <p className="text-white/45 text-xs" style={{ marginBottom: '4px' }}>
+                  <span aria-hidden="true" style={{ color: '#f87171' }}>*</span> Obligatoriska fält
+                </p>
 
                 <button
                   type="submit"
