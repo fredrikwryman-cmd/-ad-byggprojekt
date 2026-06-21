@@ -205,7 +205,7 @@ export default function ContactSection() {
                   />
                 </div>
 
-                <p className="text-white/45 text-xs" style={{ marginBottom: '4px' }}>
+                <p className="text-white/70 text-xs" style={{ marginBottom: '4px' }}>
                   <span aria-hidden="true" style={{ color: '#f87171' }}>*</span> Obligatoriska fält
                 </p>
 
@@ -220,7 +220,7 @@ export default function ContactSection() {
                 {error && (
                   <p className="text-[#f87171] text-sm mt-1" role="alert">{error}</p>
                 )}
-                <p className="text-white/40 text-xs mt-1 leading-relaxed">
+                <p className="text-white/70 text-xs mt-1 leading-relaxed">
                   Genom att skicka godkänner du att vi behandlar dina uppgifter enligt vår{' '}
                   <a href={import.meta.env.BASE_URL + 'integritetspolicy'} className="underline hover:text-white/70">integritetspolicy</a>.
                 </p>

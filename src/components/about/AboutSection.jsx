@@ -81,7 +81,7 @@ export default function AboutSection() {
                       <Icon size={22} />
                     </div>
                     <div>
-                      <h4>{v.title}</h4>
+                      <h3>{v.title}</h3>
                       <p>{v.desc}</p>
                     </div>
                   </motion.div>
