@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, ArrowUpRight, Ruler, Clock, Wallet } from '../icons.jsx';
+import { slugByTitle } from '../../data/projects.js';
 
 const projects = [
   {
@@ -131,7 +132,8 @@ function ProjectCard({ project, index }) {
   const { title, location, category, year, image, description, stats } = project;
 
   return (
-    <motion.article
+    <motion.a
+      href={import.meta.env.BASE_URL + 'projekt/' + slugByTitle[title]}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -197,7 +199,7 @@ function ProjectCard({ project, index }) {
           </div>
         </div>
       </div>
-    </motion.article>
+    </motion.a>
   );
 }
 
@@ -205,7 +207,8 @@ function MoreProjectCard({ project, index }) {
   const { year, title, location, client, category, description, value, role } = project;
 
   return (
-    <motion.article
+    <motion.a
+      href={import.meta.env.BASE_URL + 'projekt/' + slugByTitle[title]}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -242,7 +245,7 @@ function MoreProjectCard({ project, index }) {
         </span>
         <span className="text-[#94a3b8] font-medium">{role}</span>
       </div>
-    </motion.article>
+    </motion.a>
   );
 }
 

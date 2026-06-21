@@ -1,0 +1,261 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/layout/Navbar.jsx';
+import Footer from '../../components/layout/Footer.jsx';
+import { allProjects } from '../../data/projects.js';
+
+export function getStaticPaths() {
+  return allProjects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const metaTitle = `${project.title} | AD Byggprojekt Stockholm AB`;
+const metaDesc = project.description;
+const heroStyle = project.hasImage
+  ? `background-image: linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.55) 45%, rgba(2,6,23,0.45) 100%), url(${project.image});`
+  : '';
+---
+
+<Layout title={metaTitle} description={metaDesc}>
+  <Navbar client:idle />
+
+  <main class="pd">
+    <section class={`pd-hero ${project.hasImage ? 'has-image' : 'no-image'}`} style={heroStyle}>
+      <div class="pd-hero-inner">
+        <a href={base + 'projekt'} class="pd-back">&larr; Alla projekt</a>
+        <div class="pd-badges">
+          <span class="pd-cat">{project.category}</span>
+          <span class="pd-year">{project.year}</span>
+        </div>
+        <h1>{project.title}</h1>
+        <p class="pd-loc">{project.location} &middot; {project.client}</p>
+      </div>
+    </section>
+
+    <section class="pd-body">
+      <div class="pd-container">
+        <div class="pd-grid">
+          <div class="pd-desc">
+            <h2>Om projektet</h2>
+            <p>{project.longDescription}</p>
+          </div>
+          <aside class="pd-facts">
+            <h3>Fakta</h3>
+            <dl>
+              {project.facts.map((f) => (
+                <div class="pd-fact">
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
+        </div>
+
+        <div class="pd-cta">
+          <h2>Vill du ha hjälp med ett liknande projekt?</h2>
+          <p>Berätta om dina planer så återkommer vi med en kostnadsfri offert inom 24 timmar.</p>
+          <a href={base + 'kontakt'} class="btn-primary">Kontakta oss</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .pd {
+    background: #020617;
+    color: #fff;
+  }
+
+  .pd-hero {
+    position: relative;
+    background-color: #0f172a;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    min-height: clamp(360px, 60vh, 620px);
+    padding: clamp(2rem, 6vw, 5rem) clamp(1.25rem, 6vw, 6rem) clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .pd-hero.no-image {
+    background-image:
+      radial-gradient(900px 400px at 80% -10%, rgba(0, 120, 212, 0.25), transparent),
+      linear-gradient(160deg, #0f172a 0%, #020617 70%);
+    min-height: clamp(300px, 45vh, 460px);
+  }
+
+  .pd-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 72rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .pd-back {
+    display: inline-block;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    transition: color 0.25s ease;
+  }
+  .pd-back:hover {
+    color: #fff;
+  }
+
+  .pd-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .pd-cat {
+    background: #0078d4;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+  }
+  .pd-year {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+  }
+
+  .pd-hero h1 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: 0.01em;
+    margin: 0 0 0.6rem;
+  }
+
+  .pd-loc {
+    color: #cbd5e1;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .pd-body {
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 6vw, 6rem) clamp(3rem, 7vw, 6rem);
+  }
+
+  .pd-container {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .pd-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .pd-grid {
+      grid-template-columns: 1.6fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .pd-desc h2,
+  .pd-cta h2 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0 0 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .pd-desc p {
+    color: #94a3b8;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .pd-facts {
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.25rem;
+    padding: clamp(1.5rem, 4vw, 2rem);
+    align-self: start;
+  }
+
+  .pd-facts h3 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #4a9eff;
+    margin: 0 0 1.25rem;
+  }
+
+  .pd-facts dl {
+    margin: 0;
+  }
+
+  .pd-fact {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .pd-fact:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .pd-fact:first-child {
+    padding-top: 0;
+  }
+
+  .pd-fact dt {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin-bottom: 0.3rem;
+  }
+  .pd-fact dd {
+    margin: 0;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .pd-cta {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+    padding: clamp(2rem, 5vw, 3.5rem);
+    background:
+      radial-gradient(600px 240px at 50% 0%, rgba(0, 120, 212, 0.18), transparent),
+      #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 1.5rem;
+    text-align: center;
+  }
+
+  .pd-cta p {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 34rem;
+    margin: 0 auto 1.75rem;
+  }
+</style>

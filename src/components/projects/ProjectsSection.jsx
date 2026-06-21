@@ -1,56 +1,6 @@
 import { motion } from 'framer-motion';
 import { MapPin, ArrowUpRight } from '../icons.jsx';
-
-const projects = [
-  {
-    title: 'Kv Paraden, Barkarbystaden',
-    location: 'Stockholm',
-    category: 'Bostäder',
-    year: '2015–2016',
-    image: import.meta.env.BASE_URL + 'projekt/paraden.jpg',
-    description: 'Nyproduktion av 215 lägenheter. Entreprenadsumma ca 270 mkr. Generalentreprenör, totalentreprenad.',
-  },
-  {
-    title: 'Kv Fjärdingen, Uppsala',
-    location: 'Uppsala',
-    category: 'Renovering',
-    year: '2018–2019',
-    image: import.meta.env.BASE_URL + 'projekt/fjardingen.jpg',
-    description: 'Ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910. Entreprenadsumma 85 mkr, yta 8 500 kvm.',
-  },
-  {
-    title: 'BRF Estrad, Vallentuna',
-    location: 'Vallentuna',
-    category: 'Bostäder',
-    year: '2016–2018',
-    image: import.meta.env.BASE_URL + 'projekt/estraden.jpg',
-    description: 'Nyproduktion av 27 lägenheter och 6 radhus med omfattande markarbeten. Entreprenadsumma 70 mkr.',
-  },
-  {
-    title: 'Kyrkskolan Hus A, Täby',
-    location: 'Täby',
-    category: 'Renovering',
-    year: '2020–2022',
-    image: import.meta.env.BASE_URL + 'projekt/kyrkskolan.jpg',
-    description: 'Totalrenovering av skola från 1910, invändigt och utvändigt. Entreprenadsumma 29 mkr, slutuppgör 55 mkr.',
-  },
-  {
-    title: 'Klastorpsskolan Hus C, Kungsholmen',
-    location: 'Stockholm',
-    category: 'Renovering',
-    year: '2019–2020',
-    image: import.meta.env.BASE_URL + 'projekt/klastorp.jpg',
-    description: 'Totalrenovering av skola från 1960. Matsal, storkök, gymnastiksal, personalutrymmen, ventilation, värme och el.',
-  },
-  {
-    title: 'Gravyren 23, Södertälje',
-    location: 'Södertälje',
-    category: 'Renovering',
-    year: '2022–2023',
-    image: import.meta.env.BASE_URL + 'projekt/gravyren.jpg',
-    description: 'Ombyggnad av lokaler i två etapper. Nya ventilation, EL, VS och ytskikt.',
-  },
-];
+import { featuredProjects as projects } from '../../data/projects.js';
 
 export default function ProjectsSection() {
   return (
@@ -86,7 +36,7 @@ export default function ProjectsSection() {
           {projects.map((project, i) => (
             <motion.a
               key={project.title}
-              href={import.meta.env.BASE_URL + 'projekt'}
+              href={import.meta.env.BASE_URL + 'projekt/' + project.slug}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}

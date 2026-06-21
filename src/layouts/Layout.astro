@@ -27,7 +27,17 @@ const jsonLd = {
     addressRegion: 'Stockholms län',
     addressCountry: 'SE',
   },
-  areaServed: { '@type': 'City', name: 'Stockholm' },
+  areaServed: [
+    { '@type': 'City', name: 'Stockholm' },
+    { '@type': 'City', name: 'Åkersberga' },
+    { '@type': 'City', name: 'Uppsala' },
+  ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    opens: '07:00',
+    closes: '16:00',
+  },
   identifier: { '@type': 'PropertyValue', name: 'Organisationsnummer', value: '559131-8695' },
   sameAs: ['https://se.linkedin.com/in/andreas-dahlgren-067948105'],
 };
