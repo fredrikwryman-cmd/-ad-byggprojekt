@@ -41,6 +41,7 @@ const faqJsonLd = {
   description="AD Byggprojekt Stockholm AB — Byggföretag med fokus på precision, kvalitet och hantverk. Vi bygger bostäder, kommersiella lokaler och renoverar med högsta standard."
 >
   <Navbar client:idle />
+  <main>
   <HeroSection client:idle />
   <div class="relative bg-[#020617] overflow-hidden isolate">
     <MarqueeSection />
@@ -54,5 +55,6 @@ const faqJsonLd = {
   <FaqSection client:idle />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />
   <ContactSection client:idle />
+  </main>
   <Footer />
 </Layout>

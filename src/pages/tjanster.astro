@@ -11,6 +11,7 @@ import ServicesPage from '../components/pages/ServicesPage.jsx';
   description="AD Byggprojekt Stockholm AB erbjuder nybygge, renovering, projektledning och rådgivning — kompletta bygglösningar för varje fas."
 >
   <Navbar client:idle />
+  <main>
   <PageHeader
     client:idle
     eyebrow="Vad vi gör"
@@ -18,5 +19,6 @@ import ServicesPage from '../components/pages/ServicesPage.jsx';
     subtitle="Kompletta bygglösningar för varje fas av ditt projekt — från första idé till färdig överlämning."
   />
   <ServicesPage client:idle />
+  </main>
   <Footer />
 </Layout>
