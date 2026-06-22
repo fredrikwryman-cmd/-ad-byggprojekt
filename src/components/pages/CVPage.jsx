@@ -1,114 +1,11 @@
 import { motion } from 'framer-motion';
 import { Download, Briefcase, GraduationCap, Award, ArrowRight } from '../icons.jsx';
+import cvData from '../../data/cv-data.json';
 
-const experiences = [
-  {
-    period: '2023 – 2025',
-    role: 'Byggledare',
-    company: 'AD Byggprojekt Stockholm AB',
-    description: 'Byggledning och projektstyrning åt entreprenörer och byggherrar — uthyrning som byggledare och platschef.',
-  },
-  {
-    period: '2019 – pågår',
-    role: 'Platschef',
-    company: 'Metrolit Byggnads AB',
-    description: 'Platschef på större byggprojekt inom både nybyggnation och renovering.',
-  },
-  {
-    period: '2018 – 2019',
-    role: 'Platschef',
-    company: 'Åke Sundvall Byggnads AB',
-    description: 'Platschef för bland annat Kv Fjärdingen, Uppsala — ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910 (85 mkr) — samt Proj Estrad, Vallentuna (nyproduktion, 70 mkr).',
-  },
-  {
-    period: '2015 – 2018',
-    role: 'Arbetsledare',
-    company: 'Åke Sundvall Byggnads AB',
-    description: 'Arbetsledare på projekt som Kv Paraden, Barkarbystaden (215 lägenheter, ca 270 mkr).',
-  },
-  {
-    period: '2011 – 2015',
-    role: 'Stommontör / Stomledare',
-    company: 'Veidekke Entreprenad AB',
-    description: 'Stommontage, stomledning och snickeri — endast inom nyproduktion.',
-  },
-  {
-    period: '2010 – 2011',
-    role: 'Lagbas / Stomarbetsledare',
-    company: 'Håkan Lindgren Bygg AB',
-    description: 'Stomledning och arbetsledning på byggarbetsplats.',
-  },
-  {
-    period: '2009 – 2010',
-    role: 'Byggnadssnickare',
-    company: 'Värmdö Bygg AB',
-    description: 'Hantverksarbete inom nybyggnation.',
-  },
-  {
-    period: '2007 – 2009',
-    role: 'Byggnadssnickare',
-    company: 'Peab Bostad AB',
-    description: 'Byggnadssnickare på större bostadsprojekt.',
-  },
-  {
-    period: '2001 – 2007',
-    role: 'Byggnadssnickare',
-    company: 'BBG Grundteknik',
-    description: 'Hantverksarbete inom grundläggning och byggnation.',
-  },
-  {
-    period: '2002 – 2003',
-    role: 'Maskinförare',
-    company: 'Försvarsmakten (utlandstjänst)',
-    description: 'Maskinförare vid Försvarsmaktens utlandstjänst.',
-  },
-  {
-    period: '2000 – 2002',
-    role: 'Drivmedel & Ammunitionsansvarig',
-    company: 'Försvarsmakten (utlandstjänst)',
-    description: 'Ansvar för drivmedel och ammunition vid Försvarsmaktens utlandstjänst.',
-  },
-];
-
-const education = [
-  { period: '1996 – 1999', title: 'Bygg och anläggning', school: 'Röllingby Gymnasium' },
-  { period: '1999 – 2000', title: 'Gruppbefäl – Värnplikten', school: 'Försvarsmakten' },
-];
-
-const courses = [
-  { date: '2024-06-17', name: 'Bas-P och Bas-U – Uppdatering', organizer: 'Byggakademin', duration: '1 dag' },
-  { date: '2024-02-14', name: 'Bas-P och Bas-U utbildning', organizer: 'Byggakademin', duration: '3 dagar + 8 tim självstudier (32 tim)' },
-  { date: '2023-11-17', name: 'AMA Hus 21', organizer: 'Byggakademin', duration: '1 dag' },
-  { date: '2022-10-19', name: 'Byggledarutbildning', organizer: 'Byggakademin', duration: '2 dagar' },
-  { date: '2021-11-18', name: 'Entreprenadjuridik grundkurs', organizer: 'MV Advokat', duration: '1 dag' },
-  { date: '2021-10-18', name: 'Entreprenadjuridik fördjupning', organizer: 'Byggakademin', duration: '1 dag' },
-  { date: '2021-02-25', name: 'Arbetsmiljö för chefer', organizer: 'Arbetsmiljöakademin', duration: '1 dag' },
-  { date: '2018', name: 'ÄTA – Hantering & Juridik', organizer: 'Byggakademin', duration: '1 dag' },
-  { date: '2018', name: 'Ledarskapsutbildning', organizer: '—', duration: '4 dagar' },
-  { date: '2017-11-07', name: 'Bas-P / Bas-U', organizer: '—', duration: '1 dag' },
-  { date: '2017', name: 'Kurs i Entreprenadjuridik', organizer: 'AG Advokat', duration: '2 dagar' },
-  { date: '2015–2016', name: 'Teknisk grundkurs', organizer: 'RBK (Rådet för byggkompetens)', duration: '17 dagar' },
-  { date: '2008', name: 'Ritningsläsning', organizer: '—', duration: '1 dag' },
-  { date: '2007', name: 'Skyddsombud', organizer: '—', duration: '—' },
-];
-
-const projects = [
-  { period: '2024 – pågår', name: 'Förbifarten Stockholm (diverse delprojekt)', client: 'Trafikverket', role: 'Platschef / Bas-U', scope: 'Övriga diverse uppdrag. Entreprenadsumma 7 milj. Löpande räkning samt mängd.' },
-  { period: '2024 – pågår', name: 'Återställning Sätra hamn', client: '—', role: 'Platschef / Bas-U', scope: 'Återställning av markytor efter tunnelarbeten. Entreprenadsumma 35 milj. Yta 15 000 kvm. Löpande räkning samt reglering mot mängd.' },
-  { period: '2024 – pågår', name: 'Avluftstorn Sätra', client: '—', role: 'Platschef', scope: 'Uppförande av massiv skorsten i betong ca 25 m hög och 100 kvm i area. Entreprenadsumma 65 milj. Yta 2 000 kvm. Löpande räkning.' },
-  { period: '2024 – pågår', name: 'Rivning betongbrygga, Sätra hamn', client: '—', role: 'Platschef', scope: 'Rivning av betongbrygga. Entreprenadsumma 10 milj. Yta 150 kvm. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Proj Stämstigen', client: 'Privatperson', role: 'Byggledare', scope: 'Åtgärdande av omfattande installations- och byggfel på nybyggd villa. Entreprenadsumma 30 milj. Yta 600 kvm. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Transportvägen 9, Xter', client: 'Xter Logistics', role: 'Bas-U', scope: 'Utbyggnad av befintlig lokal med lastkajer. Entreprenadsumma 15 milj. Yta 1 500 kvm. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Proj 23, Solna', client: 'Metrolit/Humlegården', role: 'Platschef', scope: 'Lokalanpassningar. Entreprenadsumma 30 milj. Yta 4 000 kvm. Samverkans-/utförandeentreprenad. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Stenhöga 3,5, Solna', client: 'Metrolit/Humlegården', role: 'Platschef', scope: 'Lokalanpassningar. Entreprenadsumma 5,5 milj. Yta 250 kvm + ca 1 000 kvm ventilation. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Wasaskolan, Södertälje', client: 'Metrolit/Telge Fastighet', role: 'Platschef', scope: 'Ombyggnad/renovering av storkök, fläktrum och matsal. Entreprenadsumma 10 milj. Samverkans-/totalentreprenad. Löpande räkning.' },
-  { period: '2022 – 2023', name: 'Gravyren 23, Södertälje', client: 'Metrolit/Telge Fastighet', role: 'Platschef', scope: 'Ombyggnad av lokaler i två etapper. Nya ventilation, EL, VS, ytskikt. Entreprenadsumma 22 milj. Yta 1 000 + 500 kvm. Löpande räkning.' },
-  { period: '2020 – 2022', name: 'Kyrkskolan Hus A, Täby', client: 'Metrolit/Täby kommun', role: 'Platschef', scope: 'Totalrenovering av skola från 1910, invändigt och utvändigt. Nya installationer och markarbeten. Entreprenadsumma 29 milj, slutuppgör 55 milj. Yta 2 000 kvm. Fast pris + a-prislista.' },
-  { period: '2019 – 2020', name: 'Klastorpsskolan Hus C, Kungsholmen', client: 'Metrolit/SISAB', role: 'Platschef', scope: 'Totalrenovering av skola från 1960. Matsal, storkök, gymnastiksal, personalutrymmen, ventilation, värme och el. Entreprenadsumma 25 milj, slutuppgör 43 milj. Yta 1 200 kvm. Fast pris.' },
-  { period: '2018 – 2019', name: 'Kv Fjärdingen, Uppsala', client: 'Åke Sundvall/Uppsala Akademiförvaltning', role: 'Platschef', scope: 'Ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910. Entreprenadsumma 85 milj. Yta 8 500 kvm. Fast pris + a-prislista.' },
-  { period: '2016 – 2018', name: 'BRF Estrad, Vallentuna', client: 'Åke Sundvall', role: 'Platschef / Arbetsledare', scope: 'Nyproduktion av 27 lägenheter och 6 radhus. Entreprenadsumma 70 milj. Yta 3 000 kvm. Fast pris.' },
-  { period: '2015 – 2016', name: 'Kv Paraden, Barkarbystaden', client: 'Åke Sundvall', role: 'Arbetsledare', scope: 'Nyproduktion av 215 lägenheter. Entreprenadsumma ca 270 milj. Fast pris.' },
-];
+const experiences = cvData.experience;
+const education = cvData.education;
+const courses = cvData.courses;
+const projects = cvData.projects;
 
 export default function CVPage() {
   return (
@@ -132,7 +29,7 @@ export default function CVPage() {
               border: '1px solid rgba(255,255,255,0.12)',
             }}>
               <img
-                src={import.meta.env.BASE_URL + 'ad-logo.jpg'}
+                src={import.meta.env.BASE_URL + 'cv-logo.png'}
                 alt="AD Byggprojekt AB"
                 style={{ width: 'min(320px, 72vw)', height: 'auto', display: 'block' }}
               />
@@ -142,13 +39,13 @@ export default function CVPage() {
               fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
               color: '#fff', lineHeight: 0.95, marginBottom: '0.75rem', letterSpacing: '0.01em',
             }}>
-              Andreas Dahlgren
+              {cvData.name}
             </h1>
             <p style={{ color: '#94a3b8', fontSize: '1.125rem', marginBottom: '0.25rem' }}>
-              Grundare & Projektledare · AD Byggprojekt Stockholm AB
+              {cvData.webSubtitle}
             </p>
             <p style={{ color: '#64748b', fontSize: '0.875rem' }}>
-              Född 1980 · Svenska & Engelska (flytande i tal och skrift)
+              {cvData.webBornLine}
             </p>
           </motion.div>
 
@@ -172,10 +69,10 @@ export default function CVPage() {
               PROFIL
             </h2>
             <p style={{ color: '#cbd5e1', lineHeight: 1.8, fontSize: '1.0625rem' }}>
-              Byggbranschen har funnits med mig hela livet. Både min far och farfar har drivit byggfirma, och jag växte upp på byggarbetsplatser — kvaliteten går i arv. Jag började min egen bana som byggnadssnickare och har under mer än 20 år arbetat mig genom i stort sett varje roll på en byggarbetsplats — från hantverk och stomledning till arbetsledare och platschef på projekt värderade uppemot 270 miljoner kronor. Den vägen har gett mig något jag värdesätter högt: en konkret förståelse för hur ett bygge faktiskt fungerar, från första spadtaget till slutbesiktning.
+              {cvData.profile[0]}
             </p>
             <p style={{ color: '#cbd5e1', lineHeight: 1.8, fontSize: '1.0625rem', marginTop: '1.25rem' }}>
-              Jag har lett allt från nyproduktion av flerbostadshus och ombyggnad av äldre fastigheter till totalrenoveringar av skolor med känsliga installationer och pågående verksamhet. Oavsett storlek vilar mitt arbete på samma grund — närvarande platsledning, ordning och reda i ekonomi och tidplan, och en rak, ärlig dialog med både beställare och hantverkare. Mina värdegrunder är enkla: kvalitet, arbetsmiljö och ekonomi. AD Byggprojekt startade jag för att kunna erbjuda erfaren byggledning och projektledning där de tre alltid går före genvägar.
+              {cvData.profile[1]}
             </p>
           </motion.div>
 
@@ -328,7 +225,7 @@ export default function CVPage() {
                     <span style={{ color: '#64748b' }}>Roll:</span> {proj.role}
                   </span>
                 </div>
-                <p style={{ fontSize: '0.8125rem', color: '#64748b', lineHeight: 1.6 }}>{proj.scope}</p>
+                <p style={{ fontSize: '0.8125rem', color: '#64748b', lineHeight: 1.6 }}>{proj.desc}</p>
               </motion.div>
             ))}
           </div>

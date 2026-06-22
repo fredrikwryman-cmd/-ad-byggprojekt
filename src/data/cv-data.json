@@ -1,0 +1,72 @@
+{
+  "name": "Andreas Dahlgren",
+  "pdfTitleLine": "Byggledare  ·  Platschef  ·  Projektledare",
+  "webSubtitle": "Grundare · Byggledare & Platschef · AD Byggprojekt Stockholm AB",
+  "webBornLine": "Född 1980 · Svenska & Engelska (flytande i tal och skrift)",
+  "contact": {
+    "email": "andreas@adbyggprojekt.se",
+    "phone": "+46 70 462 99 43",
+    "web": "adbyggprojekt.se"
+  },
+  "pdfFacts": {
+    "born": "1980",
+    "languages": "Svenska, engelska (flytande i tal och skrift)",
+    "current": "Konsultuppdrag platschef, Metrolit Byggnads AB"
+  },
+  "profile": [
+    "Byggbranschen har funnits med mig hela livet — både far och farfar har drivit byggfirma och jag växte upp på byggarbetsplatser, kvaliteten går i arv. Under mer än 20 år har jag arbetat mig genom i stort sett varje roll på ett bygge, från hantverkare och stomledare till arbetsledare och platschef på projekt upp mot 270 miljoner kronor.",
+    "I dag arbetar jag främst som konsult och hyr ut mig som byggledare och platschef. Mina värdegrunder är enkla: kvalitet, arbetsmiljö och ekonomi — de går alltid före genvägar."
+  ],
+  "experience": [
+    { "period": "2020 – pågår", "role": "Konsult · Platschef · Byggledare", "company": "AD Byggprojekt Stockholm AB (egen verksamhet)", "description": "Byggledning och projektstyrning åt entreprenörer och byggherrar — uthyrning som byggledare och platschef." },
+    { "period": "2023 – 2025", "role": "Byggledare", "company": "AD Byggprojekt Stockholm AB", "description": "Uthyrning som byggledare åt entreprenörer och byggherrar." },
+    { "period": "2019 – pågår", "role": "Platschef", "company": "Metrolit Byggnads AB", "description": "Platschef på större byggprojekt inom både nybyggnation och renovering." },
+    { "period": "2018 – 2019", "role": "Platschef", "company": "Åke Sundvall Byggnads AB", "description": "Platschef för bland annat Kv Fjärdingen, Uppsala och Proj Estrad, Vallentuna." },
+    { "period": "2015 – 2018", "role": "Arbetsledare", "company": "Åke Sundvall Byggnads AB", "description": "Arbetsledare på projekt som Kv Paraden, Barkarbystaden." },
+    { "period": "2011 – 2015", "role": "Stommontör / Stomledare", "company": "Veidekke Entreprenad AB (endast nyproduktion)", "description": "Stommontage, stomledning och snickeri inom nyproduktion." },
+    { "period": "2010 – 2011", "role": "Lagbas / Stomarbetsledare", "company": "Håkan Lindgren Bygg AB", "description": "Stomledning och arbetsledning på byggarbetsplats." },
+    { "period": "2009 – 2010", "role": "Byggnadssnickare", "company": "Värmdö Bygg AB", "description": "Hantverksarbete inom nybyggnation." },
+    { "period": "2007 – 2009", "role": "Byggnadssnickare", "company": "Peab Bostad AB", "description": "Byggnadssnickare på större bostadsprojekt." },
+    { "period": "2003 – 2007", "role": "Byggnadssnickare", "company": "BBG Grundteknik", "description": "Hantverksarbete inom grundläggning och byggnation." },
+    { "period": "2002 – 2003", "role": "Maskinförare", "company": "Försvarsmakten, utlandstjänst", "description": "Maskinförare vid Försvarsmaktens utlandstjänst." },
+    { "period": "2001 – 2002", "role": "Byggnadssnickare", "company": "BBG Grundteknik", "description": "Hantverksarbete inom grundläggning och byggnation." },
+    { "period": "2000 – 2001", "role": "Drivmedels- samt ammunitionsansvarig", "company": "Försvarsmakten, utlandstjänst", "description": "Ansvar för drivmedel och ammunition vid Försvarsmaktens utlandstjänst." }
+  ],
+  "education": [
+    { "period": "1999 – 2000", "title": "Gruppbefäl – Värnplikten", "school": "Försvarsmakten" },
+    { "period": "1996 – 1999", "title": "Bygg och anläggning", "school": "Röllingby Gymnasium" }
+  ],
+  "courses": [
+    { "date": "2024-06-17", "name": "Bas-P och Bas-U Byggarbetsmiljösamordnare, uppdatering", "organizer": "Byggakademin", "duration": "1 dag" },
+    { "date": "2024-02-14", "name": "Bas-P och Bas-U utbildning", "organizer": "Byggakademin", "duration": "3 dagar + 8 tim självstudier (32 tim)" },
+    { "date": "2023-11-17", "name": "AMA Hus 21", "organizer": "Byggakademin", "duration": "1 dag" },
+    { "date": "2022-10-19", "name": "Byggledarutbildning", "organizer": "Byggakademin", "duration": "2 dagar" },
+    { "date": "2021-11-18", "name": "Entreprenadjuridik, grundkurs", "organizer": "MV Advokat", "duration": "1 dag" },
+    { "date": "2021-10-18", "name": "Entreprenadjuridik, fördjupning", "organizer": "Byggakademin", "duration": "1 dag" },
+    { "date": "2021-02-25", "name": "Arbetsmiljö för chefer", "organizer": "Arbetsmiljöakademin", "duration": "1 dag" },
+    { "date": "2018", "name": "ÄTA – Hantering & Juridik", "organizer": "Byggakademin", "duration": "1 dag" },
+    { "date": "2018", "name": "Ledarskapsutbildning", "organizer": "—", "duration": "4 dagar" },
+    { "date": "2017-11-07", "name": "Bas-P / Bas-U", "organizer": "—", "duration": "1 dag" },
+    { "date": "2017", "name": "Entreprenadjuridik", "organizer": "AG Advokat", "duration": "2 dagar" },
+    { "date": "2015 – 2016", "name": "Teknisk grundkurs", "organizer": "RBK – Rådet för byggkompetens", "duration": "17 dagar" },
+    { "date": "2008", "name": "Ritningsläsning", "organizer": "—", "duration": "1 dag" },
+    { "date": "2007", "name": "Skyddsombud", "organizer": "—", "duration": "—" }
+  ],
+  "projects": [
+    { "period": "2024 – pågår", "name": "Förbifarten Stockholm m.fl.", "client": "Metrolit / Trafikverket", "role": "Platschef / Bas-U", "desc": "Diverse projekt åt Trafikverket, bland annat stockbänkar i Grimstaskogen och plantering av tallar i Lunda.", "facts": "Entreprenadsumma 7 mkr · Platschef / Bas-U · Löpande räkning samt mängd" },
+    { "period": "2024 – pågår", "name": "Återställning Sätra hamn", "client": "Metrolit / Trafikverket", "role": "Platschef / Bas-U", "desc": "Återställning av markytor efter tunnelarbeten. I entreprenaden ingick även en kaj med krönbalk.", "facts": "35 mkr · 15 000 kvm · Platschef / Bas-U · Löpande räkning samt reglering mot mängd" },
+    { "period": "2024 – pågår", "name": "Avluftstorn Sätra", "client": "Metrolit / Trafikverket", "role": "Platschef", "desc": "Den tidigare arbetstunneln för uttransport av bergmassor vid tunneldrift har ersatts med ett avluftstorn — en massiv betongskorsten ca 25 m hög med 100 kvm area, samt inslagsvalv m.m.", "facts": "65 mkr · 2 000 kvm · Platschef · Löpande räkning" },
+    { "period": "2024 – pågår", "name": "Rivning betongbrygga, Sätra hamn", "client": "Metrolit / Trafikverket", "role": "Platschef", "desc": "Rivning av betongbrygga i Sätra hamn. I arbetet ingick även upptagning och bortforsling av 12 st 15-tons vikter på 20 meters djup.", "facts": "10 mkr · 150 kvm · Platschef · Löpande räkning" },
+    { "period": "2023 – 2026", "name": "Stämstigen", "client": "Privatperson", "role": "Byggledare", "desc": "Åtgärdande av omfattande installations- och byggfel på nybyggd villa, utförd av tidigare entreprenör.", "facts": "30 mkr · 600 kvm · Byggledare · Löpande räkning" },
+    { "period": "2023 – 2024", "name": "Transportvägen 9", "client": "Xter Logistics", "role": "Bas-U", "desc": "Utbyggnad av befintlig lokal med lastkajer m.m.", "facts": "15 mkr · 1 500 kvm · Bas-U · Löpande räkning" },
+    { "period": "2023 – 2024", "name": "Proj 23, Solna", "client": "Metrolit / Humlegården", "role": "Platschef", "desc": "Lokalanpassningar.", "facts": "30 mkr · 4 000 kvm · Platschef · Samverkans-/utförandeentreprenad · Löpande räkning" },
+    { "period": "2023 – 2024", "name": "Stenhöga 3,5, Solna", "client": "Metrolit / Humlegården", "role": "Platschef", "desc": "Lokalanpassningar.", "facts": "5,5 mkr · 250 kvm + ca 1 000 kvm ventilation · Platschef · Samverkans-/utförandeentreprenad" },
+    { "period": "2023 – 2024", "name": "Wasaskolan, Södertälje", "client": "Metrolit / Telge Fastighet", "role": "Platschef", "desc": "Ombyggnad och renovering av storkök, fläktrum samt matsal.", "facts": "10 mkr · Samverkans-/totalentreprenad · Löpande räkning" },
+    { "period": "2022 – 2023", "name": "Gravyren 23, Södertälje", "client": "Metrolit / Telge Fastighet", "role": "Platschef", "desc": "Ombyggnad av lokaler i två etapper. Nya ventilationsanläggningar, EL, VS och ytskikt.", "facts": "22 mkr · 1 000 + 500 kvm · Platschef · Samverkans-/totalentreprenad · Löpande räkning" },
+    { "period": "2020 – 2022", "name": "Kyrkskolan Hus A, Täby", "client": "Metrolit / Täby kommun", "role": "Platschef", "desc": "Omfattande om- och totalrenovering in- och utvändigt av skola från 1910, med nya installationer samt omfattande markarbeten.", "facts": "29 mkr (slutuppgörelse 55 mkr) · 2 000 kvm · Platschef · Generalentreprenad inom LOU · Fast pris + á-prislista och mängdreglering" },
+    { "period": "2019 – 2020", "name": "Klastorpsskolan Hus C, Kungsholmen", "client": "Metrolit / SISAB", "role": "Platschef", "desc": "Omfattande om- och totalrenovering in- och utvändigt samt markarbeten av skola från 1960: matsal, storkök, gymnastiksal och personalutrymmen, samt ventilation, värme och el för hela skolan.", "facts": "25 mkr (slutuppgörelse 43 mkr) · 1 200 kvm · Platschef · Generalentreprenad inom LOU · Fast pris" },
+    { "period": "2018 – 2019", "name": "Kv Fjärdingen, Uppsala", "client": "Åke Sundvall / Uppsala Akademiförvaltning", "role": "Platschef", "desc": "Ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910, med omfattande konstruktionslösningar på plats.", "facts": "85 mkr · 8 500 kvm · Platschef · Generalentreprenad · Fast pris + á-prislista" },
+    { "period": "2016 – 2018", "name": "BRF Estrad, Vallentuna", "client": "Åke Sundvall", "role": "Platschef / Arbetsledare", "desc": "Nyproduktion av 27 lägenheter och 6 radhus, med omfattande markarbeten samt komplicerade stomlösningar.", "facts": "70 mkr · 3 000 kvm · Platschef / Arbetsledare · Generalentreprenad · Totalentreprenad · Fast pris" },
+    { "period": "2015 – 2016", "name": "Kv Paraden, Barkarbystaden", "client": "Åke Sundvall", "role": "Arbetsledare", "desc": "Nyproduktion av 215 lägenheter.", "facts": "ca 270 mkr · Arbetsledare · Generalentreprenad · Totalentreprenad · Fast pris" }
+  ]
+}
