@@ -1,24 +1,17 @@
 import { motion } from 'framer-motion';
-import { Building2, PaintRoller, ClipboardCheck, MessagesSquare, ArrowRight, CheckCircle2, Users, Shield, Leaf, Lightbulb } from '../icons.jsx';
+import { Building2, PaintRoller, ClipboardCheck, MessagesSquare, ArrowRight, CheckCircle2, Users, Shield, Wallet } from '../icons.jsx';
 
 const services = [
   {
-    title: 'Nybygge',
-    icon: Building2,
-    summary: 'Från grund till tak – bostäder, kommersiella lokaler och industriella anläggningar.',
-    description: 'Vi tar hand om hela nybyggnadsprocessen, från första spadtaget till slutbesiktning. Vårt team samordnar arkitekter, underleverantörer och myndigheter så att du slipper oroa dig för detaljerna. Vi har lett nyproduktion av allt från enskilda villor till flerbostadshus med hundratals lägenheter, och vet vad som krävs för att hålla både tidplan och budget hela vägen. Du har en tydlig kontaktperson från start till inflyttning.',
-    features: ['Totalentreprenad', 'Flerbostadshus & villor', 'Grundläggning & stomme', 'Energieffektiva lösningar', 'Projektering & bygglov', 'Tid- & budgetstyrning', 'Kvalitetssäkring enligt PBL', 'Slutbesiktning & garanti'],
-  },
-  {
-    title: 'Renovering',
-    icon: PaintRoller,
-    summary: 'Vi ger gamla byggnader nytt liv med genomtänkta lösningar som bevarar själen.',
-    description: 'Oavsett om det gäller en lägenhet, en villa eller en hel fastighet arbetar vi noggrant för att bevara det bästa från originalkänslan samtidigt som vi moderniserar funktion och teknik. Vi har stor vana vid känsliga miljöer – från badrum och kök till stambyten och fasader – och kan arbeta varsamt även i bebodda fastigheter och med pågående verksamhet. Allt utförs av erfarna hantverkare enligt branschens regler.',
-    features: ['Badrum & kök', 'Våtrum enligt branschregler', 'Stam- & fasadrenovering', 'Kulturhistorisk hänsyn', 'Energiförbättringar', 'Arbete i bebodda fastigheter', 'ROT-avdrag för privatpersoner', 'Miljöcertifierade material'],
+    title: 'Byggledning & platsledning',
+    icon: ClipboardCheck,
+    summary: 'Vi går in som byggledare eller platschef och driver ditt projekt på plats.',
+    description: 'Detta är vår huvudtjänst. Vi hyr ut oss som byggledare och platschef och tar ansvar för den dagliga styrningen på arbetsplatsen — samordning av yrkesarbetare och underentreprenörer, byggmöten, tidplan, arbetsmiljö som Bas-U och ekonomisk uppföljning. Med lång erfarenhet från både entreprenad- och beställarsidan håller vi ihop projektet och ser till att det blir rätt, i tid och inom budget.',
+    features: ['Byggledare & platschef', 'Daglig arbetsledning', 'Bas-U & arbetsmiljö', 'Byggmöten & samordning', 'Tid- & ekonomistyrning', 'Kvalitets- & egenkontroll', 'Besiktningsstöd', 'Löpande rapportering'],
   },
   {
     title: 'Projektledning',
-    icon: ClipboardCheck,
+    icon: Building2,
     summary: 'Komplett ledning med fokus på tid, budget och kvalitet. Vi samordnar allt.',
     description: 'Med strukturerad projektledning håller vi ihop varje fas – upphandling, tidsplanering, ekonomisk uppföljning och arbetsmiljö. Du får en dedikerad projektledare som ansvarar för kommunikationen. Vare sig du behöver hjälp med ett enskilt skede eller hela projektet ser vi till att alla aktörer drar åt samma håll. Med tät uppföljning och löpande rapportering har du alltid full koll på status, kostnader och nästa steg.',
     features: ['Tids- & budgetplanering', 'Upphandling av underentreprenörer', 'Byggmöten & samordning', 'Arbetsmiljöplaner', 'Kvalitets- & miljöuppföljning', 'Ekonomisk uppföljning', 'Daglig rapportering'],
@@ -30,20 +23,27 @@ const services = [
     description: 'Redan innan du har en färdig ritning kan vi bistå med teknisk rådgivning, kostnadsbedömningar och lösningsförslag. Målet är att du ska känna dig trygg i varje beslut. Vi hjälper dig att utvärdera olika alternativ, undvika kostsamma misstag och fatta beslut på rätt grunder – tidigt i processen där de gör störst skillnad. Ofta sparar några timmars rådgivning både tid och pengar längre fram.',
     features: ['Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd', 'Hållbarhetsrådgivning'],
   },
+  {
+    title: 'Bygg & renovering',
+    icon: PaintRoller,
+    summary: 'Vid behov tar vi även ansvar för utförandet – nybyggnad och renovering.',
+    description: 'När uppdraget kräver det tar vi även hand om själva utförandet, från nyproduktion till varsam renovering. Vi samordnar yrkesarbetare och underentreprenörer och arbetar enligt branschens regler, även i bebodda fastigheter och med pågående verksamhet. Samma fokus på kvalitet, arbetsmiljö och ekonomi följer med hela vägen till slutbesiktning.',
+    features: ['Nyproduktion', 'Om- & tillbyggnad', 'Renovering & ROT', 'Våtrum enligt branschregler', 'Arbete i bebodda fastigheter', 'Kvalitetssäkring', 'Slutbesiktning & garanti'],
+  },
 ];
 
 const process = [
   { step: '01', title: 'Kostnadsfritt möte', text: 'Vi lyssnar på dina idéer, gör en första bedömning och ger en indikativ kostnadsbild. Mötet är förutsättningslöst och kostar dig ingenting – vi vill förstå dina behov innan vi pratar pris.' },
-  { step: '02', title: 'Planering & offert', text: 'Du får en detaljerad projektplan, tidsplan och ett fast pris. Vi går igenom material, lösningar och varje moment tillsammans så att du vet exakt vad som ingår. Inga överraskningar längre fram.' },
+  { step: '02', title: 'Planering & offert', text: 'Du får en detaljerad projektplan, tidsplan och en tydlig offert. Vi går igenom upplägg, lösningar och varje moment tillsammans så att du vet exakt vad som ingår. Inga överraskningar längre fram.' },
   { step: '03', title: 'Produktion', text: 'Erfarna hantverkare och en dedikerad projektledare genomför arbetet med hög kvalitet och säkerhet. Du får löpande uppdateringar och en tydlig kontaktperson genom hela bygget.' },
   { step: '04', title: 'Överlämning', text: 'Vi avslutar med slutbesiktning, fullständig dokumentation och garanti. Eventuella synpunkter åtgärdas innan du får nycklarna till ett färdigt och kontrollerat resultat.' },
 ];
 
 const values = [
-  { icon: Shield, title: 'Trygghet', text: 'Försäkringar, garantier och tydliga avtal. Du vet alltid vad som gäller, vem som ansvarar och att arbetet är tryggt hela vägen.' },
-  { icon: Leaf, title: 'Hållbarhet', text: 'Miljömedvetna materialval och energieffektiva lösningar som håller över tid. Vi bygger för både din ekonomi och kommande generationer.' },
-  { icon: Lightbulb, title: 'Innovation', text: 'Moderna metoder, digitala verktyg och smart projektstyrning. Vi ligger steget före så att du får en effektiv och välplanerad process.' },
-  { icon: Users, title: 'Närhet', text: 'Personlig kontakt och löpande dialog genom hela projektet. Du har alltid en namngiven kontaktperson som känner ditt bygge.' },
+  { icon: CheckCircle2, title: 'Kvalitet', text: 'Högsta standard i varje detalj, med egenkontroll och noggrann uppföljning hela vägen till slutbesiktning.' },
+  { icon: Shield, title: 'Arbetsmiljö', text: 'Säkra arbetsplatser med ordning och reda. Som Bas-U tar vi arbetsmiljöansvaret på största allvar.' },
+  { icon: Wallet, title: 'Ekonomi', text: 'Kostnadskontroll och förutsägbar ekonomi. Du har alltid koll på status, kostnader och nästa steg.' },
+  { icon: Users, title: 'Närhet', text: 'Personlig kontakt och löpande dialog genom hela projektet. Du har alltid en namngiven kontaktperson.' },
 ];
 
 export default function ServicesPage() {

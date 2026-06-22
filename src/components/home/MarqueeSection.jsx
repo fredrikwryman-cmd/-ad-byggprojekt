@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion';
 
-const words = ['NYBYGGE', 'RENOVERING', 'PROJEKTLEDNING', 'RÅDGIVNING', 'KVALITET', 'HÅLLBARHET'];
+const words = ['BYGGLEDNING', 'PLATSLEDNING', 'PROJEKTLEDNING', 'RÅDGIVNING', 'KVALITET', 'ARBETSMILJÖ', 'EKONOMI'];
 
 export default function MarqueeSection() {
   return (
-    <section aria-hidden="true" className="py-10 overflow-hidden relative z-30">
+    <section aria-hidden="true" className="py-10 overflow-hidden relative z-10">
       <div className="marquee-track">
         {[...words, ...words, ...words, ...words].map((word, i) => (
-          <div key={i} className="flex items-center gap-8 px-8">
-            <span className="font-black font-display text-white/45 whitespace-nowrap leading-none">
+          <div key={i} className="flex items-center">
+            <span className="font-black font-display text-white whitespace-nowrap leading-none">
               {word}
             </span>
-            <span className="w-3 h-3 rounded-full bg-[#0078D4] animate-pulse-glow flex-shrink-0" />
+            <span className="w-3 h-3 rounded-full bg-[#0078D4] animate-pulse-glow flex-shrink-0 mx-8" />
           </div>
         ))}
       </div>

@@ -3,24 +3,24 @@ import { Building2, PaintRoller, ClipboardCheck, MessagesSquare } from '../icons
 
 const services = [
   {
-    title: 'Nybygge',
-    text: 'Från grund till tak – bostäder, kommersiella lokaler och industriella anläggningar.',
-    icon: Building2,
-  },
-  {
-    title: 'Renovering',
-    text: 'Vi ger gamla byggnader nytt liv med genomtänkta lösningar som bevarar själen.',
-    icon: PaintRoller,
-  },
-  {
-    title: 'Projektledning',
-    text: 'Komplett ledning med fokus på tid, budget och kvalitet. Vi samordnar allt.',
+    title: 'Byggledning & platsledning',
+    text: 'Vi går in som byggledare eller platschef och driver ditt projekt på plats, med full kontroll på tid, kvalitet, arbetsmiljö och ekonomi.',
     icon: ClipboardCheck,
   },
   {
+    title: 'Projektledning',
+    text: 'Komplett ledning av projektet från start till mål. Vi samordnar entreprenörer, tidplan och budget.',
+    icon: Building2,
+  },
+  {
     title: 'Rådgivning',
-    text: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut.',
+    text: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut tidigt och undvika dyra misstag.',
     icon: MessagesSquare,
+  },
+  {
+    title: 'Bygg & renovering',
+    text: 'Vid behov tar vi även ansvar för utförandet, nybyggnad och renovering med samma omsorg om kvaliteten.',
+    icon: PaintRoller,
   },
 ];
 
@@ -44,7 +44,7 @@ export default function ServicesSection() {
             </h2>
           </div>
           <p>
-            Kompletta bygglösningar för varje fas av ditt projekt.
+            Vår tyngdpunkt ligger på byggledning, platsledning och projektledning — vi styr ditt projekt i mål.
           </p>
         </motion.div>
 

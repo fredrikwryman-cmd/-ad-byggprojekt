@@ -127,12 +127,12 @@ export const featuredProjects = [
     description: 'Ombyggnad av lokaler i två etapper. Nya ventilation, EL, VS och ytskikt.',
     stats: { area: '1 500 kvm', time: '12 månader', value: '22 mkr' },
     longDescription:
-      'Ombyggnad av lokaler fördelat i två etapper, med nya ventilationsanläggningar samt EL, VS och ytskikt. Genomfördes som samverkans- och totalentreprenad med fast pris och Andreas som platschef.',
+      'Ombyggnad av lokaler fördelat i två etapper, med nya ventilationsanläggningar samt EL, VS och ytskikt. Genomfördes som samverkans- och totalentreprenad med ekonomisk reglering på löpande räkning och Andreas som platschef.',
     facts: [
       { label: 'Entreprenadsumma', value: '22 mkr' },
       { label: 'Yta', value: '1 000 + 500 kvm' },
       { label: 'Roll', value: 'Platschef' },
-      { label: 'Entreprenadform', value: 'Samverkans-/totalentreprenad · Fast pris' },
+      { label: 'Entreprenadform', value: 'Samverkans-/totalentreprenad · Löpande räkning' },
       { label: 'Beställare', value: 'Metrolit / Telge Fastighet' },
     ],
   },
@@ -175,7 +175,7 @@ export const moreProjects = [
     value: '35 mkr · 15 000 kvm',
     role: 'Platschef / Bas-U',
     longDescription:
-      'Återställning av markytor efter tunnelarbeten i Sätra hamn, omfattande cirka 15 000 kvm. Andreas är platschef och Bas-U, med ersättning på löpande räkning samt reglering mot mängd.',
+      'Återställning av markytor efter tunnelarbeten i Sätra hamn, omfattande cirka 15 000 kvm. I entreprenaden ingick även en kaj med krönbalk. Andreas är platschef och Bas-U, med ersättning på löpande räkning samt reglering mot mängd.',
     facts: [
       { label: 'Entreprenadsumma', value: '35 mkr' },
       { label: 'Yta', value: '15 000 kvm' },
@@ -197,7 +197,7 @@ export const moreProjects = [
     value: '65 mkr',
     role: 'Platschef',
     longDescription:
-      'Uppförande av en massiv betongskorsten, cirka 25 meter hög med 100 kvm area, samt inslagsvalv med mera. Andreas är platschef med ersättning på löpande räkning.',
+      'Den tidigare arbetstunneln för uttransport av bergmassor vid tunneldrift har ersatts med ett avluftstorn — en massiv betongskorsten, cirka 25 meter hög med 100 kvm area, samt inslagsvalv med mera. Andreas är platschef med ersättning på löpande räkning.',
     facts: [
       { label: 'Entreprenadsumma', value: '65 mkr' },
       { label: 'Yta', value: '2 000 kvm' },
@@ -219,7 +219,7 @@ export const moreProjects = [
     value: '10 mkr',
     role: 'Platschef',
     longDescription:
-      'Rivning av en betongbrygga i Sätra hamn. Andreas är platschef med ersättning på löpande räkning.',
+      'Rivning av en betongbrygga i Sätra hamn. I arbetet ingick även upptagning och bortforsling av 12 st 15-tons vikter på 20 meters djup. Andreas är platschef med ersättning på löpande räkning.',
     facts: [
       { label: 'Entreprenadsumma', value: '10 mkr' },
       { label: 'Yta', value: '150 kvm' },
@@ -284,12 +284,12 @@ export const moreProjects = [
     featured: false,
     description: 'Ombyggnad och renovering av storkök, fläktrum samt matsal.',
     value: '10 mkr',
-    role: 'Totalentreprenad, fast pris',
+    role: 'Samverkans-/totalentreprenad',
     longDescription:
-      'Ombyggnad och renovering av storkök, fläktrum samt matsal på Wasaskolan i Södertälje. Genomfört som samverkans- och totalentreprenad med fast pris.',
+      'Ombyggnad och renovering av storkök, fläktrum samt matsal på Wasaskolan i Södertälje. Genomfört som samverkans- och totalentreprenad med ekonomisk reglering på löpande räkning.',
     facts: [
       { label: 'Entreprenadsumma', value: '10 mkr' },
-      { label: 'Entreprenadform', value: 'Samverkans-/totalentreprenad · Fast pris' },
+      { label: 'Entreprenadform', value: 'Samverkans-/totalentreprenad · Löpande räkning' },
       { label: 'Beställare', value: 'Metrolit / Telge Fastighet' },
     ],
   },
@@ -325,12 +325,13 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Åtgärdande av byggfel på nybyggd villa.',
-    value: '600 kvm',
+    description: 'Åtgärdande av omfattande installations- och byggfel på nybyggd villa.',
+    value: '30 mkr · 600 kvm',
     role: 'Byggledare',
     longDescription:
-      'Åtgärdande av byggfel på en nybyggd villa om cirka 600 kvm, utförd av en tidigare entreprenör. Andreas är byggledare med ersättning på löpande räkning.',
+      'Åtgärdande av omfattande installations- och byggfel på en nybyggd villa om cirka 600 kvm, utförd av en tidigare entreprenör. Andreas är byggledare med ersättning på löpande räkning.',
     facts: [
+      { label: 'Entreprenadsumma', value: '30 mkr' },
       { label: 'Yta', value: '600 kvm' },
       { label: 'Roll', value: 'Byggledare' },
       { label: 'Beställare', value: 'Privatperson' },

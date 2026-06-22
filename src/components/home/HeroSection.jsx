@@ -52,7 +52,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="eyebrow mb-4"
           >
-            Byggföretag i Stockholm
+            Byggledning &amp; projektledning · Stockholm
           </motion.span>
 
           {/* Headline */}
@@ -62,10 +62,10 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[0.92] tracking-tight text-balance mb-6"
           >
-            VI BYGGER
+            VI LEDER
             <br />
             <span className="gradient-text-hero text-glow">
-              FRAMTIDEN
+              DITT BYGGE
             </span>
           </motion.h1>
 
@@ -76,8 +76,8 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="text-lg md:text-xl text-[#cbd5e1] max-w-2xl leading-relaxed mb-10"
           >
-            Stockholms byggpartner för nybyggnation, renovering och projektledning –
-            med kvalitet i varje detalj.
+            Erfaren byggledning, platsledning och projektledning i Stockholm.
+            Vi styr ditt projekt i mål – med kvalitet, arbetsmiljö och ekonomi i fokus.
           </motion.p>
 
           {/* CTAs */}

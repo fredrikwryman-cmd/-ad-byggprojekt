@@ -3,6 +3,12 @@ import { Download, Briefcase, GraduationCap, Award, ArrowRight } from '../icons.
 
 const experiences = [
   {
+    period: '2023 – 2025',
+    role: 'Byggledare',
+    company: 'AD Byggprojekt Stockholm AB',
+    description: 'Byggledning och projektstyrning åt entreprenörer och byggherrar — uthyrning som byggledare och platschef.',
+  },
+  {
     period: '2019 – pågår',
     role: 'Platschef',
     company: 'Metrolit Byggnads AB',
@@ -12,19 +18,19 @@ const experiences = [
     period: '2018 – 2019',
     role: 'Platschef',
     company: 'Åke Sundvall Byggnads AB',
-    description: 'Platschef för bland annat Kv Fjärdingen, Uppsala — ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910. Entreprenadsumma 85 mkr.',
+    description: 'Platschef för bland annat Kv Fjärdingen, Uppsala — ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910 (85 mkr) — samt Proj Estrad, Vallentuna (nyproduktion, 70 mkr).',
   },
   {
     period: '2015 – 2018',
     role: 'Arbetsledare',
     company: 'Åke Sundvall Byggnads AB',
-    description: 'Arbetsledare på projekt som BRF Estrad, Vallentuna (27 lägenheter + 6 radhus, 70 mkr) och Kv Paraden, Barkarbystaden (215 lägenheter, ca 270 mkr).',
+    description: 'Arbetsledare på projekt som Kv Paraden, Barkarbystaden (215 lägenheter, ca 270 mkr).',
   },
   {
     period: '2011 – 2015',
-    role: 'Byggnadssnickare / Smed',
+    role: 'Stommontör / Stomledare',
     company: 'Veidekke Entreprenad AB',
-    description: 'Praktiskt hantverksarbete inom nybyggnation och renovering.',
+    description: 'Stommontage, stomledning och snickeri — endast inom nyproduktion.',
   },
   {
     period: '2010 – 2011',
@@ -91,12 +97,12 @@ const projects = [
   { period: '2024 – pågår', name: 'Återställning Sätra hamn', client: '—', role: 'Platschef / Bas-U', scope: 'Återställning av markytor efter tunnelarbeten. Entreprenadsumma 35 milj. Yta 15 000 kvm. Löpande räkning samt reglering mot mängd.' },
   { period: '2024 – pågår', name: 'Avluftstorn Sätra', client: '—', role: 'Platschef', scope: 'Uppförande av massiv skorsten i betong ca 25 m hög och 100 kvm i area. Entreprenadsumma 65 milj. Yta 2 000 kvm. Löpande räkning.' },
   { period: '2024 – pågår', name: 'Rivning betongbrygga, Sätra hamn', client: '—', role: 'Platschef', scope: 'Rivning av betongbrygga. Entreprenadsumma 10 milj. Yta 150 kvm. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Proj Stämstigen', client: 'Privatperson', role: 'Byggledare', scope: 'Åtgärder byggfel på nybyggd villa. Entreprenadsumma 30 milj. Yta 600 kvm. Löpande räkning.' },
+  { period: '2023 – 2024', name: 'Proj Stämstigen', client: 'Privatperson', role: 'Byggledare', scope: 'Åtgärdande av omfattande installations- och byggfel på nybyggd villa. Entreprenadsumma 30 milj. Yta 600 kvm. Löpande räkning.' },
   { period: '2023 – 2024', name: 'Transportvägen 9, Xter', client: 'Xter Logistics', role: 'Bas-U', scope: 'Utbyggnad av befintlig lokal med lastkajer. Entreprenadsumma 15 milj. Yta 1 500 kvm. Löpande räkning.' },
   { period: '2023 – 2024', name: 'Proj 23, Solna', client: 'Metrolit/Humlegården', role: 'Platschef', scope: 'Lokalanpassningar. Entreprenadsumma 30 milj. Yta 4 000 kvm. Samverkans-/utförandeentreprenad. Löpande räkning.' },
   { period: '2023 – 2024', name: 'Stenhöga 3,5, Solna', client: 'Metrolit/Humlegården', role: 'Platschef', scope: 'Lokalanpassningar. Entreprenadsumma 5,5 milj. Yta 250 kvm + ca 1 000 kvm ventilation. Löpande räkning.' },
-  { period: '2023 – 2024', name: 'Wasaskolan, Södertälje', client: 'Metrolit/Telge Fastighet', role: 'Platschef', scope: 'Ombyggnad/renovering av storkök, fläktrum och matsal. Entreprenadsumma 10 milj. Samverkans-/totalentreprenad. Fast pris.' },
-  { period: '2022 – 2023', name: 'Gravyren 23, Södertälje', client: 'Metrolit/Telge Fastighet', role: 'Platschef', scope: 'Ombyggnad av lokaler i två etapper. Nya ventilation, EL, VS, ytskikt. Entreprenadsumma 22 milj. Yta 1 000 + 500 kvm. Fast pris.' },
+  { period: '2023 – 2024', name: 'Wasaskolan, Södertälje', client: 'Metrolit/Telge Fastighet', role: 'Platschef', scope: 'Ombyggnad/renovering av storkök, fläktrum och matsal. Entreprenadsumma 10 milj. Samverkans-/totalentreprenad. Löpande räkning.' },
+  { period: '2022 – 2023', name: 'Gravyren 23, Södertälje', client: 'Metrolit/Telge Fastighet', role: 'Platschef', scope: 'Ombyggnad av lokaler i två etapper. Nya ventilation, EL, VS, ytskikt. Entreprenadsumma 22 milj. Yta 1 000 + 500 kvm. Löpande räkning.' },
   { period: '2020 – 2022', name: 'Kyrkskolan Hus A, Täby', client: 'Metrolit/Täby kommun', role: 'Platschef', scope: 'Totalrenovering av skola från 1910, invändigt och utvändigt. Nya installationer och markarbeten. Entreprenadsumma 29 milj, slutuppgör 55 milj. Yta 2 000 kvm. Fast pris + a-prislista.' },
   { period: '2019 – 2020', name: 'Klastorpsskolan Hus C, Kungsholmen', client: 'Metrolit/SISAB', role: 'Platschef', scope: 'Totalrenovering av skola från 1960. Matsal, storkök, gymnastiksal, personalutrymmen, ventilation, värme och el. Entreprenadsumma 25 milj, slutuppgör 43 milj. Yta 1 200 kvm. Fast pris.' },
   { period: '2018 – 2019', name: 'Kv Fjärdingen, Uppsala', client: 'Åke Sundvall/Uppsala Akademiförvaltning', role: 'Platschef', scope: 'Ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910. Entreprenadsumma 85 milj. Yta 8 500 kvm. Fast pris + a-prislista.' },
@@ -166,10 +172,10 @@ export default function CVPage() {
               PROFIL
             </h2>
             <p style={{ color: '#cbd5e1', lineHeight: 1.8, fontSize: '1.0625rem' }}>
-              Byggbranschen har alltid varit mitt stora intresse. Jag började min bana som byggnadssnickare och har under mer än 20 år arbetat mig genom i stort sett varje roll på en byggarbetsplats — från hantverk och stomledning till arbetsledare och platschef på projekt värderade uppemot 270 miljoner kronor. Den vägen har gett mig något jag värdesätter högt: en konkret förståelse för hur ett bygge faktiskt fungerar, från första spadtaget till slutbesiktning.
+              Byggbranschen har funnits med mig hela livet. Både min far och farfar har drivit byggfirma, och jag växte upp på byggarbetsplatser — kvaliteten går i arv. Jag började min egen bana som byggnadssnickare och har under mer än 20 år arbetat mig genom i stort sett varje roll på en byggarbetsplats — från hantverk och stomledning till arbetsledare och platschef på projekt värderade uppemot 270 miljoner kronor. Den vägen har gett mig något jag värdesätter högt: en konkret förståelse för hur ett bygge faktiskt fungerar, från första spadtaget till slutbesiktning.
             </p>
             <p style={{ color: '#cbd5e1', lineHeight: 1.8, fontSize: '1.0625rem', marginTop: '1.25rem' }}>
-              Jag har lett allt från nyproduktion av flerbostadshus och ombyggnad av äldre fastigheter till totalrenoveringar av skolor med känsliga installationer och pågående verksamhet. Oavsett storlek vilar mitt arbete på samma grund — närvarande platsledning, ordning och reda i ekonomi och tidplan, och en rak, ärlig dialog med både beställare och hantverkare. AD Byggprojekt startade jag för att kunna erbjuda just det: erfaren projektledning där kvalitet, arbetsmiljö och långsiktiga relationer alltid går före genvägar.
+              Jag har lett allt från nyproduktion av flerbostadshus och ombyggnad av äldre fastigheter till totalrenoveringar av skolor med känsliga installationer och pågående verksamhet. Oavsett storlek vilar mitt arbete på samma grund — närvarande platsledning, ordning och reda i ekonomi och tidplan, och en rak, ärlig dialog med både beställare och hantverkare. Mina värdegrunder är enkla: kvalitet, arbetsmiljö och ekonomi. AD Byggprojekt startade jag för att kunna erbjuda erfaren byggledning och projektledning där de tre alltid går före genvägar.
             </p>
           </motion.div>
 

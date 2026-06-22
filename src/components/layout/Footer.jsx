@@ -18,7 +18,7 @@ const socials = [
 
 const contact = [
   { icon: MapPin, text: 'Kantarellvägen 4, 184 34 Åkersberga' },
-  { icon: Phone, text: '+46 70 895 31 36', href: 'tel:+46708953136' },
+  { icon: Phone, text: '+46 70 462 99 43', href: 'tel:+46704629943' },
   { icon: Mail, text: 'andreas@adbyggprojekt.se', href: 'mailto:andreas@adbyggprojekt.se' },
 ];
 

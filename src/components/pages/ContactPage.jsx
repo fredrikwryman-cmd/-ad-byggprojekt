@@ -12,8 +12,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: 'Telefon',
-    value: '+46 70 895 31 36',
-    href: 'tel:+46708953136',
+    value: '+46 70 462 99 43',
+    href: 'tel:+46704629943',
   },
   {
     icon: Mail,
@@ -82,7 +82,7 @@ export default function ContactPage() {
           >
             <span className="eyebrow">Kontakta oss</span>
             <h2 className="contact-info-side-h2 font-display text-4xl md:text-5xl leading-[0.95] text-[#020617] mb-6">
-              Vi svarar inom 24 timmar
+              Vi återkommer så snart vi kan
             </h2>
             <p className="text-[#64748b] text-lg mb-10">
               Berätta om dina planer så återkommer vi med en kostnadsfri offert och en preliminär tidsplan.

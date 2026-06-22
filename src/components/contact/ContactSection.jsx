@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Send, CheckCircle2 } from '../icons.jsx';
 
 const contactInfo = [
-  { icon: Phone, label: 'Telefon', value: '+46 70 895 31 36', href: 'tel:+46708953136' },
+  { icon: Phone, label: 'Telefon', value: '+46 70 462 99 43', href: 'tel:+46704629943' },
   { icon: Mail, label: 'E-post', value: 'andreas@adbyggprojekt.se', href: 'mailto:andreas@adbyggprojekt.se' },
   { icon: MapPin, label: 'Adress', value: 'Kantarellvägen 4, 184 34 Åkersberga', href: 'https://maps.google.com/?q=Kantarellvägen+4,184+34+Åkersberga' },
 ];
@@ -69,7 +69,7 @@ export default function ContactSection() {
               </h2>
             </div>
             <p className="text-lg text-[#64748b] leading-relaxed mb-12">
-              Berätta om dina planer så återkommer vi med en kostnadsfri offert inom 24 timmar.
+              Berätta om dina planer så återkommer vi med en kostnadsfri offert så snart vi kan.
             </p>
 
             <div className="space-y-6">
@@ -112,7 +112,7 @@ export default function ContactSection() {
                   <CheckCircle2 size={40} className="text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">Tack för din förfrågan!</h3>
-                <p className="text-[#94a3b8]">Vi återkommer inom 24 timmar.</p>
+                <p className="text-[#94a3b8]">Vi återkommer så snart vi kan.</p>
                 <button
                   onClick={() => {
                     setSubmitted(false);

@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
-import { Award, Shield, Leaf, Lightbulb, ArrowRight } from '../icons.jsx';
+import { Award, Shield, Wallet, ArrowRight } from '../icons.jsx';
 
 const values = [
   { title: 'Kvalitet', desc: 'Högsta standard i varje detalj', icon: Award, cls: 'value-icon--quality' },
-  { title: 'Hållbarhet', desc: 'Miljömedvetna val', icon: Leaf, cls: 'value-icon--sustainability' },
-  { title: 'Trygghet', desc: 'Vi håller vad vi lovar', icon: Shield, cls: 'value-icon--trust' },
-  { title: 'Innovation', desc: 'Moderna metoder', icon: Lightbulb, cls: 'value-icon--innovation' },
+  { title: 'Arbetsmiljö', desc: 'Säkra arbetsplatser med ordning och reda', icon: Shield, cls: 'value-icon--trust' },
+  { title: 'Ekonomi', desc: 'Kostnadskontroll och förutsägbar ekonomi', icon: Wallet, cls: 'value-icon--innovation' },
 ];
 
 export default function AboutSection() {
@@ -45,16 +44,17 @@ export default function AboutSection() {
           >
             <span className="eyebrow font-bold">Om oss</span>
             <h2>
-              Med hantverk som <span className="gradient-text">grund</span>
+              Byggledning med hantverket i <span className="gradient-text">ryggen</span>
             </h2>
             <p className="mb-6">
-              AD Byggprojekt Stockholm AB drivs sedan starten av samma drivkraft:
-              att skapa byggnader som höjer standard och håller i generationer.
+              AD Byggprojekt Stockholm AB hjälper byggherrar och entreprenörer att driva
+              sina projekt i mål — som byggledare, platschef och projektledare. Här köper
+              du erfaren styrning, inte bara armar och ben.
             </p>
             <p className="mb-8">
-              Vi är ett team av certifierade hantverkare och projektledare som arbetar tätt
-              tillsammans med våra kunder. Varje projekt är unikt, och vi lägger stor omsorg
-              i att förstå just dina behov.
+              Med en far och farfar som drivit byggfirma, och en egen uppväxt på
+              byggarbetsplatser, sitter hantverket i ryggmärgen. Det märks i en tydlig
+              styrning på kvalitet, arbetsmiljö och ekonomi genom hela projektet.
             </p>
 
             <a
