@@ -3,18 +3,25 @@ import { Building2, PaintRoller, ClipboardCheck, MessagesSquare, ArrowRight, Che
 
 const services = [
   {
-    title: 'Byggledning & platsledning',
+    title: 'Byggledning',
     icon: ClipboardCheck,
-    summary: 'Vi går in som byggledare eller platschef och driver ditt projekt på plats.',
-    description: 'Detta är vår huvudtjänst. Vi hyr ut oss som byggledare och platschef och tar ansvar för den dagliga styrningen på arbetsplatsen — samordning av yrkesarbetare och underentreprenörer, byggmöten, tidplan, arbetsmiljö som Bas-U och ekonomisk uppföljning. Med lång erfarenhet från både entreprenad- och beställarsidan håller vi ihop projektet och ser till att det blir rätt, i tid och inom budget.',
-    features: ['Byggledare & platschef', 'Daglig arbetsledning', 'Bas-U & arbetsmiljö', 'Byggmöten & samordning', 'Tid- & ekonomistyrning', 'Kvalitets- & egenkontroll', 'Besiktningsstöd', 'Löpande rapportering'],
+    summary: 'Åt dig som beställare eller byggherre — vi är din ansvariga representant på plats.',
+    description: 'Byggledning utför vi oftast åt en beställare eller byggherre, till exempel kommuner, fastighetsägare eller organisationer som SISAB och HSB. Vi är er person på arbetsplatsen som ser till att bygget rullar — bevakar er beställning, leder byggmöten och följer upp tid, kvalitet, arbetsmiljö och ekonomi, så att entreprenören levererar det som är avtalat.',
+    features: ['Beställarens representant på plats', 'Upphandling av entreprenörer', 'Byggmöten & samordning', 'Tid-, kvalitets- & ekonomiuppföljning', 'Arbetsmiljö & Bas-U', 'Delta vid besiktning', 'Löpande rapportering'],
+  },
+  {
+    title: 'Platsledning',
+    icon: Users,
+    summary: 'Åt dig som entreprenör — vi driver produktionen på plats i total- eller generalentreprenad.',
+    description: 'Platsledning utför vi oftast åt en entreprenör som tagit på sig ett uppdrag, vanligtvis total- eller generalentreprenad. Som platschef tar vi ansvar för den dagliga styrningen på arbetsplatsen — samordning av yrkesarbetare och underentreprenörer, tidplan, arbetsmiljö som Bas-U, egenkontroll och ekonomisk uppföljning — hela vägen fram till färdigt och besiktigat.',
+    features: ['Platschef på plats', 'Daglig arbetsledning', 'Samordning av yrkesarbetare', 'Bas-U & arbetsmiljö', 'Kvalitets- & egenkontroll', 'Delta vid besiktning'],
   },
   {
     title: 'Projektledning',
     icon: Building2,
     summary: 'Komplett ledning med fokus på tid, budget och kvalitet. Vi samordnar allt.',
     description: 'Med strukturerad projektledning håller vi ihop varje fas – upphandling, tidsplanering, ekonomisk uppföljning och arbetsmiljö. Du får en dedikerad projektledare som ansvarar för kommunikationen. Vare sig du behöver hjälp med ett enskilt skede eller hela projektet ser vi till att alla aktörer drar åt samma håll. Med tät uppföljning och löpande rapportering har du alltid full koll på status, kostnader och nästa steg.',
-    features: ['Tids- & budgetplanering', 'Upphandling av underentreprenörer', 'Byggmöten & samordning', 'Arbetsmiljöplaner', 'Kvalitets- & miljöuppföljning', 'Ekonomisk uppföljning', 'Daglig rapportering'],
+    features: ['Tids- & budgetplanering', 'Upphandling av entreprenörer', 'Byggmöten & samordning', 'Arbetsmiljöplaner', 'Kvalitets- & miljöuppföljning', 'Ekonomisk uppföljning', 'Daglig rapportering'],
   },
   {
     title: 'Rådgivning',
@@ -97,6 +104,32 @@ export default function ServicesPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* CM-hänvisning till BOPG */}
+      <section className="pb-14 md:pb-20 lg:pb-28 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-safe relative z-10">
+          <a
+            href="https://fredrikwryman-cmd.github.io/bopg/#process"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-[#020617] text-white rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0078D4]/20 hover:-translate-y-1 transition-all duration-500"
+          >
+            <div>
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#4a9eff] mb-2">
+                Construction Management
+              </span>
+              <h2 className="text-xl md:text-2xl font-bold mb-2">Söker du CM-uppdrag?</h2>
+              <p className="text-[#94a3b8] max-w-2xl leading-relaxed">
+                Construction Management hanteras av vårt systerbolag Bygg &amp; Projektgruppen i Stockholm AB — en samlad byggpartner som håller ihop hela kedjan från projektledning till färdig byggnad.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-2 font-semibold text-[#4a9eff] whitespace-nowrap group-hover:gap-3 transition-all">
+              Till Bygg &amp; Projektgruppen
+              <ArrowRight size={18} />
+            </span>
+          </a>
         </div>
       </section>
 

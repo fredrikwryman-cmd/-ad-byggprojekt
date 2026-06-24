@@ -31,12 +31,12 @@ export default function CVPage() {
               <img
                 src={import.meta.env.BASE_URL + 'cv-logo.png'}
                 alt="AD Byggprojekt AB"
-                style={{ width: 'min(320px, 72vw)', height: 'auto', display: 'block' }}
+                style={{ width: 'min(180px, 52vw)', height: 'auto', display: 'block' }}
               />
             </div>
             <h1 style={{
               fontFamily: "'Bebas Neue', system-ui, sans-serif",
-              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+              fontSize: 'clamp(1.9rem, 4.2vw, 3rem)',
               color: '#fff', lineHeight: 0.95, marginBottom: '0.75rem', letterSpacing: '0.01em',
             }}>
               {cvData.name}
@@ -46,33 +46,6 @@ export default function CVPage() {
             </p>
             <p style={{ color: '#64748b', fontSize: '0.875rem' }}>
               {cvData.webBornLine}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
-              background: 'rgba(15, 23, 42, 0.8)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '1.5rem',
-              padding: '2.5rem',
-              marginBottom: '2rem',
-              backdropFilter: 'blur(12px)',
-            }}
-          >
-            <h2 style={{
-              fontFamily: "'Bebas Neue', system-ui, sans-serif",
-              fontSize: '1.5rem', color: '#4f97cc', marginBottom: '1rem', letterSpacing: '0.05em',
-            }}>
-              PROFIL
-            </h2>
-            <p style={{ color: '#cbd5e1', lineHeight: 1.8, fontSize: '1.0625rem' }}>
-              {cvData.profile[0]}
-            </p>
-            <p style={{ color: '#cbd5e1', lineHeight: 1.8, fontSize: '1.0625rem', marginTop: '1.25rem' }}>
-              {cvData.profile[1]}
             </p>
           </motion.div>
 
