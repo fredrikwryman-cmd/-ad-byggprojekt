@@ -8,6 +8,7 @@ const sections = [
   { id: 'hem', label: 'Hem', href: BASE + '/' },
   { id: 'projekt', label: 'Projekt', href: BASE + '/projekt' },
   { id: 'tjanster', label: 'Tjänster', href: BASE + '/tjanster' },
+  { id: 'cm-uppdrag', label: 'CM-uppdrag', href: BASE + '/tjanster#cm-uppdrag' },
   { id: 'om-oss', label: 'Om oss', href: BASE + '/om-oss' },
   { id: 'cv', label: 'CV', href: BASE + '/cv' },
   { id: 'kontakt', label: 'Kontakt', href: BASE + '/kontakt' },

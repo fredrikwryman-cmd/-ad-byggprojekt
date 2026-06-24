@@ -108,10 +108,10 @@ export default function ServicesPage() {
       </section>
 
       {/* CM-hänvisning till BOPG */}
-      <section className="pb-14 md:pb-20 lg:pb-28 bg-white relative overflow-hidden">
+      <section id="cm-uppdrag" className="scroll-mt-28 pb-14 md:pb-20 lg:pb-28 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-safe relative z-10">
           <a
-            href="https://fredrikwryman-cmd.github.io/bopg/#process"
+            href="https://fredrikwryman-cmd.github.io/bopg/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-[#020617] text-white rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0078D4]/20 hover:-translate-y-1 transition-all duration-500"
