@@ -704,7 +704,7 @@ function OfferForm() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: 'ef4a060a-38a9-4591-add1-5a39a8ef7148',
-          subject: 'Ny offertförfrågan via chatten (Fråga Andreas)',
+          subject: 'Ny offertförfrågan via chatten (Fråga Heidi)',
           from_name: 'AD Byggprojekt — chatt',
           name: f.name,
           kontakt: f.kontakt,
@@ -796,7 +796,7 @@ export default function AndreasChat() {
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
       {!open && (
-        <button className="andc-launcher" onClick={openChat} aria-label="Öppna chatten Fråga Andreas">
+        <button className="andc-launcher" onClick={openChat} aria-label="Öppna chatten Fråga Heidi">
           <span className="andc-dot" />
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" />
@@ -805,10 +805,10 @@ export default function AndreasChat() {
       )}
 
       {open && (
-        <div className="andc-panel" role="dialog" aria-label="Fråga Andreas">
+        <div className="andc-panel" role="dialog" aria-label="Fråga Heidi">
           <div className="andc-head">
-            <div className="andc-av">A</div>
-            <div className="andc-who"><b>Fråga Andreas</b><span>Svarar oftast direkt</span></div>
+            <div className="andc-av">H</div>
+            <div className="andc-who"><b>Fråga Heidi</b><span>Assistent, AD Byggprojekt</span></div>
             <button className="andc-x" onClick={closeChat} aria-label="Stäng">&times;</button>
           </div>
 
