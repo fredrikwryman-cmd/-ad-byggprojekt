@@ -33,8 +33,8 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/95 via-[#020617]/80 to-[#020617]/50" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/90 via-transparent to-[#020617]/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/76 via-[#020617]/64 to-[#020617]/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/72 via-transparent to-[#020617]/32" />
 
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-bg-dark opacity-10" />
