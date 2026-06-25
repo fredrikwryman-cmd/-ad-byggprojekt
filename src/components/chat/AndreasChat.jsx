@@ -2,48 +2,637 @@ import { useEffect, useRef, useState } from 'react';
 
 /* ============ 20+ ÄMNEN + fallback ============ */
 const INTENTS = [
-  { key: 'offert', kw: ['offert', 'förfrågan', 'offra', 'begära pris', 'vill ha pris', 'skicka förfrågan'],
-    a: 'Absolut — vi tar gärna fram en kostnadsfri offert. Berätta kort om ditt projekt nedan så återkommer Andreas så snart han kan.', form: true },
-  { key: 'pris', kw: ['kostar', 'kostnad', 'pris', 'dyr', 'dyrt', 'prislista', 'timpris', 'timme', 'vad hamnar', 'uppskattning', 'budget', 'billig'],
-    a: 'Vi jobbar i första hand med fasta priser och tydliga offerter, men kan även köra på löpande räkning när det passar bättre. Vill du ha en kostnadsfri uppskattning?', chips: ['Begär offert'] },
-  { key: 'tjanster', kw: ['vad gör ni', 'tjänster', 'erbjuder', 'hjälper ni', 'kan ni hjälpa', 'vad kan ni', 'sysslar'],
-    a: 'Vi är specialister på ledning av byggprojekt: byggledning, platsledning, projektledning och rådgivning — och tar vid behov även hand om själva bygget (nyproduktion och renovering).', chips: ['Byggledning', 'Platsledning', 'Projektledning', 'CM-uppdrag'] },
-  { key: 'byggledning', kw: ['byggledning', 'byggledare', 'beställarens', 'byggherre'],
-    a: 'Byggledning gör vi oftast åt en beställare eller byggherre (t.ex. kommuner, fastighetsägare, SISAB eller HSB). Vi är er ansvariga person på plats som ser till att bygget rullar — bevakar beställningen, leder byggmöten och följer upp tid, kvalitet, arbetsmiljö och ekonomi.' },
-  { key: 'platsledning', kw: ['platsledning', 'platschef'],
-    a: 'Platsledning gör vi åt entreprenörer, oftast vid total- eller generalentreprenad. Som platschef tar vi ansvar för den dagliga styrningen på arbetsplatsen — hela vägen fram till färdigt och besiktigat.' },
-  { key: 'projektledning', kw: ['projektledning', 'projektledare', 'projektstyrning', 'projektstöd'],
-    a: 'Med strukturerad projektledning håller vi ihop hela projektet — upphandling, tidplan, ekonomi och arbetsmiljö — med tät uppföljning så du alltid har koll på status, kostnader och nästa steg.' },
-  { key: 'cm', kw: ['cm', 'construction management', 'byggprojektgruppen', 'bopg', 'systerbolag'],
-    a: 'Construction Management (CM) hanteras av vårt systerbolag Bygg & Projektgruppen i Stockholm AB — en samlad byggpartner för hela kedjan. Du hittar dem via CM-uppdrag i menyn.' },
-  { key: 'omrade', kw: ['var jobbar', 'område', 'vilka orter', 'vart', 'kommer ni till', 'stockholm', 'täby', 'åkersberga', 'uppsala', 'söder', 'norr', 'geografi', 'vilka områden'],
-    a: 'Vi är baserade i Stockholm och jobbar i hela Stockholmsområdet med omnejd. Är du osäker på om vi tar oss till just din ort? Fråga på, eller lämna en förfrågan så svarar Andreas.' },
-  { key: 'tid', kw: ['hur lång tid', 'tidsplan', 'när kan ni', 'börja', 'starta', 'ledtid', 'hinner', 'när har ni', 'snabbt', 'väntetid', 'tidplan'],
-    a: 'Det beror helt på projektets omfattning. Generellt får vi bäst resultat när förfrågan kommer i god tid så vi kan planera ordentligt. Berätta om ditt projekt så ger vi dig en ärlig tidsbild.' },
-  { key: 'rot', kw: ['rot', 'rotavdrag', 'avdrag', 'skatteavdrag'],
-    a: 'Vid arbeten åt privatpersoner hjälper vi till med ROT-avdrag där det är tillämpligt, så att avdraget dras direkt på fakturan. Vill du veta om ditt projekt kvalificerar? Lämna en förfrågan.' },
-  { key: 'forsakring', kw: ['försäkring', 'f-skatt', 'fskatt', 'seriös', 'trygg', 'behörig', 'certifierad', 'godkänd', 'registrerad'],
-    a: 'Ja — bolaget är registrerat för F-skatt och vi arbetar enligt branschens regler med ordnad dokumentation och egenkontroll. Allt utförs av yrkesfolk och samordnade underentreprenörer.' },
-  { key: 'garanti', kw: ['garanti', 'garantitid', 'efter jobbet', 'reklamation', 'besiktning', 'slutbesiktning'],
-    a: 'Vi följer branschens garantier och avslutar alltid med relevant kvalitets- och miljödokumentation samt slutbesiktning där det är aktuellt — inget lämnas åt slumpen.' },
-  { key: 'referenser', kw: ['referenser', 'tidigare jobb', 'exempel', 'har ni gjort', 'utvalda uppdrag', 'case', 'portfolio', 'visa projekt'],
-    a: 'Absolut — kika under Projekt och CV på sajten, där finns flera utvalda uppdrag (allt från skolrenoveringar till nyproduktion av bostäder). Vill du ha referenser för just din typ av projekt? Fråga på.' },
-  { key: 'andreas', kw: ['vem är', 'erfarenhet', 'bakgrund', 'om er', 'om andreas', 'vem ligger', 'hur länge', 'år i branschen', 'kompetens'],
-    a: 'Bakom AD Byggprojekt står Andreas Dahlgren — med över 30 år i byggbranschen, från hantverkare och stomledare till arbetsledare, platschef och byggledare på projekt upp mot 270 miljoner kronor.' },
-  { key: 'kontakt', kw: ['kontakt', 'ring', 'telefon', 'nummer', 'mejl', 'mail', 'maila', 'nå er', 'kontakta', 'hör av', 'prata med'],
-    a: 'Du når oss enklast så här:\n📞 070-462 99 43\n✉️ andreas@adbyggprojekt.se\nVill du hellre att Andreas ringer upp dig? Lämna en förfrågan med ditt nummer.', chips: ['Begär offert'] },
-  { key: 'storlek', kw: ['litet jobb', 'smått', 'för litet', 'stort jobb', 'liten', 'minsta', 'tar ni små', 'bara en', 'litet projekt'],
-    a: 'Vi tar oss an både stora och små uppdrag. Är du osäker på om ditt projekt passar oss? Beskriv det så är vi raka med om vi är rätt för jobbet.' },
-  { key: 'kund', kw: ['privatperson', 'privat', 'företag', 'bostadsrätt', 'brf', 'förening', 'fastighetsägare', 'företagskund', 'åt vem'],
-    a: 'Vi jobbar åt både privatpersoner, bostadsrättsföreningar, företag och fastighetsägare/beställare. Upplägget anpassas efter vem du är och vad projektet kräver.' },
-  { key: 'arbete', kw: ['renovering', 'renovera', 'nybygg', 'nyproduktion', 'ombyggnad', 'tillbyggnad', 'badrum', 'kök', 'våtrum', 'tak', 'fasad', 'mark', 'stomme', 'bygga'],
-    a: 'Ja — vi tar oss an både nyproduktion och renovering, och samordnar yrkesarbetare och underentreprenörer. Berätta vad du vill ha gjort så säger vi hur vi kan hjälpa dig.', chips: ['Begär offert'] },
-  { key: 'samarbete', kw: ['underentreprenör', 'samarbeta', 'jobba åt er', 'anlita er', 'leverantör', 'samarbetspartner'],
-    a: 'Vill du samarbeta med oss eller erbjuda dina tjänster? Hör gärna av dig till andreas@adbyggprojekt.se så tar vi det därifrån.' },
-  { key: 'halsning', kw: ['hej', 'hejsan', 'tjena', 'tja', 'god morgon', 'god dag', 'hallå', 'halloj', 'yo'],
-    a: 'Hej och välkommen! 👋 Jag svarar på vanliga frågor om AD Byggprojekt — pris, tjänster, områden, tidsplan med mera. Vad kan jag hjälpa dig med?', chips: ['Vad kostar det?', 'Vad gör ni?', 'Vilka områden?', 'Begär offert'] },
-  { key: 'tack', kw: ['tack', 'tackar', 'tusen tack', 'bra', 'toppen', 'perfekt', 'hej då', 'vi hörs', 'ha det'],
-    a: 'Varsågod! 🙌 Hör gärna av dig om du undrar något mer — eller lämna en förfrågan så återkommer Andreas.' },
+  {
+    "key": "offert",
+    "kw": [
+      "offert",
+      "förfrågan",
+      "offra",
+      "begära pris",
+      "vill ha pris",
+      "skicka förfrågan"
+    ],
+    "a": "Absolut — vi tar gärna fram en kostnadsfri offert. Berätta kort om ditt projekt nedan så återkommer Andreas så snart han kan.",
+    "form": true
+  },
+  {
+    "key": "pris",
+    "kw": [
+      "kostar",
+      "kostnad",
+      "pris",
+      "dyr",
+      "dyrt",
+      "prislista",
+      "timpris",
+      "timme",
+      "vad hamnar",
+      "uppskattning",
+      "budget",
+      "billig"
+    ],
+    "a": "Vi jobbar i första hand med fasta priser och tydliga offerter, men kan även köra på à-prislista med mängdreglering eller löpande räkning när det passar bättre. Vill du ha en kostnadsfri uppskattning?",
+    "chips": [
+      "Begär offert"
+    ]
+  },
+  {
+    "key": "tjanster",
+    "kw": [
+      "vad gör ni",
+      "tjänster",
+      "erbjuder",
+      "hjälper ni",
+      "kan ni hjälpa",
+      "vad kan ni",
+      "sysslar"
+    ],
+    "a": "Vi är specialister på ledning av byggprojekt: byggledning, platsledning, projektledning och rådgivning — och tar vid behov även hand om själva bygget (nyproduktion och renovering).",
+    "chips": [
+      "Byggledning",
+      "Platsledning",
+      "Skolor",
+      "CM-uppdrag"
+    ]
+  },
+  {
+    "key": "byggledning",
+    "kw": [
+      "byggledning",
+      "byggledare",
+      "beställarens",
+      "byggherre"
+    ],
+    "a": "Byggledning gör vi oftast åt en beställare eller byggherre (t.ex. kommuner, fastighetsägare, SISAB eller HSB). Vi är er ansvariga person på plats som bevakar beställningen, leder byggmöten och följer upp tid, kvalitet, arbetsmiljö och ekonomi."
+  },
+  {
+    "key": "platsledning",
+    "kw": [
+      "platsledning",
+      "platschef"
+    ],
+    "a": "Platsledning gör vi åt entreprenörer, oftast vid total- eller generalentreprenad. Som platschef tar Andreas ansvar för den dagliga styrningen på arbetsplatsen — hela vägen fram till färdigt och besiktigat."
+  },
+  {
+    "key": "projektledning",
+    "kw": [
+      "projektledning",
+      "projektledare",
+      "projektstyrning",
+      "projektstöd",
+      "styra projekt"
+    ],
+    "a": "Med strukturerad projektledning håller vi ihop hela projektet — upphandling, tidplan, ekonomi och arbetsmiljö — med tät uppföljning så du alltid har koll på status, kostnader och nästa steg."
+  },
+  {
+    "key": "cm",
+    "kw": [
+      "cm",
+      "construction management",
+      "byggprojektgruppen",
+      "bopg",
+      "systerbolag"
+    ],
+    "a": "Construction Management (CM) hanteras av vårt systerbolag Bygg & Projektgruppen i Stockholm AB — en samlad byggpartner för hela kedjan. Du hittar dem via CM-uppdrag i menyn."
+  },
+  {
+    "key": "sakerhet",
+    "kw": [
+      "säkerhet",
+      "säkerhetsklass",
+      "säkerhetsklassad",
+      "skyddsobjekt",
+      "sekretess",
+      "säkerhetsprövning",
+      "bakgrundskontroll",
+      "registerkontroll",
+      "känsligt objekt",
+      "behörighet",
+      "klassad",
+      "säkerhetskrav"
+    ],
+    "a": "Andreas har en bakgrund inom Försvarsmakten — bl.a. som ammunitions- och drivmedelsansvarig i utlandstjänst — och är van vid miljöer med höga säkerhets- och sekretesskrav. Han har dessutom lett en rad skolprojekt i pågående verksamhet, där bakgrundskontroll, ordning och säkerhet kring barn och personal är en självklarhet. Har ni ett uppdrag med särskilda säkerhetskrav? Beskriv det så berättar vi hur vi möter dem.",
+    "chips": [
+      "Erfarenhet av skolor",
+      "Begär offert"
+    ]
+  },
+  {
+    "key": "skola",
+    "kw": [
+      "skola",
+      "skolor",
+      "skolbygge",
+      "skolrenovering",
+      "sisab",
+      "klassrum",
+      "förskola",
+      "elever",
+      "utbildningslokal",
+      "kyrkskolan",
+      "klastorpsskolan",
+      "wasaskolan"
+    ],
+    "a": "Skolor är en av Andreas starkaste erfarenheter. Han har varit platschef för bl.a. Kyrkskolan i Täby (Täby kommun), Klastorpsskolan på Kungsholmen (SISAB) och Wasaskolan i Södertälje — ofta om- och totalrenoveringar av skolor från tidigt 1900-tal, som generalentreprenad inom LOU och med verksamheten i full drift. Vi vet vad det innebär att bygga med elever och personal på plats.",
+    "chips": [
+      "Säkerhet & sekretess",
+      "Arbete i pågående verksamhet"
+    ]
+  },
+  {
+    "key": "forsvarsmakten",
+    "kw": [
+      "försvarsmakten",
+      "militär",
+      "försvaret",
+      "värnplikt",
+      "utlandstjänst",
+      "ammunition",
+      "soldat",
+      "gruppbefäl"
+    ],
+    "a": "Innan byggkarriären tog fart hade Andreas flera år inom Försvarsmakten — gruppbefäl under värnplikten samt utlandstjänst som maskinförare och som ammunitions- och drivmedelsansvarig. En bakgrund som gett ordning, ansvarskänsla och vana vid höga säkerhetskrav."
+  },
+  {
+    "key": "trafikverket",
+    "kw": [
+      "trafikverket",
+      "infrastruktur",
+      "tunnel",
+      "anläggning",
+      "förbifart",
+      "förbifarten",
+      "väg",
+      "bro",
+      "hamn",
+      "sätra",
+      "bergmassor"
+    ],
+    "a": "Andreas är just nu platschef i flera uppdrag åt Trafikverket via Metrolit — bl.a. kopplat till Förbifarten Stockholm och arbeten i Sätra hamn (återställning, avluftstorn och rivning av betongbrygga). Erfarenhet av stora anläggnings- och infrastrukturprojekt med tydliga krav på säkerhet och dokumentation."
+  },
+  {
+    "key": "offentlig",
+    "kw": [
+      "lou",
+      "offentlig",
+      "upphandling",
+      "kommun",
+      "ramavtal",
+      "anbud",
+      "offentlig beställare"
+    ],
+    "a": "Ja — Andreas har lett flera generalentreprenader inom LOU (offentlig upphandling), bl.a. skolrenoveringar åt Täby kommun och SISAB. Han är väl bekant med kraven som följer offentliga beställare: dokumentation, uppföljning och ordning från anbud till slutbesiktning."
+  },
+  {
+    "key": "pagaende",
+    "kw": [
+      "pågående verksamhet",
+      "i drift",
+      "verksamhet igång",
+      "störning",
+      "etappvis",
+      "etapp",
+      "känslig miljö",
+      "verksamhet på plats"
+    ],
+    "a": "En av Andreas styrkor är att bygga i lokaler som är i full drift — skolor med elever, kontor och fastigheter där verksamheten måste rulla på. Det kräver etappplanering, tydlig kommunikation och ordning, så att buller, damm och säkerhet hanteras rätt."
+  },
+  {
+    "key": "nyproduktion",
+    "kw": [
+      "nyproduktion",
+      "nybygg",
+      "nybyggnation",
+      "bostäder",
+      "lägenheter",
+      "bostadsrätt",
+      "radhus",
+      "flerbostadshus",
+      "brf"
+    ],
+    "a": "Andreas har gedigen erfarenhet av nyproduktion av bostäder — bl.a. som platschef/arbetsledare för BRF Estrad i Vallentuna (27 lägenheter + radhus) och Kv Paraden i Barkarbystaden (215 lägenheter). Från stomme till inflyttningsklart."
+  },
+  {
+    "key": "stomme",
+    "kw": [
+      "stomme",
+      "stommontör",
+      "stomledare",
+      "betong",
+      "prefab",
+      "stomarbete",
+      "stomresning"
+    ],
+    "a": "Andreas har en gedigen grund i själva byggandet — flera år som stommontör och stomledare i nyproduktion (bl.a. Veidekke). Det gör att han förstår bygget på djupet, inte bara på papperet, när han leder ett projekt."
+  },
+  {
+    "key": "entreprenadform",
+    "kw": [
+      "entreprenadform",
+      "generalentreprenad",
+      "totalentreprenad",
+      "samverkan",
+      "utförandeentreprenad",
+      "entreprenadformer",
+      "general",
+      "total"
+    ],
+    "a": "Andreas har jobbat i alla vanliga entreprenadformer — general-, total- och samverkans-/utförandeentreprenad — och kan både rådgöra om vilken form som passar ditt projekt och driva den i praktiken. Osäker på vad som passar er? Fråga på."
+  },
+  {
+    "key": "arbetsmiljo",
+    "kw": [
+      "arbetsmiljö",
+      "bas-p",
+      "bas-u",
+      "basp",
+      "basu",
+      "skyddsombud",
+      "skyddsrond",
+      "ohälsa",
+      "olycka",
+      "säkerhet på bygget",
+      "ama"
+    ],
+    "a": "Arbetsmiljö är centralt i allt Andreas gör. Han är utbildad och uppdaterad som Bas-P och Bas-U (byggarbetsmiljösamordnare, 2024), har gått Arbetsmiljö för chefer och varit skyddsombud. På flera uppdrag är han just Bas-U med ansvar för säkerheten på arbetsplatsen."
+  },
+  {
+    "key": "juridik",
+    "kw": [
+      "juridik",
+      "entreprenadjuridik",
+      "äta",
+      "ändrings",
+      "tilläggsarbete",
+      "kontrakt",
+      "avtal",
+      "ab04",
+      "abt06",
+      "tvist"
+    ],
+    "a": "Andreas har flera kurser i entreprenadjuridik (grund och fördjupning) samt ÄTA-hantering, vilket gör honom trygg i kontrakt, ändrings- och tilläggsarbeten och uppföljning mot beställare. Praktisk juridik som skyddar både tid och ekonomi i projektet."
+  },
+  {
+    "key": "stora_projekt",
+    "kw": [
+      "stora projekt",
+      "hur stora",
+      "största",
+      "stort projekt",
+      "omfattning",
+      "miljoner",
+      "mkr",
+      "kapacitet"
+    ],
+    "a": "Andreas har lett projekt i hela storleksspannet — från mindre uppdrag på några miljoner upp till nyproduktion runt 270 miljoner kronor (Kv Paraden, 215 lägenheter). Han kliver in i både små och stora sammanhang och anpassar styrningen efter projektet."
+  },
+  {
+    "key": "installationer",
+    "kw": [
+      "ventilation",
+      "installation",
+      "vvs",
+      "rör",
+      "värme",
+      "fläkt",
+      "ventilationsarbete",
+      "installationssamordning"
+    ],
+    "a": "Andreas samordnar alla installationer i projekten — ventilation, el, VS och styr — t.ex. omfattande ventilationsarbeten i Stenhöga (Solna) och installationsdragningar i Gravyren (Södertälje). Installationssamordning är ofta avgörande för både tidplan och slutresultat."
+  },
+  {
+    "key": "rivning_mark",
+    "kw": [
+      "rivning",
+      "riva",
+      "markarbete",
+      "schakt",
+      "grundläggning",
+      "återställning",
+      "sanering",
+      "markyta"
+    ],
+    "a": "Ja — i uppdragen åt Trafikverket ingår bl.a. rivning av betongbrygga och återställning av stora markytor i Sätra hamn. Andreas hanterar rivning, mark och återställning som en naturlig del av entreprenaderna."
+  },
+  {
+    "key": "ekonomi",
+    "kw": [
+      "ekonomi",
+      "kalkyl",
+      "löpande räkning",
+      "fast pris",
+      "kostnadskontroll",
+      "à-pris",
+      "a-pris",
+      "mängdreglering"
+    ],
+    "a": "Andreas styr projektens ekonomi oavsett upplägg — fast pris, à-prislista med mängdreglering eller löpande räkning. Tät uppföljning av kostnader och ÄTA gör att du har koll på ekonomin hela vägen."
+  },
+  {
+    "key": "kvalitet",
+    "kw": [
+      "kvalitet",
+      "egenkontroll",
+      "dokumentation",
+      "kma",
+      "slutdokumentation",
+      "spårbar"
+    ],
+    "a": "Kvalitet och dokumentation följer med i allt: egenkontroller, ordnad KMA-dokumentation och uppföljning fram till slutbesiktning. Det ska vara rätt och spårbart — inget lämnas åt slumpen."
+  },
+  {
+    "key": "utbildning",
+    "kw": [
+      "utbildning",
+      "certifikat",
+      "certifierad",
+      "kurser",
+      "kompetens",
+      "behörigheter",
+      "diplom",
+      "meriter"
+    ],
+    "a": "Andreas håller kompetensen färsk — bl.a. Bas-P/Bas-U (uppdaterad 2024), byggledarutbildning, AMA Hus, entreprenadjuridik (grund + fördjupning) och Arbetsmiljö för chefer. Hela listan finns under CV på sajten."
+  },
+  {
+    "key": "omrade",
+    "kw": [
+      "var jobbar",
+      "område",
+      "vilka orter",
+      "vart",
+      "kommer ni till",
+      "stockholm",
+      "täby",
+      "åkersberga",
+      "uppsala",
+      "södertälje",
+      "solna",
+      "geografi",
+      "vilka områden"
+    ],
+    "a": "Vi är baserade i Stockholm och jobbar i hela Stockholmsområdet med omnejd — bl.a. Täby, Solna, Södertälje, Kungsholmen och Uppsala. Osäker på om vi tar oss till just din ort? Fråga på, eller lämna en förfrågan."
+  },
+  {
+    "key": "tid",
+    "kw": [
+      "hur lång tid",
+      "tidsplan",
+      "när kan ni",
+      "börja",
+      "starta",
+      "ledtid",
+      "hinner",
+      "snabbt",
+      "väntetid",
+      "tidplan"
+    ],
+    "a": "Det beror helt på projektets omfattning. Generellt får vi bäst resultat när förfrågan kommer i god tid så vi kan planera ordentligt. Berätta om ditt projekt så ger vi dig en ärlig tidsbild."
+  },
+  {
+    "key": "mote",
+    "kw": [
+      "möte",
+      "platsbesök",
+      "platsbesok",
+      "träffas",
+      "boka",
+      "komma och titta",
+      "hembesök"
+    ],
+    "a": "Absolut — ett platsbesök är ofta bästa starten. Lämna en förfrågan med var projektet finns och vad det gäller, så hör Andreas av sig för att boka en tid.",
+    "chips": [
+      "Begär offert"
+    ]
+  },
+  {
+    "key": "rot",
+    "kw": [
+      "rot",
+      "rotavdrag",
+      "avdrag",
+      "skatteavdrag"
+    ],
+    "a": "Vid arbeten åt privatpersoner hjälper vi till med ROT-avdrag där det är tillämpligt, så att avdraget dras direkt på fakturan. Vill du veta om ditt projekt kvalificerar? Lämna en förfrågan."
+  },
+  {
+    "key": "forsakring",
+    "kw": [
+      "försäkring",
+      "f-skatt",
+      "fskatt",
+      "seriös",
+      "trygg",
+      "godkänd",
+      "registrerad"
+    ],
+    "a": "Ja — bolaget är registrerat för F-skatt och vi arbetar enligt branschens regler med ordnad dokumentation och egenkontroll. Allt utförs av yrkesfolk och samordnade underentreprenörer."
+  },
+  {
+    "key": "garanti",
+    "kw": [
+      "garanti",
+      "garantitid",
+      "efter jobbet",
+      "reklamation",
+      "besiktning",
+      "slutbesiktning"
+    ],
+    "a": "Vi följer branschens garantier och avslutar alltid med relevant kvalitets- och miljödokumentation samt slutbesiktning där det är aktuellt — inget lämnas åt slumpen."
+  },
+  {
+    "key": "referenser",
+    "kw": [
+      "referenser",
+      "tidigare jobb",
+      "exempel",
+      "har ni gjort",
+      "utvalda uppdrag",
+      "case",
+      "portfolio",
+      "visa projekt"
+    ],
+    "a": "Absolut — kika under Projekt och CV på sajten. Där finns flera utvalda uppdrag: skolrenoveringar (Kyrkskolan, Klastorpsskolan), nyproduktion av bostäder (Kv Paraden, BRF Estrad) och anläggning åt Trafikverket. Vill du ha referenser för just din typ av projekt? Fråga på."
+  },
+  {
+    "key": "andreas",
+    "kw": [
+      "vem är",
+      "erfarenhet",
+      "bakgrund",
+      "om er",
+      "om andreas",
+      "vem ligger",
+      "hur länge",
+      "år i branschen",
+      "kompetens"
+    ],
+    "a": "Bakom AD Byggprojekt står Andreas Dahlgren — med över 30 år i byggbranschen, från hantverkare och stomledare till arbetsledare, platschef och byggledare på projekt upp mot 270 miljoner kronor. Dessförinnan flera år inom Försvarsmakten."
+  },
+  {
+    "key": "varfor_ad",
+    "kw": [
+      "varför",
+      "varför välja",
+      "vad skiljer",
+      "fördel",
+      "varför er",
+      "varför ad",
+      "vad är bra"
+    ],
+    "a": "Det du får med Andreas är en erfaren byggare som lett allt från skolrenoveringar och bostäder till stora anläggningsprojekt — med fötterna i både hantverket och styrningen. Personligt engagemang, raka besked och full koll på tid, kvalitet, arbetsmiljö och ekonomi."
+  },
+  {
+    "key": "kund",
+    "kw": [
+      "privatperson",
+      "privat",
+      "företag",
+      "bostadsrätt",
+      "förening",
+      "fastighetsägare",
+      "företagskund",
+      "åt vem"
+    ],
+    "a": "Vi jobbar åt både privatpersoner, bostadsrättsföreningar, företag, kommuner och fastighetsägare/beställare. Upplägget anpassas efter vem du är och vad projektet kräver."
+  },
+  {
+    "key": "storlek",
+    "kw": [
+      "litet jobb",
+      "smått",
+      "för litet",
+      "stort jobb",
+      "liten",
+      "minsta",
+      "tar ni små",
+      "litet projekt"
+    ],
+    "a": "Vi tar oss an både stora och små uppdrag. Är du osäker på om ditt projekt passar oss? Beskriv det så är vi raka med om vi är rätt för jobbet."
+  },
+  {
+    "key": "arbete",
+    "kw": [
+      "renovering",
+      "renovera",
+      "ombyggnad",
+      "tillbyggnad",
+      "badrum",
+      "kök",
+      "våtrum",
+      "tak",
+      "fasad",
+      "bygga om"
+    ],
+    "a": "Ja — vi tar oss an både nyproduktion och renovering, och samordnar yrkesarbetare och underentreprenörer. Berätta vad du vill ha gjort så säger vi hur vi kan hjälpa dig.",
+    "chips": [
+      "Begär offert"
+    ]
+  },
+  {
+    "key": "kontakt",
+    "kw": [
+      "kontakt",
+      "ring",
+      "telefon",
+      "nummer",
+      "mejl",
+      "mail",
+      "maila",
+      "nå er",
+      "kontakta",
+      "hör av",
+      "prata med"
+    ],
+    "a": "Du når oss enklast så här:\n📞 070-462 99 43\n✉️ andreas@adbyggprojekt.se\nVill du hellre att Andreas ringer upp dig? Lämna en förfrågan med ditt nummer.",
+    "chips": [
+      "Begär offert"
+    ]
+  },
+  {
+    "key": "sprak",
+    "kw": [
+      "språk",
+      "engelska",
+      "english",
+      "talar ni",
+      "language",
+      "do you speak"
+    ],
+    "a": "Andreas talar och skriver flytande svenska och engelska. (For inquiries in English — just write and Andreas will reply in English.)"
+  },
+  {
+    "key": "jobb",
+    "kw": [
+      "jobb",
+      "anställning",
+      "lediga",
+      "rekrytering",
+      "söka jobb",
+      "jobba hos",
+      "anställa"
+    ],
+    "a": "Vill du jobba med oss eller samarbeta? Skicka en rad till andreas@adbyggprojekt.se och berätta kort om dig själv, så hör vi av oss om det finns något som passar."
+  },
+  {
+    "key": "faktura",
+    "kw": [
+      "faktura",
+      "betalning",
+      "betala",
+      "fakturering",
+      "betalningsvillkor",
+      "betalplan"
+    ],
+    "a": "Fakturering sker enligt överenskommelse i avtalet — vanligtvis löpande mot utfört arbete eller enligt betalplan. För privatpersoner hanteras ROT-avdraget direkt på fakturan där det är tillämpligt."
+  },
+  {
+    "key": "samarbete",
+    "kw": [
+      "underentreprenör",
+      "samarbeta",
+      "jobba åt er",
+      "anlita er",
+      "leverantör",
+      "samarbetspartner"
+    ],
+    "a": "Vill du samarbeta med oss eller erbjuda dina tjänster? Hör gärna av dig till andreas@adbyggprojekt.se så tar vi det därifrån."
+  },
+  {
+    "key": "halsning",
+    "kw": [
+      "hej",
+      "hejsan",
+      "tjena",
+      "tja",
+      "god morgon",
+      "god dag",
+      "hallå",
+      "halloj",
+      "yo"
+    ],
+    "a": "Hej och välkommen! 👋 Jag svarar på vanliga frågor om AD Byggprojekt — tjänster, skolprojekt, säkerhet, områden, pris med mera. Vad kan jag hjälpa dig med?",
+    "chips": [
+      "Erfarenhet av skolor",
+      "Säkerhet & skyddsobjekt",
+      "Vad kostar det?",
+      "Begär offert"
+    ]
+  },
+  {
+    "key": "tack",
+    "kw": [
+      "tack",
+      "tackar",
+      "tusen tack",
+      "toppen",
+      "perfekt",
+      "hej då",
+      "vi hörs",
+      "ha det"
+    ],
+    "a": "Varsågod! 🙌 Hör gärna av dig om du undrar något mer — eller lämna en förfrågan så återkommer Andreas."
+  }
 ];
 const FALLBACK = 'Den frågan kan jag inte svara säkert på här — men jag vill inte gissa. Vill du att Andreas hör av sig? Lämna en kort förfrågan så återkommer han.';
 const WELCOME = INTENTS.find((i) => i.key === 'halsning');
