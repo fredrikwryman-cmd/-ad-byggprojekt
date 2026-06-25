@@ -1365,6 +1365,7 @@ section[class*="bg-[#0f172a]"],
 .contact-section,
 .site-bg-dark {
   position: relative;
+  isolation: isolate;
 }
 
 section[class*="bg-white"]::before,
