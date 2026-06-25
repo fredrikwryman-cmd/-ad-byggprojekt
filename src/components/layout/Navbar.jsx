@@ -91,10 +91,10 @@ export default function Navbar() {
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-andreas-chat'))}
             className="hidden md:inline-flex items-center gap-2 px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#0078D4] to-[#4a9eff] shadow-[0_4px_14px_rgba(0,120,212,0.4)] hover:brightness-110 transition-all duration-300"
-            aria-label="Öppna AI-assistenten Fråga Andreas"
+            aria-label="Öppna Fraga Heidien Fråga Andreas"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
-            AI-assistent
+            Fraga Heidi
           </button>
 
           <a
@@ -155,7 +155,7 @@ export default function Navbar() {
                 className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#0078D4] to-[#4a9eff] transition-all duration-300 mt-4"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
-                AI-assistent
+                Fraga Heidi
               </button>
               <a
                 href={BASE + '/kontakt'}
