@@ -41,6 +41,8 @@ const jsonLd = {
   identifier: { '@type': 'PropertyValue', name: 'Organisationsnummer', value: '559131-8695' },
   sameAs: ['https://se.linkedin.com/in/andreas-dahlgren-067948105'],
 };
+
+import AndreasChat from '../components/chat/AndreasChat.jsx';
 ---
 <!DOCTYPE html>
 <html lang="sv">
@@ -90,5 +92,6 @@ const jsonLd = {
   </head>
   <body class="bg-white text-[#020617] antialiased">
     <slot />
+    <AndreasChat client:idle />
   </body>
 </html>
