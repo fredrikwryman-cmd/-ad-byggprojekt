@@ -1400,3 +1400,27 @@ section[class*="bg-[#0f172a]"]::before,
   opacity: 0.20;
   pointer-events: none;
 }
+
+/* === SLUTJUSTERING: genomgaende (fixed), starkare, isolering, marquee av === */
+section[class*="bg-white"],
+section[class*="bg-[#f8fafc]"],
+section[class*="bg-[#f1f5f9]"],
+.about-page,
+section[class*="bg-[#020617]"],
+section[class*="bg-[#0f172a]"],
+.about-section,
+.contact-section,
+.site-bg-dark { isolation: isolate; }
+
+section[class*="bg-white"]::before,
+section[class*="bg-[#f8fafc]"]::before,
+section[class*="bg-[#f1f5f9]"]::before,
+.about-page::before { background-attachment: fixed; opacity: 0.14; }
+
+section[class*="bg-[#020617]"]::before,
+section[class*="bg-[#0f172a]"]::before,
+.about-section::before,
+.contact-section::before,
+.site-bg-dark::before { background-attachment: fixed; opacity: 0.20; }
+
+div.site-bg-dark::before { display: none; }
