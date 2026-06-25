@@ -11,7 +11,7 @@ export default function CVPage() {
   return (
     <>
       {/* Hero / Profile */}
-      <section style={{ paddingTop: '4.5rem', paddingBottom: '5rem', background: '#020617', position: 'relative', overflow: 'hidden' }}>
+      <section className="site-bg-dark" style={{ paddingTop: '4.5rem', paddingBottom: '5rem', background: '#020617', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 20%, rgba(21,97,154,0.15) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 70% 80%, rgba(21,97,154,0.08) 0%, transparent 50%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
@@ -68,7 +68,7 @@ export default function CVPage() {
       </section>
 
       {/* Experience */}
-      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', background: '#0a0f1a', position: 'relative', overflow: 'hidden' }}>
+      <section className="site-bg-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', background: '#0a0f1a', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
           <motion.div
