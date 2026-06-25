@@ -6,7 +6,7 @@ const services = [
     title: 'Byggledning',
     icon: ClipboardCheck,
     summary: 'Åt dig som beställare eller byggherre — vi är din ansvariga representant på plats.',
-    description: 'Byggledning utför vi oftast åt en beställare eller byggherre, till exempel kommuner, fastighetsägare eller organisationer som SISAB och HSB. Vi är er person på arbetsplatsen som ser till att bygget rullar — bevakar er beställning, leder byggmöten och följer upp tid, kvalitet, arbetsmiljö och ekonomi, så att entreprenören levererar det som är avtalat.',
+    description: 'Byggledning utför vi oftast åt en beställare eller byggherre, till exempel kommuner, fastighetsägare eller andra beställare. Vi är er person på arbetsplatsen som ser till att bygget rullar — bevakar er beställning, leder byggmöten och följer upp tid, kvalitet, arbetsmiljö och ekonomi, så att entreprenören levererar det som är avtalat.',
     features: ['Beställarens representant på plats', 'Upphandling av entreprenörer', 'Byggmöten & samordning', 'Tid-, kvalitets- & ekonomiuppföljning', 'Arbetsmiljö & Bas-U', 'Delta vid besiktning', 'Löpande rapportering'],
   },
   {
@@ -27,8 +27,8 @@ const services = [
     title: 'Rådgivning',
     icon: MessagesSquare,
     summary: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut.',
-    description: 'Redan innan du har en färdig ritning kan vi bistå med teknisk rådgivning, kostnadsbedömningar och lösningsförslag. Målet är att du ska känna dig trygg i varje beslut. Vi hjälper dig att utvärdera olika alternativ, undvika kostsamma misstag och fatta beslut på rätt grunder – tidigt i processen där de gör störst skillnad. Ofta sparar några timmars rådgivning både tid och pengar längre fram.',
-    features: ['Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd', 'Hållbarhetsrådgivning'],
+    description: 'Redan innan du har en färdig ritning kan vi bistå med teknisk rådgivning, kostnadsbedömningar och lösningsförslag. Vi finns också med som stöttning och support genom hela resan vid komplexa och krävande projekt – ett extra par erfarna ögon när besluten är svåra och insatserna höga, oavsett om det gäller en knivig teknisk fråga, en pressad tidplan eller en tuff förhandling. Målet är att du ska känna dig trygg i varje beslut: vi hjälper dig utvärdera alternativ, undvika kostsamma misstag och fatta beslut på rätt grunder, tidigt i processen där de gör störst skillnad. Ofta sparar några timmars rådgivning både tid och pengar längre fram.',
+    features: ['Stöttning vid komplexa & krävande projekt', 'Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd'],
   },
   {
     title: 'Bygg & renovering',
@@ -36,6 +36,15 @@ const services = [
     summary: 'Vid behov tar vi även ansvar för utförandet – nybyggnad och renovering.',
     description: 'När uppdraget kräver det tar vi även hand om själva utförandet, från nyproduktion till varsam renovering. Vi samordnar yrkesarbetare och underentreprenörer och arbetar enligt branschens regler, även i bebodda fastigheter och med pågående verksamhet. Samma fokus på kvalitet, arbetsmiljö och ekonomi följer med hela vägen till slutbesiktning.',
     features: ['Nyproduktion', 'Om- & tillbyggnad', 'Renovering & ROT', 'Våtrum enligt branschregler', 'Arbete i bebodda fastigheter', 'Kvalitetssäkring', 'Slutbesiktning & garanti'],
+  },
+  {
+    title: 'CM-uppdrag',
+    icon: Building2,
+    cm: true,
+    href: 'https://fredrikwryman-cmd.github.io/bopg/',
+    summary: 'Söker du Construction Management? Det hanteras av vårt systerbolag.',
+    description: 'Construction Management (CM) hanteras av vårt systerbolag Bygg & Projektgruppen i Stockholm AB — en samlad byggpartner som håller ihop hela kedjan från projektledning till färdig byggnad. Behöver ditt projekt en helhetspartner snarare än enskild byggledning, lotsar vi dig vidare dit.',
+    features: ['Samlad byggpartner', 'Helhetsansvar genom hela kedjan', 'Projektledning till färdig byggnad'],
   },
 ];
 
@@ -66,11 +75,12 @@ export default function ServicesPage() {
               return (
                 <motion.article
                   key={service.title}
+                  id={service.cm ? 'cm-uppdrag' : undefined}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative bg-[#f8fafc] border border-[#e2e8f0] rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0078D4]/10 hover:-translate-y-1 transition-all duration-500"
+                  className={`group relative bg-[#f8fafc] border rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0078D4]/10 hover:-translate-y-1 transition-all duration-500 ${service.cm ? 'scroll-mt-28 border-[#0078D4]/30' : 'border-[#e2e8f0]'}`}
                 >
                   <div className="flex items-start gap-5 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078D4] to-[#4a9eff] text-white flex items-center justify-center shadow-lg shadow-[#0078D4]/25">
@@ -100,6 +110,18 @@ export default function ServicesPage() {
                       </li>
                     ))}
                   </ul>
+
+                  {service.cm && (
+                    <a
+                      href={service.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-7 inline-flex items-center gap-2 font-semibold text-[#0078D4] hover:gap-3 transition-all"
+                    >
+                      Till Bygg &amp; Projektgruppen
+                      <ArrowRight size={18} />
+                    </a>
+                  )}
                 </motion.article>
               );
             })}
@@ -107,31 +129,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CM-hänvisning till BOPG */}
-      <section id="cm-uppdrag" className="scroll-mt-28 pb-14 md:pb-20 lg:pb-28 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-safe relative z-10">
-          <a
-            href="https://fredrikwryman-cmd.github.io/bopg/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-col sm:flex-row sm:items-center justify-between gap-5 bg-[#020617] text-white rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0078D4]/20 hover:-translate-y-1 transition-all duration-500"
-          >
-            <div>
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#4a9eff] mb-2">
-                Construction Management
-              </span>
-              <h2 className="text-xl md:text-2xl font-bold mb-2">Söker du CM-uppdrag?</h2>
-              <p className="text-[#94a3b8] max-w-2xl leading-relaxed">
-                Construction Management hanteras av vårt systerbolag Bygg &amp; Projektgruppen i Stockholm AB — en samlad byggpartner som håller ihop hela kedjan från projektledning till färdig byggnad.
-              </p>
-            </div>
-            <span className="inline-flex items-center gap-2 font-semibold text-[#4a9eff] whitespace-nowrap group-hover:gap-3 transition-all">
-              Till Bygg &amp; Projektgruppen
-              <ArrowRight size={18} />
-            </span>
-          </a>
-        </div>
-      </section>
 
       {/* Process */}
       <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden">
