@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { Award, Shield, Wallet, ArrowRight } from '../icons.jsx';
+import { Award, Shield, Wallet, ArrowRight, Clock } from '../icons.jsx';
 
 const values = [
   { title: 'Kvalitet', desc: 'Högsta standard i varje detalj', icon: Award, cls: 'value-icon--quality' },
   { title: 'Arbetsmiljö', desc: 'Säkra arbetsplatser med ordning och reda', icon: Shield, cls: 'value-icon--trust' },
   { title: 'Ekonomi', desc: 'Kostnadskontroll och förutsägbar ekonomi', icon: Wallet, cls: 'value-icon--innovation' },
+  { title: 'Över 30 år', desc: 'Från hantverk till platschef', icon: Clock, cls: 'value-icon--quality' },
 ];
 
 export default function AboutSection() {
@@ -14,24 +15,24 @@ export default function AboutSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#0078D4]/10 blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-safe relative z-10">
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-stretch">
           {/* Image side */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="relative h-full"
           >
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/5]">
+            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full lg:min-h-[28rem] ring-1 ring-white/10 shadow-xl shadow-black/30">
               <img
-                src={import.meta.env.BASE_URL + 'om-oss-hantverk.jpg'}
-                alt="AD Byggprojekt på arbetsplats i solnedgång"
+                src={import.meta.env.BASE_URL + 'om-oss-bild.jpg'}
+                alt="AD Byggprojekt – byggledning på plats"
                 loading="lazy"
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/70 via-[#020617]/10 to-transparent" />
             </div>
           </motion.div>
 
