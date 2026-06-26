@@ -40,7 +40,7 @@ const services = [
     title: 'Bygg & renovering',
     icon: PaintRoller,
     summary: 'Vid behov tar vi även ansvar för utförandet – nybyggnad och renovering.',
-    description: 'När uppdraget kräver det tar vi även hand om själva utförandet, från nyproduktion till varsam renovering. Vi samordnar yrkesarbetare och underentreprenörer och arbetar enligt branschens regler, även i bebodda fastigheter och med pågående verksamhet. Samma fokus på kvalitet, arbetsmiljö och ekonomi följer med hela vägen till slutbesiktning.',
+    description: 'När uppdraget kräver det tar vi även hand om utförandet – från nyproduktion till varsam renovering. Vi samordnar yrkesarbetare och underentreprenörer enligt branschens regler, även i bebodda fastigheter, med fokus på kvalitet, arbetsmiljö och ekonomi hela vägen till slutbesiktning.',
     features: ['Nyproduktion', 'Om- & tillbyggnad', 'Renovering & ROT', 'Våtrum enligt branschregler', 'Arbete i bebodda fastigheter', 'Kvalitetssäkring', 'Slutbesiktning & garanti'],
   },
   {
@@ -132,14 +132,14 @@ function CmCard({ service, i }) {
     const rect = ref.current.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
-    const ry = (px - 0.5) * 18;
-    const rx = (0.5 - py) * 18;
-    setTransform(`perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-12px) scale(1.03)`);
+    const ry = (px - 0.5) * 9;
+    const rx = (0.5 - py) * 9;
+    setTransform(`perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-10px)`);
     setSheen({ x: +(px * 100).toFixed(1), y: +(py * 100).toFixed(1), active: true });
   };
 
   const handleLeave = () => {
-    setTransform('perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)');
+    setTransform('perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)');
     setSheen((s) => ({ ...s, active: false }));
   };
 
@@ -150,21 +150,21 @@ function CmCard({ service, i }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="relative scroll-mt-28"
+      className="relative scroll-mt-28 h-full"
       style={{ perspective: '900px' }}
     >
       <article
         ref={ref}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        className="group relative bg-gradient-to-b from-white to-[#eef6ff] ring-2 ring-[#0078D4]/45 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl shadow-[#0078D4]/25 hover:shadow-[0_30px_60px_-15px_rgba(0,120,212,0.45)] hover:-translate-y-3 transition-all duration-300"
+        className="group relative h-full w-full bg-gradient-to-b from-white to-[#eef6ff] ring-2 ring-[#0078D4]/45 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl shadow-[#0078D4]/25 hover:shadow-[0_30px_60px_-15px_rgba(0,120,212,0.45)] hover:-translate-y-3 transition-all duration-300"
         style={{
           transform: transform || undefined,
           transformStyle: 'preserve-3d',
           willChange: 'transform',
           transition: sheen.active
-            ? 'transform 0.08s ease-out, box-shadow 0.3s ease'
-            : 'transform 0.5s ease, box-shadow 0.3s ease',
+            ? 'transform 0.18s ease-out, box-shadow 0.3s ease'
+            : 'transform 0.6s ease, box-shadow 0.3s ease',
         }}
       >
         <span
@@ -181,7 +181,7 @@ function CmCard({ service, i }) {
           style={{
             background: `radial-gradient(circle at ${sheen.x}% ${sheen.y}%, rgba(255,255,255,0.55), transparent 45%), conic-gradient(from ${sheen.x * 3.6}deg at ${sheen.x}% ${sheen.y}%, rgba(0,120,212,0.6), rgba(124,58,237,0.55), rgba(6,182,212,0.55), rgba(0,120,212,0.6))`,
             mixBlendMode: 'overlay',
-            opacity: interactive && sheen.active ? 0.22 : 0,
+            opacity: interactive && sheen.active ? 0.18 : 0,
             transition: 'opacity 0.4s ease',
           }}
         />
