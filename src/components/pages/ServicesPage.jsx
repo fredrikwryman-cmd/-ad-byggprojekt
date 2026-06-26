@@ -28,12 +28,7 @@ const services = [
     title: 'Rådgivning / Stöd',
     icon: MessagesSquare,
     summary: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut.',
-    description: [
-      'Redan innan du har en färdig ritning kan vi bistå med teknisk rådgivning, kostnadsbedömningar och lösningsförslag. Vi finns också med som stöttning och support genom hela resan vid komplexa och krävande projekt – ett extra par erfarna ögon när besluten är svåra och insatserna höga, oavsett om det gäller en knivig teknisk fråga, en pressad tidplan eller en tuff förhandling. Målet är att du ska känna dig trygg i varje beslut: vi hjälper dig utvärdera alternativ, undvika kostsamma misstag och fatta beslut på rätt grunder, tidigt i processen där de gör störst skillnad. Ofta sparar några timmars rådgivning både tid och pengar längre fram.',
-      'Vi kan även kliva in med support / stöd vid projekt som ökar i omfattning eller att det blir en tyngre belastning på tjänstemän än vad det är beräknat med från start och givetvis bistå med framtagande av merkostnader för detta vid behov. Detta för att ej tappa ekonomin i projekt.',
-      'Vi kan även stötta med seniora kunskaper när det har resurssatts med oerfaren personal som behöver stöttning för att kunna lösa sina uppgifter innan personal går in i väggen m.m.',
-      'Dessa tjänster brukar innefattas av 1–2 arbetsdagar/vecka.',
-    ],
+    description: 'Redan innan du har en färdig ritning bistår vi med teknisk rådgivning, kostnadsbedömningar och lösningsförslag – ett extra par erfarna ögon vid komplexa och krävande projekt, när besluten är svåra och insatserna höga. Vi kliver även in med stöd när projekt växer i omfattning eller belastningen på tjänstemännen blir tyngre än planerat, och tar fram merkostnader vid behov så att ekonomin inte tappas. Dessutom stöttar vi med seniora kunskaper när teamet har mindre erfaren personal. Tjänsterna omfattar vanligtvis 1–2 arbetsdagar per vecka.',
     features: ['Stöttning vid komplexa & krävande projekt', 'Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd', 'Support', 'Stöd', 'Vägledning'],
   },
   {
