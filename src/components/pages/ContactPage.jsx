@@ -200,7 +200,7 @@ export default function ContactPage() {
                     <option value="Nybygge">Nybygge</option>
                     <option value="Renovering">Renovering</option>
                     <option value="Projektledning">Projektledning</option>
-                    <option value="Rådgivning">Rådgivning</option>
+                    <option value="Rådgivning / Stöd">Rådgivning / Stöd</option>
                     <option value="Annat">Annat</option>
                   </select>
                 </div>
