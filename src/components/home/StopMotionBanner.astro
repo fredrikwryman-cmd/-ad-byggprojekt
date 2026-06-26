@@ -68,23 +68,25 @@ const videoSrc = base + video;
 </script>
 
 <style>
-  /* Yttre sektion: navy bakgrund + vertikal luft så kortet andas mot resten */
+  /* Yttre sektion: navy bakgrund + vertikal luft. Horisontell padding ger gapet
+     runt kortet, så ramen ALDRIG når viewportkanten (ingen söm / ingen overflow).
+     box-sizing: border-box (Tailwind preflight) → paddingen spiller inte över 100%. */
   .sm-section {
     background: #020617;
-    padding: 2.5rem 0;
+    padding: 2.5rem 1rem;
   }
   @media (min-width: 640px) {
     .sm-section {
-      padding: 3.5rem 0;
+      padding: 3.5rem 1.5rem;
     }
   }
 
-  /* Inramad container: marginal, rundade hörn, tunn kant, mjuk skugga.
+  /* Inramad container: centrerad inom max-bredd, rundade hörn, tunn kant, mjuk skugga.
      Högre 4:3-crop på mobil (ingen platt remsa); 16:9 från sm och uppåt. */
   .stopmotion {
     position: relative;
     max-width: 72rem;
-    margin: 0 1rem;
+    margin: 0 auto;
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: 1rem;
@@ -95,13 +97,7 @@ const videoSrc = base + video;
   }
   @media (min-width: 640px) {
     .stopmotion {
-      margin: 0 1.5rem;
       aspect-ratio: 16 / 9;
-    }
-  }
-  @media (min-width: 1024px) {
-    .stopmotion {
-      margin: 0 auto;
     }
   }
 
