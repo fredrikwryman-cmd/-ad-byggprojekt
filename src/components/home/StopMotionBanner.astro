@@ -26,7 +26,8 @@ const video = base + 'byggplats-stopmotion.mp4';
   <div class="sm-overlay"></div>
 
   <div class="sm-inner">
-    <h2 class="sm-title">Från projektledning till färdig byggnad</h2>
+    <h2 class="sm-title">HELHETSANSVAR FRÅN FÖRSTA SPADTAGET</h2>
+    <p class="sm-sub">Vi samordnar, kvalitetssäkrar och driver projektet i mål — i tid och inom budget.</p>
   </div>
 </section>
 
@@ -69,8 +70,10 @@ const video = base + 'byggplats-stopmotion.mp4';
     z-index: 2;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.85rem;
     padding: 0 1.5rem;
     text-align: center;
   }
@@ -83,6 +86,16 @@ const video = base + 'byggplats-stopmotion.mp4';
     line-height: 1.05;
     max-width: 58rem;
     text-shadow: 0 2px 30px rgba(2, 6, 23, 0.55);
+  }
+
+  .sm-sub {
+    margin: 0;
+    max-width: 42rem;
+    color: #e2e8f0;
+    font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.5;
+    text-shadow: 0 1px 16px rgba(2, 6, 23, 0.6);
   }
 
   @media (prefers-reduced-motion: reduce) {
