@@ -56,6 +56,7 @@ export default function Navbar() {
   return (
     <>
       <motion.nav
+        aria-label="Huvudmeny"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}

@@ -4,7 +4,11 @@ const words = ['BYGGLEDNING', 'PLATSLEDNING', 'PROJEKTLEDNING', 'RÅDGIVNING', '
 
 export default function MarqueeSection() {
   return (
-    <section aria-hidden="true" className="py-10 overflow-hidden relative z-10">
+    // Purely decorative scrolling marquee. The same services are listed
+    // accessibly in the services section, so the entire marquee is hidden
+    // from assistive tech to avoid screen readers reading the looped,
+    // duplicated word list over and over.
+    <section aria-hidden="true" role="presentation" className="py-10 overflow-hidden relative z-10">
       <div className="marquee-track">
         {[...words, ...words, ...words, ...words].map((word, i) => (
           <div key={i} className="flex items-center">

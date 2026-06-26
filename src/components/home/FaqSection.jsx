@@ -56,9 +56,11 @@ export default function FaqSection() {
               className="bg-white border border-[#e2e8f0] rounded-2xl overflow-hidden"
             >
               <button
+                type="button"
                 onClick={() => setOpen(open === i ? -1 : i)}
                 className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-semibold text-[#020617]"
                 aria-expanded={open === i}
+                aria-controls={`faq-panel-${i}`}
               >
                 <span>{faq.q}</span>
                 <span className="text-[#0078D4] text-2xl flex-shrink-0 leading-none">
@@ -66,7 +68,7 @@ export default function FaqSection() {
                 </span>
               </button>
               {open === i && (
-                <div className="px-6 pb-5 text-[#475569] leading-relaxed">{faq.a}</div>
+                <div id={`faq-panel-${i}`} className="px-6 pb-5 text-[#475569] leading-relaxed">{faq.a}</div>
               )}
             </motion.div>
           ))}
