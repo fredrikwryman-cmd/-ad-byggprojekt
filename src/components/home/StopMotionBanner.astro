@@ -1,0 +1,101 @@
+---
+// Fristående "bård"-sektion på startsidan: sömlös stop motion-loop som dämpad
+// bakgrund med navy-overlay och en ljus rubrik. Respekterar base-path och
+// prefers-reduced-motion (visar poster i stället för video vid minskad rörelse).
+const base = import.meta.env.BASE_URL;
+const poster = base + 'byggplats-stopmotion-poster.jpg';
+const video = base + 'byggplats-stopmotion.mp4';
+---
+
+<section class="stopmotion" aria-label="AD Byggprojekt – från projektledning till färdig byggnad">
+  <video
+    class="sm-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    poster={poster}
+    aria-hidden="true"
+  >
+    <source src={video} type="video/mp4" />
+  </video>
+
+  <img class="sm-poster" src={poster} alt="" aria-hidden="true" />
+
+  <div class="sm-overlay"></div>
+
+  <div class="sm-inner">
+    <h2 class="sm-title">Från projektledning till färdig byggnad</h2>
+  </div>
+</section>
+
+<style>
+  .stopmotion {
+    position: relative;
+    width: 100%;
+    height: clamp(300px, 42vh, 420px);
+    overflow: hidden;
+    background: #020617;
+    isolation: isolate;
+  }
+
+  .sm-video,
+  .sm-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Poster visas bara som reduced-motion-fallback */
+  .sm-poster {
+    display: none;
+  }
+
+  .sm-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: #020617;
+    opacity: 0.64;
+  }
+
+  .sm-inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .sm-title {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    color: #ffffff;
+    font-size: clamp(1.75rem, 5vw, 3.25rem);
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    max-width: 58rem;
+    text-shadow: 0 2px 30px rgba(2, 6, 23, 0.55);
+  }
+
+  @media (max-width: 640px) {
+    .stopmotion {
+      height: clamp(240px, 38vh, 340px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sm-video {
+      display: none;
+    }
+    .sm-poster {
+      display: block;
+    }
+  }
+</style>

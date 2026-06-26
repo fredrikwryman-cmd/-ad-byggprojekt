@@ -6,6 +6,7 @@ import MarqueeSection from '../components/home/MarqueeSection.jsx';
 import StatsSection from '../components/home/StatsSection.jsx';
 import ProjectsSection from '../components/projects/ProjectsSection.jsx';
 import ServicesSection from '../components/services/ServicesSection.jsx';
+import StopMotionBanner from '../components/home/StopMotionBanner.astro';
 import AboutSection from '../components/about/AboutSection.jsx';
 // OMDÖMEN AVAKTIVERADE: modulen är dold tills riktiga kundomdömen finns.
 // Aktivera igen genom att (1) lägga in äkta omdömen i TestimonialsSection.jsx
@@ -49,6 +50,7 @@ const faqJsonLd = {
   </div>
   <ProjectsSection client:idle />
   <ServicesSection client:idle />
+  <StopMotionBanner />
   <AboutSection client:idle />
   {/* OMDÖMEN dold tills riktiga finns – avkommentera nedan för att aktivera igen: */}
   {/* <TestimonialsSection client:idle /> */}
