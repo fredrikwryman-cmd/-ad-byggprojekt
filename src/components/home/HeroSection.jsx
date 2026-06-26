@@ -39,6 +39,10 @@ export default function HeroSection() {
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-bg-dark opacity-10" />
 
+      {/* Mjuk fade i botten mot marquee-baren (#020617) – tar bort den hårda kanten.
+          Ligger ovanför bild/överlager (z-[5]) men under hero-texten (z-10). */}
+      <div className="absolute inset-x-0 bottom-0 h-32 md:h-44 z-[5] bg-gradient-to-b from-transparent to-[#020617] pointer-events-none" />
+
       {/* Content */}
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-safe py-32 md:py-40"
