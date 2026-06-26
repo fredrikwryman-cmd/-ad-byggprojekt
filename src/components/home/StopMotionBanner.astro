@@ -34,7 +34,8 @@ const video = base + 'byggplats-stopmotion.mp4';
   .stopmotion {
     position: relative;
     width: 100%;
-    height: clamp(300px, 42vh, 420px);
+    /* 16:9 så hela videobilden (1280x720) ryms utan beskärning, på alla bredder */
+    aspect-ratio: 16 / 9;
     overflow: hidden;
     background: #020617;
     isolation: isolate;
@@ -82,12 +83,6 @@ const video = base + 'byggplats-stopmotion.mp4';
     line-height: 1.05;
     max-width: 58rem;
     text-shadow: 0 2px 30px rgba(2, 6, 23, 0.55);
-  }
-
-  @media (max-width: 640px) {
-    .stopmotion {
-      height: clamp(240px, 38vh, 340px);
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
