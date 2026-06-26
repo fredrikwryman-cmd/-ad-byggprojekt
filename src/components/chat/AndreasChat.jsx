@@ -659,7 +659,8 @@ const CSS = `
 @media(prefers-reduced-motion:reduce){.andc-launcher{animation:none}}
 .andc-panel{position:fixed;right:24px;bottom:24px;z-index:9999;width:374px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 90px);background:#fff;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px -20px rgba(15,23,42,.55);border:1px solid #e5e9f0;font-family:'Segoe UI',system-ui,Arial,sans-serif}
 .andc-head{background:linear-gradient(135deg,#0f172a,#16335c);color:#fff;padding:1rem 1.1rem;display:flex;align-items:center;gap:.7rem}
-.andc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0078D4,#4a9eff);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;flex:none}
+.andc-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0078D4,#4a9eff);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1rem;flex:none;overflow:hidden}
+.andc-av img{width:100%;height:100%;object-fit:cover;display:block}
 .andc-who{flex:1;min-width:0}
 .andc-who b{display:block;font-size:.98rem;line-height:1.1}
 .andc-who span{font-size:.72rem;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:.35rem}
@@ -807,7 +808,7 @@ export default function AndreasChat() {
       {open && (
         <div className="andc-panel" role="dialog" aria-label="Fråga Heidi">
           <div className="andc-head">
-            <div className="andc-av">H</div>
+            <div className="andc-av"><img src={import.meta.env.BASE_URL + 'heidi.jpg'} alt="Heidi" width="40" height="40" /></div>
             <div className="andc-who"><b>Fråga Heidi</b><span>Assistent, AD Byggprojekt</span></div>
             <button className="andc-x" onClick={closeChat} aria-label="Stäng">&times;</button>
           </div>
