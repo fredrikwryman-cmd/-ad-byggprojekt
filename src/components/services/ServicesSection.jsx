@@ -13,7 +13,7 @@ const services = [
     icon: Building2,
   },
   {
-    title: 'Rådgivning',
+    title: 'Rådgivning / Stöd',
     text: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut tidigt och undvika dyra misstag.',
     icon: MessagesSquare,
   },

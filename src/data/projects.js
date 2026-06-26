@@ -241,7 +241,7 @@ export const moreProjects = [
     value: '30 mkr · 4 000 kvm',
     role: 'Platschef',
     longDescription:
-      'Lokalanpassningar om cirka 4 000 kvm i Solna, genomförda som samverkans- och utförandeentreprenad med ersättning på löpande räkning. Andreas var platschef.',
+      'Säkerhetsklassat skyddsobjekt där lokalanpassningar om cirka 4 000 kvm i Solna, genomfördes som samverkans- och utförandeentreprenad med ersättning på löpande räkning. Andreas var platschef.',
     facts: [
       { label: 'Entreprenadsumma', value: '30 mkr' },
       { label: 'Yta', value: '4 000 kvm' },

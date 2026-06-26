@@ -24,11 +24,16 @@ const services = [
     features: ['Tids- & budgetplanering', 'Upphandling av entreprenörer', 'Byggmöten & samordning', 'Arbetsmiljöplaner', 'Kvalitets- & miljöuppföljning', 'Ekonomisk uppföljning', 'Daglig rapportering'],
   },
   {
-    title: 'Rådgivning',
+    title: 'Rådgivning / Stöd',
     icon: MessagesSquare,
     summary: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut.',
-    description: 'Redan innan du har en färdig ritning kan vi bistå med teknisk rådgivning, kostnadsbedömningar och lösningsförslag. Vi finns också med som stöttning och support genom hela resan vid komplexa och krävande projekt – ett extra par erfarna ögon när besluten är svåra och insatserna höga, oavsett om det gäller en knivig teknisk fråga, en pressad tidplan eller en tuff förhandling. Målet är att du ska känna dig trygg i varje beslut: vi hjälper dig utvärdera alternativ, undvika kostsamma misstag och fatta beslut på rätt grunder, tidigt i processen där de gör störst skillnad. Ofta sparar några timmars rådgivning både tid och pengar längre fram.',
-    features: ['Stöttning vid komplexa & krävande projekt', 'Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd'],
+    description: [
+      'Redan innan du har en färdig ritning kan vi bistå med teknisk rådgivning, kostnadsbedömningar och lösningsförslag. Vi finns också med som stöttning och support genom hela resan vid komplexa och krävande projekt – ett extra par erfarna ögon när besluten är svåra och insatserna höga, oavsett om det gäller en knivig teknisk fråga, en pressad tidplan eller en tuff förhandling. Målet är att du ska känna dig trygg i varje beslut: vi hjälper dig utvärdera alternativ, undvika kostsamma misstag och fatta beslut på rätt grunder, tidigt i processen där de gör störst skillnad. Ofta sparar några timmars rådgivning både tid och pengar längre fram.',
+      'Vi kan även kliva in med support / stöd vid projekt som ökar i omfattning eller att det blir en tyngre belastning på tjänstemän än vad det är beräknat med från start och givetvis bistå med framtagande av merkostnader för detta vid behov. Detta för att ej tappa ekonomin i projekt.',
+      'Vi kan även stötta med seniora kunskaper när det har resurssatts med oerfaren personal som behöver stöttning för att kunna lösa sina uppgifter innan personal går in i väggen m.m.',
+      'Dessa tjänster brukar innefattas av 1–2 arbetsdagar/vecka.',
+    ],
+    features: ['Stöttning vid komplexa & krävande projekt', 'Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd', 'Support', 'Stöd', 'Vägledning'],
   },
   {
     title: 'Bygg & renovering',
@@ -96,9 +101,11 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  <p className="text-[#334155] leading-relaxed mb-6">
-                    {service.description}
-                  </p>
+                  {(Array.isArray(service.description) ? service.description : [service.description]).map((para, pi) => (
+                    <p key={pi} className="text-[#334155] leading-relaxed mb-6">
+                      {para}
+                    </p>
+                  ))}
 
                   <ul className="space-y-3">
                     {service.features.map((feature) => (

@@ -15,6 +15,11 @@ const { project } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const metaTitle = `${project.title} | AD Byggprojekt Stockholm AB`;
 const metaDesc = project.description;
+
+// Grann-projekt för pil-navigering (loopar runt så man kan bläddra igenom alla)
+const idx = allProjects.findIndex((p) => p.slug === project.slug);
+const prevProject = allProjects[(idx - 1 + allProjects.length) % allProjects.length];
+const nextProject = allProjects[(idx + 1) % allProjects.length];
 ---
 
 <Layout title={metaTitle} description={metaDesc}>
@@ -63,6 +68,23 @@ const metaDesc = project.description;
           <p>Berätta om dina planer så återkommer vi med en kostnadsfri offert så snart vi kan.</p>
           <a href={base + 'kontakt'} class="btn-primary">Kontakta oss</a>
         </div>
+
+        <nav class="pd-nav" aria-label="Bläddra mellan projekt">
+          <a class="pd-nav-link pd-nav-prev" href={base + 'projekt/' + prevProject.slug} rel="prev">
+            <span class="pd-nav-arrow" aria-hidden="true">&larr;</span>
+            <span class="pd-nav-text">
+              <span class="pd-nav-label">Föregående projekt</span>
+              <span class="pd-nav-title">{prevProject.title}</span>
+            </span>
+          </a>
+          <a class="pd-nav-link pd-nav-next" href={base + 'projekt/' + nextProject.slug} rel="next">
+            <span class="pd-nav-text">
+              <span class="pd-nav-label">Nästa projekt</span>
+              <span class="pd-nav-title">{nextProject.title}</span>
+            </span>
+            <span class="pd-nav-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </nav>
       </div>
     </section>
   </main>
@@ -260,5 +282,67 @@ const metaDesc = project.description;
     line-height: 1.7;
     max-width: 34rem;
     margin: 0 auto 1.75rem;
+  }
+
+  .pd-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+  }
+  @media (max-width: 640px) {
+    .pd-nav {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .pd-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.4rem;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+  .pd-nav-link:hover {
+    border-color: rgba(0, 120, 212, 0.5);
+    background: #11203a;
+    transform: translateY(-2px);
+  }
+  .pd-nav-next {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .pd-nav-arrow {
+    color: #4a9eff;
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .pd-nav-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+  .pd-nav-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+  }
+  .pd-nav-title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.98rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>
