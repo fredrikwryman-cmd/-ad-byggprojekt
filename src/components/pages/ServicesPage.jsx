@@ -169,25 +169,64 @@ function CmCard({ service, i }) {
           Systerbolag
         </span>
 
-        {/* Hologram-sken som förskjuts med muspekaren */}
+        {/* Lokala keyframes: hologrammets långsamma idle-drift */}
+        <style>{`
+          @keyframes cmHoloDrift {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .cm-holo-idle { animation: cmHoloDrift 16s ease-in-out infinite; }
+          @media (prefers-reduced-motion: reduce) {
+            .cm-holo-idle { animation: none; }
+          }
+        `}</style>
+
+        {/* Lager 1 (z-[1]) – mättad iriserande botten, syns alltid och driver långsamt */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 rounded-3xl pointer-events-none"
+          className="cm-holo-idle absolute inset-0 rounded-3xl pointer-events-none z-[1]"
           style={{
-            background: `radial-gradient(circle at ${sheen.x}% ${sheen.y}%, rgba(255,255,255,0.55), transparent 45%), conic-gradient(from ${sheen.x * 3.6}deg at ${sheen.x}% ${sheen.y}%, rgba(0,120,212,0.6), rgba(124,58,237,0.55), rgba(6,182,212,0.55), rgba(0,120,212,0.6))`,
-            mixBlendMode: 'overlay',
-            opacity: interactive && sheen.active ? 0.18 : 0,
-            transition: 'opacity 0.4s ease',
+            background:
+              'linear-gradient(115deg, rgba(120,0,255,.45), rgba(0,180,255,.45), rgba(0,255,180,.40), rgba(255,0,200,.45), rgba(80,120,255,.45))',
+            backgroundSize: '220% 220%',
+            opacity: 0.35,
           }}
         />
-        {/* Skimrande innerkant */}
+
+        {/* Lager 2 (z-[1]) – musstyrt iriserande sken som roterar/flyttas med pekaren */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 rounded-3xl pointer-events-none ring-1 ring-inset ring-white/40"
-          style={{ opacity: sheen.active ? 0.6 : 0, transition: 'opacity 0.4s ease' }}
+          className="absolute inset-0 rounded-3xl pointer-events-none z-[1]"
+          style={{
+            background: `conic-gradient(from ${(sheen.x * 3.6).toFixed(0)}deg at ${sheen.x}% ${sheen.y}%, rgba(120,0,255,.5), rgba(0,180,255,.5), rgba(0,255,180,.45), rgba(255,0,200,.5), rgba(80,120,255,.5), rgba(120,0,255,.5))`,
+            opacity: sheen.active ? 0.55 : 0.3,
+            transition: 'opacity 0.45s ease, background 0.12s ease-out',
+          }}
         />
 
-        <div style={{ transform: interactive ? 'translateZ(35px)' : undefined, transformStyle: 'preserve-3d' }}>
+        {/* Sheen-remsa (z-[2]) – smalt ljust streck som vandrar med pekaren + glasig kant */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-3xl pointer-events-none z-[2] overflow-hidden ring-1 ring-inset ring-white/30"
+        >
+          <div
+            style={{
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(100deg, transparent 44%, rgba(255,255,255,.7) 50%, transparent 56%)',
+              backgroundSize: '300% 100%',
+              backgroundPosition: `${sheen.x}% 0%`,
+              opacity: sheen.active ? 0.7 : 0.22,
+              transition: 'opacity 0.45s ease, background-position 0.12s ease-out',
+            }}
+          />
+        </div>
+
+        {/* Innehåll (z-10) – alltid ovanför hologrammet, fullt läsbart */}
+        <div
+          className="relative z-10"
+          style={{ transform: interactive ? 'translateZ(35px)' : undefined, transformStyle: 'preserve-3d' }}
+        >
           <CardBody service={service} />
         </div>
       </article>
