@@ -205,93 +205,86 @@ export default function CVPage() {
         </div>
       </section>
 
-      {/* Education & Courses */}
+      {/* Education & Courses – sammanhållen kort-modul */}
       <section style={{ paddingTop: '5rem', paddingBottom: '5rem', background: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, width: '500px', height: '500px', background: 'rgba(21, 97, 154, 0.04)', borderRadius: '50%', filter: 'blur(80px)', transform: 'translate(30%, -30%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '3rem' }}>
-            {/* Education */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-                <div style={{
-                  width: '3rem', height: '3rem', borderRadius: '0.75rem',
-                  background: 'rgba(21, 97, 154, 0.1)', color: '#15619A',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <GraduationCap size={22} />
-                </div>
-                <h2 style={{
-                  fontFamily: "'Bebas Neue', system-ui, sans-serif",
-                  fontSize: '2rem', color: '#020617', letterSpacing: '0.03em',
-                }}>Utbildning</h2>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {education.map((edu, i) => (
-                  <div key={i} style={{
-                    background: '#fff', border: '1px solid #e2e8f0',
-                    borderRadius: '1rem', padding: '1.5rem',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-                  }}>
-                    <span style={{
-                      fontSize: '0.8125rem', fontWeight: 600, color: '#15619A',
-                      background: 'rgba(21, 97, 154, 0.08)', padding: '0.25rem 0.75rem', borderRadius: '9999px',
-                    }}>{edu.period}</span>
-                    <h3 style={{ fontSize: '1.125rem', fontWeight: 700, color: '#020617', marginTop: '0.75rem', marginBottom: '0.25rem' }}>{edu.title}</h3>
-                    <p style={{ color: '#64748b', fontSize: '0.9375rem' }}>{edu.school}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Courses */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-                <div style={{
-                  width: '3rem', height: '3rem', borderRadius: '0.75rem',
-                  background: 'rgba(21, 97, 154, 0.1)', color: '#15619A',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                }}>
-                  <Award size={22} />
-                </div>
-                <h2 style={{
-                  fontFamily: "'Bebas Neue', system-ui, sans-serif",
-                  fontSize: '2rem', color: '#020617', letterSpacing: '0.03em',
-                }}>Kurser & Certifieringar</h2>
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            style={{
+              background: '#fff', border: '1px solid #e2e8f0',
+              borderRadius: '1.5rem',
+              boxShadow: '0 10px 30px -12px rgba(2,6,23,0.12)',
+              padding: 'clamp(1.5rem, 4vw, 2.75rem)',
+            }}
+          >
+            {/* Utbildning */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.75rem' }}>
               <div style={{
-                background: '#fff', border: '1px solid #e2e8f0',
-                borderRadius: '1rem', padding: '1.5rem',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                width: '3rem', height: '3rem', borderRadius: '0.75rem',
+                background: 'rgba(21, 97, 154, 0.1)', color: '#15619A',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
               }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-                  {courses.map((course, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
-                      <div style={{
-                        width: '0.5rem', height: '0.5rem', borderRadius: '50%',
-                        background: '#15619A', marginTop: '0.5rem', flexShrink: 0,
-                      }} />
-                      <div>
-                        <span style={{ fontWeight: 600, fontSize: '0.875rem', color: '#334155' }}>{course.name}</span>
-                        {course.organizer && course.organizer !== '—' && (
-                          <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>{course.organizer}</span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <GraduationCap size={22} />
               </div>
-            </motion.div>
-          </div>
+              <h2 style={{
+                fontFamily: "'Bebas Neue', system-ui, sans-serif",
+                fontSize: '2rem', color: '#020617', letterSpacing: '0.03em',
+              }}>Utbildning</h2>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '1rem' }}>
+              {education.map((edu, i) => (
+                <div key={i} style={{
+                  background: '#f8fafc', border: '1px solid #e2e8f0',
+                  borderRadius: '0.875rem', padding: '1.25rem',
+                }}>
+                  <span style={{
+                    fontSize: '0.8125rem', fontWeight: 600, color: '#15619A',
+                    background: 'rgba(21, 97, 154, 0.08)', padding: '0.25rem 0.75rem', borderRadius: '9999px',
+                  }}>{edu.period}</span>
+                  <h3 style={{ fontSize: '1.0625rem', fontWeight: 700, color: '#020617', marginTop: '0.75rem', marginBottom: '0.25rem' }}>{edu.title}</h3>
+                  <p style={{ color: '#64748b', fontSize: '0.9375rem' }}>{edu.school}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Avdelare */}
+            <div style={{ height: '1px', background: '#e2e8f0', margin: 'clamp(2rem, 5vw, 2.75rem) 0' }} />
+
+            {/* Kurser & certifieringar */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.75rem' }}>
+              <div style={{
+                width: '3rem', height: '3rem', borderRadius: '0.75rem',
+                background: 'rgba(21, 97, 154, 0.1)', color: '#15619A',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+              }}>
+                <Award size={22} />
+              </div>
+              <h2 style={{
+                fontFamily: "'Bebas Neue', system-ui, sans-serif",
+                fontSize: '2rem', color: '#020617', letterSpacing: '0.03em',
+              }}>Kurser &amp; certifieringar</h2>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '0.875rem 2rem' }}>
+              {courses.map((course, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <div style={{
+                    width: '0.5rem', height: '0.5rem', borderRadius: '50%',
+                    background: '#15619A', marginTop: '0.5rem', flexShrink: 0,
+                  }} />
+                  <div>
+                    <span style={{ fontWeight: 600, fontSize: '0.875rem', color: '#334155' }}>{course.name}</span>
+                    {course.organizer && course.organizer !== '—' && (
+                      <span style={{ fontSize: '0.75rem', color: '#94a3b8', display: 'block' }}>{course.organizer}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
