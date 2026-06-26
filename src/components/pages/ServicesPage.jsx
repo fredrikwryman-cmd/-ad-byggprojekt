@@ -85,8 +85,13 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className={`group relative bg-[#f8fafc] border rounded-3xl p-6 sm:p-8 md:p-10 hover:shadow-2xl hover:shadow-[#0078D4]/10 hover:-translate-y-1 transition-all duration-500 ${service.cm ? 'scroll-mt-28 border-[#0078D4]/30' : 'border-[#e2e8f0]'}`}
+                  className={`group relative rounded-3xl p-6 sm:p-8 md:p-10 transition-all duration-500 ${service.cm ? 'scroll-mt-28 bg-gradient-to-b from-white to-[#eef6ff] ring-2 ring-[#0078D4]/40 shadow-2xl shadow-[#0078D4]/25 lg:-translate-y-2 lg:hover:-translate-y-3' : 'bg-[#f8fafc] border border-[#e2e8f0] hover:shadow-2xl hover:shadow-[#0078D4]/10 hover:-translate-y-1'}`}
                 >
+                  {service.cm && (
+                    <span className="absolute -top-3 right-6 z-10 bg-[#0078D4] text-white text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full shadow-md">
+                      Systerbolag
+                    </span>
+                  )}
                   <div className="flex items-start gap-5 mb-6">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078D4] to-[#4a9eff] text-white flex items-center justify-center shadow-lg shadow-[#0078D4]/25">
                       <Icon size={28} />
@@ -123,7 +128,7 @@ export default function ServicesPage() {
                       href={service.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-7 inline-flex items-center gap-2 font-semibold text-[#0078D4] hover:gap-3 transition-all"
+                      className="mt-7 inline-flex items-center gap-2 bg-[#0078D4] text-white rounded-full px-5 py-2.5 font-semibold hover:bg-[#0066b8] transition-colors"
                     >
                       Till Bygg &amp; Projektgruppen
                       <ArrowRight size={18} />
