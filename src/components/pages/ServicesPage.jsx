@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { Building2, PaintRoller, ClipboardCheck, MessagesSquare, ArrowRight, CheckCircle2, Users, Shield, Wallet } from '../icons.jsx';
 
 const services = [
@@ -67,6 +68,138 @@ const values = [
   { icon: Users, title: 'Närhet', text: 'Personlig kontakt och löpande dialog genom hela projektet. Du har alltid en namngiven kontaktperson.' },
 ];
 
+// Delat kortinnehåll (ikon, rubrik, text, punkter, ev. CTA) — identiskt för alla kort.
+function CardBody({ service }) {
+  const Icon = service.icon;
+  return (
+    <>
+      <div className="flex items-start gap-5 mb-6">
+        <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078D4] to-[#4a9eff] text-white flex items-center justify-center shadow-lg shadow-[#0078D4]/25 flex-shrink-0">
+          <Icon size={28} />
+        </div>
+        <div>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#020617] mb-2">{service.title}</h2>
+          <p className="text-[#64748b] leading-relaxed">{service.summary}</p>
+        </div>
+      </div>
+
+      {(Array.isArray(service.description) ? service.description : [service.description]).map((para, pi) => (
+        <p key={pi} className="text-[#334155] leading-relaxed mb-6">{para}</p>
+      ))}
+
+      <ul className="space-y-3">
+        {service.features.map((feature) => (
+          <li key={feature} className="flex items-center gap-3 text-[#334155]">
+            <span className="w-5 h-5 rounded-full bg-[#0078D4]/10 text-[#0078D4] flex items-center justify-center flex-shrink-0">
+              <CheckCircle2 size={12} />
+            </span>
+            <span className="font-medium">{feature}</span>
+          </li>
+        ))}
+      </ul>
+
+      {service.cm && (
+        <a
+          href={service.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-7 inline-flex items-center gap-2 bg-[#0078D4] text-white rounded-full px-5 py-2.5 font-semibold hover:bg-[#0066b8] transition-colors"
+        >
+          Till Bygg &amp; Projektgruppen
+          <ArrowRight size={18} />
+        </a>
+      )}
+    </>
+  );
+}
+
+// CM-kortet: sidans tydligaste kort — premium 3D-tilt + hologram-sken som följer musen.
+// Respekterar prefers-reduced-motion och faller tillbaka till enbart hover-lyft/glow på touch.
+function CmCard({ service, i }) {
+  const ref = useRef(null);
+  const [transform, setTransform] = useState('');
+  const [sheen, setSheen] = useState({ x: 50, y: 50, active: false });
+  const [interactive, setInteractive] = useState(false);
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    setInteractive(!reduce && finePointer);
+  }, []);
+
+  const handleMove = (e) => {
+    if (!interactive || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const ry = (px - 0.5) * 18;
+    const rx = (0.5 - py) * 18;
+    setTransform(`perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-12px) scale(1.03)`);
+    setSheen({ x: +(px * 100).toFixed(1), y: +(py * 100).toFixed(1), active: true });
+  };
+
+  const handleLeave = () => {
+    setTransform('perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)');
+    setSheen((s) => ({ ...s, active: false }));
+  };
+
+  return (
+    <motion.div
+      id="cm-uppdrag"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="relative scroll-mt-28"
+      style={{ perspective: '900px' }}
+    >
+      <article
+        ref={ref}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+        className="group relative bg-gradient-to-b from-white to-[#eef6ff] ring-2 ring-[#0078D4]/45 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl shadow-[#0078D4]/25 hover:shadow-[0_30px_60px_-15px_rgba(0,120,212,0.45)] hover:-translate-y-3 transition-all duration-300"
+        style={{
+          transform: transform || undefined,
+          transformStyle: 'preserve-3d',
+          willChange: 'transform',
+          transition: sheen.active
+            ? 'transform 0.08s ease-out, box-shadow 0.3s ease'
+            : 'transform 0.5s ease, box-shadow 0.3s ease',
+        }}
+      >
+        <span
+          className="absolute -top-3 right-6 z-20 bg-[#0078D4] text-white text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full shadow-md"
+          style={{ transform: 'translateZ(40px)' }}
+        >
+          Systerbolag
+        </span>
+
+        {/* Hologram-sken som förskjuts med muspekaren */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-3xl pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at ${sheen.x}% ${sheen.y}%, rgba(255,255,255,0.55), transparent 45%), conic-gradient(from ${sheen.x * 3.6}deg at ${sheen.x}% ${sheen.y}%, rgba(0,120,212,0.6), rgba(124,58,237,0.55), rgba(6,182,212,0.55), rgba(0,120,212,0.6))`,
+            mixBlendMode: 'overlay',
+            opacity: interactive && sheen.active ? 0.22 : 0,
+            transition: 'opacity 0.4s ease',
+          }}
+        />
+        {/* Skimrande innerkant */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 rounded-3xl pointer-events-none ring-1 ring-inset ring-white/40"
+          style={{ opacity: sheen.active ? 0.6 : 0, transition: 'opacity 0.4s ease' }}
+        />
+
+        <div style={{ transform: interactive ? 'translateZ(35px)' : undefined, transformStyle: 'preserve-3d' }}>
+          <CardBody service={service} />
+        </div>
+      </article>
+    </motion.div>
+  );
+}
+
 export default function ServicesPage() {
   return (
     <>
@@ -75,68 +208,22 @@ export default function ServicesPage() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0078D4]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-safe relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {services.map((service, i) => {
-              const Icon = service.icon;
-              return (
+            {services.map((service, i) =>
+              service.cm ? (
+                <CmCard key={service.title} service={service} i={i} />
+              ) : (
                 <motion.article
                   key={service.title}
-                  id={service.cm ? 'cm-uppdrag' : undefined}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className={`group relative rounded-3xl p-6 sm:p-8 md:p-10 transition-all duration-500 ${service.cm ? 'scroll-mt-28 bg-gradient-to-b from-white to-[#eef6ff] ring-2 ring-[#0078D4]/40 shadow-2xl shadow-[#0078D4]/25 lg:-translate-y-2 lg:hover:-translate-y-3' : 'bg-[#f8fafc] border border-[#e2e8f0] hover:shadow-2xl hover:shadow-[#0078D4]/10 hover:-translate-y-1'}`}
+                  className="group relative bg-gradient-to-b from-white to-[#eef6ff] ring-1 ring-[#0078D4]/30 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl shadow-[#0078D4]/15 hover:shadow-2xl hover:shadow-[#0078D4]/25 hover:-translate-y-1.5 transition-all duration-300"
                 >
-                  {service.cm && (
-                    <span className="absolute -top-3 right-6 z-10 bg-[#0078D4] text-white text-[11px] font-bold uppercase tracking-wide px-3 py-1 rounded-full shadow-md">
-                      Systerbolag
-                    </span>
-                  )}
-                  <div className="flex items-start gap-5 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078D4] to-[#4a9eff] text-white flex items-center justify-center shadow-lg shadow-[#0078D4]/25">
-                      <Icon size={28} />
-                    </div>
-                    <div>
-                      <h2 className="text-2xl md:text-3xl font-bold text-[#020617] mb-2">
-                        {service.title}
-                      </h2>
-                      <p className="text-[#64748b] leading-relaxed">
-                        {service.summary}
-                      </p>
-                    </div>
-                  </div>
-
-                  {(Array.isArray(service.description) ? service.description : [service.description]).map((para, pi) => (
-                    <p key={pi} className="text-[#334155] leading-relaxed mb-6">
-                      {para}
-                    </p>
-                  ))}
-
-                  <ul className="space-y-3">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3 text-[#334155]">
-                        <span className="w-5 h-5 rounded-full bg-[#0078D4]/10 text-[#0078D4] flex items-center justify-center flex-shrink-0">
-                          <CheckCircle2 size={12} />
-                        </span>
-                        <span className="font-medium">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {service.cm && (
-                    <a
-                      href={service.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-7 inline-flex items-center gap-2 bg-[#0078D4] text-white rounded-full px-5 py-2.5 font-semibold hover:bg-[#0066b8] transition-colors"
-                    >
-                      Till Bygg &amp; Projektgruppen
-                      <ArrowRight size={18} />
-                    </a>
-                  )}
+                  <CardBody service={service} />
                 </motion.article>
-              );
-            })}
+              )
+            )}
           </div>
         </div>
       </section>
