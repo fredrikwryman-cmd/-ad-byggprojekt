@@ -1,13 +1,15 @@
 ---
-// Fristående "bård"-sektion på startsidan: sömlös stop motion-loop som dämpad
-// bakgrund med navy-overlay och en ljus rubrik. Respekterar base-path och
+// Återanvändbar "bård"-sektion: sömlös video-loop som dämpad bakgrund med
+// navy-overlay + ljus rubrik/underrad. Respekterar base-path och
 // prefers-reduced-motion (visar poster i stället för video vid minskad rörelse).
+// Props: video, poster (filnamn i public/), title, subtitle, label (valfri aria-label).
+const { video, poster, title, subtitle, label } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const poster = base + 'byggplats-stopmotion-poster.jpg';
-const video = base + 'byggplats-stopmotion.mp4';
+const posterSrc = base + poster;
+const videoSrc = base + video;
 ---
 
-<section class="stopmotion" aria-label="AD Byggprojekt – från projektledning till färdig byggnad">
+<section class="stopmotion" aria-label={label || title}>
   <video
     class="sm-video"
     autoplay
@@ -16,47 +18,49 @@ const video = base + 'byggplats-stopmotion.mp4';
     playsinline
     webkit-playsinline
     preload="auto"
-    poster={poster}
+    poster={posterSrc}
     aria-hidden="true"
   >
-    <source src={video} type="video/mp4" />
+    <source src={videoSrc} type="video/mp4" />
   </video>
 
-  <img class="sm-poster" src={poster} alt="" aria-hidden="true" />
+  <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" />
 
   <div class="sm-overlay"></div>
 
   <div class="sm-inner">
-    <h2 class="sm-title">HELHETSANSVAR FRÅN FÖRSTA SPADTAGET</h2>
-    <p class="sm-sub">Vi samordnar, kvalitetssäkrar och driver projektet i mål — i tid och inom budget.</p>
+    <h2 class="sm-title">{title}</h2>
+    <p class="sm-sub">{subtitle}</p>
   </div>
 </section>
 
 <script>
   // Tvinga autoplay på iOS/Android (muted + playsInline + programmatisk play).
   // Vid minskad rörelse: spela inte. Vid nekad autoplay: visa poster i stället.
-  const root = document.querySelector('.stopmotion');
-  const v = root?.querySelector('.sm-video');
-  if (root && v) {
+  // Hanterar ALLA bårdar på sidan (kan finnas flera instanser).
+  const setupBanner = (root) => {
+    const v = root.querySelector('.sm-video');
+    if (!v) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) {
       v.removeAttribute('autoplay');
       try { v.pause(); } catch (e) {}
-    } else {
-      const start = () => {
-        v.muted = true;
-        v.setAttribute('muted', '');
-        v.playsInline = true;
-        const p = v.play();
-        if (p && p.catch) {
-          p.catch(() => { root.classList.add('sm-fallback'); });
-        }
-      };
-      start();
-      v.addEventListener('canplay', start, { once: true });
-      v.addEventListener('loadeddata', start, { once: true });
+      return;
     }
-  }
+    const start = () => {
+      v.muted = true;
+      v.setAttribute('muted', '');
+      v.playsInline = true;
+      const p = v.play();
+      if (p && p.catch) {
+        p.catch(() => { root.classList.add('sm-fallback'); });
+      }
+    };
+    start();
+    v.addEventListener('canplay', start, { once: true });
+    v.addEventListener('loadeddata', start, { once: true });
+  };
+  document.querySelectorAll('.stopmotion').forEach(setupBanner);
 </script>
 
 <style>

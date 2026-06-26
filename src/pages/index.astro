@@ -50,12 +50,23 @@ const faqJsonLd = {
   </div>
   <ProjectsSection client:idle />
   <ServicesSection client:idle />
-  <StopMotionBanner />
+  <StopMotionBanner
+    video="byggplats-stopmotion.mp4"
+    poster="byggplats-stopmotion-poster.jpg"
+    title="HELHETSANSVAR FRÅN FÖRSTA SPADTAGET"
+    subtitle="Vi samordnar, kvalitetssäkrar och driver projektet i mål — i tid och inom budget."
+  />
   <AboutSection client:idle />
   {/* OMDÖMEN dold tills riktiga finns – avkommentera nedan för att aktivera igen: */}
   {/* <TestimonialsSection client:idle /> */}
   <FaqSection client:idle />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />
+  <StopMotionBanner
+    video="blueprint-reveal.mp4"
+    poster="blueprint-reveal-poster.jpg"
+    title="DÄR ERFARENHET MÖTER PRECISION"
+    subtitle="30 år på bygget — omsatt i ordning, kontroll och trygga beslut."
+  />
   <ContactSection client:idle />
   </main>
   <Footer />
