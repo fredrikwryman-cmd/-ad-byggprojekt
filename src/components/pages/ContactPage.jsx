@@ -33,7 +33,7 @@ export default function ContactPage() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#0078D4]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
 
-      <div className="max-w-xl mx-auto px-safe relative z-10">
+      <div className="max-w-[880px] mx-auto px-safe relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
