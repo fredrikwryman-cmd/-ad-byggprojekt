@@ -48,7 +48,9 @@ html {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #ffffff;
+  /* Mörk navy som global botten – annars syns en vit hårfina linje i skarvar
+     mellan mörka sektioner (sub-pixel-glipa vid aspect-ratio-höjder). */
+  background-color: #020617;
   color: #020617;
   font-weight: 400;
   line-height: 1.6;
