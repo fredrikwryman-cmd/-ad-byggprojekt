@@ -26,13 +26,11 @@ const videoSrc = base + video;
     </video>
 
     <img class="sm-poster sm-feather" src={posterSrc} alt="" aria-hidden="true" />
+  </div>
 
-    <div class="sm-readability sm-feather" aria-hidden="true"></div>
-
-    <div class="sm-inner">
-      <h2 class="sm-title">{title}</h2>
-      <p class="sm-sub">{subtitle}</p>
-    </div>
+  <div class="sm-caption">
+    <h2 class="sm-title">{title}</h2>
+    <p class="sm-sub">{subtitle}</p>
   </div>
 </section>
 
@@ -143,27 +141,16 @@ const videoSrc = base + video;
     mask-size: 100% 100%;
   }
 
-  /* Mörk gradient i nedre delen så texten (nu nederst) blir läsbar.
-     Samma feather-mask → inga synliga kanter. */
-  .sm-readability {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: linear-gradient(to top, #020617 0%, rgba(2, 6, 23, 0.85) 24%, rgba(2, 6, 23, 0) 58%);
-  }
-
-  .sm-inner {
-    position: relative;
-    z-index: 2;
-    height: 100%;
+  /* Text UNDER videon (inte overlay): centrerad caption med luft till klippet. */
+  .sm-caption {
+    max-width: 72rem;
+    margin: clamp(1.25rem, 3vw, 1.75rem) auto 0;
+    padding: 0 1.5rem;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
     gap: 0.6rem;
-    padding: 0 1.5rem clamp(1.25rem, 4vw, 2.75rem);
-    text-align: center;
   }
 
   .sm-title {
