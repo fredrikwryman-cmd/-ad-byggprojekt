@@ -39,30 +39,33 @@ const videoSrc = base + video;
 </section>
 
 <script>
-  // Tvinga autoplay på iOS/Android (muted + playsInline + programmatisk play).
-  // Vid minskad rörelse: spela inte. Vid nekad autoplay: visa poster i stället.
-  // Hanterar ALLA bårdar på sidan (kan finnas flera instanser).
+  // Tvinga autoplay på iOS/Android. Autoplay är ALLTID default (ingen
+  // reduced-motion-blockering – det stoppade uppspelning på mobiler med
+  // "Minska rörelse" på). Poster visas bara vid absolut fel (error-event).
+  // Spelar både vid mount OCH när bården faktiskt syns (IntersectionObserver),
+  // så .play() aldrig körs för tidigt. Hanterar flera bårdar på samma sida.
   const setupBanner = (root) => {
     const v = root.querySelector('.sm-video');
     if (!v) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      v.removeAttribute('autoplay');
-      try { v.pause(); } catch (e) {}
-      return;
-    }
-    const start = () => {
+    const tryPlay = () => {
       v.muted = true;
-      v.setAttribute('muted', '');
+      v.setAttribute('muted', '');         // iOS kräver attributet, inte bara propen
       v.playsInline = true;
+      v.setAttribute('playsinline', '');
       const p = v.play();
-      if (p && p.catch) {
-        p.catch(() => { root.classList.add('sm-fallback'); });
-      }
+      if (p && p.catch) p.catch(() => {}); // svälj transienta fel, retry sker nedan
     };
-    start();
-    v.addEventListener('canplay', start, { once: true });
-    v.addEventListener('loadeddata', start, { once: true });
+    tryPlay();
+    v.addEventListener('loadeddata', tryPlay, { once: true });
+    v.addEventListener('canplay', tryPlay, { once: true });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) tryPlay(); });
+      }, { threshold: 0.2 });
+      io.observe(root);
+    }
+    // Absolut undantag: videon kan inte laddas alls → visa poster
+    v.addEventListener('error', () => root.classList.add('sm-fallback'), { once: true });
   };
   document.querySelectorAll('.stopmotion').forEach(setupBanner);
 </script>
@@ -183,14 +186,5 @@ const videoSrc = base + video;
     font-weight: 400;
     line-height: 1.5;
     text-shadow: 0 1px 16px rgba(2, 6, 23, 0.6);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .sm-video {
-      display: none;
-    }
-    .sm-poster {
-      display: block;
-    }
   }
 </style>

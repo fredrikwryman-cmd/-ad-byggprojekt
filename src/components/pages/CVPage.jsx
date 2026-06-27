@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Briefcase, GraduationCap, Award, ArrowRight } from '../icons.jsx';
 import cvData from '../../data/cv-data.json';
@@ -9,24 +8,6 @@ const courses = cvData.courses;
 const projects = cvData.projects;
 
 export default function CVPage() {
-  const resaVideoRef = useRef(null);
-
-  useEffect(() => {
-    const v = resaVideoRef.current;
-    if (!v) return;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      v.removeAttribute('autoplay');
-      try { v.pause(); } catch (e) {}
-      return;
-    }
-    v.muted = true;
-    v.setAttribute('muted', '');
-    v.playsInline = true;
-    const p = v.play();
-    if (p && p.catch) p.catch(() => {});
-  }, []);
-
   return (
     <>
       {/* Hero / Profile */}
@@ -34,85 +15,6 @@ export default function CVPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 20%, rgba(21,97,154,0.15) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 70% 80%, rgba(21,97,154,0.08) 0%, transparent 50%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
-          {/* Andreas resa – videokort (mellan övre titeln och AD-logon) */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{
-              maxWidth: '34rem',
-              margin: '0 auto 2.75rem',
-              background: 'rgba(15, 23, 42, 0.9)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '1.25rem',
-              boxShadow: '0 24px 60px -24px rgba(0, 0, 0, 0.65)',
-              padding: '1rem',
-            }}
-          >
-            <div
-              style={{
-                position: 'relative',
-                aspectRatio: '16 / 9',
-                borderRadius: '0.85rem',
-                overflow: 'hidden',
-                background: '#020617',
-                pointerEvents: 'none',
-              }}
-            >
-              <video
-                ref={resaVideoRef}
-                autoPlay
-                muted
-                loop
-                playsInline
-                webkit-playsinline="true"
-                preload="metadata"
-                poster={import.meta.env.BASE_URL + 'andreas-resa-poster.jpg'}
-                aria-hidden="true"
-                style={{
-                  position: 'absolute', inset: 0, width: '100%', height: '100%',
-                  objectFit: 'cover', pointerEvents: 'none',
-                  WebkitMaskImage:
-                    'linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)',
-                  maskImage:
-                    'linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)',
-                  WebkitMaskComposite: 'source-in',
-                  maskComposite: 'intersect',
-                  maskMode: 'alpha',
-                  WebkitMaskRepeat: 'no-repeat',
-                  maskRepeat: 'no-repeat',
-                  WebkitMaskSize: '100% 100%',
-                  maskSize: '100% 100%',
-                }}
-              >
-                <source src={import.meta.env.BASE_URL + 'andreas-resa.mp4'} type="video/mp4" />
-              </video>
-            </div>
-            <h3
-              style={{
-                fontFamily: "'Bebas Neue', system-ui, sans-serif",
-                fontSize: '1.75rem',
-                letterSpacing: '0.02em',
-                color: '#ffffff',
-                textAlign: 'center',
-                margin: '1.25rem 0 0.5rem',
-              }}
-            >
-              Byggandet går i arv
-            </h3>
-            <p
-              style={{
-                color: '#94a3b8',
-                fontSize: '0.95rem',
-                lineHeight: 1.7,
-                textAlign: 'center',
-                margin: 0,
-              }}
-            >
-              Andreas fick verktygen i handen av sin far och farfar långt innan skolåldern. Tre decennier senare är det den uppväxten – och otaliga timmar ute på bygget – som gör honom till den trygga rådgivaren du vill ha vid din sida.
-            </p>
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

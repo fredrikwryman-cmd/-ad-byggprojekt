@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/layout/Navbar.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import PageHeader from '../components/pages/PageHeader.jsx';
+import StopMotionBanner from '../components/home/StopMotionBanner.astro';
 import CVPage from '../components/pages/CVPage.jsx';
 ---
 
@@ -17,6 +18,12 @@ import CVPage from '../components/pages/CVPage.jsx';
     eyebrow="CV"
     title="Andreas Dahlgren"
     subtitle="Byggledare och platschef med över 30 år i byggbranschen — grundare av AD Byggprojekt Stockholm AB."
+  />
+  <StopMotionBanner
+    video="andreas-resa.mp4"
+    poster="andreas-resa-poster.jpg"
+    title="Byggandet går i arv"
+    subtitle="Andreas fick verktygen i handen av sin far och farfar långt innan skolåldern. Tre decennier senare är det den uppväxten – och otaliga timmar ute på bygget – som gör honom till den trygga rådgivaren du vill ha vid din sida."
   />
   <CVPage client:idle />
   </main>
