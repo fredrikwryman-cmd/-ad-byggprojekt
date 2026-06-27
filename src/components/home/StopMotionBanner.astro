@@ -95,6 +95,10 @@ const videoSrc = base + video;
     aspect-ratio: 4 / 3;
     background: #020617;
     isolation: isolate;
+    /* Egen GPU-/stacking-kontext: krävs för att mask på wrappern inte ska
+       svartlägga/diskvalificera videon från iOS autoplay (visible-on-screen). */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
   @media (min-width: 640px) {
     .stopmotion {
