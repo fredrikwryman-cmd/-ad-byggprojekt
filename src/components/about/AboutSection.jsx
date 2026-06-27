@@ -24,15 +24,27 @@ export default function AboutSection() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative h-full"
           >
-            <div className="relative rounded-3xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full lg:min-h-[28rem] ring-1 ring-white/10 shadow-xl shadow-black/30">
+            <div className="relative aspect-[4/5] lg:aspect-auto lg:h-full lg:min-h-[28rem]">
               <img
                 src={import.meta.env.BASE_URL + 'om-oss-bild.jpg'}
                 alt="AD Byggprojekt – byggledning på plats"
                 loading="lazy"
                 decoding="async"
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{
+                  WebkitMaskImage:
+                    'linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)',
+                  maskImage:
+                    'linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)',
+                  WebkitMaskComposite: 'source-in',
+                  maskComposite: 'intersect',
+                  maskMode: 'alpha',
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskSize: '100% 100%',
+                  maskSize: '100% 100%',
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/70 via-[#020617]/10 to-transparent" />
             </div>
           </motion.div>
 
