@@ -10,9 +10,9 @@ const videoSrc = base + video;
 ---
 
 <section class="sm-section" aria-label={label || title}>
-  <div class="stopmotion">
+  <div class="stopmotion sm-feather">
     <video
-      class="sm-video sm-feather"
+      class="sm-video"
       autoplay
       muted
       loop
@@ -25,7 +25,7 @@ const videoSrc = base + video;
       <source src={videoSrc} type="video/mp4" />
     </video>
 
-    <img class="sm-poster sm-feather" src={posterSrc} alt="" aria-hidden="true" />
+    <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" />
   </div>
 
   <div class="sm-caption">
@@ -35,35 +35,40 @@ const videoSrc = base + video;
 </section>
 
 <script>
-  // Tvinga autoplay på iOS/Android. Autoplay är ALLTID default (ingen
-  // reduced-motion-blockering – det stoppade uppspelning på mobiler med
-  // "Minska rörelse" på). Poster visas bara vid absolut fel (error-event).
-  // Spelar både vid mount OCH när bården faktiskt syns (IntersectionObserver),
-  // så .play() aldrig körs för tidigt. Hanterar flera bårdar på samma sida.
-  const setupBanner = (root) => {
-    const v = root.querySelector('.sm-video');
-    if (!v) return;
-    const tryPlay = () => {
-      v.muted = true;
-      v.setAttribute('muted', '');         // iOS kräver attributet, inte bara propen
-      v.playsInline = true;
-      v.setAttribute('playsinline', '');
-      const p = v.play();
-      if (p && p.catch) p.catch(() => {}); // svälj transienta fel, retry sker nedan
-    };
-    tryPlay();
-    v.addEventListener('loadeddata', tryPlay, { once: true });
-    v.addEventListener('canplay', tryPlay, { once: true });
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) tryPlay(); });
-      }, { threshold: 0.2 });
-      io.observe(root);
-    }
-    // Absolut undantag: videon kan inte laddas alls → visa poster
-    v.addEventListener('error', () => root.classList.add('sm-fallback'), { once: true });
+  // Bulletproof muted inline-autoplay (iOS/Android). Ingen reduced-motion-
+  // blockering. Masken ligger på wrappern (.stopmotion), inte på <video> –
+  // mask direkt på video kan göra klippet osynligt/icke-spelande på iOS.
+  const play = (v) => {
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
   };
-  document.querySelectorAll('.stopmotion').forEach(setupBanner);
+
+  const vids = Array.prototype.slice.call(document.querySelectorAll('.sm-video'));
+  vids.forEach((v) => {
+    play(v);
+    v.addEventListener('loadeddata', () => play(v), { once: true });
+    v.addEventListener('canplay', () => play(v), { once: true });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) play(v); });
+      }, { threshold: 0.15 }).observe(v);
+    }
+    v.addEventListener('error', () => {
+      const root = v.closest('.stopmotion');
+      if (root) root.classList.add('sm-fallback');
+    }, { once: true });
+  });
+
+  // Sista utväg: om kall autoplay blockeras (t.ex. iOS strömsparläge/Low Data),
+  // starta vid första användarinteraktion – då spelar klippen garanterat.
+  const kick = () => vids.forEach(play);
+  ['touchstart', 'pointerdown', 'scroll', 'click'].forEach((evt) =>
+    window.addEventListener(evt, kick, { once: true, passive: true }));
 </script>
 
 <style>
