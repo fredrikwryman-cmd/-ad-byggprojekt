@@ -12,7 +12,7 @@ const videoSrc = base + video;
 <section class="sm-section" aria-label={label || title}>
   <div class="stopmotion">
     <video
-      class="sm-video"
+      class="sm-video sm-feather"
       autoplay
       muted
       loop
@@ -25,11 +25,9 @@ const videoSrc = base + video;
       <source src={videoSrc} type="video/mp4" />
     </video>
 
-    <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" />
+    <img class="sm-poster sm-feather" src={posterSrc} alt="" aria-hidden="true" />
 
-    <div class="sm-overlay"></div>
-    <div class="sm-fade sm-fade--top" aria-hidden="true"></div>
-    <div class="sm-fade sm-fade--bottom" aria-hidden="true"></div>
+    <div class="sm-readability sm-feather" aria-hidden="true"></div>
 
     <div class="sm-inner">
       <h2 class="sm-title">{title}</h2>
@@ -84,17 +82,14 @@ const videoSrc = base + video;
     }
   }
 
-  /* Inramad container: centrerad inom max-bredd, rundade hörn, tunn kant, mjuk skugga.
+  /* Container: centrerad inom max-bredd. INGEN ram/ring/skugga/rundade hörn –
+     feather-masken (.sm-feather) tonar ut alla fyra kanter mot navy-bakgrunden.
      Högre 4:3-crop på mobil (ingen platt remsa); 16:9 från sm och uppåt. */
   .stopmotion {
     position: relative;
     max-width: 72rem;
     margin: 0 auto;
     aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.5);
     background: #020617;
     isolation: isolate;
   }
@@ -129,30 +124,33 @@ const videoSrc = base + video;
     display: block;
   }
 
-  .sm-overlay {
+  /* Feather-fade på ALLA fyra kanter – EXAKT samma teknik som Om oss-bilden.
+     Klippet uppenbaras ur navy-bakgrunden, ingen synlig ram. Mitten 100% intakt
+     (opak ut till ~88/90%, bara yttersta ~10–12% tonar ut). */
+  .sm-feather {
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+    mask-mode: alpha;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  /* Mörk gradient i nedre delen så texten (nu nederst) blir läsbar.
+     Samma feather-mask → inga synliga kanter. */
+  .sm-readability {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: #020617;
-    opacity: 0.64;
-  }
-
-  /* Subtila fade-kanter i topp/botten – mjukar upp den hårda kanten */
-  .sm-fade {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 11%;
-    z-index: 1;
     pointer-events: none;
-  }
-  .sm-fade--top {
-    top: 0;
-    background: linear-gradient(to bottom, #020617, transparent);
-  }
-  .sm-fade--bottom {
-    bottom: 0;
-    background: linear-gradient(to top, #020617, transparent);
+    background: linear-gradient(to top, #020617 0%, rgba(2, 6, 23, 0.85) 24%, rgba(2, 6, 23, 0) 58%);
   }
 
   .sm-inner {
@@ -162,9 +160,9 @@ const videoSrc = base + video;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.85rem;
-    padding: 0 1.5rem;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    padding: 0 1.5rem clamp(1.25rem, 4vw, 2.75rem);
     text-align: center;
   }
 
