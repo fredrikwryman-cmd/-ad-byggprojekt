@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { MapPin, ArrowUpRight } from '../icons.jsx';
-import { featuredProjects as projects } from '../../data/projects.js';
+import { allProjects } from '../../data/projects.js';
+
+// Visa ALLA utvalda (featured:true) – inte en hårdkodad delmängd.
+const projects = allProjects.filter((p) => p.featured);
 
 export default function ProjectsSection() {
   return (
@@ -32,7 +35,7 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {projects.map((project, i) => (
             <motion.a
               key={project.title}
