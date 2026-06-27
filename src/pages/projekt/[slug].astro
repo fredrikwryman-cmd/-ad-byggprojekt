@@ -20,6 +20,10 @@ const metaDesc = project.description;
 const idx = allProjects.findIndex((p) => p.slug === project.slug);
 const prevProject = allProjects[(idx - 1 + allProjects.length) % allProjects.length];
 const nextProject = allProjects[(idx + 1) % allProjects.length];
+
+// Galleri-bilder – HELT separata från den redigerade hero-bilden (project.image).
+// Tom array = ingen galleri-sektion visas.
+const gallery = project.gallery || [];
 ---
 
 <Layout title={metaTitle} description={metaDesc}>
@@ -63,6 +67,19 @@ const nextProject = allProjects[(idx + 1) % allProjects.length];
           </aside>
         </div>
 
+        {gallery.length > 0 && (
+          <div class="pd-gallery">
+            <h2>Fler bilder från projektet</h2>
+            <div class="pd-gallery-grid">
+              {gallery.map((src, i) => (
+                <button class="pd-gallery-item" type="button" aria-label={`Öppna bild ${i + 1} i större format`}>
+                  <img src={src} alt={`${project.title} – bild ${i + 1}`} loading="lazy" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div class="pd-cta">
           <h2>Vill du ha hjälp med ett liknande projekt?</h2>
           <p>Berätta om dina planer så återkommer vi med en kostnadsfri offert så snart vi kan.</p>
@@ -87,9 +104,55 @@ const nextProject = allProjects[(idx + 1) % allProjects.length];
         </nav>
       </div>
     </section>
+
+    {gallery.length > 0 && (
+      <div class="pd-lightbox" id="pd-lightbox" role="dialog" aria-modal="true" aria-label="Bildvisning" aria-hidden="true">
+        <button class="pd-lb-close" data-lb-close type="button" aria-label="Stäng">&times;</button>
+        <button class="pd-lb-nav pd-lb-prev" data-lb-prev type="button" aria-label="Föregående bild">&larr;</button>
+        <img class="pd-lb-img" id="pd-lb-img" src="" alt={project.title} />
+        <button class="pd-lb-nav pd-lb-next" data-lb-next type="button" aria-label="Nästa bild">&rarr;</button>
+        <div class="pd-lb-counter" id="pd-lb-counter"></div>
+      </div>
+    )}
   </main>
 
   <Footer />
+
+  <script define:vars={{ galleryImages: gallery }}>
+    // Lightbox – ENDAST för galleri-bilderna (hero-bilden ingår aldrig här).
+    const lb = document.getElementById('pd-lightbox');
+    if (lb && galleryImages.length) {
+      const img = document.getElementById('pd-lb-img');
+      const counter = document.getElementById('pd-lb-counter');
+      let current = 0;
+      const open = (i) => {
+        current = (i + galleryImages.length) % galleryImages.length;
+        img.src = galleryImages[current];
+        counter.textContent = (current + 1) + ' / ' + galleryImages.length;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      };
+      const close = () => {
+        lb.classList.remove('open');
+        lb.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('.pd-gallery-item').forEach((b, i) => {
+        b.addEventListener('click', () => open(i));
+      });
+      lb.querySelector('[data-lb-close]').addEventListener('click', close);
+      lb.querySelector('[data-lb-prev]').addEventListener('click', (e) => { e.stopPropagation(); open(current - 1); });
+      lb.querySelector('[data-lb-next]').addEventListener('click', (e) => { e.stopPropagation(); open(current + 1); });
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      document.addEventListener('keydown', (e) => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') open(current - 1);
+        else if (e.key === 'ArrowRight') open(current + 1);
+      });
+    }
+  </script>
 </Layout>
 
 <style>
@@ -344,5 +407,120 @@ const nextProject = allProjects[(idx + 1) % allProjects.length];
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  /* Bildgalleri (separat från hero) */
+  .pd-gallery {
+    margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .pd-gallery h2 {
+    font-family: 'Bebas Neue', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing: 0.01em;
+    margin: 0 0 1.5rem;
+  }
+  .pd-gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .pd-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .pd-gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .pd-gallery-item {
+    padding: 0;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #0f172a;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4 / 3;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .pd-gallery-item:hover {
+    border-color: rgba(0, 120, 212, 0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px -16px rgba(0, 120, 212, 0.55);
+  }
+  .pd-gallery-item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Lightbox – endast galleri-bilderna */
+  .pd-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(2, 6, 23, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .pd-lightbox.open {
+    display: flex;
+  }
+  .pd-lb-img {
+    max-width: min(92vw, 1100px);
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 80px -20px rgba(0, 120, 212, 0.5);
+  }
+  .pd-lb-close,
+  .pd-lb-nav {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.2s ease;
+  }
+  .pd-lb-close {
+    top: 1.25rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    font-size: 1.7rem;
+  }
+  .pd-lb-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .pd-lb-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+  .pd-lb-nav:hover {
+    background: rgba(0, 120, 212, 0.6);
+    border-color: rgba(0, 120, 212, 0.6);
+  }
+  .pd-lb-prev { left: 1rem; }
+  .pd-lb-next { right: 1rem; }
+  .pd-lb-counter {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    font-weight: 600;
   }
 </style>

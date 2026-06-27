@@ -7,6 +7,7 @@ const BASE = import.meta.env.BASE_URL;
 export const featuredProjects = [
   {
     slug: 'kv-paraden',
+    gallery: [],
     title: 'Kv Paraden, Barkarbystaden',
     location: 'Stockholm',
     client: 'Åke Sundvall',
@@ -28,6 +29,7 @@ export const featuredProjects = [
   },
   {
     slug: 'kv-fjardingen',
+    gallery: [],
     title: 'Kv Fjärdingen, Uppsala',
     location: 'Uppsala',
     client: 'Åke Sundvall / Uppsala Akademiförvaltning',
@@ -50,6 +52,7 @@ export const featuredProjects = [
   },
   {
     slug: 'brf-estrad',
+    gallery: [],
     title: 'BRF Estrad, Vallentuna',
     location: 'Vallentuna',
     client: 'Åke Sundvall',
@@ -72,6 +75,7 @@ export const featuredProjects = [
   },
   {
     slug: 'kyrkskolan-hus-a',
+    gallery: [],
     title: 'Kyrkskolan Hus A, Täby',
     location: 'Täby',
     client: 'Metrolit / Täby kommun',
@@ -94,6 +98,7 @@ export const featuredProjects = [
   },
   {
     slug: 'klastorpsskolan-hus-c',
+    gallery: [],
     title: 'Klastorpsskolan Hus C, Kungsholmen',
     location: 'Stockholm',
     client: 'Metrolit / SISAB',
@@ -116,6 +121,7 @@ export const featuredProjects = [
   },
   {
     slug: 'gravyren-23',
+    gallery: [],
     title: 'Gravyren 23, Södertälje',
     location: 'Södertälje',
     client: 'Metrolit / Telge Fastighet',
@@ -141,6 +147,7 @@ export const featuredProjects = [
 export const moreProjects = [
   {
     slug: 'forbifarten-stockholm',
+    gallery: [],
     year: '2024–pågår',
     title: 'Förbifarten Stockholm m.fl.',
     location: 'Stockholm',
@@ -163,13 +170,14 @@ export const moreProjects = [
   },
   {
     slug: 'aterstallning-satra-hamn',
+    gallery: [],
     year: '2024–pågår',
     title: 'Återställning Sätra hamn',
     location: 'Stockholm',
     client: 'Metrolit / Trafikverket',
     category: 'Anläggning',
-    image: null,
-    hasImage: false,
+    image: BASE + 'projekt/satrahamn.jpg',
+    hasImage: true,
     featured: false,
     description: 'Återställning av markytor efter tunnelarbeten.',
     value: '35 mkr · 15 000 kvm',
@@ -185,13 +193,14 @@ export const moreProjects = [
   },
   {
     slug: 'avluftstorn-satra',
+    gallery: [],
     year: '2024–pågår',
     title: 'Avluftstorn Sätra',
     location: 'Stockholm',
     client: 'Metrolit / Trafikverket',
     category: 'Anläggning',
-    image: null,
-    hasImage: false,
+    image: BASE + 'projekt/avluftstorn.jpg',
+    hasImage: true,
     featured: false,
     description: 'Uppförande av massiv betongskorsten ca 25 m hög samt inslagsvalv.',
     value: '65 mkr',
@@ -207,6 +216,7 @@ export const moreProjects = [
   },
   {
     slug: 'rivning-betongbrygga-satra',
+    gallery: [],
     year: '2024–pågår',
     title: 'Rivning betongbrygga, Sätra hamn',
     location: 'Stockholm',
@@ -229,6 +239,7 @@ export const moreProjects = [
   },
   {
     slug: 'proj-23-solna',
+    gallery: [],
     year: '2023–2024',
     title: 'Proj 23, Solna',
     location: 'Solna',
@@ -252,6 +263,7 @@ export const moreProjects = [
   },
   {
     slug: 'stenhoga-solna',
+    gallery: [],
     year: '2023–2024',
     title: 'Stenhöga 3,5, Solna',
     location: 'Solna',
@@ -274,6 +286,7 @@ export const moreProjects = [
   },
   {
     slug: 'wasaskolan-sodertalje',
+    gallery: [],
     year: '2023–2024',
     title: 'Wasaskolan, Södertälje',
     location: 'Södertälje',
@@ -295,6 +308,7 @@ export const moreProjects = [
   },
   {
     slug: 'transportvagen-9',
+    gallery: [],
     year: '2023–2024',
     title: 'Transportvägen 9',
     location: 'Stockholm',
@@ -317,6 +331,7 @@ export const moreProjects = [
   },
   {
     slug: 'stamstigen',
+    gallery: [],
     year: '2023–2026',
     title: 'Stämstigen',
     location: 'Stockholm',
