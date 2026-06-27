@@ -21,28 +21,34 @@ export default function CVPage() {
             transition={{ duration: 0.8 }}
             style={{ textAlign: 'center', marginBottom: '3rem' }}
           >
+            {/* Porträttkort av Andreas (ersätter tidigare AD-logga) */}
             <div style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              background: '#fff', borderRadius: '1.25rem',
-              padding: '1.25rem 1.75rem', margin: '0 auto 1.75rem',
-              boxShadow: '0 25px 50px -12px rgba(0,0,0,0.55)',
-              border: '1px solid rgba(255,255,255,0.12)',
+              width: 'min(380px, 82vw)',
+              margin: '0 auto 1.5rem',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              border: '3px solid #0078D4',
+              boxShadow: '0 24px 60px -16px rgba(0,120,212,0.55), 0 0 34px rgba(0,120,212,0.22)',
+              aspectRatio: '4 / 5',
+              background: '#0b1220',
             }}>
               <img
-                src={import.meta.env.BASE_URL + 'cv-logo.png'}
-                alt="AD Byggprojekt AB"
-                style={{ width: 'min(180px, 52vw)', height: 'auto', display: 'block' }}
+                src={import.meta.env.BASE_URL + 'andreas-portratt.jpg'}
+                alt="Andreas Dahlgren"
+                loading="lazy"
+                decoding="async"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
               />
             </div>
             <h1 style={{
               fontFamily: "'Bebas Neue', system-ui, sans-serif",
               fontSize: 'clamp(1.9rem, 4.2vw, 3rem)',
-              color: '#fff', lineHeight: 0.95, marginBottom: '0.75rem', letterSpacing: '0.01em',
+              color: '#fff', lineHeight: 0.95, marginBottom: '0.6rem', letterSpacing: '0.01em',
             }}>
               {cvData.name}
             </h1>
-            <p style={{ color: '#94a3b8', fontSize: '1.125rem', marginBottom: '0.25rem' }}>
-              {cvData.webSubtitle}
+            <p style={{ color: '#8aa9c4', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.35rem' }}>
+              Grundare &amp; Projektledare · AD Byggprojekt Stockholm AB
             </p>
             <p style={{ color: '#64748b', fontSize: '0.875rem' }}>
               {cvData.webBornLine}
