@@ -1,5 +1,4 @@
 import { Linkedin, MapPin, Phone, Mail } from '../icons.jsx';
-import Logo from './Logo.jsx';
 
 const BASE = '/-ad-byggprojekt';
 
@@ -31,7 +30,11 @@ export default function Footer() {
         {/* Brand */}
         <div className="footer-brand">
           <a href={BASE + '/'} className="inline-block group mb-6">
-            <Logo className="w-48 md:w-56 h-auto text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.65)] transition-transform duration-300 group-hover:scale-[1.02]" />
+            <img
+              src={BASE + '/ad-logo-vit-navbar.png'}
+              alt="AD Byggprojekt AB"
+              className="w-48 md:w-56 h-auto drop-shadow-[0_6px_16px_rgba(0,0,0,0.65)] transition-transform duration-300 group-hover:scale-[1.02]"
+            />
           </a>
           <p>
             AD Byggprojekt Stockholm AB bygger framtiden med precision, kvalitet och hantverk.
