@@ -11,6 +11,7 @@ const sections = [
   { id: 'cm-uppdrag', label: 'CM-uppdrag', href: BASE + '/tjanster#cm-uppdrag' },
   { id: 'om-oss', label: 'Om oss', href: BASE + '/om-oss' },
   { id: 'cv', label: 'CV', href: BASE + '/cv' },
+  { id: 'offert', label: 'Offert', href: BASE + '/offert' },
   { id: 'kontakt', label: 'Kontakt', href: BASE + '/kontakt' },
 ];
 
@@ -99,7 +100,7 @@ export default function Navbar() {
           </button>
 
           <a
-            href={BASE + '/kontakt'}
+            href={BASE + '/offert'}
             className="hidden md:inline-flex items-center justify-center px-6 py-3 border border-white/30 rounded-lg text-[0.875rem] font-bold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#020617] hover:border-white transition-all duration-300"
           >
             Få en offert
@@ -159,7 +160,7 @@ export default function Navbar() {
                 Fråga Heidi
               </button>
               <a
-                href={BASE + '/kontakt'}
+                href={BASE + '/offert'}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center px-6 py-3 border border-white/30 rounded-lg text-sm font-bold uppercase tracking-[0.12em] text-white hover:bg-white hover:text-[#020617] transition-all duration-300 mt-4"
               >

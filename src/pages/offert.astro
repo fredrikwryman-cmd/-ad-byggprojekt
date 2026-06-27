@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.jsx';
+import Footer from '../components/layout/Footer.jsx';
+import PageHeader from '../components/pages/PageHeader.jsx';
+import OffertPage from '../components/pages/OffertPage.jsx';
+---
+
+<Layout
+  title="Begär offert | AD Byggprojekt Stockholm AB"
+  description="Begär en kostnadsfri offert från AD Byggprojekt Stockholm AB – byggledning, platsledning, projektledning och rådgivning i Stockholm med omnejd."
+>
+  <Navbar client:idle />
+  <main>
+  <PageHeader
+    client:idle
+    eyebrow="Offert"
+    title="Begär offert"
+    subtitle="Berätta om ditt projekt så återkommer vi med en kostnadsfri offert och en preliminär tidsplan."
+  />
+  <OffertPage client:idle />
+  </main>
+  <Footer />
+</Layout>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { Building2, PaintRoller, ClipboardCheck, MessagesSquare, ArrowRight, CheckCircle2, Users } from '../icons.jsx';
+import { Building2, PaintRoller, ClipboardCheck, ArrowRight, CheckCircle2, Users } from '../icons.jsx';
 
 const services = [
   {
@@ -23,13 +23,6 @@ const services = [
     summary: 'Komplett ledning med fokus på tid, budget och kvalitet. Vi samordnar allt.',
     description: 'Med strukturerad projektledning håller vi ihop varje fas – upphandling, tidsplanering, ekonomisk uppföljning och arbetsmiljö. Du får en dedikerad projektledare som ansvarar för kommunikationen. Vare sig du behöver hjälp med ett enskilt skede eller hela projektet ser vi till att alla aktörer drar åt samma håll. Med tät uppföljning och löpande rapportering har du alltid full koll på status, kostnader och nästa steg.',
     features: ['Tids- & budgetplanering', 'Upphandling av entreprenörer', 'Byggmöten & samordning', 'Arbetsmiljöplaner', 'Kvalitets- & miljöuppföljning', 'Ekonomisk uppföljning', 'Daglig rapportering'],
-  },
-  {
-    title: 'Rådgivning / Stöd',
-    icon: MessagesSquare,
-    summary: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut.',
-    description: 'Redan innan du har en färdig ritning bistår vi med teknisk rådgivning, kostnadsbedömningar och lösningsförslag – ett extra par erfarna ögon vid komplexa och krävande projekt, när besluten är svåra och insatserna höga. Vi kliver även in med stöd när projekt växer i omfattning eller belastningen på tjänstemännen blir tyngre än planerat, och tar fram merkostnader vid behov så att ekonomin inte tappas. Dessutom stöttar vi med seniora kunskaper när teamet har mindre erfaren personal. Tjänsterna omfattar vanligtvis 1–2 arbetsdagar per vecka.',
-    features: ['Stöttning vid komplexa & krävande projekt', 'Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovsstöd', 'Besiktningsstöd', 'Support', 'Stöd', 'Vägledning'],
   },
   {
     title: 'Bygg & renovering',

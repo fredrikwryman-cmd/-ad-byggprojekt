@@ -92,7 +92,7 @@ export default function HeroSection() {
             className="flex flex-col items-center sm:flex-row sm:items-center gap-6 mb-14"
           >
             <a
-              href={import.meta.env.BASE_URL + 'kontakt'}
+              href={import.meta.env.BASE_URL + 'offert'}
               className="btn-primary w-full sm:w-auto group"
             >
               Få en offert
