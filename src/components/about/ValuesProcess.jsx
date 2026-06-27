@@ -19,9 +19,10 @@ const process = [
 export default function ValuesProcess() {
   return (
     <>
-      {/* Values */}
-      <section className="py-16 md:py-24 lg:py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-safe">
+      {/* Values – mörk navy (matchar "Så arbetar vi" nedan) */}
+      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden">
+        <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-safe relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -29,11 +30,11 @@ export default function ValuesProcess() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#0078D4] mb-4">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#4a9eff] mb-4">
               Varför välja oss
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#020617]">
-              Byggt på <span className="gradient-text">pålitliga värderingar</span>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">
+              Byggt på <span className="gradient-text-hero">pålitliga värderingar</span>
             </h2>
           </motion.div>
 
@@ -47,13 +48,13 @@ export default function ValuesProcess() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="text-center p-6 sm:p-8 bg-[#f8fafc] rounded-3xl border border-[#e2e8f0] hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  className="text-center p-6 sm:p-8 bg-[#0f172a] rounded-3xl border border-white/5 hover:border-[#0078D4]/30 transition-colors duration-300"
                 >
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078D4]/10 to-[#4a9eff]/10 text-[#0078D4] flex items-center justify-center mx-auto mb-5">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0078D4] to-[#4a9eff] text-white flex items-center justify-center mx-auto mb-5 shadow-lg shadow-[#0078D4]/25">
                     <Icon size={28} />
                   </div>
-                  <h3 className="text-xl font-bold text-[#020617] mb-2">{value.title}</h3>
-                  <p className="text-[#64748b]">{value.text}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{value.title}</h3>
+                  <p className="text-[#94a3b8]">{value.text}</p>
                 </motion.div>
               );
             })}
