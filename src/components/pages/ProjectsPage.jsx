@@ -64,6 +64,26 @@ const projects = [
     stats: { area: '1 500 kvm', time: '12 månader', value: '22 mkr' },
     featured: false,
   },
+  {
+    title: 'Återställning Sätra hamn',
+    location: 'Stockholm',
+    category: 'Anläggning',
+    year: '2024–pågår',
+    image: import.meta.env.BASE_URL + 'projekt/satrahamn.jpg',
+    description: 'Återställning av markytor efter tunnelarbeten, inklusive en kaj med krönbalk.',
+    stats: { area: '15 000 kvm', time: 'Pågående', value: '35 mkr' },
+    featured: true,
+  },
+  {
+    title: 'Avluftstorn Sätra',
+    location: 'Stockholm',
+    category: 'Anläggning',
+    year: '2024–pågår',
+    image: import.meta.env.BASE_URL + 'projekt/avluftstorn.jpg',
+    description: 'Uppförande av massiv betongskorsten ca 25 m hög samt inslagsvalv m.m.',
+    stats: { area: '2 000 kvm', time: 'Pågående', value: '65 mkr' },
+    featured: true,
+  },
 ];
 
 // categories definieras efter moreProjects nedan (annars uppstår ett TDZ-fel).
@@ -75,18 +95,6 @@ const moreProjects = [
     client: 'Metrolit / Trafikverket', category: 'Anläggning',
     description: 'Diverse anläggningsuppdrag åt Trafikverket.',
     value: '7 mkr', role: 'Platschef / Bas-U',
-  },
-  {
-    year: '2024–pågår', title: 'Återställning Sätra hamn', location: 'Stockholm',
-    client: 'Metrolit / Trafikverket', category: 'Anläggning',
-    description: 'Återställning av markytor efter tunnelarbeten.',
-    value: '35 mkr · 15 000 kvm', role: 'Platschef / Bas-U',
-  },
-  {
-    year: '2024–pågår', title: 'Avluftstorn Sätra', location: 'Stockholm',
-    client: 'Metrolit / Trafikverket', category: 'Anläggning',
-    description: 'Uppförande av massiv betongskorsten ca 25 m hög samt inslagsvalv m.m.',
-    value: '65 mkr', role: 'Platschef',
   },
   {
     year: '2024–pågår', title: 'Rivning betongbrygga, Sätra hamn', location: 'Stockholm',
@@ -285,7 +293,7 @@ export default function ProjectsPage() {
           </motion.div>
 
           {filteredProjects.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
               {filteredProjects.map((project, i) => (
                 <ProjectCard key={project.title} project={project} index={i} />
               ))}
