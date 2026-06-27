@@ -101,7 +101,7 @@ export default function Navbar() {
         />
 
         <div
-          className={`max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between ${trans}`}
+          className={`max-w-7xl mx-auto pl-3 pr-6 md:pl-4 md:pr-8 flex items-center justify-between ${trans}`}
           style={{ height: scrolled ? '60px' : '80px' }}
         >
           {/* Logga */}
@@ -110,7 +110,7 @@ export default function Navbar() {
               src={BASE + '/ad-logo-vit-navbar.png'}
               alt="AD Byggprojekt AB"
               className={`w-auto ${trans}`}
-              style={{ height: scrolled ? '34px' : '44px' }}
+              style={{ height: scrolled ? '41px' : '53px' }}
             />
           </a>
 
