@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const stats = [
   { value: '15', suffix: '+', label: 'Genomförda projekt' },
-  { value: '25', suffix: '+', label: 'Års erfarenhet' },
+  { value: '30', suffix: '+', label: 'Års erfarenhet' },
   { value: '270', suffix: ' mkr', label: 'Största projekt' },
   { value: '750', suffix: ' mkr', label: 'I ledda projekt' },
 ];
