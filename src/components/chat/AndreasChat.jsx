@@ -861,7 +861,7 @@ export default function AndreasChat() {
             <button className="andc-x" onClick={closeChat} aria-label="Stäng">&times;</button>
           </div>
 
-          <div className="andc-body" ref={bodyRef}>
+          <div className="andc-body" ref={bodyRef} aria-live="polite" aria-atomic="false">
             {items.map((it, i) => {
               if (it.kind === 'msg') return <div key={i} className={'andc-msg ' + (it.who === 'user' ? 'andc-user' : 'andc-bot')}>{it.text}</div>;
               if (it.kind === 'chips' && it.list) return (

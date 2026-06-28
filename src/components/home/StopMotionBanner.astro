@@ -10,22 +10,31 @@ const videoSrc = base + video;
 ---
 
 <section class="sm-section" aria-label={label || title}>
-  <div class="stopmotion sm-feather">
-    <video
-      class="sm-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      webkit-playsinline
-      preload="auto"
-      poster={posterSrc}
-      aria-hidden="true"
-    >
-      <source src={videoSrc} type="video/mp4" />
-    </video>
+  <div class="sm-stage">
+    <div class="stopmotion sm-feather">
+      <video
+        class="sm-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        poster={posterSrc}
+        aria-hidden="true"
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
 
-    <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" />
+      <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" />
+    </div>
+
+    {/* Paus/spela-kontroll (WCAG 2.2.2). Ligger utanför feather-masken så den
+        inte tonas bort i hörnet. Tangentbordsåtkomlig via <button>. */}
+    <button class="sm-toggle" type="button" aria-label="Pausa video">
+      <svg class="sm-ic-pause" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+      <svg class="sm-ic-play" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+    </button>
   </div>
 
   <div class="sm-caption">
@@ -38,7 +47,25 @@ const videoSrc = base + video;
   // Bulletproof muted inline-autoplay (iOS/Android). Ingen reduced-motion-
   // blockering. Masken ligger på wrappern (.stopmotion), inte på <video> –
   // mask direkt på video kan göra klippet osynligt/icke-spelande på iOS.
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const toggleFor = (v) => {
+    const stage = v.closest('.sm-stage');
+    return stage ? stage.querySelector('.sm-toggle') : null;
+  };
+
+  // Synka knappens ikon + aria-label mot videons faktiska tillstånd.
+  const syncBtn = (v) => {
+    const btn = toggleFor(v);
+    if (!btn) return;
+    const paused = v.paused;
+    btn.classList.toggle('is-paused', paused);
+    btn.setAttribute('aria-label', paused ? 'Spela video' : 'Pausa video');
+  };
+
   const play = (v) => {
+    // Respektera både prefers-reduced-motion och ett medvetet pausval.
+    if (v.dataset.userPaused === 'true') return;
     v.muted = true;
     v.defaultMuted = true;
     v.setAttribute('muted', '');
@@ -46,10 +73,34 @@ const videoSrc = base + video;
     v.setAttribute('webkit-playsinline', '');
     const p = v.play();
     if (p && p.catch) p.catch(() => {});
+    syncBtn(v);
   };
 
   const vids = Array.prototype.slice.call(document.querySelectorAll('.sm-video'));
   vids.forEach((v) => {
+    const btn = toggleFor(v);
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (v.paused) { v.dataset.userPaused = 'false'; play(v); }
+        else { v.dataset.userPaused = 'true'; v.pause(); }
+        syncBtn(v);
+      });
+    }
+
+    v.addEventListener('play', () => syncBtn(v));
+    v.addEventListener('pause', () => syncBtn(v));
+    v.addEventListener('error', () => {
+      const root = v.closest('.stopmotion');
+      if (root) root.classList.add('sm-fallback');
+    }, { once: true });
+
+    if (reduced) {
+      // Rörelse av som default: starta pausad, postern visas, användaren kan spela.
+      v.dataset.userPaused = 'true';
+      syncBtn(v);
+      return;
+    }
+
     play(v);
     v.addEventListener('loadeddata', () => play(v), { once: true });
     v.addEventListener('canplay', () => play(v), { once: true });
@@ -58,17 +109,16 @@ const videoSrc = base + video;
         entries.forEach((e) => { if (e.isIntersecting) play(v); });
       }, { threshold: 0.15 }).observe(v);
     }
-    v.addEventListener('error', () => {
-      const root = v.closest('.stopmotion');
-      if (root) root.classList.add('sm-fallback');
-    }, { once: true });
   });
 
   // Sista utväg: om kall autoplay blockeras (t.ex. iOS strömsparläge/Low Data),
   // starta vid första användarinteraktion – då spelar klippen garanterat.
-  const kick = () => vids.forEach(play);
-  ['touchstart', 'pointerdown', 'scroll', 'click'].forEach((evt) =>
-    window.addEventListener(evt, kick, { once: true, passive: true }));
+  // (Hoppas över vid reduced-motion och för videor som användaren själv pausat.)
+  if (!reduced) {
+    const kick = () => vids.forEach(play);
+    ['touchstart', 'pointerdown', 'scroll', 'click'].forEach((evt) =>
+      window.addEventListener(evt, kick, { once: true, passive: true }));
+  }
 </script>
 
 <style>
@@ -88,6 +138,50 @@ const videoSrc = base + video;
   /* Container: centrerad inom max-bredd. INGEN ram/ring/skugga/rundade hörn –
      feather-masken (.sm-feather) tonar ut alla fyra kanter mot navy-bakgrunden.
      Högre 4:3-crop på mobil (ingen platt remsa); 16:9 från sm och uppåt. */
+  /* Scen runt videon: samma bredd/centrering som klippet, men UTAN feather-mask,
+     så paus-knappen kan ligga i hörnet utan att tonas bort. */
+  .sm-stage {
+    position: relative;
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .sm-toggle {
+    position: absolute;
+    bottom: clamp(0.75rem, 2.2vw, 1.25rem);
+    right: clamp(0.75rem, 2.2vw, 1.25rem);
+    z-index: 3;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: rgba(2, 6, 23, 0.55);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  }
+  .sm-toggle:hover {
+    background: rgba(2, 6, 23, 0.82);
+    transform: scale(1.06);
+  }
+  .sm-toggle:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 2px;
+  }
+  .sm-toggle svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  .sm-toggle .sm-ic-play { display: none; }
+  .sm-toggle.is-paused .sm-ic-pause { display: none; }
+  .sm-toggle.is-paused .sm-ic-play { display: block; }
+
   .stopmotion {
     position: relative;
     max-width: 72rem;

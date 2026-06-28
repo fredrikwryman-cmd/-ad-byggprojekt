@@ -95,7 +95,9 @@ h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 5s ease infinite;
+  /* Ändlig (ej infinite): kör några varv och stannar i statiskt läge (0% 50%),
+     vilket är samma utseende som viloläget. Uppfyller WCAG 2.2.2. */
+  animation: gradient-shift 5s ease 3 forwards;
 }
 
 .gradient-text-hero {
@@ -104,7 +106,7 @@ h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 5s ease infinite;
+  animation: gradient-shift 5s ease 3 forwards;
 }
 
 @keyframes gradient-shift {
@@ -300,12 +302,57 @@ h3, h4, h5, h6 {
   animation: marquee 30s linear infinite;
 }
 
-.marquee-track:hover {
+/* Pausbar (WCAG 2.2.2): vid hover, vid uttryckligt pausval och vid fokus i
+   bården. Pausar även de pulserande prickarna så all rörelse stannar. */
+.marquee-track:hover,
+.marquee-track.is-paused,
+.marquee-section:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-track:hover .animate-pulse-glow,
+.marquee-track.is-paused .animate-pulse-glow,
+.marquee-section:focus-within .animate-pulse-glow {
   animation-play-state: paused;
 }
 
 .marquee-track span {
   font-size: clamp(2.5rem, 12vw, 6rem);
+}
+
+/* Paus/spela-kontroll – osynlig i normalläge, tonar in vid hover/fokus. */
+.marquee-toggle {
+  position: absolute;
+  top: 0.75rem;
+  right: clamp(0.75rem, 3vw, 1.5rem);
+  z-index: 5;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(2, 6, 23, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+.marquee-section:hover .marquee-toggle,
+.marquee-toggle:focus-visible {
+  opacity: 1;
+}
+.marquee-toggle:hover {
+  background: rgba(2, 6, 23, 0.85);
+}
+.marquee-toggle:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 2px;
+}
+.marquee-toggle svg {
+  display: block;
 }
 
 /* ===== FLOATING ANIMATION ===== */
