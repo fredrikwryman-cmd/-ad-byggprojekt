@@ -174,7 +174,7 @@ function ProjectCard({ project, index }) {
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 text-[#64748b] mb-4">
+        <div className="flex items-center gap-1.5 text-[#94a3b8] mb-4">
           <MapPin size={15} />
           <span className="text-sm font-medium">{location}</span>
         </div>
@@ -185,21 +185,21 @@ function ProjectCard({ project, index }) {
 
         <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-5 sm:pt-6 border-t border-white/5">
           <div>
-            <div className="flex items-center gap-1 text-[#64748b] text-xs mb-1">
+            <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
               <Ruler size={12} />
               <span className="uppercase tracking-wide">Yta</span>
             </div>
             <p className="text-white font-semibold text-xs sm:text-sm">{stats.area}</p>
           </div>
           <div>
-            <div className="flex items-center gap-1 text-[#64748b] text-xs mb-1">
+            <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
               <Clock size={12} />
               <span className="uppercase tracking-wide">Tid</span>
             </div>
             <p className="text-white font-semibold text-xs sm:text-sm">{stats.time}</p>
           </div>
           <div>
-            <div className="flex items-center gap-1 text-[#64748b] text-xs mb-1">
+            <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
               <Wallet size={12} />
               <span className="uppercase tracking-wide">Värde</span>
             </div>
@@ -237,7 +237,7 @@ function MoreProjectCard({ project, index }) {
         {title}
       </h3>
 
-      <div className="flex items-center gap-1.5 text-[#64748b] mb-3">
+      <div className="flex items-center gap-1.5 text-[#94a3b8] mb-3">
         <MapPin size={14} />
         <span className="text-sm font-medium">{location} · {client}</span>
       </div>

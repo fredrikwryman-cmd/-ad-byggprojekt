@@ -78,7 +78,7 @@ export default function ProjectsSection() {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-[#64748b] mb-4">
+                <div className="flex items-center gap-1.5 text-[#94a3b8] mb-4">
                   <MapPin size={15} />
                   <span className="text-sm font-medium">{project.location}</span>
                 </div>

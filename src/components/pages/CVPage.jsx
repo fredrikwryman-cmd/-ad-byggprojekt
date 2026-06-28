@@ -40,17 +40,17 @@ export default function CVPage() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
               />
             </div>
-            <h1 style={{
+            <h2 style={{
               fontFamily: "'Bebas Neue', system-ui, sans-serif",
               fontSize: 'clamp(1.9rem, 4.2vw, 3rem)',
               color: '#fff', lineHeight: 0.95, marginBottom: '0.6rem', letterSpacing: '0.01em',
             }}>
               {cvData.name}
-            </h1>
+            </h2>
             <p style={{ color: '#8aa9c4', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.35rem' }}>
               Grundare &amp; Projektledare · AD Byggprojekt Stockholm AB
             </p>
-            <p style={{ color: '#64748b', fontSize: '0.875rem' }}>
+            <p style={{ color: '#94a3b8', fontSize: '0.875rem' }}>
               {cvData.webBornLine}
             </p>
           </motion.div>
@@ -135,7 +135,7 @@ export default function CVPage() {
                       }}>{exp.period}</span>
                     </div>
                     <p style={{ color: '#94a3b8', fontWeight: 500, marginBottom: '0.5rem', fontSize: '0.9375rem' }}>{exp.company}</p>
-                    <p style={{ color: '#64748b', lineHeight: 1.7, fontSize: '0.9375rem' }}>{exp.description}</p>
+                    <p style={{ color: '#94a3b8', lineHeight: 1.7, fontSize: '0.9375rem' }}>{exp.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -204,7 +204,7 @@ export default function CVPage() {
                     <span style={{ color: '#64748b' }}>Roll:</span> {proj.role}
                   </span>
                 </div>
-                <p style={{ fontSize: '0.8125rem', color: '#64748b', lineHeight: 1.6 }}>{proj.desc}</p>
+                <p style={{ fontSize: '0.8125rem', color: '#94a3b8', lineHeight: 1.6 }}>{proj.desc}</p>
               </motion.div>
             ))}
           </div>

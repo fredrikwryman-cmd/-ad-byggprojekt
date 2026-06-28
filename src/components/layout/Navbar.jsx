@@ -115,7 +115,7 @@ export default function Navbar() {
           </a>
 
           {/* Menylänkar */}
-          <div className="hidden md:flex items-center gap-7 lg:gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
             {sections.map(({ id, label, href }) => {
               const active = isActive(id, href);
               return (
@@ -142,7 +142,7 @@ export default function Navbar() {
           {/* Fråga Heidi */}
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-andreas-chat'))}
-            className={`hidden md:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] shadow-[0_4px_14px_rgba(31,95,165,0.4)] hover:brightness-110 ${
+            className={`hidden lg:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] shadow-[0_4px_14px_rgba(31,95,165,0.4)] hover:brightness-110 ${
               reduced ? '' : 'transition-all duration-300'
             }`}
             aria-label="Öppna Fråga Heidi"
@@ -154,7 +154,7 @@ export default function Navbar() {
           {/* Få en offert (diskret outline) */}
           <a
             href={BASE + '/offert'}
-            className={`hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-white/30 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-white/10 hover:border-white/60 ${
+            className={`hidden lg:inline-flex items-center justify-center px-5 py-2.5 border border-white/30 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-white/10 hover:border-white/60 ${
               reduced ? '' : 'transition-all duration-300'
             }`}
           >
@@ -164,7 +164,7 @@ export default function Navbar() {
           {/* Hamburger (mobil) */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-white"
+            className="lg:hidden p-2 text-white"
             aria-label={mobileOpen ? 'Stäng meny' : 'Öppna meny'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
@@ -187,7 +187,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 lg:hidden"
           >
             <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-lg" onClick={() => setMobileOpen(false)} />
             <motion.div

@@ -733,9 +733,9 @@ function OfferForm() {
   return (
     <div className="andc-offer">
       <h4>Begär offert</h4>
-      <input placeholder="Namn" value={f.name} onChange={set('name')} />
-      <input placeholder="Telefon eller e-post" value={f.kontakt} onChange={set('kontakt')} />
-      <textarea placeholder="Beskriv kort ditt projekt…" value={f.message} onChange={set('message')} />
+      <input aria-label="Namn" placeholder="Namn" value={f.name} onChange={set('name')} />
+      <input aria-label="Telefon eller e-post" placeholder="Telefon eller e-post" value={f.kontakt} onChange={set('kontakt')} />
+      <textarea aria-label="Beskriv kort ditt projekt" placeholder="Beskriv kort ditt projekt…" value={f.message} onChange={set('message')} />
       {status === 'error' && <div className="andc-err">Fyll i namn och kontaktuppgift, och försök igen.</div>}
       <button className="andc-osend" onClick={submit} disabled={status === 'sending'}>
         {status === 'sending' ? 'Skickar…' : 'Skicka förfrågan'}
@@ -828,6 +828,7 @@ export default function AndreasChat() {
 
           <div className="andc-foot">
             <input
+              aria-label="Skriv din fråga"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Enter') send(); }}

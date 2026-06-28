@@ -6,7 +6,7 @@ const links = [
   { label: 'Hem', href: BASE + '/' },
   { label: 'Projekt', href: BASE + '/projekt' },
   { label: 'Tjänster', href: BASE + '/tjanster' },
-  { label: 'Om oss', href: BASE + '/#om-oss' },
+  { label: 'Om oss', href: BASE + '/om-oss' },
   { label: 'CV', href: BASE + '/cv' },
   { label: 'Kontakt', href: BASE + '/kontakt' },
 ];
