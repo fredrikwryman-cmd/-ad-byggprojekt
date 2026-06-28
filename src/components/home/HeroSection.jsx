@@ -25,7 +25,7 @@ export default function HeroSection() {
         style={{ y: bgY, scale: bgScale }}
       >
         <img
-          src={import.meta.env.BASE_URL + "adlogoherobanner.png"}
+          src={import.meta.env.BASE_URL + "adlogoherobanner.jpg"}
           alt="AD Byggprojekt"
           className="w-full h-full object-cover"
           loading="eager"
