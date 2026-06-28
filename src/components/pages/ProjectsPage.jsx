@@ -164,9 +164,9 @@ function ProjectCard({ project, index }) {
         </span>
       </div>
 
-      <div className="flex-1 flex flex-col" style={{ padding: '2rem 2.5rem 2.5rem' }}>
+      <div className="flex-1 flex flex-col px-6 pt-8 pb-9 xl:px-10 xl:pb-10">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white group-hover:text-[#7eb8ff] transition-colors duration-300">
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold text-white group-hover:text-[#7eb8ff] transition-colors duration-300 text-balance break-words">
             {title}
           </h3>
           <span className="flex-shrink-0 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 group-hover:bg-[#0078D4] group-hover:text-white group-hover:border-[#0078D4] transition-all duration-300">
@@ -189,21 +189,21 @@ function ProjectCard({ project, index }) {
               <Ruler size={12} />
               <span className="uppercase tracking-wide">Yta</span>
             </div>
-            <p className="text-white font-semibold text-xs sm:text-sm">{stats.area}</p>
+            <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{stats.area}</p>
           </div>
           <div>
             <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
               <Clock size={12} />
               <span className="uppercase tracking-wide">Tid</span>
             </div>
-            <p className="text-white font-semibold text-xs sm:text-sm">{stats.time}</p>
+            <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{stats.time}</p>
           </div>
           <div>
             <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
               <Wallet size={12} />
               <span className="uppercase tracking-wide">Värde</span>
             </div>
-            <p className="text-white font-semibold text-xs sm:text-sm">{stats.value}</p>
+            <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{stats.value}</p>
           </div>
         </div>
       </div>

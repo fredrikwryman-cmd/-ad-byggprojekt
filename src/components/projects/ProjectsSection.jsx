@@ -70,7 +70,7 @@ export default function ProjectsSection() {
               {/* Content */}
               <div className="project-card-content">
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white group-hover:text-[#7eb8ff] transition-colors duration-300">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold text-white group-hover:text-[#7eb8ff] transition-colors duration-300 text-balance break-words">
                     {project.title}
                   </h3>
                   <span className="flex-shrink-0 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 group-hover:bg-[#0078D4] group-hover:text-white group-hover:border-[#0078D4] transition-all duration-300">

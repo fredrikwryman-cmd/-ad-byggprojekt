@@ -1,14 +1,16 @@
 import { Linkedin, MapPin, Phone, Mail } from '../icons.jsx';
 
-const BASE = '/-ad-byggprojekt';
+// BASE_URL inkluderar avslutande slash (t.ex. '/-ad-byggprojekt/'),
+// så länkar konkateneras utan inledande slash. Följer automatiskt med om base ändras.
+const BASE = import.meta.env.BASE_URL;
 
 const links = [
-  { label: 'Hem', href: BASE + '/' },
-  { label: 'Projekt', href: BASE + '/projekt' },
-  { label: 'Tjänster', href: BASE + '/tjanster' },
-  { label: 'Om oss', href: BASE + '/om-oss' },
-  { label: 'CV', href: BASE + '/cv' },
-  { label: 'Kontakt', href: BASE + '/kontakt' },
+  { label: 'Hem', href: BASE },
+  { label: 'Projekt', href: BASE + 'projekt' },
+  { label: 'Tjänster', href: BASE + 'tjanster' },
+  { label: 'Om oss', href: BASE + 'om-oss' },
+  { label: 'CV', href: BASE + 'cv' },
+  { label: 'Kontakt', href: BASE + 'kontakt' },
 ];
 
 const socials = [
@@ -29,9 +31,9 @@ export default function Footer() {
       <div className="footer-grid">
         {/* Brand */}
         <div className="footer-brand">
-          <a href={BASE + '/'} className="inline-block group mb-6">
+          <a href={BASE} className="inline-block group mb-6">
             <img
-              src={BASE + '/ad-logo-vit-navbar.png'}
+              src={BASE + 'ad-logo-vit-navbar.png'}
               alt="AD Byggprojekt AB"
               className="w-48 md:w-56 h-auto drop-shadow-[0_6px_16px_rgba(0,0,0,0.65)] transition-transform duration-300 group-hover:scale-[1.02]"
             />
@@ -97,7 +99,7 @@ export default function Footer() {
       <div className="footer-bottom">
         © {currentYear} AD Byggprojekt Stockholm AB — Org.nr: 559131-8695
         {' · '}
-        <a href={BASE + '/integritetspolicy'} className="underline hover:text-white transition-colors">Integritetspolicy</a>
+        <a href={BASE + 'integritetspolicy'} className="underline hover:text-white transition-colors">Integritetspolicy</a>
       </div>
     </footer>
   );

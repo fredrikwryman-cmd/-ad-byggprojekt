@@ -3,12 +3,17 @@ import AndreasChat from '../components/chat/AndreasChat.jsx';
 
 const {
   title = 'AD Byggprojekt Stockholm AB',
-  description = 'AD Byggprojekt Stockholm AB – erfaren byggledning, platsledning och projektledning i Stockholm med omnejd. Vi styr ditt projekt i mål med kvalitet, arbetsmiljö och ekonomi i fokus.',
+  description,
+  ogImage: ogImageProp,
+  ogType = 'website',
+  ogImageAlt = 'AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteRoot = new URL(import.meta.env.BASE_URL, Astro.site).href;
-const ogImage = new URL(`${import.meta.env.BASE_URL}og-hero.jpg`, Astro.site).href;
+const defaultOgImage = `${import.meta.env.BASE_URL}og-hero.jpg`;
+const usingDefaultOgImage = !ogImageProp;
+const ogImage = new URL(ogImageProp || defaultOgImage, Astro.site).href;
 const logoURL = new URL(`${import.meta.env.BASE_URL}favicon-ad.png`, Astro.site).href;
 
 const jsonLd = {
@@ -60,7 +65,7 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="AD Byggprojekt Stockholm AB" />
     <meta property="og:locale" content="sv_SE" />
     <meta property="og:title" content={title} />
@@ -68,15 +73,20 @@ const jsonLd = {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt." />
+    {usingDefaultOgImage && (
+      <>
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Strukturerad data (LocalBusiness) -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />

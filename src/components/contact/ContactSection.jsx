@@ -1,6 +1,7 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Send, CheckCircle2 } from '../icons.jsx';
+import { Phone, Mail, MapPin, ArrowRight } from '../icons.jsx';
+
+const BASE = import.meta.env.BASE_URL;
 
 const contactInfo = [
   { icon: Phone, label: 'Telefon', value: '+46 70 462 99 43', href: 'tel:+46704629943' },
@@ -9,47 +10,6 @@ const contactInfo = [
 ];
 
 export default function ContactSection() {
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-  const [form, setForm] = useState({ name: '', email: '', phone: '', projekttyp: '', message: '' });
-
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setError(null);
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: 'ef4a060a-38a9-4591-add1-5a39a8ef7148',
-          subject: 'Ny förfrågan från adbyggprojekt.se',
-          from_name: 'AD Byggprojekt webbplats',
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          projekttyp: form.projekttyp,
-          message: form.message,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setSubmitted(true);
-      } else {
-        setError('Något gick fel. Försök igen, eller mejla oss på andreas@adbyggprojekt.se.');
-      }
-    } catch (err) {
-      setError('Kunde inte skicka just nu. Kontrollera din uppkoppling och försök igen.');
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
   return (
     <section id="kontakt" className="contact-section section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-safe relative z-10">
@@ -98,7 +58,8 @@ export default function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Right form */}
+          {/* Right CTA – pekar mot det riktiga offertformuläret på /offert
+             (vi har inte längre ett konkurrerande formulär här). */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -106,126 +67,28 @@ export default function ContactSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="contact-card form-container"
           >
-            {submitted ? (
-              <div className="text-center py-16 flex flex-col justify-center h-full">
-                <div className="w-20 h-20 rounded-full bg-[#0078D4] flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 size={40} className="text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Tack för din förfrågan!</h3>
-                <p className="text-[#94a3b8]">Vi återkommer så snart vi kan.</p>
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setForm({ name: '', email: '', phone: '', message: '' });
-                  }}
-                  className="mt-8 text-sm font-semibold text-[#4a9eff] hover:text-white transition-colors"
+            <div className="flex flex-col justify-center items-center h-full text-center py-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 text-balance">
+                Redo att <span className="gradient-text">starta</span> ditt projekt?
+              </h3>
+              <p className="text-[#94a3b8] text-base sm:text-lg leading-relaxed mb-8 max-w-md">
+                Fyll i vårt offertformulär så återkommer vi med en kostnadsfri offert och en
+                preliminär tidsplan – helt utan förpliktelse.
+              </p>
+              <a href={BASE + 'offert'} className="btn-primary">
+                Begär offert
+                <ArrowRight size={20} />
+              </a>
+              <p className="text-white/60 text-sm mt-6">
+                Eller ring{' '}
+                <a
+                  href="tel:+46704629943"
+                  className="text-[#4a9eff] hover:text-white font-semibold transition-colors"
                 >
-                  Skicka ny förfrågan
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} method="post" action="https://api.web3forms.com/submit" className="form-layout">
-                <input type="hidden" name="access_key" value="ef4a060a-38a9-4591-add1-5a39a8ef7148" />
-                <input type="hidden" name="subject" value="Ny förfrågan från adbyggprojekt.se" />
-                <input type="hidden" name="from_name" value="AD Byggprojekt webbplats" />
-                <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Namn <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      autoComplete="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Ditt namn"
-                      className="form-input"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">E-post <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      autoComplete="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="din@epost.se"
-                      className="form-input"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="phone">Telefon</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    autoComplete="tel"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="070-123 45 67"
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="projekttyp">Projekttyp</label>
-                  <select
-                    id="projekttyp"
-                    name="projekttyp"
-                    value={form.projekttyp}
-                    onChange={handleChange}
-                    className="form-input"
-                  >
-                    <option value="">Välj projekttyp (valfritt)</option>
-                    <option value="Nybygge">Nybygge</option>
-                    <option value="Renovering">Renovering</option>
-                    <option value="Projektledning">Projektledning</option>
-                    <option value="Rådgivning / Stöd">Rådgivning / Stöd</option>
-                    <option value="Annat">Annat</option>
-                  </select>
-                </div>
-
-                <div className="form-group message-group">
-                  <label htmlFor="message">Meddelande <span aria-hidden="true" style={{ color: '#f87171' }}>*</span></label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Berätta om ditt projekt..."
-                    className="form-input"
-                    required
-                  />
-                </div>
-
-                <p className="text-white/70 text-xs" style={{ marginBottom: '4px' }}>
-                  <span aria-hidden="true" style={{ color: '#f87171' }}>*</span> Obligatoriska fält
-                </p>
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="submit-btn group font-bold disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {submitting ? 'SKICKAR…' : 'SKICKA FÖRFRÅGAN'}
-                  <Send size={18} className="transition-transform group-hover:translate-x-1" />
-                </button>
-                {error && (
-                  <p className="text-[#f87171] text-sm mt-1" role="alert">{error}</p>
-                )}
-                <p className="text-white/70 text-xs mt-1 leading-relaxed">
-                  Genom att skicka godkänner du att vi behandlar dina uppgifter enligt vår{' '}
-                  <a href={import.meta.env.BASE_URL + 'integritetspolicy'} className="underline hover:text-white/70">integritetspolicy</a>.
-                </p>
-              </form>
-            )}
+                  +46 70 462 99 43
+                </a>
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>

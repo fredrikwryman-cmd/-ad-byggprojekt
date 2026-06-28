@@ -26,7 +26,13 @@ const nextProject = allProjects[(idx + 1) % allProjects.length];
 const gallery = project.gallery || [];
 ---
 
-<Layout title={metaTitle} description={metaDesc}>
+<Layout
+  title={metaTitle}
+  description={metaDesc}
+  ogType="article"
+  ogImage={project.hasImage ? project.image : undefined}
+  ogImageAlt={project.hasImage ? project.title : undefined}
+>
   <Navbar client:idle />
 
   <main id="main" class="pd">
@@ -109,7 +115,7 @@ const gallery = project.gallery || [];
       <div class="pd-lightbox" id="pd-lightbox" role="dialog" aria-modal="true" aria-label="Bildvisning" aria-hidden="true">
         <button class="pd-lb-close" data-lb-close type="button" aria-label="Stäng">&times;</button>
         <button class="pd-lb-nav pd-lb-prev" data-lb-prev type="button" aria-label="Föregående bild">&larr;</button>
-        <img class="pd-lb-img" id="pd-lb-img" src="" alt={project.title} />
+        <img class="pd-lb-img" id="pd-lb-img" alt={project.title} />
         <button class="pd-lb-nav pd-lb-next" data-lb-next type="button" aria-label="Nästa bild">&rarr;</button>
         <div class="pd-lb-counter" id="pd-lb-counter"></div>
       </div>

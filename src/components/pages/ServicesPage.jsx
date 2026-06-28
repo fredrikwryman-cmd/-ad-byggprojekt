@@ -217,8 +217,12 @@ export default function ServicesPage() {
   return (
     <>
       {/* Detailed services */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0078D4]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+      <section className="py-14 md:py-20 lg:py-28 bg-white relative">
+        {/* Dekorativ glow i eget overflow-hidden-lager, så sektionen själv kan vara
+            overflow-visible och aldrig klipper "Systerbolag"-badgen (-top-3) på CM-kortet. */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0078D4]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
+        </div>
         <div className="max-w-7xl mx-auto px-safe relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {services.map((service, i) =>

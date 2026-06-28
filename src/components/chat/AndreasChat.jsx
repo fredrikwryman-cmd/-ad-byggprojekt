@@ -750,6 +750,9 @@ export default function AndreasChat() {
   const [input, setInput] = useState('');
   const bodyRef = useRef(null);
   const startedRef = useRef(false);
+  const panelRef = useRef(null);
+  const launcherRef = useRef(null);
+  const prevOpen = useRef(false);
 
   const push = (item) => setItems((prev) => [...prev, item]);
 
@@ -772,6 +775,51 @@ export default function AndreasChat() {
   useEffect(() => {
     if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
   }, [items, open]);
+
+  // Fokushantering: flytta in fokus i dialogen när den öppnas, fånga Tab/Shift+Tab
+  // inuti panelen, stäng på Escape, och återlämna fokus till launchern vid stängning.
+  useEffect(() => {
+    if (open) {
+      const panel = panelRef.current;
+      if (!panel) return;
+      const getFocusable = () =>
+        Array.from(
+          panel.querySelectorAll(
+            'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((el) => !el.disabled && el.offsetParent !== null);
+
+      const initial = panel.querySelector('.andc-foot input') || getFocusable()[0];
+      if (initial) initial.focus();
+
+      const onKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeChat();
+          return;
+        }
+        if (e.key !== 'Tab') return;
+        const f = getFocusable();
+        if (f.length === 0) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      };
+      panel.addEventListener('keydown', onKeyDown);
+      prevOpen.current = true;
+      return () => panel.removeEventListener('keydown', onKeyDown);
+    }
+
+    // Stängdes precis → ge fokus tillbaka till launcher-knappen.
+    if (prevOpen.current && launcherRef.current) launcherRef.current.focus();
+    prevOpen.current = false;
+  }, [open]);
 
   const ask = (text) => {
     push({ kind: 'msg', who: 'user', text });
@@ -797,16 +845,16 @@ export default function AndreasChat() {
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
       {!open && (
-        <button className="andc-launcher" onClick={openChat} aria-label="Öppna chatten Fråga Heidi">
+        <button ref={launcherRef} className="andc-launcher" onClick={openChat} aria-label="Öppna chatten Fråga Heidi">
           <span className="andc-dot" />
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" />
           </svg>
         </button>
       )}
 
       {open && (
-        <div className="andc-panel" role="dialog" aria-label="Fråga Heidi">
+        <div ref={panelRef} className="andc-panel" role="dialog" aria-modal="true" aria-label="Fråga Heidi">
           <div className="andc-head">
             <div className="andc-av"><img src={import.meta.env.BASE_URL + 'heidi.jpg'} alt="Heidi" width="40" height="40" /></div>
             <div className="andc-who"><b>Fråga Heidi</b><span>Assistent, AD Byggprojekt</span></div>
@@ -836,7 +884,7 @@ export default function AndreasChat() {
               autoComplete="off"
             />
             <button className="andc-send" onClick={send} aria-label="Skicka">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg>
             </button>
           </div>
           <div className="andc-disc">Automatiskt svar · för exakta uppgifter, lämna en förfrågan så hör Andreas av sig.</div>

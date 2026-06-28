@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const BASE = '/-ad-byggprojekt';
+// BASE_URL inkluderar avslutande slash (t.ex. '/-ad-byggprojekt/'),
+// så länkar konkateneras utan inledande slash. Följer automatiskt med om base ändras.
+const BASE = import.meta.env.BASE_URL;
 
 const sections = [
-  { id: 'hem', label: 'Hem', href: BASE + '/' },
-  { id: 'projekt', label: 'Projekt', href: BASE + '/projekt' },
-  { id: 'tjanster', label: 'Tjänster', href: BASE + '/tjanster' },
-  { id: 'cm-uppdrag', label: 'CM-uppdrag', href: BASE + '/tjanster#cm-uppdrag' },
-  { id: 'om-oss', label: 'Om oss', href: BASE + '/om-oss' },
-  { id: 'cv', label: 'CV', href: BASE + '/cv' },
-  { id: 'offert', label: 'Offert', href: BASE + '/offert' },
-  { id: 'kontakt', label: 'Kontakt', href: BASE + '/kontakt' },
+  { id: 'hem', label: 'Hem', href: BASE },
+  { id: 'projekt', label: 'Projekt', href: BASE + 'projekt' },
+  { id: 'tjanster', label: 'Tjänster', href: BASE + 'tjanster' },
+  { id: 'cm-uppdrag', label: 'CM-uppdrag', href: BASE + 'tjanster#cm-uppdrag' },
+  { id: 'om-oss', label: 'Om oss', href: BASE + 'om-oss' },
+  { id: 'cv', label: 'CV', href: BASE + 'cv' },
+  { id: 'offert', label: 'Offert', href: BASE + 'offert' },
+  { id: 'kontakt', label: 'Kontakt', href: BASE + 'kontakt' },
 ];
 
 export default function Navbar() {
@@ -77,7 +79,7 @@ export default function Navbar() {
     return pathname === href;
   };
 
-  const logoHref = pathname === '/' ? BASE + '/#hem' : BASE + '/';
+  const logoHref = pathname === '/' ? BASE + '#hem' : BASE;
   const trans = reduced ? '' : 'transition-all duration-300';
 
   return (
@@ -107,7 +109,7 @@ export default function Navbar() {
           {/* Logga */}
           <a href={logoHref} className="flex items-center shrink-0" aria-label="AD Byggprojekt AB – till startsidan">
             <img
-              src={BASE + '/ad-logo-vit-navbar.png'}
+              src={BASE + 'ad-logo-vit-navbar.png'}
               alt="AD Byggprojekt AB"
               className={`w-auto ${trans}`}
               style={{ height: scrolled ? '41px' : '53px' }}
@@ -147,13 +149,13 @@ export default function Navbar() {
             }`}
             aria-label="Öppna Fråga Heidi"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
+            <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
             Fråga Heidi
           </button>
 
           {/* Få en offert (diskret outline) */}
           <a
-            href={BASE + '/offert'}
+            href={BASE + 'offert'}
             className={`hidden lg:inline-flex items-center justify-center px-5 py-2.5 border border-white/30 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-white/10 hover:border-white/60 ${
               reduced ? '' : 'transition-all duration-300'
             }`}
@@ -169,7 +171,7 @@ export default function Navbar() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {mobileOpen ? (
                 <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
               ) : (
@@ -212,11 +214,11 @@ export default function Navbar() {
                 onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent('open-andreas-chat')); }}
                 className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] transition-all duration-300 mt-4"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
+                <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
                 Fråga Heidi
               </button>
               <a
-                href={BASE + '/offert'}
+                href={BASE + 'offert'}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center px-6 py-3 border border-white/30 rounded-lg text-sm font-bold uppercase tracking-[0.12em] text-white hover:bg-white/10 hover:border-white/60 transition-all duration-300 mt-4"
               >
