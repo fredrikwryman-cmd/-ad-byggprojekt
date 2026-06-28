@@ -31,7 +31,7 @@ const videoSrc = base + video;
 
     {/* Paus/spela-kontroll (WCAG 2.2.2). Ligger utanför feather-masken så den
         inte tonas bort i hörnet. Tangentbordsåtkomlig via <button>. */}
-    <button class="sm-toggle" type="button" aria-label="Pausa video">
+    <button class="sm-toggle" type="button" aria-label="Pausa video" aria-pressed="false">
       <svg class="sm-ic-pause" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
       <svg class="sm-ic-play" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
     </button>
@@ -49,18 +49,23 @@ const videoSrc = base + video;
   // mask direkt på video kan göra klippet osynligt/icke-spelande på iOS.
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Multi-instans-säkert (förbättring 2): inga globala id:n. Vi loopar över alla
+  // .sm-video och kopplar varje video till SIN egen knapp via närmaste .sm-stage,
+  // så flera StopMotionBanner på samma sida aldrig krockar (funkar även med en).
   const toggleFor = (v) => {
     const stage = v.closest('.sm-stage');
     return stage ? stage.querySelector('.sm-toggle') : null;
   };
 
-  // Synka knappens ikon + aria-label mot videons faktiska tillstånd.
+  // Synka knappens ikon + aria-label + aria-pressed mot videons faktiska tillstånd.
+  // aria-pressed=true betyder "knappen är intryckt" = videon är PAUSAD (förbättring 3).
   const syncBtn = (v) => {
     const btn = toggleFor(v);
     if (!btn) return;
     const paused = v.paused;
     btn.classList.toggle('is-paused', paused);
-    btn.setAttribute('aria-label', paused ? 'Spela video' : 'Pausa video');
+    btn.setAttribute('aria-label', paused ? 'Spela upp video' : 'Pausa video');
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
   };
 
   const play = (v) => {
@@ -173,6 +178,24 @@ const videoSrc = base + video;
     outline: 3px solid #60a5fa;
     outline-offset: 2px;
   }
+
+  /* Synlighet (förbättring 1):
+     - Mus-enheter (hover finns): dold tills man hovrar över videon.
+     - Pekskärm (hover: none): alltid synlig (opacity 0.7), eftersom hover saknas.
+     - Alltid synlig vid tangentbordsfokus OCH när videon är pausad (play-knappen
+       får aldrig gömmas bort när klippet står stilla). */
+  @media (hover: hover) and (pointer: fine) {
+    .sm-toggle { opacity: 0; }
+    .sm-stage:hover .sm-toggle { opacity: 1; }
+  }
+  @media (hover: none), (pointer: coarse) {
+    .sm-toggle { opacity: 0.7; }
+  }
+  .sm-toggle:focus-visible,
+  .sm-toggle.is-paused {
+    opacity: 1;
+  }
+
   .sm-toggle svg {
     width: 18px;
     height: 18px;
