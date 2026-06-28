@@ -1,4 +1,13 @@
 ---
+// Self-hostade typsnitt (ersätter render-blockerande Google Fonts-@import).
+// font-display: swap är inbyggt i @fontsource-filerna.
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+import '@fontsource/bebas-neue/400.css';
 import AndreasChat from '../components/chat/AndreasChat.jsx';
 
 const {
@@ -54,6 +63,17 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Content-Security-Policy (GitHub Pages tillåter ej egna HTTP-headers → meta).
+         Tillåter allt sajten använder: self för script/style/img/font/media,
+         web3forms-POST (formulär + chatt), samt googletagmanager/google-analytics
+         så GA4 kan slås på senare utan att brytas. 'unsafe-inline' krävs av
+         Astro/Tailwind/Framer Motion (inline <style>) och Astros define:vars-script. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; font-src 'self'; media-src 'self'; connect-src 'self' https://api.web3forms.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com; form-action 'self' https://api.web3forms.com"
+    />
+
     <meta name="description" content={description} />
     <meta name="theme-color" content="#020617" />
     <meta name="robots" content="index, follow" />
