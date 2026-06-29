@@ -76,7 +76,7 @@ const breadcrumbSchema = {
   <script type="application/ld+json" is:inline set:html={JSON.stringify(projectSchema)} />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
 
-  <main id="main" class="pd">
+  <main id="main" class="pd bp-dark">
     <section class="pd-hero">
       <div class="pd-hero-inner">
         <a href={base + 'projekt'} class="pd-back">&larr; Alla projekt</a>
@@ -210,7 +210,7 @@ const breadcrumbSchema = {
 
 <style>
   .pd {
-    background: #020617;
+    background-color: #020617; /* background-color (ej shorthand) så bp-dark-bilden inte nollas */
     color: #fff;
   }
 

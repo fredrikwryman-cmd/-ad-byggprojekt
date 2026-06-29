@@ -9,7 +9,7 @@ const posterSrc = base + poster;
 const videoSrc = base + video;
 ---
 
-<section class="sm-section" aria-label={label || title}>
+<section class="sm-section bp-dark" aria-label={label || title}>
   <div class="sm-stage">
     <div class="stopmotion sm-feather">
       <video
@@ -131,7 +131,8 @@ const videoSrc = base + video;
      runt kortet, så ramen ALDRIG når viewportkanten (ingen söm / ingen overflow).
      box-sizing: border-box (Tailwind preflight) → paddingen spiller inte över 100%. */
   .sm-section {
-    background: #020617;
+    /* background-color (ej shorthand) så bp-dark-bilden i kanterna runt videon inte nollas */
+    background-color: #020617;
     padding: 2.5rem 1rem;
   }
   @media (min-width: 640px) {

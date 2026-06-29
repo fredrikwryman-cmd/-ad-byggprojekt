@@ -6,7 +6,7 @@ export default function PageHeader({ eyebrow, title, subtitle, dark = true }) {
   const subtitleClass = dark ? 'text-[#94a3b8]' : 'text-[#64748b]';
 
   return (
-    <section className={`relative pt-28 pb-16 sm:pb-20 md:pt-24 md:pb-28 overflow-hidden ${bgClass}`}>
+    <section className={`relative pt-28 pb-16 sm:pb-20 md:pt-24 md:pb-28 overflow-hidden ${bgClass} ${dark ? 'bp-dark' : 'bp-light'}`}>
       {dark && (
         <>
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] bg-[#0078D4]/10 rounded-full blur-[150px] pointer-events-none" />
