@@ -267,7 +267,7 @@ export default function ProjectsPage() {
   return (
     <>
       {/* Projects grid */}
-      <section className="pt-20 pb-14 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28 bg-[#020617] relative">
+      <section className="pt-20 pb-14 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28 bg-[#020617] relative bp-dark">
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-safe relative z-10">
           {/* Filter pills */}
@@ -304,7 +304,7 @@ export default function ProjectsPage() {
 
       {/* Fler genomförda uppdrag (utan bild) */}
       {filteredMore.length > 0 && (
-      <section className="pb-16 md:pb-24 lg:pb-28 bg-[#020617] relative">
+      <section className="pb-16 md:pb-24 lg:pb-28 bg-[#020617] relative bp-dark">
         <div className="max-w-7xl mx-auto px-safe relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -335,7 +335,7 @@ export default function ProjectsPage() {
       )}
 
       {/* CTA */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden">
+      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0078D4]/15 rounded-full blur-[150px] pointer-events-none" />
         <div className="max-w-4xl mx-auto px-safe relative z-10 text-center">
           <motion.div
