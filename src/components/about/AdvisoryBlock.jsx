@@ -25,7 +25,7 @@ const features = [
 
 export default function AdvisoryBlock() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
       <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-safe relative z-10">
         <motion.div

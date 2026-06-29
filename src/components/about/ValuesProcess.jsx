@@ -20,7 +20,7 @@ export default function ValuesProcess() {
   return (
     <>
       {/* Values – mörk navy (matchar "Så arbetar vi" nedan) */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden">
+      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-safe relative z-10">
           <motion.div
@@ -63,7 +63,7 @@ export default function ValuesProcess() {
       </section>
 
       {/* Process */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden">
+      <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#0078D4]/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-safe relative z-10">

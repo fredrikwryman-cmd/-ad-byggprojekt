@@ -26,7 +26,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="tjanster" className="py-16 md:py-24 lg:py-36 bg-white relative overflow-hidden">
+    <section id="tjanster" className="py-16 md:py-24 lg:py-36 bg-white relative overflow-hidden bp-light">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0078D4]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
 
       <div className="max-w-7xl mx-auto px-safe relative z-10">

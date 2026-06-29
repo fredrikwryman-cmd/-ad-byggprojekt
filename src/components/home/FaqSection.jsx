@@ -36,7 +36,7 @@ export default function FaqSection() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden bp-light">
       <div className="max-w-3xl mx-auto px-safe relative z-10">
         <div className="text-center mb-12">
           <span className="eyebrow mb-3 font-bold" style={{ color: '#005A9E' }}>Vanliga frågor</span>

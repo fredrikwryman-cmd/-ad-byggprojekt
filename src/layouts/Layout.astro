@@ -120,7 +120,10 @@ const jsonLd = {
       @import '../styles/global.css';
     </style>
   </head>
-  <body class="bg-white text-[#020617] antialiased">
+  <body
+    class="bg-white text-[#020617] antialiased"
+    style={`--bp-dark:url('${import.meta.env.BASE_URL}bg-blueprint-dark.jpg');--bp-light:url('${import.meta.env.BASE_URL}bg-blueprint-light.jpg')`}
+  >
     <a href="#main" class="skip-link">Hoppa till innehåll</a>
     <slot />
     <AndreasChat client:idle />

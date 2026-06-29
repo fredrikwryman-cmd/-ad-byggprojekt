@@ -217,7 +217,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Detailed services */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white relative">
+      <section className="py-14 md:py-20 lg:py-28 bg-white relative bp-light">
         {/* Dekorativ glow i eget overflow-hidden-lager, så sektionen själv kan vara
             overflow-visible och aldrig klipper "Systerbolag"-badgen (-top-3) på CM-kortet. */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

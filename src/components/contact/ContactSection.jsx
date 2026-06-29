@@ -11,7 +11,7 @@ const contactInfo = [
 
 export default function ContactSection() {
   return (
-    <section id="kontakt" className="contact-section section-padding relative overflow-hidden">
+    <section id="kontakt" className="contact-section section-padding relative overflow-hidden bp-dark">
       <div className="max-w-7xl mx-auto px-safe relative z-10">
         <div className="contact-wrapper">
           {/* Left info */}

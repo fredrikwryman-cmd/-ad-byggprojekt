@@ -1416,3 +1416,27 @@ select.form-input option {
   color: #020617;
   background: #ffffff;
 }
+
+/* ===== SUBTILA BLUEPRINT-BAKGRUNDER =====
+   Mörk/ljus byggritning som BARA ska ANAS på lugna text-/panelytor.
+   Ligger alltid längst bak (sektionens egen background, bakom ALLA barn och all
+   text) → kan aldrig försämra textkontrast. Bilderna är redan navy resp. vita;
+   en kraftig overlay i background-stacken dämpar linjerna till "knappt anas".
+   Variablerna --bp-dark/--bp-light sätts på <body> i Layout.astro (rätt base-URL).
+   Aldrig på hero, video-bårder eller projektgallerier – de har egna opaka bg. */
+.bp-dark {
+  background-image:
+    linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.85)),
+    var(--bp-dark);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bp-light {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+    var(--bp-light);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
