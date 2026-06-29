@@ -1424,9 +1424,19 @@ select.form-input option {
    en kraftig overlay i background-stacken dämpar linjerna till "knappt anas".
    Variablerna --bp-dark/--bp-light sätts på <body> i Layout.astro (rätt base-URL).
    Aldrig på hero, video-bårder eller projektgallerier – de har egna opaka bg. */
+/* Overlay-styrka på EN plats – höj mot 0.85/0.95 igen för subtilt läge,
+   sänk mot 0.10–0.15 för att tydligt se var blueprinten ligger.
+   TILLFÄLLIGT maxat (0.12) för granskning. */
+:root {
+  --bp-dark-overlay: 0.12;
+  --bp-light-overlay: 0.12;
+}
 .bp-dark {
   background-image:
-    linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.85)),
+    linear-gradient(
+      rgba(2, 6, 23, var(--bp-dark-overlay)),
+      rgba(2, 6, 23, var(--bp-dark-overlay))
+    ),
     var(--bp-dark);
   background-size: cover;
   background-position: center;
@@ -1434,7 +1444,10 @@ select.form-input option {
 }
 .bp-light {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+    linear-gradient(
+      rgba(255, 255, 255, var(--bp-light-overlay)),
+      rgba(255, 255, 255, var(--bp-light-overlay))
+    ),
     var(--bp-light);
   background-size: cover;
   background-position: center;
