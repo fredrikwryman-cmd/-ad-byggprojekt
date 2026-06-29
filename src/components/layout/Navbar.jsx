@@ -12,7 +12,6 @@ const sections = [
   { id: 'cm-uppdrag', label: 'CM-uppdrag', href: BASE + 'tjanster#cm-uppdrag' },
   { id: 'om-oss', label: 'Om oss', href: BASE + 'om-oss' },
   { id: 'cv', label: 'CV', href: BASE + 'cv' },
-  { id: 'offert', label: 'Offert', href: BASE + 'offert' },
   { id: 'kontakt', label: 'Kontakt', href: BASE + 'kontakt' },
 ];
 
@@ -73,10 +72,16 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  // Aktiv sida = nuvarande URL matchar länkens sökväg. Normaliserar bort
+  // avslutande slash så det funkar oavsett om sidan serveras som "/projekt"
+  // eller "/projekt/". Markeringen blir därmed permanent på den sida man är inne på.
+  const normalizePath = (p) => {
+    const path = (p || '/').split('#')[0].split('?')[0];
+    return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
+  };
   const isActive = (id, href) => {
-    if (pathname === '/' && id === 'hem') return activeSection === 'hem';
-    if (href.startsWith('/#')) return pathname === '/' && activeSection === id;
-    return pathname === href;
+    if (id === 'cm-uppdrag') return false; // ankarlänk till tjänster, ej egen sida
+    return normalizePath(pathname) === normalizePath(href);
   };
 
   const logoHref = pathname === '/' ? BASE + '#hem' : BASE;
@@ -141,7 +146,8 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Fråga Heidi */}
+          {/* Fråga Heidi – TILLFÄLLIGT DOLD (återaktivera genom att avkommentera nedan
+              samt <AndreasChat /> i Layout.astro):
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-andreas-chat'))}
             className={`hidden lg:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] shadow-[0_4px_14px_rgba(31,95,165,0.4)] hover:brightness-110 ${
@@ -152,6 +158,7 @@ export default function Navbar() {
             <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
             Fråga Heidi
           </button>
+          */}
 
           {/* Få en offert (diskret outline) */}
           <a
@@ -199,17 +206,26 @@ export default function Navbar() {
               className="absolute top-20 left-6 right-6 bg-[rgba(15,23,42,0.95)] border border-white/10 rounded-3xl p-8"
             >
               <div className="flex flex-col gap-2">
-                {sections.map(({ id, label, href }) => (
-                  <a
-                    key={id}
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    className="px-4 py-3 rounded-xl text-lg font-semibold text-white/90 hover:text-white hover:bg-white/10 transition-colors"
-                  >
-                    {label}
-                  </a>
-                ))}
+                {sections.map(({ id, label, href }) => {
+                  const active = isActive(id, href);
+                  return (
+                    <a
+                      key={id}
+                      href={href}
+                      aria-current={active ? 'page' : undefined}
+                      onClick={() => setMobileOpen(false)}
+                      className={`px-4 py-3 rounded-xl text-lg transition-colors ${
+                        active
+                          ? 'font-bold text-white underline underline-offset-4 decoration-[#60a5fa] bg-white/10'
+                          : 'font-semibold text-white/90 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      {label}
+                    </a>
+                  );
+                })}
               </div>
+              {/* Fråga Heidi – TILLFÄLLIGT DOLD (avkommentera för att återaktivera):
               <button
                 onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent('open-andreas-chat')); }}
                 className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] transition-all duration-300 mt-4"
@@ -217,6 +233,7 @@ export default function Navbar() {
                 <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z" /></svg>
                 Fråga Heidi
               </button>
+              */}
               <a
                 href={BASE + 'offert'}
                 onClick={() => setMobileOpen(false)}

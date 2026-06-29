@@ -40,10 +40,6 @@ export default function ContactPage() {
           transition={{ duration: 0.8 }}
           className="contact-card white-info-card"
         >
-          <span className="eyebrow">Kontakta oss</span>
-          <h2 className="contact-info-side-h2 font-display text-4xl md:text-5xl leading-[0.95] text-[#020617] mb-6">
-            Här når du oss
-          </h2>
           <p className="text-[#64748b] text-lg mb-10">
             Vi finns i Åkersberga och är verksamma i Stockholm med omnejd. Ring, mejla eller besök oss – så hjälper vi dig vidare.
           </p>

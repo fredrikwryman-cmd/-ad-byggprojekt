@@ -32,9 +32,10 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/76 via-[#020617]/64 to-[#020617]/40" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/72 via-transparent to-[#020617]/32" />
+      {/* Dark gradient overlay – något lättad så hero blir en aning ljusare,
+          men fortfarande tillräckligt mörk till vänster för läsbar vit text. */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/60 via-[#020617]/48 to-[#020617]/24" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/56 via-transparent to-[#020617]/20" />
 
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 grid-bg-dark opacity-10" />

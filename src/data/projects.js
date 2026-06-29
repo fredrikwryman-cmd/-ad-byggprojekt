@@ -19,7 +19,7 @@ export const featuredProjects = [
     description: 'Nyproduktion av 215 lägenheter. Generalentreprenad, totalentreprenad, fast pris.',
     stats: { area: '3 000 kvm', time: '24 månader', value: 'Ca 270 mkr' },
     longDescription:
-      'Kv Paraden i Barkarbystaden omfattade nyproduktion av 215 lägenheter i ett av Stockholms största stadsutvecklingsområden. Projektet genomfördes som general- och totalentreprenad med fast pris, där Andreas arbetade som arbetsledare med ansvar för den dagliga driften på arbetsplatsen.',
+      'Kv Paraden i Barkarbystaden omfattade nyproduktion av 215 lägenheter i ett av Stockholms största stadsutvecklingsområden. Projektet genomfördes som general- och totalentreprenad med fast pris.',
     facts: [
       { label: 'Entreprenadsumma', value: 'Ca 270 mkr' },
       { label: 'Roll', value: 'Arbetsledare' },
@@ -41,12 +41,12 @@ export const featuredProjects = [
     description: 'Ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910.',
     stats: { area: '8 500 kvm', time: '18 månader', value: '85 mkr' },
     longDescription:
-      'Omfattande ombyggnad av kontorslokaler till cirka 50 lägenheter i en fastighet från 1910. Projektet krävde omfattande konstruktionslösningar på plats för att anpassa den äldre byggnaden till moderna bostäder. Andreas var platschef med övergripande ansvar för genomförandet.',
+      'Omfattande ombyggnad av kontorslokaler till cirka 50 lägenheter i en fastighet från 1910. Projektet krävde omfattande konstruktionslösningar på plats för att anpassa den äldre byggnaden till moderna bostäder.',
     facts: [
       { label: 'Entreprenadsumma', value: '85 mkr' },
       { label: 'Yta', value: '8 500 kvm' },
       { label: 'Roll', value: 'Platschef' },
-      { label: 'Entreprenadform', value: 'Generalentreprenad · Fast pris + á-prislista' },
+      { label: 'Entreprenadform', value: 'Generalentreprenad · Fast pris + á‑prislista' },
       { label: 'Beställare', value: 'Åke Sundvall / Uppsala Akademiförvaltning' },
     ],
   },
@@ -64,7 +64,7 @@ export const featuredProjects = [
     description: 'Nyproduktion av 27 lägenheter och 6 radhus med omfattande markarbeten.',
     stats: { area: '3 000 kvm', time: '24 månader', value: '70 mkr' },
     longDescription:
-      'Nyproduktion av 27 lägenheter och 6 radhus i Vallentuna. Projektet innefattade omfattande markarbeten samt komplicerade stomlösningar. Andreas arbetade som platschef och arbetsledare genom hela byggprocessen.',
+      'Nyproduktion av 27 lägenheter och 6 radhus i Vallentuna. Projektet innefattade omfattande markarbeten samt komplicerade stomlösningar.',
     facts: [
       { label: 'Entreprenadsumma', value: '70 mkr' },
       { label: 'Yta', value: '3 000 kvm' },
@@ -90,12 +90,12 @@ export const featuredProjects = [
     description: 'Totalrenovering av skola från 1910, invändigt och utvändigt.',
     stats: { area: '2 000 kvm', time: '24 månader', value: '55 mkr' },
     longDescription:
-      'Omfattande om- och totalrenovering, invändigt och utvändigt, av en skola från 1910. Projektet omfattade nya installationer samt omfattande markarbeten. Genomfördes som generalentreprenad inom LOU med Andreas som platschef. Entreprenadsumman om 29 mkr slutuppgjordes till 55 mkr.',
+      'Omfattande om- och totalrenovering, invändigt och utvändigt, av en skola från 1910. Projektet omfattade nya installationer samt omfattande markarbeten. Genomfördes som generalentreprenad inom LOU. Entreprenadsumman om 29 mkr slutuppgjordes till 55 mkr.',
     facts: [
       { label: 'Entreprenadsumma', value: '29 mkr (slutuppgör 55 mkr)' },
       { label: 'Yta', value: '2 000 kvm' },
       { label: 'Roll', value: 'Platschef' },
-      { label: 'Entreprenadform', value: 'Generalentreprenad inom LOU · Fast pris + á-prislista' },
+      { label: 'Entreprenadform', value: 'Generalentreprenad inom LOU · Fast pris + á‑prislista' },
       { label: 'Beställare', value: 'Metrolit / Täby kommun' },
     ],
   },
@@ -113,7 +113,7 @@ export const featuredProjects = [
     description: 'Totalrenovering av skola från 1960. Matsal, storkök, gymnastiksal, ventilation, värme och el.',
     stats: { area: '1 200 kvm', time: '12 månader', value: '43 mkr' },
     longDescription:
-      'Omfattande om- och totalrenovering, invändigt och utvändigt, samt markarbeten av en skola från 1960. Arbetet omfattade matsal, storkök, gymnastiksal och personalutrymmen, samt ventilation, värme och el som försörjer hela skolan. Genomfördes som generalentreprenad inom LOU med Andreas som platschef. Entreprenadsumman om 25 mkr slutuppgjordes till 43 mkr.',
+      'Omfattande om- och totalrenovering, invändigt och utvändigt, samt markarbeten av en skola från 1960. Arbetet omfattade matsal, storkök, gymnastiksal och personalutrymmen, samt ventilation, värme och el som försörjer hela skolan. Genomfördes som generalentreprenad inom LOU. Entreprenadsumman om 25 mkr slutuppgjordes till 43 mkr.',
     facts: [
       { label: 'Entreprenadsumma', value: '25 mkr (slutuppgör 43 mkr)' },
       { label: 'Yta', value: '1 200 kvm' },
@@ -136,7 +136,7 @@ export const featuredProjects = [
     description: 'Ombyggnad av lokaler i två etapper. Nya ventilation, EL, VS och ytskikt.',
     stats: { area: '1 500 kvm', time: '12 månader', value: '22 mkr' },
     longDescription:
-      'Ombyggnad av lokaler fördelat i två etapper, med nya ventilationsanläggningar samt EL, VS och ytskikt. Genomfördes som samverkans- och totalentreprenad med ekonomisk reglering på löpande räkning och Andreas som platschef.',
+      'Ombyggnad av lokaler fördelat i två etapper, med nya ventilationsanläggningar samt EL, VS och ytskikt. Genomfördes som samverkans- och totalentreprenad med ekonomisk reglering på löpande räkning.',
     facts: [
       { label: 'Entreprenadsumma', value: '22 mkr' },
       { label: 'Yta', value: '1 000 + 500 kvm' },
@@ -163,7 +163,7 @@ export const moreProjects = [
     value: '7 mkr',
     role: 'Platschef / Bas-U',
     longDescription:
-      'Diverse anläggningsuppdrag åt Trafikverket inom Förbifarten Stockholm, bland annat stockbänkar i Grimstaskogen och plantering av tallar i Lunda. Andreas är platschef och Bas-U, med ersättning på löpande räkning samt mängd.',
+      'Diverse anläggningsuppdrag åt Trafikverket inom Förbifarten Stockholm, bland annat stockbänkar i Grimstaskogen och plantering av tallar i Lunda.',
     facts: [
       { label: 'Entreprenadsumma', value: '7 mkr' },
       { label: 'Roll', value: 'Platschef / Bas-U' },
@@ -195,7 +195,7 @@ export const moreProjects = [
     value: '35 mkr · 15 000 kvm',
     role: 'Platschef / Bas-U',
     longDescription:
-      'Återställning av markytor efter tunnelarbeten i Sätra hamn, omfattande cirka 15 000 kvm. I entreprenaden ingick även en kaj med krönbalk. Andreas är platschef och Bas-U, med ersättning på löpande räkning samt reglering mot mängd.',
+      'Återställning av markytor efter tunnelarbeten i Sätra hamn, omfattande cirka 15 000 kvm. I entreprenaden ingick även en kaj med krönbalk.',
     facts: [
       { label: 'Entreprenadsumma', value: '35 mkr' },
       { label: 'Yta', value: '15 000 kvm' },
@@ -227,7 +227,7 @@ export const moreProjects = [
     value: '65 mkr',
     role: 'Platschef',
     longDescription:
-      'Den tidigare arbetstunneln för uttransport av bergmassor vid tunneldrift har ersatts med ett avluftstorn — en massiv betongskorsten, cirka 25 meter hög med 100 kvm area, samt inslagsvalv med mera. Andreas är platschef med ersättning på löpande räkning.',
+      'Den tidigare arbetstunneln för uttransport av bergmassor vid tunneldrift har ersatts med ett avluftstorn — en massiv betongskorsten, cirka 25 meter hög med 100 kvm area, samt inslagsvalv med mera.',
     facts: [
       { label: 'Entreprenadsumma', value: '65 mkr' },
       { label: 'Yta', value: '2 000 kvm' },
@@ -250,7 +250,7 @@ export const moreProjects = [
     value: '10 mkr',
     role: 'Platschef',
     longDescription:
-      'Rivning av en betongbrygga i Sätra hamn. I arbetet ingick även upptagning och bortforsling av 12 st 15-tons vikter på 20 meters djup. Andreas är platschef med ersättning på löpande räkning.',
+      'Rivning av en betongbrygga i Sätra hamn. I arbetet ingick även upptagning och bortforsling av 12 st 15-tons vikter på 20 meters djup.',
     facts: [
       { label: 'Entreprenadsumma', value: '10 mkr' },
       { label: 'Yta', value: '150 kvm' },
@@ -273,7 +273,7 @@ export const moreProjects = [
     value: '30 mkr · 4 000 kvm',
     role: 'Platschef',
     longDescription:
-      'Säkerhetsklassat skyddsobjekt där lokalanpassningar om cirka 4 000 kvm i Solna, genomfördes som samverkans- och utförandeentreprenad med ersättning på löpande räkning. Andreas var platschef.',
+      'Säkerhetsklassat skyddsobjekt där lokalanpassningar om cirka 4 000 kvm i Solna, genomfördes som samverkans- och utförandeentreprenad med ersättning på löpande räkning.',
     facts: [
       { label: 'Entreprenadsumma', value: '30 mkr' },
       { label: 'Yta', value: '4 000 kvm' },
@@ -297,7 +297,7 @@ export const moreProjects = [
     value: '5,5 mkr',
     role: 'Platschef',
     longDescription:
-      'Lokalanpassningar om cirka 250 kvm samt cirka 1 000 kvm ventilation i Solna. Genomfört som samverkans- och utförandeentreprenad med Andreas som platschef.',
+      'Lokalanpassningar om cirka 250 kvm samt cirka 1 000 kvm ventilation i Solna. Genomfört som samverkans- och utförandeentreprenad.',
     facts: [
       { label: 'Entreprenadsumma', value: '5,5 mkr' },
       { label: 'Yta', value: '250 kvm + ca 1 000 kvm ventilation' },
@@ -342,7 +342,7 @@ export const moreProjects = [
     value: '15 mkr · 1 500 kvm',
     role: 'Bas-U',
     longDescription:
-      'Utbyggnad av en befintlig lokal med lastkajer med mera, om cirka 1 500 kvm. Andreas var Bas-U med ersättning på löpande räkning.',
+      'Utbyggnad av en befintlig lokal med lastkajer med mera, om cirka 1 500 kvm.',
     facts: [
       { label: 'Entreprenadsumma', value: '15 mkr' },
       { label: 'Yta', value: '1 500 kvm' },
@@ -365,7 +365,7 @@ export const moreProjects = [
     value: '30 mkr · 600 kvm',
     role: 'Byggledare',
     longDescription:
-      'Åtgärdande av omfattande installations- och byggfel på en nybyggd villa om cirka 600 kvm, utförd av en tidigare entreprenör. Andreas är byggledare med ersättning på löpande räkning.',
+      'Åtgärdande av omfattande installations- och byggfel på en nybyggd villa om cirka 600 kvm, utförd av en tidigare entreprenör.',
     facts: [
       { label: 'Entreprenadsumma', value: '30 mkr' },
       { label: 'Yta', value: '600 kvm' },
