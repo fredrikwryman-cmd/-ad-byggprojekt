@@ -74,7 +74,7 @@ export default function CVPage() {
       </section>
 
       {/* Experience */}
-      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', background: '#0a0f1a', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', background: 'linear-gradient(to bottom, #020617 0, #0a0f1a 90px, #0a0f1a calc(100% - 90px), #020617 100%)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
           <motion.div

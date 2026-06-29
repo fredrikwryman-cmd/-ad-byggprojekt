@@ -1432,10 +1432,17 @@ select.form-input option {
   --bp-light-overlay: 0.12;
 }
 .bp-dark {
+  /* Overlay som dessutom tonar blueprinten till HELT ren #020617 i sektionens
+     över- och underkant (~90px). Då blir varje bp-dark-kant ren navy → sömlös
+     skarv mot intilliggande #020617-ytor (ingen synlig textur-/nyanslinje),
+     medan blueprinten fortfarande syns i mitten (styrkan = --bp-dark-overlay). */
   background-image:
     linear-gradient(
-      rgba(2, 6, 23, var(--bp-dark-overlay)),
-      rgba(2, 6, 23, var(--bp-dark-overlay))
+      to bottom,
+      #020617 0,
+      rgba(2, 6, 23, var(--bp-dark-overlay)) 90px,
+      rgba(2, 6, 23, var(--bp-dark-overlay)) calc(100% - 90px),
+      #020617 100%
     ),
     var(--bp-dark);
   background-size: cover;
