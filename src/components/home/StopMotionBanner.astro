@@ -131,8 +131,7 @@ const videoSrc = base + video;
      runt kortet, så ramen ALDRIG når viewportkanten (ingen söm / ingen overflow).
      box-sizing: border-box (Tailwind preflight) → paddingen spiller inte över 100%. */
   .sm-section {
-    /* Transparent → det genomgående blueprint-lagret anas i kanterna runt videon. */
-    background: transparent;
+    background: #020617;
     padding: 2.5rem 1rem;
   }
   @media (min-width: 640px) {
@@ -211,8 +210,7 @@ const videoSrc = base + video;
     max-width: 72rem;
     margin: 0 auto;
     aspect-ratio: 4 / 3;
-    /* Transparent → feather-masken tonar ut videon mot blueprint-lagret (mjuk kant). */
-    background: transparent;
+    background: #020617;
     isolation: isolate;
     /* Egen GPU-/stacking-kontext: krävs för att mask på wrappern inte ska
        svartlägga/diskvalificera videon från iOS autoplay (visible-on-screen). */

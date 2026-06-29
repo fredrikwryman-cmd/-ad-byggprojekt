@@ -18,7 +18,6 @@ export default function HeroSection() {
       ref={containerRef}
       id="hem"
       className="relative min-h-[85vh] md:min-h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: '#020617' }}
     >
       {/* Background image with parallax zoom */}
       <motion.div

@@ -9,7 +9,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="px-safe relative z-20">
+    <section className="px-safe relative z-20 bp-dark">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
