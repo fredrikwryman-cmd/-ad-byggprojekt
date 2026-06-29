@@ -45,13 +45,16 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  /* Navy-basen ligger på html (botten), så body::before-blueprintlagret (z-index:-1)
+     garanterat syns – en opak body-bakgrund hade annars dolt det. */
+  background-color: #020617;
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  /* Mörk navy som global botten – annars syns en vit hårfina linje i skarvar
-     mellan mörka sektioner (sub-pixel-glipa vid aspect-ratio-höjder). */
-  background-color: #020617;
+  /* Transparent så det fasta blueprint-lagret (body::before) syns igenom.
+     Navy-basen mot vita skarv-hårlinjer ligger nu på html ovan. */
+  background-color: transparent;
   color: #020617;
   font-weight: 400;
   line-height: 1.6;
@@ -802,7 +805,7 @@ h3, h4, h5, h6 {
 
 /* ===== ABOUT SECTION ===== */
 .about-section {
-  background: var(--dark);
+  background: transparent; /* blueprint-lagret bakom syns igenom */
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -1016,7 +1019,7 @@ h3, h4, h5, h6 {
 
 /* ===== CONTACT SECTION ===== */
 .contact-section {
-  background: var(--dark);
+  background: transparent; /* blueprint-lagret bakom syns igenom */
   position: relative;
 }
 
@@ -1425,13 +1428,22 @@ select.form-input option {
    Variablerna --bp-dark/--bp-light sätts på <body> i Layout.astro (rätt base-URL).
    Aldrig på hero, video-bårder eller projektgallerier – de har egna opaka bg. */
 /* Overlay-styrka på EN plats – höj mot 0.85/0.95 igen för subtilt läge,
-   sänk mot 0.10–0.15 för att tydligt se var blueprinten ligger.
-   TILLFÄLLIGT maxat (0.12) för granskning. */
+   sänk mot 0.10–0.15 för tydligare. TILLFÄLLIGT satt till 0.6 för helhetsbedömning. */
 :root {
-  --bp-dark-overlay: 0.12;
-  --bp-light-overlay: 0.12;
+  --bp-dark-overlay: 0.6;
+  --bp-light-overlay: 0.6;
 }
-.bp-dark {
+
+/* ETT genomgående blueprint-lager bakom HELA sajten (fast i viewporten, längst
+   bak). Sektioner som är transparenta visar det → enhetlig grundton utan hårda
+   kanter. Video/projektbilder ligger ovanpå och täcker det lokalt; i kanterna
+   anas blueprinten. Undantag med egen opak bg: Navbar, Hero och Footer. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image:
     linear-gradient(
       rgba(2, 6, 23, var(--bp-dark-overlay)),
@@ -1442,6 +1454,14 @@ select.form-input option {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* Nollställ sektionernas opaka navy (exakt bg-[#020617]) så blueprint-lagret
+   syns igenom – men RÖR INTE navbar-varianten bg-[#020617]/80 resp. /90. */
+[class*="bg-[#020617]"]:not([class*="bg-[#020617]/"]) {
+  background-color: transparent !important;
+}
+
+/* Ljusa ytor förblir ljusa öar med ljus blueprint (Tjänster, FAQ, CV-utbildning). */
 .bp-light {
   background-image:
     linear-gradient(
