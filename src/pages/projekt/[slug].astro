@@ -133,6 +133,20 @@ const breadcrumbSchema = {
           <a href={base + 'kontakt'} class="btn-primary">Kontakta oss</a>
         </div>
 
+        {/* In-flow föregående/nästa – ligger i normalt flöde och visas på skärmar
+            där de fixerade sidopilarna (.pd-sidenav) är dolda, så inget tap kan
+            fastna bakom en pil som överlappar innehållet. Samma loop som pilarna. */}
+        <nav class="pd-flownav" aria-label="Bläddra mellan projekt">
+          <a class="pd-flownav-link pd-flownav-prev" href={base + 'projekt/' + prevProject.slug} rel="prev">
+            <span class="pd-flownav-dir">&larr; Föregående projekt</span>
+            <span class="pd-flownav-title">{prevProject.title}</span>
+          </a>
+          <a class="pd-flownav-link pd-flownav-next" href={base + 'projekt/' + nextProject.slug} rel="next">
+            <span class="pd-flownav-dir">Nästa projekt &rarr;</span>
+            <span class="pd-flownav-title">{nextProject.title}</span>
+          </a>
+        </nav>
+
       </div>
     </section>
 
@@ -400,6 +414,19 @@ const breadcrumbSchema = {
     margin: 0 auto 1.75rem;
   }
 
+  /* Fixerade sidopilar visas ENDAST på riktigt breda skärmar (≥1280px) där det
+     finns marginal utanför innehållskolumnen (max 72rem). På smalare skärmar
+     döljs de helt och ersätts av .pd-flownav i normalt flöde – annars skulle de
+     fixerade pilarna lägga sig över och stjäla klick/tap från brödtext/faktaruta. */
+  .pd-sidenav {
+    display: none;
+  }
+  @media (min-width: 1280px) {
+    .pd-sidenav {
+      display: block;
+    }
+  }
+
   /* Föregående/Nästa som stora, tydliga pilar på sidorna – vertikalt centrerade,
      fasta i viewporten så de alltid är nåbara medan man scrollar projektet. */
   .pd-arrow {
@@ -439,25 +466,69 @@ const breadcrumbSchema = {
   .pd-arrow-next {
     right: clamp(0.5rem, 2.5vw, 1.75rem);
   }
-  @media (max-width: 640px) {
-    .pd-arrow {
-      width: 2.75rem;
-      height: 2.75rem;
-      font-size: 1.25rem;
-      background: rgba(2, 6, 23, 0.72);
-    }
-    .pd-arrow-prev {
-      left: 0.4rem;
-    }
-    .pd-arrow-next {
-      right: 0.4rem;
-    }
-  }
   @media (prefers-reduced-motion: reduce) {
     .pd-arrow,
     .pd-arrow:hover {
       transition: none;
       transform: translateY(-50%);
+    }
+  }
+
+  /* In-flow föregående/nästa-navigering (mobil/surfplatta/laptop < 1280px).
+     Ligger i innehållsflödet → kan aldrig överlappa eller stjäla klick. */
+  .pd-flownav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: clamp(2rem, 5vw, 3rem);
+  }
+  @media (min-width: 1280px) {
+    .pd-flownav {
+      display: none;
+    }
+  }
+  .pd-flownav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .pd-flownav-link:hover {
+    border-color: rgba(0, 120, 212, 0.55);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 44px -16px rgba(0, 120, 212, 0.55);
+  }
+  .pd-flownav-link:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+  }
+  .pd-flownav-next {
+    text-align: right;
+    align-items: flex-end;
+  }
+  .pd-flownav-dir {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #4a9eff;
+  }
+  .pd-flownav-title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pd-flownav-link,
+    .pd-flownav-link:hover {
+      transition: none;
+      transform: none;
     }
   }
 

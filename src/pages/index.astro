@@ -15,21 +15,14 @@ import AboutSection from '../components/about/AboutSection.jsx';
 import ContactSection from '../components/contact/ContactSection.jsx';
 import FaqSection from '../components/home/FaqSection.jsx';
 import Footer from '../components/layout/Footer.jsx';
+import { faqs } from '../data/faqs.js';
 
-const faqs = [
-  ['Vilka områden arbetar ni i?', 'Vi är verksamma i Stockholm med omnejd – hela Storstockholm samt Uppsala. Hör av dig om du är osäker på om vi täcker just din ort.'],
-  ['Är det första mötet kostnadsfritt?', 'Ja. Vi börjar alltid med ett förutsättningslöst möte där vi lyssnar på dina idéer och gör en första bedömning – helt utan kostnad eller förpliktelse.'],
-  ['Hur lång tid tar ett projekt?', 'Det beror helt på omfattningen. Du får alltid en realistisk tidsplan i offerten, och vi håller dig uppdaterad om status genom hela projektet.'],
-  ['Kan jag använda ROT-avdrag?', 'För privatpersoner kan ROT-avdrag oftast användas vid renovering och ombyggnad, och vi hjälper dig att hantera avdraget direkt på fakturan. Hör av dig så går vi igenom vad som gäller för just ditt projekt.'],
-  ['Har ni F-skatt och försäkring?', 'Ja, vi är godkända för F-skatt och har ansvarsförsäkring. Du arbetar alltid med en seriös och trygg motpart.'],
-  ['Hur fungerar priset?', 'Det vanligaste i våra uppdrag är löpande räkning med tät ekonomisk uppföljning, så att du alltid har koll på kostnaderna. När projektet är tydligt avgränsat kan vi även lämna fast pris. Vi går igenom upplägget tillsammans innan vi sätter igång.'],
-  ['Vilken garanti gäller?', 'Vi lämnar garanti enligt branschens regler och dokumenterar arbetet vid överlämningen. Du får tydliga avtal och vet alltid vad som gäller.'],
-];
-
+// FAQ-schemat genereras ur EXAKT samma data som FaqSection.jsx visar
+// (src/data/faqs.js) → strukturerad data matchar alltid synligt innehåll.
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faqs.map(([q, a]) => ({
+  mainEntity: faqs.map(({ q, a }) => ({
     '@type': 'Question',
     name: q,
     acceptedAnswer: { '@type': 'Answer', text: a },

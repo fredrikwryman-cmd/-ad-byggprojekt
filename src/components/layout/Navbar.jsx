@@ -5,6 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 // så länkar konkateneras utan inledande slash. Följer automatiskt med om base ändras.
 const BASE = import.meta.env.BASE_URL;
 
+// Normaliserar bort avslutande slash så jämförelser funkar oavsett om sidan
+// serveras som "/projekt" eller "/projekt/" (och oavsett base-path).
+const normalizePath = (p) => {
+  const path = (p || '/').split('#')[0].split('?')[0];
+  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
+};
+
 const sections = [
   { id: 'hem', label: 'Hem', href: BASE },
   { id: 'projekt', label: 'Projekt', href: BASE + 'projekt' },
@@ -51,11 +58,12 @@ export default function Navbar() {
     };
   }, []);
 
-  // Aktiv sektion på startsidan
+  // Aktiv sektion på startsidan (scroll-spy). På GitHub Pages är startsidans
+  // path BASE (t.ex. "/-ad-byggprojekt/"), aldrig "/", så vi jämför mot BASE.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setPathname(window.location.pathname);
-    if (window.location.pathname !== '/') return;
+    if (normalizePath(window.location.pathname) !== normalizePath(BASE)) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -72,19 +80,17 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Aktiv sida = nuvarande URL matchar länkens sökväg. Normaliserar bort
-  // avslutande slash så det funkar oavsett om sidan serveras som "/projekt"
-  // eller "/projekt/". Markeringen blir därmed permanent på den sida man är inne på.
-  const normalizePath = (p) => {
-    const path = (p || '/').split('#')[0].split('?')[0];
-    return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
-  };
+  // På startsidan följer markeringen scrollen (activeSection från scroll-spy).
+  // På undersidor matchar vi i stället nuvarande URL mot länkens sökväg, så
+  // markeringen blir permanent på den sida man är inne på.
+  const isHome = normalizePath(pathname) === normalizePath(BASE);
   const isActive = (id, href) => {
     if (id === 'cm-uppdrag') return false; // ankarlänk till tjänster, ej egen sida
+    if (isHome) return activeSection === id;
     return normalizePath(pathname) === normalizePath(href);
   };
 
-  const logoHref = pathname === '/' ? BASE + '#hem' : BASE;
+  const logoHref = isHome ? BASE + '#hem' : BASE;
   const trans = reduced ? '' : 'transition-all duration-300';
 
   return (

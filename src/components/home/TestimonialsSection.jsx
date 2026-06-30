@@ -1,3 +1,16 @@
+/* =====================================================================
+   ⚠️  FÅR INTE VISAS LIVE — INNEHÅLLER PLATSHÅLLAR-DATA  ⚠️
+   ---------------------------------------------------------------------
+   Den här komponenten BEHÅLLS medvetet för framtida bruk, men är just nu
+   HELT OSYNLIG på sajten: den importeras/renderas INTE på någon sida
+   (raderna i src/pages/index.astro är bortkommenterade).
+
+   Omdömena nedan är PÅHITTADE exempel. Aktivera INTE modulen förrän de
+   ersatts med verkliga, verifierade och godkända kundomdömen.
+
+   Att återaktivera (gör BARA med äkta omdömen): avkommentera importen och
+   <TestimonialsSection client:idle /> i src/pages/index.astro.
+   ===================================================================== */
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from '../icons.jsx';
