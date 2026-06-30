@@ -1456,9 +1456,10 @@ select.form-input option {
       rgba(255, 255, 255, var(--bp-light-overlay))
     ),
     var(--bp-light);
-  background-size: cover;
+  /* Sömlös, kaklingsbar ljus blueprint → repeat i fast storlek (ej cover). */
+  background-size: 1000px auto;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
 
 /* ===== MJUKA SEKTIONSSKARVAR =====
