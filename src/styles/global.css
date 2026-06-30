@@ -802,7 +802,7 @@ h3, h4, h5, h6 {
 
 /* ===== ABOUT SECTION ===== */
 .about-section {
-  background: var(--dark);
+  background-color: var(--dark); /* ej shorthand – nollar inte bp-dark-bilden */
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -1016,7 +1016,7 @@ h3, h4, h5, h6 {
 
 /* ===== CONTACT SECTION ===== */
 .contact-section {
-  background: var(--dark);
+  background-color: var(--dark); /* ej shorthand – nollar inte bp-dark-bilden */
   position: relative;
 }
 
@@ -1445,9 +1445,11 @@ select.form-input option {
       #020617 100%
     ),
     var(--bp-dark);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* ENDA källa för blueprint-visning (identisk med .bp-light) – samma mönsterskala
+     överallt, kaklad sömlöst, kontinuerligt raster mellan sektioner. */
+  background-repeat: repeat;
+  background-size: 1000px auto;
+  background-position: top center;
 }
 .bp-light {
   background-image:
@@ -1456,10 +1458,10 @@ select.form-input option {
       rgba(255, 255, 255, var(--bp-light-overlay))
     ),
     var(--bp-light);
-  /* Sömlös, kaklingsbar ljus blueprint → repeat i fast storlek (ej cover). */
-  background-size: 1000px auto;
-  background-position: center;
+  /* ENDA källa för blueprint-visning (identisk med .bp-dark). */
   background-repeat: repeat;
+  background-size: 1000px auto;
+  background-position: top center;
 }
 
 /* ===== MJUKA SEKTIONSSKARVAR =====
