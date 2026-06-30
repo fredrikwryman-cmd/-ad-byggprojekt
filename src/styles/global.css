@@ -110,6 +110,19 @@ h3, h4, h5, h6 {
   animation: gradient-shift 5s ease 3 forwards;
 }
 
+/* Variant för LJUS bakgrund: mörkare AD-blå så att accentordet når ≥4,5:1 mot
+   vitt/ljust (WCAG 1.4.3). Den ljusa .gradient-text (#4a9eff→#7eb8ff) ger bara
+   ~2:1 på vitt och ska bara användas på mörka ytor. Stoppen här (#0063B1→#00457A)
+   ligger alla under L≈0.13 → kontrast >6:1 mot vitt. */
+.gradient-text-on-light {
+  background: linear-gradient(135deg, #0063b1 0%, #00457a 50%, #0063b1 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease 3 forwards;
+}
+
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -1369,7 +1382,9 @@ textarea.form-input {
   padding-top: 30px;
   text-align: center;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.3);
+  /* Höjd från 0.3 (~2,4:1) till 0.7 (~5,7:1) för WCAG AA – gäller copyright
+     och den klickbara Integritetspolicy-länken som ärver färgen. */
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ===== ANIMATIONS ===== */

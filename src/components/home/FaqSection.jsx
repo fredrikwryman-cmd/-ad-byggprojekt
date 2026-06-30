@@ -11,7 +11,7 @@ export default function FaqSection() {
         <div className="text-center mb-12">
           <span className="eyebrow mb-3 font-bold" style={{ color: '#005A9E' }}>Vanliga frågor</span>
           <h2 className="text-4xl md:text-5xl font-bold text-[#020617]">
-            Bra att <span className="gradient-text">veta</span>
+            Bra att <span className="gradient-text-on-light">veta</span>
           </h2>
         </div>
 

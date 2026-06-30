@@ -32,13 +32,18 @@ export default function CVPage() {
               aspectRatio: '4 / 5',
               background: '#0b1220',
             }}>
-              <img
-                src={import.meta.env.BASE_URL + 'andreas-portratt.jpg'}
-                alt="Andreas Dahlgren"
-                loading="lazy"
-                decoding="async"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
-              />
+              <picture>
+                <source srcSet={import.meta.env.BASE_URL + 'andreas-portratt-400.webp'} type="image/webp" />
+                <img
+                  src={import.meta.env.BASE_URL + 'andreas-portratt-400.jpg'}
+                  alt="Andreas Dahlgren"
+                  width="400"
+                  height="601"
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+                />
+              </picture>
             </div>
             <h2 style={{
               fontFamily: "'Bebas Neue', system-ui, sans-serif",
@@ -197,11 +202,11 @@ export default function CVPage() {
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem 1rem', marginBottom: '0.75rem' }}>
                   {proj.client !== '—' && (
                     <span style={{ fontSize: '0.8125rem', color: '#94a3b8' }}>
-                      <span style={{ color: '#64748b' }}>Beställare:</span> {proj.client}
+                      <span style={{ color: '#94a3b8' }}>Beställare:</span> {proj.client}
                     </span>
                   )}
                   <span style={{ fontSize: '0.8125rem', color: '#94a3b8' }}>
-                    <span style={{ color: '#64748b' }}>Roll:</span> {proj.role}
+                    <span style={{ color: '#94a3b8' }}>Roll:</span> {proj.role}
                   </span>
                 </div>
                 <p style={{ fontSize: '0.8125rem', color: '#94a3b8', lineHeight: 1.6 }}>{proj.desc}</p>

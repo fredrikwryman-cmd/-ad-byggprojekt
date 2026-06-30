@@ -40,7 +40,7 @@ export default function ServicesSection() {
           <div>
             <span className="eyebrow font-bold">Vad vi gör</span>
             <h2>
-              Våra <span className="gradient-text">tjänster</span>
+              Våra <span className="gradient-text-on-light">tjänster</span>
             </h2>
           </div>
           <p>

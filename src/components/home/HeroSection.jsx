@@ -29,6 +29,7 @@ export default function HeroSection() {
           alt="AD Byggprojekt"
           className="w-full h-full object-cover"
           loading="eager"
+          fetchPriority="high"
         />
       </motion.div>
 

@@ -25,7 +25,7 @@ export default function ContactSection() {
             <div className="mb-6">
               <span className="eyebrow mb-3 font-bold">Kontakt</span>
               <h2 className="text-balance">
-                Låt oss prata om ditt <span className="gradient-text">projekt</span>
+                Låt oss prata om ditt <span className="gradient-text-on-light">projekt</span>
               </h2>
             </div>
             <p className="text-lg text-[#64748b] leading-relaxed mb-12">
