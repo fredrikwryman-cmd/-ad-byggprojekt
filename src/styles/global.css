@@ -1460,3 +1460,46 @@ select.form-input option {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+/* ===== MJUKA SEKTIONSSKARVAR =====
+   Återanvändbara klasser som tonar en sektions över-/underkant mot GRANNENS färg,
+   så att varje skarv blir en mjuk zon i stället för en hård horisontell linje –
+   enhetligt för ljus↔mörk, mörk↔mörk och ljus↔ljus.
+   Toningen ligger UNDER innehållet (z-index:1; sektionsinnehåll ligger i .z-10)
+   och ÖVER bakgrund/blueprint, så text och kontrast aldrig påverkas. Den samverkar
+   med bp-dark/bp-light (tonar hela bakgrunden inkl. blueprint mot grannfärgen).
+   Konvention: "to" = nederkant tonar mot nästa sektions färg; "from" = överkant
+   tonar från föregående sektions färg.
+   Applicera EN sida per skarv (oftast nederkanten på den övre sektionen). */
+.seam-to-dark::after,
+.seam-to-light::after,
+.seam-from-dark::before,
+.seam-from-light::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(80px, 12vw, 140px);
+  pointer-events: none;
+  z-index: 1;
+}
+.seam-to-dark::after,
+.seam-to-light::after {
+  bottom: 0;
+}
+.seam-from-dark::before,
+.seam-from-light::before {
+  top: 0;
+}
+.seam-to-dark::after {
+  background: linear-gradient(to bottom, transparent, #020617);
+}
+.seam-to-light::after {
+  background: linear-gradient(to bottom, transparent, #ffffff);
+}
+.seam-from-dark::before {
+  background: linear-gradient(to top, transparent, #020617);
+}
+.seam-from-light::before {
+  background: linear-gradient(to top, transparent, #ffffff);
+}

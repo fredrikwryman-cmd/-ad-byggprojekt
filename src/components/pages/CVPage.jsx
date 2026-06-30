@@ -212,7 +212,7 @@ export default function CVPage() {
       </section>
 
       {/* Education & Courses – sammanhållen kort-modul */}
-      <section className="bp-light" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
+      <section className="bp-light seam-from-dark seam-to-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, width: '500px', height: '500px', background: 'rgba(21, 97, 154, 0.04)', borderRadius: '50%', filter: 'blur(80px)', transform: 'translate(30%, -30%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
           <motion.div
