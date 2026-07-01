@@ -1,8 +1,9 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion, MotionConfig } from 'framer-motion';
 
 export default function HeroSection() {
   const containerRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -14,6 +15,7 @@ export default function HeroSection() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <section
       ref={containerRef}
       id="hem"
@@ -22,11 +24,11 @@ export default function HeroSection() {
       {/* Background image with parallax zoom */}
       <motion.div
         className="absolute inset-0"
-        style={{ y: bgY, scale: bgScale }}
+        style={shouldReduceMotion ? undefined : { y: bgY, scale: bgScale }}
       >
         <img
           src={import.meta.env.BASE_URL + "adlogoherobanner.jpg"}
-          alt="AD Byggprojekt"
+          alt=""
           className="w-full h-full object-cover"
           loading="eager"
           fetchPriority="high"
@@ -48,7 +50,7 @@ export default function HeroSection() {
       {/* Content */}
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-safe py-32 md:py-40"
-        style={{ opacity: contentOpacity }}
+        style={shouldReduceMotion ? undefined : { opacity: contentOpacity }}
       >
         <div className="max-w-2xl">
           {/* Eyebrow */}
@@ -117,5 +119,6 @@ export default function HeroSection() {
         </div>
       </motion.div>
     </section>
+    </MotionConfig>
   );
 }

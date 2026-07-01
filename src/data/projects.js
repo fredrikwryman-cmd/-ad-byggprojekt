@@ -38,7 +38,7 @@ export const featuredProjects = [
     image: BASE + 'projekt/fjardingen.jpg',
     hasImage: true,
     featured: true,
-    description: 'Ombyggnad av kontor till ca 50 lägenheter i fastighet från 1910.',
+    description: 'Ombyggnad av kontor till ca 50 lägenheter i en fastighet från 1910 i Uppsala – 8 500 kvm, med konstruktionslösningar för den äldre byggnaden.',
     stats: { area: '8 500 kvm', time: '18 månader', value: '85 mkr' },
     longDescription:
       'Omfattande ombyggnad av kontorslokaler till cirka 50 lägenheter i en fastighet från 1910. Projektet krävde omfattande konstruktionslösningar på plats för att anpassa den äldre byggnaden till moderna bostäder.',
@@ -61,7 +61,7 @@ export const featuredProjects = [
     image: BASE + 'projekt/estraden.jpg',
     hasImage: true,
     featured: true,
-    description: 'Nyproduktion av 27 lägenheter och 6 radhus med omfattande markarbeten.',
+    description: 'Nyproduktion av 27 lägenheter och 6 radhus i Vallentuna, med omfattande markarbeten och komplicerade stomlösningar.',
     stats: { area: '3 000 kvm', time: '24 månader', value: '70 mkr' },
     longDescription:
       'Nyproduktion av 27 lägenheter och 6 radhus i Vallentuna. Projektet innefattade omfattande markarbeten samt komplicerade stomlösningar.',
@@ -87,7 +87,7 @@ export const featuredProjects = [
     image: BASE + 'projekt/kyrkskolan.jpg',
     hasImage: true,
     featured: true,
-    description: 'Totalrenovering av skola från 1910, invändigt och utvändigt.',
+    description: 'Total- och ombyggnad av en skola från 1910 i Täby, invändigt och utvändigt, med nya installationer och omfattande markarbeten.',
     stats: { area: '2 000 kvm', time: '24 månader', value: '55 mkr' },
     longDescription:
       'Omfattande om- och totalrenovering, invändigt och utvändigt, av en skola från 1910. Projektet omfattade nya installationer samt omfattande markarbeten. Genomfördes som generalentreprenad inom LOU. Entreprenadsumman om 29 mkr slutuppgjordes till 55 mkr.',
@@ -159,7 +159,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Diverse anläggningsuppdrag åt Trafikverket.',
+    description: 'Diverse anläggningsuppdrag åt Trafikverket inom Förbifarten Stockholm – bland annat stockbänkar i Grimstaskogen och tallplantering i Lunda.',
     value: '7 mkr',
     role: 'Platschef / Bas-U',
     longDescription:
@@ -191,7 +191,7 @@ export const moreProjects = [
     image: BASE + 'projekt/satrahamn.jpg',
     hasImage: true,
     featured: true,
-    description: 'Återställning av markytor efter tunnelarbeten.',
+    description: 'Återställning av cirka 15 000 kvm markytor efter tunnelarbeten i Sätra hamn, inklusive en kaj med krönbalk.',
     value: '35 mkr · 15 000 kvm',
     role: 'Platschef / Bas-U',
     longDescription:
@@ -223,7 +223,7 @@ export const moreProjects = [
     image: BASE + 'projekt/avluftstorn.jpg',
     hasImage: true,
     featured: true,
-    description: 'Uppförande av massiv betongskorsten ca 25 m hög samt inslagsvalv.',
+    description: 'Uppförande av ett avluftstorn i Sätra – en massiv betongskorsten cirka 25 m hög med 100 kvm area, samt inslagsvalv.',
     value: '65 mkr',
     role: 'Platschef',
     longDescription:
@@ -246,7 +246,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Rivning av betongbrygga i Sätra hamn.',
+    description: 'Rivning av en betongbrygga i Sätra hamn, inklusive upptagning av tolv 15-tons vikter på 20 meters djup.',
     value: '10 mkr',
     role: 'Platschef',
     longDescription:
@@ -269,7 +269,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Lokalanpassningar i samverkans- och utförandeentreprenad.',
+    description: 'Lokalanpassningar om ca 4 000 kvm i ett säkerhetsklassat skyddsobjekt i Solna, i samverkans- och utförandeentreprenad.',
     value: '30 mkr · 4 000 kvm',
     role: 'Platschef',
     longDescription:
@@ -293,7 +293,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Lokalanpassningar inklusive omfattande ventilationsarbeten.',
+    description: 'Lokalanpassningar om ca 250 kvm samt cirka 1 000 kvm ventilation i Solna, i samverkans- och utförandeentreprenad.',
     value: '5,5 mkr',
     role: 'Platschef',
     longDescription:
@@ -316,7 +316,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Ombyggnad och renovering av storkök, fläktrum samt matsal.',
+    description: 'Ombyggnad och renovering av storkök, fläktrum och matsal på Wasaskolan i Södertälje, i samverkans- och totalentreprenad.',
     value: '10 mkr',
     role: 'Samverkans-/totalentreprenad',
     longDescription:
@@ -338,7 +338,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Utbyggnad av befintlig lokal med lastkajer m.m.',
+    description: 'Utbyggnad av en befintlig lokal med lastkajer m.m. i Stockholm, om cirka 1 500 kvm.',
     value: '15 mkr · 1 500 kvm',
     role: 'Bas-U',
     longDescription:
@@ -361,7 +361,7 @@ export const moreProjects = [
     image: null,
     hasImage: false,
     featured: false,
-    description: 'Åtgärdande av omfattande installations- och byggfel på nybyggd villa.',
+    description: 'Åtgärdande av omfattande installations- och byggfel på en nybyggd villa om ca 600 kvm, efter en tidigare entreprenör.',
     value: '30 mkr · 600 kvm',
     role: 'Byggledare',
     longDescription:

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { CheckCircle2, Shield, Wallet, Users } from '../icons.jsx';
 
 // Flyttade från Tjänster-sidan (ServicesPage) – oförändrat innehåll/utseende.
@@ -18,7 +18,7 @@ const process = [
 
 export default function ValuesProcess() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {/* Values – mörk navy (matchar "Så arbetar vi" nedan) */}
       <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
@@ -102,6 +102,6 @@ export default function ValuesProcess() {
           </div>
         </div>
       </section>
-    </>
+    </MotionConfig>
   );
 }

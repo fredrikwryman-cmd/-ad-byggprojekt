@@ -694,10 +694,13 @@ const CSS = `
 function OfferForm() {
   const [f, setF] = useState({ name: '', kontakt: '', message: '' });
   const [status, setStatus] = useState('idle'); // idle | sending | done | error
+  const botcheckRef = useRef(null); // honeypot – samma spam-skydd som offertformuläret
   const set = (k) => (e) => setF((p) => ({ ...p, [k]: e.target.value }));
 
   const submit = async () => {
     if (!f.name.trim() || !f.kontakt.trim()) { setStatus('error'); return; }
+    // Honeypot: fylld av bottar men aldrig av människor → släpp tyst.
+    if (botcheckRef.current && botcheckRef.current.checked) { setStatus('done'); return; }
     setStatus('sending');
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -707,6 +710,7 @@ function OfferForm() {
           access_key: 'ef4a060a-38a9-4591-add1-5a39a8ef7148',
           subject: 'Ny offertförfrågan via chatten (Fråga Heidi)',
           from_name: 'AD Byggprojekt — chatt',
+          botcheck: botcheckRef.current ? botcheckRef.current.checked : false,
           name: f.name,
           kontakt: f.kontakt,
           message: f.message,
@@ -733,6 +737,7 @@ function OfferForm() {
   return (
     <div className="andc-offer">
       <h4>Begär offert</h4>
+      <input ref={botcheckRef} type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
       <input aria-label="Namn" placeholder="Namn" value={f.name} onChange={set('name')} />
       <input aria-label="Telefon eller e-post" placeholder="Telefon eller e-post" value={f.kontakt} onChange={set('kontakt')} />
       <textarea aria-label="Beskriv kort ditt projekt" placeholder="Beskriv kort ditt projekt…" value={f.message} onChange={set('message')} />

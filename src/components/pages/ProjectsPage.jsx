@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { MapPin, ArrowRight, ArrowUpRight, Ruler, Clock, Wallet } from '../icons.jsx';
 import { slugByTitle } from '../../data/projects.js';
 
@@ -265,7 +265,7 @@ export default function ProjectsPage() {
     activeCategory === 'Alla' ? moreProjects : moreProjects.filter((p) => p.category === activeCategory);
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {/* Projects grid */}
       <section className="pt-20 pb-14 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28 bg-[#020617] relative bp-dark">
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
@@ -360,6 +360,6 @@ export default function ProjectsPage() {
           </motion.div>
         </div>
       </section>
-    </>
+    </MotionConfig>
   );
 }

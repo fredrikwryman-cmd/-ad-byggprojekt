@@ -16,6 +16,7 @@ const {
   ogImage: ogImageProp,
   ogType = 'website',
   ogImageAlt = 'AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt.',
+  robots = 'index, follow',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -76,7 +77,7 @@ const jsonLd = {
 
     <meta name="description" content={description} />
     <meta name="theme-color" content="#020617" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
 
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
     <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32.png`} />

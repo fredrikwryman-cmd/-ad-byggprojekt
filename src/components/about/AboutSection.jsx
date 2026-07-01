@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Award, Shield, Wallet, ArrowRight, Clock } from '../icons.jsx';
 
 const values = [
@@ -10,6 +10,7 @@ const values = [
 
 export default function AboutSection() {
   return (
+    <MotionConfig reducedMotion="user">
     <section id="om-oss" className="about-section section-padding bp-dark seam-to-light">
       <div className="absolute inset-0 grid-bg-dark opacity-30" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#0078D4]/10 blur-[150px]" />
@@ -105,5 +106,6 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

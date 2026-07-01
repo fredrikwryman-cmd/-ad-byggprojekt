@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { MessagesSquare, CheckCircle2 } from '../icons.jsx';
 
 const paragraphs = [
@@ -25,6 +25,7 @@ const features = [
 
 export default function AdvisoryBlock() {
   return (
+    <MotionConfig reducedMotion="user">
     <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
       <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-safe relative z-10">
@@ -71,5 +72,6 @@ export default function AdvisoryBlock() {
         </motion.div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Building2, PaintRoller, ClipboardCheck, ArrowRight, CheckCircle2, Users } from '../icons.jsx';
 
-const services = [
+export const services = [
   {
     title: 'Byggledning',
     icon: ClipboardCheck,
@@ -215,7 +215,7 @@ function CmCard({ service, i }) {
 
 export default function ServicesPage() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {/* Detailed services */}
       <section className="py-14 md:py-20 lg:py-28 bg-white relative bp-light seam-from-dark seam-to-dark">
         {/* Dekorativ glow i eget overflow-hidden-lager, så sektionen själv kan vara
@@ -272,6 +272,6 @@ export default function ServicesPage() {
           </motion.div>
         </div>
       </section>
-    </>
+    </MotionConfig>
   );
 }

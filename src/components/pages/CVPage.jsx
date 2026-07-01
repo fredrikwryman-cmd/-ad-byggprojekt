@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Download, Briefcase, GraduationCap, Award, ArrowRight } from '../icons.jsx';
 import cvData from '../../data/cv-data.json';
 
@@ -9,7 +9,7 @@ const projects = cvData.projects;
 
 export default function CVPage() {
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       {/* Hero / Profile */}
       <section className="bp-dark" style={{ paddingTop: '4.5rem', paddingBottom: '5rem', backgroundColor: '#020617', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 20%, rgba(21,97,154,0.15) 0%, transparent 60%)', pointerEvents: 'none' }} />
@@ -45,13 +45,15 @@ export default function CVPage() {
                 />
               </picture>
             </div>
-            <h2 style={{
+            {/* Namnet visas redan som sidans h1 (PageHeader) – här som stiliserad
+                text (ej rubrik) för att undvika dubblerad rubrik i dispositionen. */}
+            <p style={{
               fontFamily: "'Bebas Neue', system-ui, sans-serif",
               fontSize: 'clamp(1.9rem, 4.2vw, 3rem)',
-              color: '#fff', lineHeight: 0.95, marginBottom: '0.6rem', letterSpacing: '0.01em',
+              color: '#fff', lineHeight: 0.95, margin: '0 0 0.6rem', letterSpacing: '0.01em',
             }}>
               {cvData.name}
-            </h2>
+            </p>
             <p style={{ color: '#8aa9c4', fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.35rem' }}>
               Grundare &amp; Projektledare · AD Byggprojekt Stockholm AB
             </p>
@@ -300,7 +302,7 @@ export default function CVPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ paddingTop: '5rem', paddingBottom: '5rem', background: '#020617', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+      <section className="bp-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#020617', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '300px', background: 'rgba(21, 97, 154, 0.12)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '40rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
           <motion.div
@@ -325,6 +327,6 @@ export default function CVPage() {
           </motion.div>
         </div>
       </section>
-    </>
+    </MotionConfig>
   );
 }

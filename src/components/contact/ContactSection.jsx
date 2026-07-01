@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Phone, Mail, MapPin, ArrowRight } from '../icons.jsx';
 
 const BASE = import.meta.env.BASE_URL;
@@ -11,6 +11,7 @@ const contactInfo = [
 
 export default function ContactSection() {
   return (
+    <MotionConfig reducedMotion="user">
     <section id="kontakt" className="contact-section section-padding relative overflow-hidden bp-dark">
       <div className="max-w-7xl mx-auto px-safe relative z-10">
         <div className="contact-wrapper">
@@ -93,5 +94,6 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

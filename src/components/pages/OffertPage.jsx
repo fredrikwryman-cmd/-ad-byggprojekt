@@ -63,7 +63,7 @@ export default function OffertPage() {
               <div className="w-16 h-16 rounded-full bg-[#0078D4]/20 text-[#4a9eff] flex items-center justify-center mb-6">
                 <CheckCircle2 size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Tack för din offertförfrågan!</h3>
+              <h2 className="text-2xl font-bold text-white mb-3">Tack för din offertförfrågan!</h2>
               <p className="text-[#94a3b8] max-w-sm">
                 Vi har tagit emot din förfrågan och återkommer med en kostnadsfri offert så snart vi kan.
               </p>

@@ -185,7 +185,7 @@ const breadcrumbSchema = {
 
   <Footer />
 
-  <script define:vars={{ galleryImages: gallery }}>
+  <script define:vars={{ galleryImages: gallery, projectTitle: project.title }}>
     // Lightbox – ENDAST för galleri-bilderna (hero-bilden ingår aldrig här).
     const lb = document.getElementById('pd-lightbox');
     if (lb && galleryImages.length) {
@@ -202,6 +202,7 @@ const breadcrumbSchema = {
         if (trigger) lastFocused = trigger;
         current = (i + galleryImages.length) % galleryImages.length;
         img.src = galleryImages[current];
+        img.alt = projectTitle + ' – bild ' + (current + 1) + ' av ' + galleryImages.length;
         counter.textContent = (current + 1) + ' / ' + galleryImages.length;
         lb.classList.add('open');
         lb.setAttribute('aria-hidden', 'false');

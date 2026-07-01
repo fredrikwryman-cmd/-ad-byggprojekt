@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { Building2, PaintRoller, ClipboardCheck, MessagesSquare } from '../icons.jsx';
 
 const services = [
@@ -26,6 +26,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
+    <MotionConfig reducedMotion="user">
     <section id="tjanster" className="py-16 md:py-24 lg:py-36 bg-white relative overflow-hidden bp-light seam-to-dark">
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#0078D4]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4" />
 
@@ -81,5 +82,6 @@ export default function ServicesSection() {
         </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

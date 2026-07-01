@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { faqs } from '../../data/faqs.js';
 
 export default function FaqSection() {
   const [open, setOpen] = useState(0);
 
   return (
+    <MotionConfig reducedMotion="user">
     <section className="py-16 md:py-24 lg:py-32 bg-[#f8fafc] relative overflow-hidden bp-light seam-to-dark">
       <div className="max-w-3xl mx-auto px-safe relative z-10">
         <div className="text-center mb-12">
@@ -30,7 +31,7 @@ export default function FaqSection() {
                 onClick={() => setOpen(open === i ? -1 : i)}
                 className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-semibold text-[#020617]"
                 aria-expanded={open === i}
-                aria-controls={`faq-panel-${i}`}
+                aria-controls={open === i ? `faq-panel-${i}` : undefined}
               >
                 <span>{faq.q}</span>
                 <span className="text-[#0078D4] text-2xl flex-shrink-0 leading-none">
@@ -45,5 +46,6 @@ export default function FaqSection() {
         </div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 
 const stats = [
   { value: '15', suffix: '+', label: 'Genomförda projekt' },
@@ -9,6 +9,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
+    <MotionConfig reducedMotion="user">
     <section className="px-safe relative z-20">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -30,5 +31,6 @@ export default function StatsSection() {
         </div>
       </motion.div>
     </section>
+    </MotionConfig>
   );
 }

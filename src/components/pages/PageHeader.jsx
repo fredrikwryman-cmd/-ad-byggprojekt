@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 
 export default function PageHeader({ eyebrow, title, subtitle, dark = true }) {
   const bgClass = dark ? 'bg-[#020617]' : 'bg-white';
@@ -6,6 +6,7 @@ export default function PageHeader({ eyebrow, title, subtitle, dark = true }) {
   const subtitleClass = dark ? 'text-[#94a3b8]' : 'text-[#64748b]';
 
   return (
+    <MotionConfig reducedMotion="user">
     <section className={`relative pt-28 pb-16 sm:pb-20 md:pt-24 md:pb-28 overflow-hidden ${bgClass} ${dark ? 'bp-dark' : 'bp-light'}`}>
       {dark && (
         <>
@@ -40,5 +41,6 @@ export default function PageHeader({ eyebrow, title, subtitle, dark = true }) {
         </motion.div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

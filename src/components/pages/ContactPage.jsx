@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, ArrowRight } from '../icons.jsx';
 
 const contactInfo = [
@@ -29,6 +29,7 @@ const contactInfo = [
 
 export default function ContactPage() {
   return (
+    <MotionConfig reducedMotion="user">
     <section className="py-14 md:py-20 lg:py-28 bg-[#020617] relative overflow-hidden bp-dark">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[#0078D4]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
@@ -83,5 +84,6 @@ export default function ContactPage() {
         </motion.div>
       </div>
     </section>
+    </MotionConfig>
   );
 }

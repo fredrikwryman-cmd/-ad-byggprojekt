@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // BASE_URL inkluderar avslutande slash (t.ex. '/-ad-byggprojekt/'),
@@ -31,6 +31,8 @@ export default function Navbar() {
   const [reduced, setReduced] = useState(
     () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
+  const hamburgerRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
   // Scroll-shrink + progress-bar
   useEffect(() => {
@@ -79,6 +81,31 @@ export default function Navbar() {
     }
     return () => observer.disconnect();
   }, []);
+
+  // Mobilmeny: fokus-fälla + Escape medan den är öppen, och återställ fokus till
+  // hamburger-knappen när den stängs (WCAG 2.1.2 / 2.4.3).
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const menu = mobileMenuRef.current;
+    const focusables = menu
+      ? Array.prototype.slice.call(menu.querySelectorAll('a[href], button:not([disabled])'))
+      : [];
+    if (focusables.length) focusables[0].focus();
+    const onKey = (e) => {
+      if (e.key === 'Escape') { setMobileOpen(false); return; }
+      if (e.key === 'Tab' && focusables.length) {
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      if (hamburgerRef.current) hamburgerRef.current.focus();
+    };
+  }, [mobileOpen]);
 
   // På startsidan följer markeringen scrollen (activeSection från scroll-spy).
   // På undersidor matchar vi i stället nuvarande URL mot länkens sökväg, så
@@ -178,11 +205,12 @@ export default function Navbar() {
 
           {/* Hamburger (mobil) */}
           <button
+            ref={hamburgerRef}
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden p-2 text-white"
             aria-label={mobileOpen ? 'Stäng meny' : 'Öppna meny'}
             aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
+            aria-controls={mobileOpen ? 'mobile-menu' : undefined}
           >
             <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               {mobileOpen ? (
@@ -206,6 +234,7 @@ export default function Navbar() {
           >
             <div className="absolute inset-0 bg-[#020617]/90 backdrop-blur-lg" onClick={() => setMobileOpen(false)} />
             <motion.div
+              ref={mobileMenuRef}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}

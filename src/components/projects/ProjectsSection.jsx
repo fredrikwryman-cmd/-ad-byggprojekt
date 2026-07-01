@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { MapPin, ArrowUpRight } from '../icons.jsx';
 import { allProjects } from '../../data/projects.js';
 
@@ -7,6 +7,7 @@ const projects = allProjects.filter((p) => p.featured);
 
 export default function ProjectsSection() {
   return (
+    <MotionConfig reducedMotion="user">
     <section id="projekt" className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark seam-to-light">
       {/* Background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#0078D4]/10 rounded-full blur-[150px] pointer-events-none" />
@@ -108,5 +109,6 @@ export default function ProjectsSection() {
         </motion.div>
       </div>
     </section>
+    </MotionConfig>
   );
 }
