@@ -84,6 +84,18 @@ const projects = [
     stats: { area: '2 000 kvm', time: 'Pågående', value: '65 mkr' },
     featured: true,
   },
+  {
+    title: 'Wasaskolan, Södertälje',
+    location: 'Södertälje',
+    category: 'Renovering',
+    year: '2023–2024',
+    image: import.meta.env.BASE_URL + 'projekt/wasaskolan.jpg',
+    description: 'Ombyggnad och renovering av storkök, fläktrum samt matsal.',
+    // Endast entreprenadsumman är känd för det här projektet — yta och tid
+    // saknas i underlaget, och ProjectCard hoppar över de posterna.
+    stats: { value: '10 mkr' },
+    featured: false,
+  },
 ];
 
 // categories definieras efter moreProjects nedan (annars uppstår ett TDZ-fel).
@@ -113,12 +125,6 @@ const moreProjects = [
     client: 'Metrolit / Humlegården', category: 'Lokalanpassning',
     description: 'Lokalanpassningar inklusive omfattande ventilationsarbeten.',
     value: '5,5 mkr', role: 'Platschef',
-  },
-  {
-    year: '2023–2024', title: 'Wasaskolan, Södertälje', location: 'Södertälje',
-    client: 'Metrolit / Telge Fastighet', category: 'Renovering',
-    description: 'Ombyggnad och renovering av storkök, fläktrum samt matsal.',
-    value: '10 mkr', role: 'Totalentreprenad, fast pris',
   },
   {
     year: '2023–2024', title: 'Transportvägen 9', location: 'Stockholm',
@@ -185,27 +191,21 @@ function ProjectCard({ project, index }) {
         </p>
 
         <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-5 sm:pt-6 border-t border-white/5">
-          <div>
-            <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
-              <Ruler size={12} />
-              <span className="uppercase tracking-wide">Yta</span>
-            </div>
-            <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{stats.area}</p>
-          </div>
-          <div>
-            <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
-              <Clock size={12} />
-              <span className="uppercase tracking-wide">Tid</span>
-            </div>
-            <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{stats.time}</p>
-          </div>
-          <div>
-            <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
-              <Wallet size={12} />
-              <span className="uppercase tracking-wide">Värde</span>
-            </div>
-            <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{stats.value}</p>
-          </div>
+          {[
+            { key: 'area', label: 'Yta', Icon: Ruler, value: stats?.area },
+            { key: 'time', label: 'Tid', Icon: Clock, value: stats?.time },
+            { key: 'value', label: 'Värde', Icon: Wallet, value: stats?.value },
+          ]
+            .filter((s) => s.value)
+            .map(({ key, label, Icon, value }) => (
+              <div key={key}>
+                <div className="flex items-center gap-1 text-[#94a3b8] text-xs mb-1">
+                  <Icon size={12} />
+                  <span className="uppercase tracking-wide">{label}</span>
+                </div>
+                <p className="text-white font-semibold text-xs sm:text-sm lg:text-xs xl:text-sm">{value}</p>
+              </div>
+            ))}
         </div>
       </div>
     </motion.a>

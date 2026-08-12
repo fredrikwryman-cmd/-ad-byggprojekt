@@ -124,7 +124,11 @@ export const featuredProjects = [
   },
   {
     slug: 'gravyren-23',
-    gallery: [],
+    gallery: [
+      BASE + 'projekt/gravyren-g1.jpg',
+      BASE + 'projekt/gravyren-g2.jpg',
+      BASE + 'projekt/gravyren-g3.jpg',
+    ],
     title: 'Gravyren 23, Södertälje',
     location: 'Södertälje',
     client: 'Metrolit / Telge Fastighet',
@@ -313,8 +317,8 @@ export const moreProjects = [
     location: 'Södertälje',
     client: 'Metrolit / Telge Fastighet',
     category: 'Renovering',
-    image: null,
-    hasImage: false,
+    image: BASE + 'projekt/wasaskolan.jpg',
+    hasImage: true,
     featured: false,
     description: 'Ombyggnad och renovering av storkök, fläktrum och matsal på Wasaskolan i Södertälje, i samverkans- och totalentreprenad.',
     value: '10 mkr',
