@@ -214,11 +214,11 @@ function CmCard({ service, i }) {
           />
         </div>
 
-        {/* Innehåll (z-10) – alltid ovanför hologrammet, fullt läsbart */}
-        <div
-          className="relative z-10"
-          style={{ transform: interactive ? 'translateZ(35px)' : undefined, transformStyle: 'preserve-3d' }}
-        >
+        {/* Innehåll (z-10) – alltid ovanför hologrammet, fullt läsbart.
+            Ingen translateZ här: perspective på wrappern projicerar då
+            innehållet 4 % större kring kortets mitt, vilket drog upp
+            toppen ~14px och bröt linjeringen mot grannkortet. */}
+        <div className="relative z-10">
           <CardBody service={service} />
         </div>
       </article>
