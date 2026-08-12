@@ -1,26 +1,37 @@
 import { motion, MotionConfig } from 'framer-motion';
 import { Building2, PaintRoller, ClipboardCheck, MessagesSquare } from '../icons.jsx';
 
+// linkLabel är unik per kort och utgör länkens synliga text — fyra identiska
+// "Läs mer" gav en SEO-anmärkning om icke-beskrivande länktext. anchor pekar
+// på motsvarande korts id på /tjanster.
 const services = [
   {
     title: 'Byggledning & platsledning',
     text: 'Vi går in som byggledare eller platschef och driver ditt projekt på plats, med full kontroll på tid, kvalitet, arbetsmiljö och ekonomi.',
     icon: ClipboardCheck,
+    anchor: 'byggledning',
+    linkLabel: 'Läs mer om byggledning',
   },
   {
     title: 'Projektledning',
     text: 'Komplett ledning av projektet från start till mål. Vi samordnar entreprenörer, tidplan och budget.',
     icon: Building2,
+    anchor: 'projektledning',
+    linkLabel: 'Läs mer om projektledning',
   },
   {
     title: 'Rådgivning / Stöd',
     text: 'Expertis genom hela byggprocessen. Vi hjälper dig fatta rätt beslut tidigt och undvika dyra misstag.',
     icon: MessagesSquare,
+    anchor: 'radgivning-stod',
+    linkLabel: 'Läs mer om rådgivning',
   },
   {
     title: 'Bygg & renovering',
     text: 'Vid behov tar vi även ansvar för utförandet, nybyggnad och renovering med samma omsorg om kvaliteten.',
     icon: PaintRoller,
+    anchor: 'bygg-renovering',
+    linkLabel: 'Läs mer om renovering',
   },
 ];
 
@@ -67,11 +78,10 @@ export default function ServicesSection() {
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
                 <a
-                  href={import.meta.env.BASE_URL + 'tjanster'}
+                  href={import.meta.env.BASE_URL + 'tjanster#' + service.anchor}
                   className="link-arrow"
-                  aria-label={`Läs mer om ${service.title}`}
                 >
-                  Läs mer
+                  {service.linkLabel}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

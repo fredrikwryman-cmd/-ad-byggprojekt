@@ -5,6 +5,7 @@ import { Building2, PaintRoller, ClipboardCheck, ArrowRight, CheckCircle2, Users
 export const services = [
   {
     title: 'Byggledning',
+    slug: 'byggledning',
     icon: ClipboardCheck,
     summary: 'Åt dig som beställare eller byggherre — vi är din ansvariga representant på plats.',
     description: 'Byggledning utför vi oftast åt en beställare eller byggherre, till exempel kommuner, fastighetsägare eller andra beställare. Vi är er person på arbetsplatsen som ser till att bygget rullar — bevakar er beställning, leder byggmöten och följer upp tid, kvalitet, arbetsmiljö och ekonomi, så att entreprenören levererar det som är avtalat.',
@@ -12,6 +13,7 @@ export const services = [
   },
   {
     title: 'Platsledning',
+    slug: 'platsledning',
     icon: Users,
     summary: 'Åt dig som entreprenör — vi driver produktionen på plats i total- eller generalentreprenad.',
     description: 'Platsledning utför vi oftast åt en entreprenör som tagit på sig ett uppdrag, vanligtvis total- eller generalentreprenad. Som platschef tar vi ansvar för den dagliga styrningen på arbetsplatsen — samordning av yrkesarbetare och underentreprenörer, tidplan, arbetsmiljö som Bas-U, egenkontroll och ekonomisk uppföljning — hela vägen fram till färdigt och besiktigat.',
@@ -19,6 +21,7 @@ export const services = [
   },
   {
     title: 'Projektledning',
+    slug: 'projektledning',
     icon: Building2,
     summary: 'Komplett ledning med fokus på tid, budget och kvalitet. Vi samordnar allt.',
     description: 'Med strukturerad projektledning håller vi ihop varje fas – upphandling, tidsplanering, ekonomisk uppföljning och arbetsmiljö. Du får en dedikerad projektledare som ansvarar för kommunikationen. Vare sig du behöver hjälp med ett enskilt skede eller hela projektet ser vi till att alla aktörer drar åt samma håll. Med tät uppföljning och löpande rapportering har du alltid full koll på status, kostnader och nästa steg.',
@@ -26,6 +29,7 @@ export const services = [
   },
   {
     title: 'Bygg & renovering',
+    slug: 'bygg-renovering',
     icon: PaintRoller,
     summary: 'Vid behov tar vi även ansvar för utförandet – nybyggnad och renovering.',
     description: 'När uppdraget kräver det tar vi även hand om utförandet – från nyproduktion till varsam renovering. Vi samordnar yrkesarbetare och underentreprenörer enligt branschens regler, även i bebodda fastigheter, med fokus på kvalitet, arbetsmiljö och ekonomi hela vägen till slutbesiktning.',
@@ -33,6 +37,7 @@ export const services = [
   },
   {
     title: 'Rådgivning & stöd',
+    slug: 'radgivning-stod',
     icon: MessagesSquare,
     href: import.meta.env.BASE_URL + 'om-oss#radgivning',
     linkLabel: 'Läs mer om rådgivning & stöd',
@@ -244,11 +249,12 @@ export default function ServicesPage() {
               ) : (
                 <motion.article
                   key={service.title}
+                  id={service.slug}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative bg-gradient-to-b from-white to-[#eef6ff] ring-1 ring-[#0078D4]/30 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl shadow-[#0078D4]/15 hover:shadow-2xl hover:shadow-[#0078D4]/25 hover:-translate-y-1.5 transition-all duration-300"
+                  className="group relative scroll-mt-28 bg-gradient-to-b from-white to-[#eef6ff] ring-1 ring-[#0078D4]/30 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xl shadow-[#0078D4]/15 hover:shadow-2xl hover:shadow-[#0078D4]/25 hover:-translate-y-1.5 transition-all duration-300"
                 >
                   <CardBody service={service} />
                 </motion.article>
