@@ -17,6 +17,7 @@ const sections = [
   { id: 'projekt', label: 'Projekt', href: BASE + 'projekt' },
   { id: 'tjanster', label: 'Tjänster', href: BASE + 'tjanster' },
   { id: 'cm-uppdrag', label: 'CM-uppdrag', href: BASE + 'tjanster#cm-uppdrag' },
+  { id: 'radgivning', label: 'Rådgivning/stöd', href: BASE + 'om-oss#radgivning' },
   { id: 'om-oss', label: 'Om oss', href: BASE + 'om-oss' },
   { id: 'cv', label: 'CV', href: BASE + 'cv' },
   { id: 'kontakt', label: 'Kontakt', href: BASE + 'kontakt' },
@@ -112,7 +113,7 @@ export default function Navbar() {
   // markeringen blir permanent på den sida man är inne på.
   const isHome = normalizePath(pathname) === normalizePath(BASE);
   const isActive = (id, href) => {
-    if (id === 'cm-uppdrag') return false; // ankarlänk till tjänster, ej egen sida
+    if (href.includes('#')) return false; // ankarlänk till en sektion, ej egen sida
     if (isHome) return activeSection === id;
     return normalizePath(pathname) === normalizePath(href);
   };
@@ -155,7 +156,7 @@ export default function Navbar() {
           </a>
 
           {/* Menylänkar */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-6">
             {sections.map(({ id, label, href }) => {
               const active = isActive(id, href);
               return (
@@ -163,7 +164,7 @@ export default function Navbar() {
                   key={id}
                   href={href}
                   aria-current={active ? 'page' : undefined}
-                  className={`group relative py-1 text-xs font-bold uppercase tracking-[0.15em] ${
+                  className={`group relative py-1 whitespace-nowrap text-xs font-bold uppercase tracking-[0.15em] ${
                     reduced ? '' : 'transition-colors duration-300'
                   } ${active ? 'text-white' : 'text-[#94a3b8] hover:text-white'}`}
                 >
@@ -196,7 +197,7 @@ export default function Navbar() {
           {/* Få en offert (diskret outline) */}
           <a
             href={BASE + 'offert'}
-            className={`hidden lg:inline-flex items-center justify-center px-5 py-2.5 border border-white/30 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-white/10 hover:border-white/60 ${
+            className={`hidden lg:inline-flex items-center justify-center whitespace-nowrap px-3.5 xl:px-5 py-2.5 border border-white/30 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white hover:bg-white/10 hover:border-white/60 ${
               reduced ? '' : 'transition-all duration-300'
             }`}
           >

@@ -1,6 +1,6 @@
 import { motion, MotionConfig } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { Building2, PaintRoller, ClipboardCheck, ArrowRight, CheckCircle2, Users } from '../icons.jsx';
+import { Building2, PaintRoller, ClipboardCheck, ArrowRight, CheckCircle2, Users, MessagesSquare } from '../icons.jsx';
 
 export const services = [
   {
@@ -32,10 +32,24 @@ export const services = [
     features: ['Nyproduktion', 'Om- & tillbyggnad', 'Renovering & ROT', 'Våtrum enligt branschregler', 'Arbete i bebodda fastigheter', 'Kvalitetssäkring', 'Slutbesiktning & garanti'],
   },
   {
+    title: 'Rådgivning & stöd',
+    icon: MessagesSquare,
+    href: import.meta.env.BASE_URL + 'om-oss#radgivning',
+    linkLabel: 'Läs mer om rådgivning & stöd',
+    summary: 'Strategisk och teknisk rådgivning redan innan projektet startat — och stöd genom hela genomförandet.',
+    description: [
+      'Genom tekniska bedömningar, kostnadsöversikter och lösningsförslag hjälper vi dig att fatta rätt beslut och skapa goda förutsättningar för ett framgångsrikt projekt. Vårt stöd kan sedan fortsätta genom hela projektets genomförande och anpassas efter projektets utveckling och behov.',
+      'Vid komplexa projekt bidrar vi med senior kompetens och ett oberoende perspektiv för att identifiera möjligheter, risker och kostnadseffektiva lösningar. Uppdragen anpassas efter behov och omfattar vanligtvis 1–2 arbetsdagar per vecka.',
+    ],
+    features: ['Stöttning vid komplexa & krävande projekt', 'Kostnadsbedömningar', 'Förstudier & second opinion', 'Tekniska konsultationer', 'Materialval & upphandlingsstöd', 'Bygglovs- & besiktningsstöd'],
+  },
+  {
     title: 'CM-uppdrag',
     icon: Building2,
     cm: true,
+    external: true,
     href: 'https://fredrikwryman-cmd.github.io/bopg/',
+    linkLabel: 'Till Bygg & Projektgruppen',
     summary: 'Söker du Construction Management? Det hanteras av vårt systerbolag.',
     description: 'Construction Management (CM) hanteras av vårt systerbolag Bygg & Projektgruppen i Stockholm AB — en samlad byggpartner som håller ihop hela kedjan från projektledning till färdig byggnad. Behöver ditt projekt en helhetspartner snarare än enskild byggledning, lotsar vi dig vidare dit.',
     features: ['Samlad byggpartner', 'Helhetsansvar genom hela kedjan', 'Projektledning till färdig byggnad'],
@@ -72,14 +86,13 @@ function CardBody({ service }) {
         ))}
       </ul>
 
-      {service.cm && (
+      {service.href && (
         <a
           href={service.href}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...(service.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           className="mt-7 inline-flex items-center gap-2 bg-[#0078D4] text-white rounded-full px-5 py-2.5 font-semibold hover:bg-[#0066b8] transition-colors"
         >
-          Till Bygg &amp; Projektgruppen
+          {service.linkLabel}
           <ArrowRight size={18} />
         </a>
       )}
