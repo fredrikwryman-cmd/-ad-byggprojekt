@@ -61,7 +61,7 @@ export const services = [
   },
 ];
 
-// Delat kortinnehåll (ikon, rubrik, text, punkter, ev. CTA) — identiskt för alla kort.
+// Delat kortinnehåll (ikon, rubrik, text, punkter, ev. länkknapp) – identiskt för alla kort.
 function CardBody({ service }) {
   const Icon = service.icon;
   return (
@@ -105,8 +105,9 @@ function CardBody({ service }) {
   );
 }
 
-// CM-kortet: sidans tydligaste kort — premium 3D-tilt + hologram-sken som följer musen.
-// Respekterar prefers-reduced-motion och faller tillbaka till enbart hover-lyft/glow på touch.
+// CM-kortet lyfts fram visuellt: kortet lutas i 3D efter pekarens position och får
+// ett iriserande sken som följer musen. Effekten stängs av vid prefers-reduced-motion
+// och på pekskärmar, där bara hover-lyftet och det statiska skenet återstår.
 function CmCard({ service, i }) {
   const ref = useRef(null);
   const [transform, setTransform] = useState('');
@@ -166,7 +167,7 @@ function CmCard({ service, i }) {
           Systerbolag
         </span>
 
-        {/* Lokala keyframes: hologrammets långsamma idle-drift */}
+        {/* Lokala keyframes: skenets långsamma drift i viloläge */}
         <style>{`
           @keyframes cmHoloDrift {
             0%   { background-position: 0% 50%; }
@@ -179,7 +180,7 @@ function CmCard({ service, i }) {
           }
         `}</style>
 
-        {/* Lager 1 (z-[1]) – mättad iriserande botten, syns alltid och driver långsamt */}
+        {/* Lager 1 (z-[1]) – mättad iriserande botten som alltid syns och driver långsamt */}
         <div
           aria-hidden="true"
           className="cm-holo-idle absolute inset-0 rounded-3xl pointer-events-none z-[1]"
@@ -202,7 +203,7 @@ function CmCard({ service, i }) {
           }}
         />
 
-        {/* Sheen-remsa (z-[2]) – smalt ljust streck som vandrar med pekaren + glasig kant */}
+        {/* Ljusremsa (z-[2]) – smalt ljust streck som vandrar med pekaren + glasliknande kant */}
         <div
           aria-hidden="true"
           className="absolute inset-0 rounded-3xl pointer-events-none z-[2] overflow-hidden ring-1 ring-inset ring-white/30"
@@ -219,7 +220,7 @@ function CmCard({ service, i }) {
           />
         </div>
 
-        {/* Innehåll (z-10) – alltid ovanför hologrammet, fullt läsbart.
+        {/* Innehåll (z-10) – ligger ovanför skenet och förblir fullt läsbart.
             Ingen translateZ här: perspective på wrappern projicerar då
             innehållet 4 % större kring kortets mitt, vilket drog upp
             toppen ~14px och bröt linjeringen mot grannkortet. */}
@@ -234,7 +235,7 @@ function CmCard({ service, i }) {
 export default function ServicesPage() {
   return (
     <MotionConfig reducedMotion="user">
-      {/* Detailed services */}
+      {/* Detaljerade tjänster */}
       <section className="py-14 md:py-20 lg:py-28 bg-white relative bp-light seam-from-dark seam-to-dark">
         {/* Dekorativ glow i eget overflow-hidden-lager, så sektionen själv kan vara
             overflow-visible och aldrig klipper "Systerbolag"-badgen (-top-3) på CM-kortet. */}
@@ -265,7 +266,7 @@ export default function ServicesPage() {
       </section>
 
 
-      {/* CTA */}
+      {/* Uppmaning */}
       <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0078D4]/15 rounded-full blur-[150px] pointer-events-none" />
         <div className="max-w-4xl mx-auto px-safe relative z-10 text-center">

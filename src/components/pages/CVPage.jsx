@@ -10,7 +10,7 @@ const projects = cvData.projects;
 export default function CVPage() {
   return (
     <MotionConfig reducedMotion="user">
-      {/* Hero / Profile */}
+      {/* Hero / profil */}
       <section className="bp-dark" style={{ paddingTop: '4.5rem', paddingBottom: '5rem', backgroundColor: '#020617', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 20%, rgba(21,97,154,0.15) 0%, transparent 60%)', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 70% 80%, rgba(21,97,154,0.08) 0%, transparent 50%)', pointerEvents: 'none' }} />
@@ -21,7 +21,7 @@ export default function CVPage() {
             transition={{ duration: 0.8 }}
             style={{ textAlign: 'center', marginBottom: '3rem' }}
           >
-            {/* Porträttkort av Andreas (ersätter tidigare AD-logga) */}
+            {/* Porträttkort av Andreas */}
             <div style={{
               width: 'min(380px, 82vw)',
               margin: '0 auto 1.5rem',
@@ -80,7 +80,7 @@ export default function CVPage() {
         </div>
       </section>
 
-      {/* Experience */}
+      {/* Erfarenhet */}
       <section className="bp-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#020617', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
@@ -107,7 +107,7 @@ export default function CVPage() {
           </motion.div>
 
           <div style={{ position: 'relative' }}>
-            {/* Timeline line */}
+            {/* Tidslinjens linje */}
             <div style={{ position: 'absolute', left: '1.5rem', top: '0', bottom: '0', width: '2px', background: 'linear-gradient(to bottom, #15619A, rgba(21,97,154,0.1))' }} />
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -120,7 +120,7 @@ export default function CVPage() {
                   transition={{ duration: 0.5, delay: i * 0.05 }}
                   style={{ position: 'relative', paddingLeft: '3.5rem' }}
                 >
-                  {/* Timeline dot */}
+                  {/* Tidslinjens punkt */}
                   <div style={{
                     position: 'absolute', left: '1.125rem', top: '1.5rem',
                     width: '0.75rem', height: '0.75rem', borderRadius: '50%',
@@ -151,7 +151,7 @@ export default function CVPage() {
         </div>
       </section>
 
-      {/* Projects */}
+      {/* Projekt */}
       <section className="bp-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#020617', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 0%, rgba(21,97,154,0.1) 0%, transparent 50%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
@@ -218,7 +218,7 @@ export default function CVPage() {
         </div>
       </section>
 
-      {/* Education & Courses – sammanhållen kort-modul */}
+      {/* Utbildning & kurser – sammanhållen kortmodul */}
       <section className="bp-light seam-from-dark seam-to-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#f8fafc', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: 0, right: 0, width: '500px', height: '500px', background: 'rgba(21, 97, 154, 0.04)', borderRadius: '50%', filter: 'blur(80px)', transform: 'translate(30%, -30%)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '56rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>
@@ -301,7 +301,7 @@ export default function CVPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Uppmaning */}
       <section className="bp-dark" style={{ paddingTop: '5rem', paddingBottom: '5rem', backgroundColor: '#020617', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '300px', background: 'rgba(21, 97, 154, 0.12)', borderRadius: '50%', filter: 'blur(100px)', pointerEvents: 'none' }} />
         <div style={{ maxWidth: '40rem', margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 10 }}>

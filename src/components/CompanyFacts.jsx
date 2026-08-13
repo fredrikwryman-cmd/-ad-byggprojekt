@@ -1,4 +1,4 @@
-// Återanvändbart BOLAGSFAKTA-kort i register-/faktastil (samma känsla som BOPG-sidans).
+// Återanvändbart bolagsfakta-kort i register-/faktastil.
 // Statiskt och presentationellt – renderas som ren HTML (ingen client-hydrering behövs).
 
 const FACTS = [

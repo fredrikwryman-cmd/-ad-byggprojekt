@@ -16,12 +16,14 @@ const base = import.meta.env.BASE_URL;
 const metaTitle = `${project.title} | AD Byggprojekt Stockholm AB`;
 const metaDesc = project.description;
 
-// Grann-projekt för pil-navigering (loopar runt så man kan bläddra igenom alla)
+// Grann-projekt för pil-navigering (loopar runt så man kan bläddra igenom alla).
+// + allProjects.length behövs eftersom JavaScript ger ett negativt resultat för
+// -1 % n; utan tillägget skulle första projektets "föregående" hamna utanför listan.
 const idx = allProjects.findIndex((p) => p.slug === project.slug);
 const prevProject = allProjects[(idx - 1 + allProjects.length) % allProjects.length];
 const nextProject = allProjects[(idx + 1) % allProjects.length];
 
-// Galleri-bilder – HELT separata från den redigerade hero-bilden (project.image).
+// Galleri-bilder – separata från den redigerade hero-bilden (project.image).
 // Tom array = ingen galleri-sektion visas.
 const gallery = project.gallery || [];
 
@@ -186,7 +188,7 @@ const breadcrumbSchema = {
   <Footer />
 
   <script define:vars={{ galleryImages: gallery, projectTitle: project.title }}>
-    // Lightbox – ENDAST för galleri-bilderna (hero-bilden ingår aldrig här).
+    // Lightbox – endast för galleri-bilderna (hero-bilden ingår inte här).
     const lb = document.getElementById('pd-lightbox');
     if (lb && galleryImages.length) {
       const img = document.getElementById('pd-lb-img');
@@ -439,7 +441,7 @@ const breadcrumbSchema = {
     margin: 0 auto 1.75rem;
   }
 
-  /* Fixerade sidopilar visas ENDAST på riktigt breda skärmar (≥1280px) där det
+  /* Fixerade sidopilar visas endast på riktigt breda skärmar (≥1280px) där det
      finns marginal utanför innehållskolumnen (max 72rem). På smalare skärmar
      döljs de helt och ersätts av .pd-flownav i normalt flöde – annars skulle de
      fixerade pilarna lägga sig över och stjäla klick/tap från brödtext/faktaruta. */

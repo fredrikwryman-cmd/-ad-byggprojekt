@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 // så länkar konkateneras utan inledande slash. Följer automatiskt med om base ändras.
 const BASE = import.meta.env.BASE_URL;
 
-// Normaliserar bort avslutande slash så jämförelser funkar oavsett om sidan
-// serveras som "/projekt" eller "/projekt/" (och oavsett base-path).
+// Normaliserar bort avslutande slash så jämförelser fungerar oavsett om sidan
+// serveras som "/projekt" eller "/projekt/" (och oavsett bassökväg).
 const normalizePath = (p) => {
   const path = (p || '/').split('#')[0].split('?')[0];
   return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
@@ -35,7 +35,7 @@ export default function Navbar() {
   const hamburgerRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
-  // Scroll-shrink + progress-bar
+  // Krymper navbaren vid scroll och uppdaterar läsförloppsindikatorn.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
@@ -61,8 +61,11 @@ export default function Navbar() {
     };
   }, []);
 
-  // Aktiv sektion på startsidan (scroll-spy). På GitHub Pages är startsidans
-  // path BASE (t.ex. "/-ad-byggprojekt/"), aldrig "/", så vi jämför mot BASE.
+  // Aktiv sektion på startsidan (scroll-spy). Körs bara där: på GitHub Pages är
+  // startsidans sökväg BASE (t.ex. "/-ad-byggprojekt/"), inte "/", så vi jämför
+  // mot BASE. Samma sections-array driver både menyn och observern; poster vars id
+  // saknas i DOM:en (ankarlänkar till andra sidor) hoppas tyst över. Tröskeln 0.3
+  // gör en sektion aktiv när 30 % av den syns.
   useEffect(() => {
     if (typeof window === 'undefined') return;
     setPathname(window.location.pathname);
@@ -134,7 +137,7 @@ export default function Navbar() {
             : 'bg-[#0b1120] border-b border-white/5'
         }`}
       >
-        {/* Progress-bar */}
+        {/* Läsförloppsindikator */}
         <div
           aria-hidden="true"
           className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-[#1F5FA5] to-[#60a5fa]"
@@ -180,8 +183,8 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Fråga Heidi – TILLFÄLLIGT DOLD (återaktivera genom att avkommentera nedan
-              samt <AndreasChat /> i Layout.astro):
+          {/* Fråga Heidi – tillfälligt dold. Återaktiveras genom att avkommentera
+              knappen nedan samt import och rendering av AndreasChat i Layout.astro.
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-andreas-chat'))}
             className={`hidden lg:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] shadow-[0_4px_14px_rgba(31,95,165,0.4)] hover:brightness-110 ${
@@ -261,7 +264,7 @@ export default function Navbar() {
                   );
                 })}
               </div>
-              {/* Fråga Heidi – TILLFÄLLIGT DOLD (avkommentera för att återaktivera):
+              {/* Fråga Heidi – tillfälligt dold (avkommentera för att återaktivera):
               <button
                 onClick={() => { setMobileOpen(false); window.dispatchEvent(new CustomEvent('open-andreas-chat')); }}
                 className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-[0.12em] text-white bg-gradient-to-br from-[#1F5FA5] to-[#3b82f6] transition-all duration-300 mt-4"

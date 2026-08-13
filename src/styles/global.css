@@ -1,11 +1,11 @@
-/* ===== FONTS =====
-   Self-hostade via @fontsource – importeras i Layout.astro (Inter 300–800 +
+/* ===== TYPSNITT =====
+   Self-hostade via @fontsource – importeras i Layout.astro (Inter 400–700 +
    Bebas Neue 400), font-display: swap. Ingen render-blockerande Google-@import. */
 
 @import "tailwindcss";
 
 @theme {
-  /* Brand palette extracted from logo */
+  /* Varumärkespalett hämtad ur loggan */
   --color-brand: #0078D4;
   --color-brand-dark: #005A9E;
   --color-brand-deep: #001a33;
@@ -13,12 +13,12 @@
   --color-brand-glow: rgba(0, 120, 212, 0.4);
   --color-brand-soft: #e6f2ff;
 
-  /* Dark theme */
+  /* Mörkt tema */
   --color-dark: #020617;
   --color-dark-2: #0f172a;
   --color-dark-3: #1e293b;
 
-  /* Light theme */
+  /* Ljust tema */
   --color-white: #ffffff;
   --color-canvas: #f8fafc;
   --color-canvas-2: #f1f5f9;
@@ -28,11 +28,11 @@
   --color-ink-muted: #94a3b8;
   --color-border: #e2e8f0;
 
-  /* Functional */
+  /* Funktionella färger */
   --color-success: #10b981;
 }
 
-/* ===== BASE ===== */
+/* ===== GRUND ===== */
 @layer base {
   * {
     margin: 0;
@@ -89,7 +89,7 @@ h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
-/* ===== GRADIENTS ===== */
+/* ===== GRADIENTER ===== */
 .gradient-text {
   background: linear-gradient(135deg, #4a9eff 0%, #7eb8ff 50%, #4a9eff 100%);
   background-size: 200% 200%;
@@ -128,35 +128,12 @@ h3, h4, h5, h6 {
   50% { background-position: 100% 50%; }
 }
 
-.gradient-blue {
-  background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%);
-}
-
-/* ===== GLOWS ===== */
-.glow-blue {
-  box-shadow: 0 0 60px rgba(0, 85, 164, 0.3);
-}
-
+/* ===== GLÖD ===== */
 .text-glow {
   text-shadow: 0 0 50px rgba(126, 184, 255, 0.8), 0 0 100px rgba(74, 158, 255, 0.5), 0 0 140px rgba(0, 85, 164, 0.35);
 }
 
-/* ===== GLASS ===== */
-.glass {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.glass-dark {
-  background: rgba(2, 6, 23, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* ===== BUTTONS ===== */
+/* ===== KNAPPAR ===== */
 .btn-primary {
   position: relative;
   display: inline-flex;
@@ -262,50 +239,7 @@ h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
-.btn-white {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1.5rem 3.5rem;
-  min-width: 14rem;
-  background: #ffffff;
-  color: #0078D4;
-  font-size: 1.125rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  border-radius: 9999px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-white:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
-}
-
-/* ===== CARDS ===== */
-.card-3d {
-  transform-style: preserve-3d;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card-luxury {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.card-luxury:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(0, 85, 164, 0.4);
-  transform: translateY(-8px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
-}
-
-/* ===== MARQUEE ===== */
+/* ===== RULLNINGSBÅRD ===== */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -369,22 +303,7 @@ h3, h4, h5, h6 {
   display: block;
 }
 
-/* ===== FLOATING ANIMATION ===== */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float 6s ease-in-out infinite;
-  animation-delay: -3s;
-}
-
-/* ===== PULSE GLOW ===== */
+/* ===== PULSERANDE GLÖD ===== */
 @keyframes pulse-glow {
   0%, 100% { box-shadow: 0 0 20px rgba(0, 85, 164, 0.3); }
   50% { box-shadow: 0 0 60px rgba(0, 85, 164, 0.6); }
@@ -394,24 +313,7 @@ h3, h4, h5, h6 {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
-/* ===== ROTATE SLOW ===== */
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-rotate-slow {
-  animation: rotate-slow 20s linear infinite;
-}
-
-/* ===== GRID BACKGROUND ===== */
-.grid-bg {
-  background-size: 60px 60px;
-  background-image:
-    linear-gradient(to right, rgba(0, 85, 164, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 85, 164, 0.05) 1px, transparent 1px);
-}
-
+/* ===== RUTNÄTSBAKGRUND ===== */
 .grid-bg-dark {
   background-size: 60px 60px;
   background-image:
@@ -419,17 +321,7 @@ h3, h4, h5, h6 {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* ===== NOISE OVERLAY ===== */
-.noise-overlay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* ===== FORM ===== */
+/* ===== FORMULÄR ===== */
 .form-input {
   width: 100%;
   padding: 1rem 1.25rem;
@@ -452,7 +344,7 @@ h3, h4, h5, h6 {
   color: #94a3b8;
 }
 
-/* ===== UTILITY ===== */
+/* ===== HJÄLPKLASSER ===== */
 .text-balance {
   text-wrap: balance;
 }
@@ -478,59 +370,7 @@ h3, h4, h5, h6 {
   }
 }
 
-.container-wide {
-  max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-@media (min-width: 640px) {
-  .container-wide {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-@media (min-width: 768px) {
-  .container-wide {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-}
-@media (min-width: 1024px) {
-  .container-wide {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-}
-
-/* ===== CURSOR ===== */
-@media (pointer: fine) {
-  .cursor-none {
-    cursor: none;
-  }
-}
-
-/* ===== HORIZONTAL SCROLL ===== */
-.horizontal-scroll {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.horizontal-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.horizontal-scroll > * {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
-
-/* ===== SAFE PADDING (Tailwind v4 padding-inline fallback) ===== */
+/* ===== SÄKER SIDMARGINAL (fallback för padding-inline i Tailwind v4) ===== */
 .px-safe {
   padding-left: clamp(1.25rem, 6vw, 6rem);
   padding-right: clamp(1.25rem, 6vw, 6rem);
@@ -560,7 +400,7 @@ h3, h4, h5, h6 {
   border-radius: 4px;
 }
 
-/* ===== DESIGN SYSTEM ===== */
+/* ===== DESIGNSYSTEM ===== */
 :root {
   --brand: #0078D4;
   --brand-dark: #005A9E;
@@ -583,7 +423,7 @@ h3, h4, h5, h6 {
   --success: #10b981;
 }
 
-/* ===== STATS BAR ===== */
+/* ===== STATISTIKRAD ===== */
 .stats-bar {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -653,7 +493,7 @@ h3, h4, h5, h6 {
   color: var(--white);
 }
 
-/* ===== SECTION HEADER ===== */
+/* ===== SEKTIONSRUBRIK ===== */
 .section-header {
   display: flex;
   flex-direction: column;
@@ -700,7 +540,7 @@ h3, h4, h5, h6 {
   margin: 0;
 }
 
-/* ===== SERVICES GRID ===== */
+/* ===== TJÄNSTERUTNÄT ===== */
 .services-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -780,9 +620,9 @@ h3, h4, h5, h6 {
   margin-bottom: 1.25rem;
 }
 
-/* Beskrivande länktext ("Läs mer om byggledning") är 21–25 tecken. I versaler
-   med letter-spacing spräckte den kortets bredd i fyrkolumnsläget och klipptes
-   av .service-card { overflow: hidden }. Gemener + wrap håller den innanför. */
+/* Beskrivande länktext (21–25 tecken) spräcker kortbredden i fyrkolumnsläget om
+   den sätts i versaler med letter-spacing, och klipps då av overflow: hidden.
+   Gemener + radbrytning håller den innanför. */
 .service-card .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -799,7 +639,7 @@ h3, h4, h5, h6 {
   gap: 0.75rem;
 }
 
-/* ===== PROJECT CARD CONTENT ===== */
+/* ===== PROJEKTKORTETS INNEHÅLL ===== */
 .project-card-content {
   padding: 1.75rem 2rem 2rem;
 }
@@ -816,7 +656,7 @@ h3, h4, h5, h6 {
   }
 }
 
-/* ===== ABOUT SECTION ===== */
+/* ===== OM OSS-SEKTION ===== */
 .about-section {
   background-color: var(--dark); /* ej shorthand – nollar inte bp-dark-bilden */
   color: var(--white);
@@ -891,10 +731,6 @@ h3, h4, h5, h6 {
   animation-name: icon-pulse;
 }
 
-.value-item .value-icon--sustainability svg {
-  animation-name: icon-sway;
-}
-
 .value-item .value-icon--trust svg {
   animation-name: icon-beat;
 }
@@ -906,11 +742,6 @@ h3, h4, h5, h6 {
 @keyframes icon-pulse {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
   50% { transform: scale(1.15); filter: drop-shadow(0 0 6px rgba(255,255,255,0.4)); }
-}
-
-@keyframes icon-sway {
-  0%, 100% { transform: rotate(-8deg); }
-  50% { transform: rotate(8deg); }
 }
 
 @keyframes icon-beat {
@@ -936,7 +767,9 @@ h3, h4, h5, h6 {
   margin: 0;
 }
 
-/* ===== TESTIMONIAL SECTION ===== */
+/* ===== OMDÖMESSEKTION =====
+   Stilarna hör till TestimonialsSection, som för närvarande är inaktiverad.
+   Behålls oförändrade så att komponenten kan återaktiveras senare. */
 .testimonial-section {
   background: var(--canvas);
   position: relative;
@@ -1030,7 +863,7 @@ h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 
-/* ===== CONTACT SECTION ===== */
+/* ===== KONTAKTSEKTION ===== */
 .contact-section {
   background-color: var(--dark); /* ej shorthand – nollar inte bp-dark-bilden */
   position: relative;
@@ -1095,13 +928,6 @@ h3, h4, h5, h6 {
 
 .info-card:hover .info-value {
   color: var(--white);
-}
-
-.contact-info-side h2 {
-  font-family: 'Bebas Neue', system-ui, sans-serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 0.95;
-  color: var(--ink);
 }
 
 .contact-wrapper {
@@ -1280,7 +1106,7 @@ textarea.form-input {
   box-shadow: 0 8px 30px rgba(0, 85, 164, 0.5), 0 16px 48px rgba(0, 120, 212, 0.3);
 }
 
-/* ===== FOOTER ===== */
+/* ===== SIDFOT ===== */
 .footer-wrapper {
   background-color: #020617;
   background: radial-gradient(circle at bottom right, rgba(0, 120, 212, 0.08), transparent 60%), #020617;
@@ -1390,30 +1216,6 @@ textarea.form-input {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* ===== ANIMATIONS ===== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* ===== RESPONSIVE HELPERS ===== */
-@media (max-width: 1023px) {
-  .contact-grid {
-    border-radius: 1rem;
-  }
-}
-
-
 /* ===== TILLGÄNGLIGHET: respektera reducerad rörelse ===== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1436,22 +1238,23 @@ select.form-input option {
 }
 
 /* ===== SUBTILA BLUEPRINT-BAKGRUNDER =====
-   Mörk/ljus byggritning som BARA ska ANAS på lugna text-/panelytor.
-   Ligger alltid längst bak (sektionens egen background, bakom ALLA barn och all
-   text) → kan aldrig försämra textkontrast. Bilderna är redan navy resp. vita;
+   Mörk/ljus byggritning som bara ska anas på lugna text-/panelytor.
+   Ligger längst bak (sektionens egen background, bakom alla barn och all text)
+   → kan aldrig försämra textkontrast. Bilderna är redan navy resp. vita;
    en kraftig overlay i background-stacken dämpar linjerna till "knappt anas".
    Variablerna --bp-dark/--bp-light sätts på <body> i Layout.astro (rätt base-URL).
-   Aldrig på hero, video-bårder eller projektgallerier – de har egna opaka bg. */
-/* Overlay-styrka på EN plats – högre värde = subtilare blueprint (linjerna anas knappt),
-   lägre värde (0.10–0.15) = tydligt synlig blueprint (granskningsläge).
-   PRODUKTIONSLÄGE: det subtila slutläget. Ljus är aning svagare (0.80) då de
-   AD-blå linjerna i bg-blueprint-light annars syns tydligare än de mörka. */
+   Används inte på hero, video-bårder eller projektgallerier – de har egna opaka
+   bakgrunder. */
+/* Overlay-styrkan bor på en enda plats: högre värde = subtilare blueprint
+   (linjerna anas knappt), lägre värde (0.10–0.15) = tydligt synlig blueprint.
+   Ljus är en aning svagare (0.80) då de AD-blå linjerna i bg-blueprint-light
+   annars syns tydligare än de mörka. */
 :root {
   --bp-dark-overlay: 0.72;
   --bp-light-overlay: 0.80;
 }
 .bp-dark {
-  /* Overlay som dessutom tonar blueprinten till HELT ren #020617 i sektionens
+  /* Overlay som dessutom tonar blueprinten till helt ren #020617 i sektionens
      över- och underkant (~90px). Då blir varje bp-dark-kant ren navy → sömlös
      skarv mot intilliggande #020617-ytor (ingen synlig textur-/nyanslinje),
      medan blueprinten fortfarande syns i mitten (styrkan = --bp-dark-overlay). */
@@ -1464,8 +1267,9 @@ select.form-input option {
       #020617 100%
     ),
     var(--bp-dark);
-  /* ENDA källa för blueprint-visning (identisk med .bp-light) – samma mönsterskala
-     överallt, kaklad sömlöst, kontinuerligt raster mellan sektioner. */
+  /* Enda källa för blueprint-visningen (identisk med .bp-light) – samma
+     mönsterskala överallt, kaklad sömlöst, kontinuerligt raster mellan
+     sektioner. */
   background-repeat: repeat;
   background-size: 1000px auto;
   background-position: top center;
@@ -1477,7 +1281,7 @@ select.form-input option {
       rgba(255, 255, 255, var(--bp-light-overlay))
     ),
     var(--bp-light);
-  /* ENDA källa för blueprint-visning (identisk med .bp-dark). */
+  /* Enda källa för blueprint-visningen (identisk med .bp-dark). */
   background-repeat: repeat;
   background-size: 1000px auto;
   background-position: top center;
@@ -1487,16 +1291,18 @@ select.form-input option {
    Återanvändbara klasser som tonar en sektions över-/underkant mot GRANNENS färg,
    så att varje skarv blir en mjuk zon i stället för en hård horisontell linje –
    enhetligt för ljus↔mörk, mörk↔mörk och ljus↔ljus.
-   Toningen ligger UNDER innehållet (z-index:1; sektionsinnehåll ligger i .z-10)
-   och ÖVER bakgrund/blueprint, så text och kontrast aldrig påverkas. Den samverkar
+   Toningen ligger under innehållet (z-index:1; sektionsinnehåll ligger i .z-10)
+   och över bakgrund/blueprint, så text och kontrast aldrig påverkas. Den samverkar
    med bp-dark/bp-light (tonar hela bakgrunden inkl. blueprint mot grannfärgen).
-   Konvention: "to" = nederkant tonar mot nästa sektions färg; "from" = överkant
-   tonar från föregående sektions färg.
-   Applicera EN sida per skarv (oftast nederkanten på den övre sektionen). */
+   Sektionen som får klassen måste ha position: relative, annars placeras
+   toningen mot fel element.
+   Namnkonvention: suffixet (dark/light) anger GRANNENS färg, inte sektionens
+   egen. "to-*" tonar nederkanten mot nästa sektion; "from-*" tonar överkanten
+   från föregående sektion.
+   Applicera en sida per skarv (oftast nederkanten på den övre sektionen). */
 .seam-to-dark::after,
 .seam-to-light::after,
-.seam-from-dark::before,
-.seam-from-light::before {
+.seam-from-dark::before {
   content: '';
   position: absolute;
   left: 0;
@@ -1509,8 +1315,7 @@ select.form-input option {
 .seam-to-light::after {
   bottom: 0;
 }
-.seam-from-dark::before,
-.seam-from-light::before {
+.seam-from-dark::before {
   top: 0;
 }
 .seam-to-dark::after {
@@ -1521,7 +1326,4 @@ select.form-input option {
 }
 .seam-from-dark::before {
   background: linear-gradient(to top, transparent, #020617);
-}
-.seam-from-light::before {
-  background: linear-gradient(to top, transparent, #ffffff);
 }

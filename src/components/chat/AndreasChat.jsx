@@ -1,6 +1,16 @@
+/*
+ * Chattassistenten "Fråga Heidi" – svarar på vanliga frågor om AD Byggprojekt
+ * (tjänster, referenser, pris, kontakt) och kan ta emot en offertförfrågan.
+ *
+ * Komponenten är för närvarande inaktiv och ingår inte i bygget. För att
+ * återaktivera den: avkommentera <AndreasChat client:idle /> i
+ * src/layouts/Layout.astro och lägg tillbaka importen av komponenten där (den
+ * saknas i dag), samt avkommentera de två Fråga Heidi-knapparna i
+ * src/components/layout/Navbar.jsx (desktopmenyn och mobilmenyn).
+ */
 import { useEffect, useRef, useState } from 'react';
 
-/* ============ 20+ ÄMNEN + fallback ============ */
+/* Ämneslista för chattsvaren, med generellt reservsvar sist. */
 const INTENTS = [
   {
     "key": "offert",

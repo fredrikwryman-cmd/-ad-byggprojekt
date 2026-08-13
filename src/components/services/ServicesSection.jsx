@@ -1,8 +1,8 @@
 import { motion, MotionConfig } from 'framer-motion';
 import { Building2, PaintRoller, ClipboardCheck, MessagesSquare } from '../icons.jsx';
 
-// linkLabel är unik per kort och utgör länkens synliga text — fyra identiska
-// "Läs mer" gav en SEO-anmärkning om icke-beskrivande länktext. anchor pekar
+// linkLabel är unik per kort och utgör länkens synliga text – fyra identiska
+// "Läs mer" räknas som icke-beskrivande länktext (SEO/WCAG 2.4.4). anchor pekar
 // på motsvarande korts id på /tjanster.
 const services = [
   {

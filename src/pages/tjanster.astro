@@ -3,11 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/layout/Navbar.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import PageHeader from '../components/pages/PageHeader.jsx';
-import StopMotionBanner from '../components/home/StopMotionBanner.astro';
 import ServicesPage, { services } from '../components/pages/ServicesPage.jsx';
 
-// Service-schema speglar exakt de tjänster som visas (samma källa som ServicesPage).
-// CM-uppdrag utelämnas då det utförs av systerbolaget, inte AD Byggprojekt.
+// Service-schemat byggs ur samma services-array som ServicesPage renderar, så att
+// strukturerad data alltid speglar sidan. CM-uppdrag (flaggan cm: true) filtreras
+// bort: schemat anger AD Byggprojekt som provider, men CM utförs av systerbolaget.
+// Kortet visas alltså på sidan men ingår inte i den strukturerade datan. Filtret
+// måste ligga före .map() så att position blir 1, 2, 3 … utan glapp.
 const siteRoot = new URL(import.meta.env.BASE_URL, Astro.site).href;
 const servicesSchema = {
   '@context': 'https://schema.org',

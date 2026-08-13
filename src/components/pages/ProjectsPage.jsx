@@ -91,14 +91,15 @@ const projects = [
     year: '2023–2024',
     image: import.meta.env.BASE_URL + 'projekt/wasaskolan.jpg',
     description: 'Ombyggnad och renovering av storkök, fläktrum samt matsal.',
-    // Endast entreprenadsumman är känd för det här projektet — yta och tid
+    // Endast entreprenadsumman är känd för det här projektet – yta och tid
     // saknas i underlaget, och ProjectCard hoppar över de posterna.
     stats: { value: '10 mkr' },
     featured: false,
   },
 ];
 
-// categories definieras efter moreProjects nedan (annars uppstår ett TDZ-fel).
+// categories definieras först efter moreProjects nedan – annars läses moreProjects
+// innan den initierats (temporal dead zone) och bygget kraschar.
 
 // Övriga uppdrag ur Andreas CV – visas utan bild i sektionen "Fler genomförda uppdrag".
 const moreProjects = [
@@ -268,11 +269,11 @@ export default function ProjectsPage() {
 
   return (
     <MotionConfig reducedMotion="user">
-      {/* Projects grid */}
+      {/* Projektrutnät */}
       <section className="pt-20 pb-14 md:pt-24 md:pb-20 lg:pt-28 lg:pb-28 bg-[#020617] relative bp-dark">
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-safe relative z-10">
-          {/* Filter pills */}
+          {/* Filterknappar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -336,7 +337,7 @@ export default function ProjectsPage() {
       </section>
       )}
 
-      {/* CTA */}
+      {/* Uppmaning */}
       <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0078D4]/15 rounded-full blur-[150px] pointer-events-none" />
         <div className="max-w-4xl mx-auto px-safe relative z-10 text-center">

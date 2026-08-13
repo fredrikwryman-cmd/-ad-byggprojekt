@@ -21,7 +21,7 @@ export default function HeroSection() {
       id="hem"
       className="relative min-h-[85vh] md:min-h-screen flex items-center overflow-hidden"
     >
-      {/* Background image with parallax zoom */}
+      {/* Bakgrundsbild med parallax-zoom */}
       <motion.div
         className="absolute inset-0"
         style={shouldReduceMotion ? undefined : { y: bgY, scale: bgScale }}
@@ -35,25 +35,24 @@ export default function HeroSection() {
         />
       </motion.div>
 
-      {/* Dark gradient overlay – något lättad så hero blir en aning ljusare,
-          men fortfarande tillräckligt mörk till vänster för läsbar vit text. */}
+      {/* Mörk gradient – håller vänstra halvan mörk nog för läsbar vit text. */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/60 via-[#020617]/48 to-[#020617]/24" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#020617]/56 via-transparent to-[#020617]/20" />
 
-      {/* Subtle grid pattern */}
+      {/* Subtilt rutnätsmönster */}
       <div className="absolute inset-0 grid-bg-dark opacity-10" />
 
       {/* Mjuk fade i botten mot marquee-baren (#020617) – tar bort den hårda kanten.
           Ligger ovanför bild/överlager (z-[5]) men under hero-texten (z-10). */}
       <div className="absolute inset-x-0 bottom-0 h-32 md:h-44 z-[5] bg-gradient-to-b from-transparent to-[#020617] pointer-events-none" />
 
-      {/* Content */}
+      {/* Innehåll */}
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-safe py-32 md:py-40"
         style={shouldReduceMotion ? undefined : { opacity: contentOpacity }}
       >
         <div className="max-w-2xl">
-          {/* Eyebrow */}
+          {/* Överrubrik */}
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -63,7 +62,7 @@ export default function HeroSection() {
             Byggledning &amp; projektledning · Stockholm
           </motion.span>
 
-          {/* Headline */}
+          {/* Rubrik */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -77,7 +76,7 @@ export default function HeroSection() {
             </span>
           </motion.h1>
 
-          {/* Subheadline */}
+          {/* Underrubrik */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,7 +87,7 @@ export default function HeroSection() {
             Vi styr ditt projekt i mål – med kvalitet, arbetsmiljö och ekonomi i fokus.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Uppmaning */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

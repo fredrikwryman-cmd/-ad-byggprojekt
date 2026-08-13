@@ -1,22 +1,19 @@
-/* =====================================================================
-   ⚠️  FÅR INTE VISAS LIVE — INNEHÅLLER PLATSHÅLLAR-DATA  ⚠️
-   ---------------------------------------------------------------------
-   Den här komponenten BEHÅLLS medvetet för framtida bruk, men är just nu
-   HELT OSYNLIG på sajten: den importeras/renderas INTE på någon sida
-   (raderna i src/pages/index.astro är bortkommenterade).
-
-   Omdömena nedan är PÅHITTADE exempel. Aktivera INTE modulen förrän de
-   ersatts med verkliga, verifierade och godkända kundomdömen.
-
-   Att återaktivera (gör BARA med äkta omdömen): avkommentera importen och
-   <TestimonialsSection client:idle /> i src/pages/index.astro.
-   ===================================================================== */
+/*
+ * Omdömeskarusell för startsidan.
+ *
+ * Komponenten är inaktiv i väntan på äkta kundcitat: omdömena nedan är
+ * platshållardata och FÅR INTE publiceras. Ersätt dem med verkliga,
+ * verifierade och godkända kundomdömen innan modulen tas i bruk.
+ *
+ * Återaktiveras genom att avkommentera importen och
+ * <TestimonialsSection client:idle /> i src/pages/index.astro.
+ */
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Star } from '../icons.jsx';
 
-// ⚠️ PLATSHÅLLARE – dessa omdömen är PÅHITTADE exempel och får INTE visas live.
-// Ersätt med riktiga, godkända kundomdömen innan modulen aktiveras i index.astro.
+// Platshållardata – påhittade exempel som INTE får publiceras. Ersätt med
+// riktiga, godkända kundomdömen innan modulen aktiveras i index.astro.
 const testimonials = [
   {
     quote: 'AD Byggprojekt levererade vårt drömhus med en precision och omsorg som överträffade alla förväntningar. Kommunikationen var tydlig från dag ett.',
@@ -121,7 +118,7 @@ export default function TestimonialsSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation */}
+          {/* Navigering */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4">
             <button
               onClick={prev}

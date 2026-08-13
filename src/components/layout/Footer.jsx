@@ -29,7 +29,7 @@ export default function Footer() {
   return (
     <footer className="footer-wrapper">
       <div className="footer-grid">
-        {/* Brand */}
+        {/* Varumärke */}
         <div className="footer-brand">
           <a href={BASE} className="inline-block group mb-6">
             <img
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links */}
+        {/* Länkar */}
         <div className="footer-links">
           <span className="footer-title">Snabblänkar</span>
           {links.map((link) => (
@@ -68,7 +68,7 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Contact */}
+        {/* Kontakt */}
         <div className="footer-contact">
           <span className="footer-title">Kontakt</span>
           {contact.map((item) => {

@@ -8,17 +8,17 @@ import ProjectsSection from '../components/projects/ProjectsSection.jsx';
 import ServicesSection from '../components/services/ServicesSection.jsx';
 import StopMotionBanner from '../components/home/StopMotionBanner.astro';
 import AboutSection from '../components/about/AboutSection.jsx';
-// OMDÖMEN AVAKTIVERADE: modulen är dold tills riktiga kundomdömen finns.
-// Aktivera igen genom att (1) lägga in äkta omdömen i TestimonialsSection.jsx
-// och (2) avkommentera raden nedan samt <TestimonialsSection> längre ner.
+// Omdömesmodulen är avaktiverad tills riktiga kundomdömen finns. Aktivera igen
+// genom att (1) lägga in äkta omdömen i TestimonialsSection.jsx och
+// (2) avkommentera raden nedan samt <TestimonialsSection> längre ner.
 // import TestimonialsSection from '../components/home/TestimonialsSection.jsx';
 import ContactSection from '../components/contact/ContactSection.jsx';
 import FaqSection from '../components/home/FaqSection.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import { faqs } from '../data/faqs.js';
 
-// FAQ-schemat genereras ur EXAKT samma data som FaqSection.jsx visar
-// (src/data/faqs.js) → strukturerad data matchar alltid synligt innehåll.
+// FAQ-schemat genereras ur samma data som FaqSection.jsx visar (src/data/faqs.js),
+// så den strukturerade datan matchar alltid det synliga innehållet.
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -50,7 +50,7 @@ const faqJsonLd = {
   <ProjectsSection client:idle />
   <ServicesSection client:idle />
   <AboutSection client:idle />
-  {/* OMDÖMEN dold tills riktiga finns – avkommentera nedan för att aktivera igen: */}
+  {/* Omdömen är dolda tills riktiga finns – avkommentera nedan för att aktivera igen: */}
   {/* <TestimonialsSection client:idle /> */}
   <FaqSection client:idle />
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqJsonLd)} />

@@ -1,7 +1,9 @@
 {
   "name": "ad-byggprojekt",
+  "description": "Företagswebbplats för AD Byggprojekt Stockholm AB – statisk sajt byggd med Astro, React och Tailwind CSS.",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -19,10 +21,6 @@
     "@tailwindcss/vite": "^4.3.1",
     "astro": "^6.4.6",
     "framer-motion": "^12.40.0",
-    "lucide-react": "^1.18.0",
     "tailwindcss": "^4.3.1"
-  },
-  "devDependencies": {
-    "puppeteer-core": "^25.1.0"
   }
 }

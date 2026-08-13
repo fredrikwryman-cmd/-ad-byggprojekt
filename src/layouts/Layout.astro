@@ -1,6 +1,6 @@
 ---
-// Self-hostade typsnitt (ersätter render-blockerande Google Fonts-@import).
-// font-display: swap är inbyggt i @fontsource-filerna.
+// Typsnitten levereras från sajten själv (ersätter en render-blockerande
+// @import från Google Fonts). font-display: swap ingår i @fontsource-filerna.
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
@@ -16,9 +16,14 @@ const {
   robots = 'index, follow',
 } = Astro.props;
 
+// BASE_URL innehåller ett avslutande snedstreck och konkateneras därför alltid
+// utan inledande snedstreck. new URL(..., Astro.site) ger absoluta URL:er, vilket
+// krävs av Open Graph och JSON-LD – relativa sökvägar accepteras inte där.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteRoot = new URL(import.meta.env.BASE_URL, Astro.site).href;
 const defaultOgImage = `${import.meta.env.BASE_URL}og-hero.jpg`;
+// Måtten 1200x630 är bara kända för standardbilden, så og:image:width/height
+// skrivs enbart ut när den används (se <head> nedan).
 const usingDefaultOgImage = !ogImageProp;
 const ogImage = new URL(ogImageProp || defaultOgImage, Astro.site).href;
 const logoURL = new URL(`${import.meta.env.BASE_URL}favicon-ad.png`, Astro.site).href;
@@ -93,6 +98,7 @@ const jsonLd = {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:type" content="image/jpeg" />
+    <!-- Måtten anges bara för standardbilden; för sidspecifika og-bilder är de okända. -->
     {usingDefaultOgImage && (
       <>
         <meta property="og:image:width" content="1200" />
@@ -120,14 +126,18 @@ const jsonLd = {
       @import '../styles/global.css';
     </style>
   </head>
+  <!-- Blueprint-texturens bildvägar sätts som CSS-variabler här på <body>, eftersom
+       en url() i global.css inte kan känna till BASE_URL. Reglerna i global.css läser
+       variablerna och fungerar därmed oavsett vilken bassökväg sajten publiceras på. -->
   <body
     class="bg-white text-[#020617] antialiased"
     style={`--bp-dark:url('${import.meta.env.BASE_URL}bg-blueprint-dark.jpg');--bp-light:url('${import.meta.env.BASE_URL}bg-blueprint-light.jpg')`}
   >
     <a href="#main" class="skip-link">Hoppa till innehåll</a>
     <slot />
-    {/* Fråga Heidi TILLFÄLLIGT DOLD – avkommentera raden nedan (och knapparna i
-        Navbar.jsx) för att återaktivera chatten: */}
+    {/* Fråga Heidi är tillfälligt dold. Återaktiveras genom att avkommentera raden
+        nedan, lägga tillbaka importen av AndreasChat i frontmatter ovan (den saknas
+        i dag) och avkommentera de två knapparna i Navbar.jsx. */}
     {/* <AndreasChat client:idle /> */}
   </body>
 </html>

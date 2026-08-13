@@ -382,7 +382,3 @@ export const moreProjects = [
 export const allProjects = [...featuredProjects, ...moreProjects];
 
 export const slugByTitle = Object.fromEntries(allProjects.map((p) => [p.title, p.slug]));
-
-export function getProjectBySlug(slug) {
-  return allProjects.find((p) => p.slug === slug);
-}

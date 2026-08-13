@@ -15,7 +15,7 @@ export default function ContactSection() {
     <section id="kontakt" className="contact-section section-padding relative overflow-hidden bp-dark">
       <div className="max-w-7xl mx-auto px-safe relative z-10">
         <div className="contact-wrapper">
-          {/* Left info */}
+          {/* Kontaktuppgifter */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,8 +59,7 @@ export default function ContactSection() {
             </div>
           </motion.div>
 
-          {/* Right CTA – pekar mot det riktiga offertformuläret på /offert
-             (vi har inte längre ett konkurrerande formulär här). */}
+          {/* Uppmaning – länkar till offertformuläret på /offert */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}

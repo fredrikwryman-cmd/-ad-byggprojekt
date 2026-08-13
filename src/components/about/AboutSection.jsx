@@ -17,7 +17,7 @@ export default function AboutSection() {
 
       <div className="max-w-7xl mx-auto px-safe relative z-10">
         <div className="grid lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-stretch">
-          {/* Image side */}
+          {/* Bildsida */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -49,7 +49,7 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
-          {/* Text side */}
+          {/* Textsida */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}

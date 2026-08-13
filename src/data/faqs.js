@@ -1,7 +1,7 @@
-// ENDA källa för FAQ:n. Används BÅDE av den synliga FAQ-sektionen
-// (FaqSection.jsx) och av FAQPage-JSON-LD:n (index.astro), så att
-// strukturerad data alltid matchar det som visas 100% – ett krav för
-// Googles FAQ rich result. Ändra frågor/svar här och bara här.
+// Enda källa för FAQ:n. Används både av den synliga FAQ-sektionen (FaqSection.jsx)
+// och av FAQPage-schemat i JSON-LD (index.astro), så att den strukturerade datan
+// alltid är identisk med det som visas – ett krav för Googles FAQ-resultat.
+// Ändra frågor och svar här, och bara här.
 export const faqs = [
   {
     q: 'Vilka områden arbetar ni i?',

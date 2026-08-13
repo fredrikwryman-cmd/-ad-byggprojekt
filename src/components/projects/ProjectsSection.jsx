@@ -2,19 +2,19 @@ import { motion, MotionConfig } from 'framer-motion';
 import { MapPin, ArrowUpRight } from '../icons.jsx';
 import { allProjects } from '../../data/projects.js';
 
-// Visa ALLA utvalda (featured:true) – inte en hårdkodad delmängd.
+// Visar samtliga utvalda projekt (featured: true) – inte en hårdkodad delmängd.
 const projects = allProjects.filter((p) => p.featured);
 
 export default function ProjectsSection() {
   return (
     <MotionConfig reducedMotion="user">
     <section id="projekt" className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark seam-to-light">
-      {/* Background glow */}
+      {/* Bakgrundssken */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[#0078D4]/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-safe relative z-10">
-        {/* Header */}
+        {/* Rubrikblock */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export default function ProjectsSection() {
           </p>
         </motion.div>
 
-        {/* Grid */}
+        {/* Rutnät */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {projects.map((project, i) => (
             <motion.a
@@ -48,7 +48,7 @@ export default function ProjectsSection() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="group relative block bg-[#0f172a] rounded-3xl overflow-hidden border border-white/5 hover:border-[#0078D4]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#0078D4]/20 hover:-translate-y-2"
             >
-              {/* Image */}
+              {/* Bild */}
               <div className="relative h-64 md:h-72 overflow-hidden">
                 <img
                   src={project.image}
@@ -58,18 +58,18 @@ export default function ProjectsSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent" />
 
-                {/* Year badge */}
+                {/* Årtalsmarkering */}
                 <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/80 text-xs font-semibold">
                   {project.year}
                 </span>
 
-                {/* Category badge */}
+                {/* Kategorimarkering */}
                 <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#0078D4] text-white text-xs font-bold uppercase tracking-widest">
                   {project.category}
                 </span>
               </div>
 
-              {/* Content */}
+              {/* Innehåll */}
               <div className="project-card-content">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold text-white group-hover:text-[#7eb8ff] transition-colors duration-300 text-balance break-words">
@@ -93,7 +93,7 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* Uppmaning */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

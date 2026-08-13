@@ -1,7 +1,6 @@
 import { motion, MotionConfig } from 'framer-motion';
 import { CheckCircle2, Shield, Wallet, Users } from '../icons.jsx';
 
-// Flyttade från Tjänster-sidan (ServicesPage) – oförändrat innehåll/utseende.
 const values = [
   { icon: CheckCircle2, title: 'Kvalitet', text: 'Högsta standard i varje detalj, med egenkontroll och noggrann uppföljning hela vägen till slutbesiktning.' },
   { icon: Shield, title: 'Arbetsmiljö', text: 'Säkra arbetsplatser med ordning och reda. Som Bas-U tar vi arbetsmiljöansvaret på största allvar.' },
@@ -19,7 +18,7 @@ const process = [
 export default function ValuesProcess() {
   return (
     <MotionConfig reducedMotion="user">
-      {/* Values – mörk navy (matchar "Så arbetar vi" nedan) */}
+      {/* Värderingar – mörk navy (matchar "Så arbetar vi" nedan) */}
       <section className="py-16 md:py-24 lg:py-32 bg-[#020617] relative overflow-hidden bp-dark">
         <div className="absolute inset-0 grid-bg-dark opacity-20 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-safe relative z-10">
