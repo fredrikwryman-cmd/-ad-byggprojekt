@@ -14,7 +14,14 @@ const {
   ogType = 'website',
   ogImageAlt = 'AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt.',
   robots = 'index, follow',
+  preloadImage,
 } = Astro.props;
+
+// Filnamn i public/ för sidans LCP-bild. Sätts bara av sidor som har en stor
+// bild direkt i första vyn (i dag startsidans hero), så att webbläsaren kan
+// börja hämta den parallellt med stilmallen i stället för att vänta på den.
+// Sidor utan prop får ingen preload – en oanvänd preload kostar bandbredd.
+const preloadImageURL = preloadImage ? `${import.meta.env.BASE_URL}${preloadImage}` : null;
 
 // BASE_URL innehåller ett avslutande snedstreck och konkateneras därför alltid
 // utan inledande snedstreck. new URL(..., Astro.site) ger absoluta URL:er, vilket
@@ -80,6 +87,10 @@ const jsonLd = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#020617" />
     <meta name="robots" content={robots} />
+
+    {preloadImageURL && (
+      <link rel="preload" as="image" href={preloadImageURL} fetchpriority="high" />
+    )}
 
     <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32.png`} />
     <link rel="icon" type="image/png" sizes="48x48" href={`${import.meta.env.BASE_URL}favicon-48.png`} />

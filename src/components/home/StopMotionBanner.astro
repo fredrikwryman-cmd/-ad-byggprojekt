@@ -14,19 +14,18 @@ const videoSrc = base + video;
     <div class="stopmotion sm-feather">
       <video
         class="sm-video"
-        autoplay
         muted
         loop
         playsinline
         webkit-playsinline
-        preload="metadata"
+        preload="none"
         poster={posterSrc}
         aria-hidden="true"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
 
-      <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" />
+      <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" loading="lazy" decoding="async" />
     </div>
 
     {/* Paus/spela-kontroll (WCAG 2.2.2). Ligger utanför feather-masken så den
@@ -44,10 +43,13 @@ const videoSrc = base + video;
 </section>
 
 <script>
-  // Startar klippet ljudlöst och inbäddat (autoplay + muted + playsinline), vilket
-  // krävs av iOS och Android. Vid prefers-reduced-motion startar videon i stället
-  // pausad – se nedan. Masken ligger på omslaget (.stopmotion) och inte på <video>,
-  // eftersom en mask direkt på videon kan göra klippet osynligt på iOS.
+  // Startar klippet ljudlöst och inbäddat (muted + playsinline), vilket krävs av
+  // iOS och Android. Uppspelningen startas av scriptet i stället för av attributet
+  // autoplay, och först när bården närmar sig viewporten – tillsammans med
+  // preload="none" gör det att videofilen inte hämtas alls medan sidans första
+  // vy laddas. Vid prefers-reduced-motion startar videon pausad – se nedan.
+  // Masken ligger på omslaget (.stopmotion) och inte på <video>, eftersom en mask
+  // direkt på videon kan göra klippet osynligt på iOS.
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Multi-instans-säkert: inga globala id:n. Vi loopar över alla .sm-video och
@@ -72,6 +74,8 @@ const videoSrc = base + video;
   const play = (v) => {
     // Respektera både prefers-reduced-motion och ett medvetet pausval.
     if (v.dataset.userPaused === 'true') return;
+    // Hämta aldrig videofilen för en bård som ligger långt utanför viewporten.
+    if (v.dataset.inView !== 'true') return;
     v.muted = true;
     v.defaultMuted = true;
     v.setAttribute('muted', '');
@@ -87,7 +91,8 @@ const videoSrc = base + video;
     const btn = toggleFor(v);
     if (btn) {
       btn.addEventListener('click', () => {
-        if (v.paused) { v.dataset.userPaused = 'false'; play(v); }
+        // Knappen syns bara när bården är i bild, så ett klick räknas alltid som i vy.
+        if (v.paused) { v.dataset.inView = 'true'; v.dataset.userPaused = 'false'; play(v); }
         else { v.dataset.userPaused = 'true'; v.pause(); }
         syncBtn(v);
       });
@@ -107,13 +112,26 @@ const videoSrc = base + video;
       return;
     }
 
-    play(v);
     v.addEventListener('loadeddata', () => play(v), { once: true });
     v.addEventListener('canplay', () => play(v), { once: true });
+
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) play(v); });
-      }, { threshold: 0.15 }).observe(v);
+      // rootMargin ger klippet ett försprång på 300 px så att det hunnit börja
+      // spela när bården rullas in i bild. Observern kopplas bort efter första
+      // träffen – därefter sköter play/pause-knappen resten.
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          v.dataset.inView = 'true';
+          play(v);
+          io.disconnect();
+        });
+      }, { rootMargin: '300px 0px', threshold: 0 });
+      io.observe(v);
+    } else {
+      // Utan IntersectionObserver faller vi tillbaka på att spela direkt.
+      v.dataset.inView = 'true';
+      play(v);
     }
   });
 
