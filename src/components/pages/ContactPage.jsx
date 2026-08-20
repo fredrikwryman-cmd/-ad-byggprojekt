@@ -74,19 +74,6 @@ export default function ContactPage() {
             })}
           </div>
 
-          {/* Visitkort – kantad knapp direkt under kontaktrutnätet (telefonkortet).
-              Samma form/storlek som offertknappen nedan, men genomskinlig så att
-              offertknappen förblir den enda fyllda uppmaningen på sidan. */}
-          <div className="mt-5">
-            <a
-              href={import.meta.env.BASE_URL + 'andreas'}
-              aria-label="Andreas digitala visitkort"
-              className="inline-flex items-center gap-2 bg-transparent border-[1.5px] border-[#0078D4] text-[#0078D4] rounded-full px-6 py-3 font-semibold hover:bg-[#0078D4] hover:text-white transition-colors"
-            >
-              VISITKORT
-            </a>
-          </div>
-
           {/* GPS-karta – pekar på besöksadressen (Sågvägen 33). */}
           <div className="mt-8 rounded-2xl overflow-hidden border border-[#e2e8f0] shadow-[0_10px_30px_rgba(2,6,23,0.08)]">
             <div className="flex items-center gap-2 px-4 py-3 bg-[#f8fafc] border-b border-[#e2e8f0]">
