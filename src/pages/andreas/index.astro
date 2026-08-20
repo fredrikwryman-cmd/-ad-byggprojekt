@@ -24,17 +24,14 @@ const EPOST = 'andreas@adbyggprojekt.se';
           <picture>/<img> bytas mot <video autoplay muted loop playsinline>
           utan en enda annan ändring och utan minsta layoutskift. */}
       <div class="vc-media">
-        <picture>
-          <source srcset={`${BASE}andreas-portratt-400.webp`} type="image/webp" />
-          <img
-            src={`${BASE}andreas-portratt-400.jpg`}
-            width="400"
-            height="601"
-            alt="Andreas Dahlgren, byggledare och platschef på AD Byggprojekt Stockholm AB."
-            fetchpriority="high"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src={`${BASE}andreas-visitkort.jpg`}
+          width="900"
+          height="1125"
+          alt="Andreas Dahlgren, AD Byggprojekt Stockholm AB"
+          fetchpriority="high"
+          decoding="async"
+        />
 
         {/* Mjuk toning i nederkanten så loggan vilar i bilden i stället för att
             ligga klistrad ovanpå den. */}
@@ -207,8 +204,9 @@ const EPOST = 'andreas@adbyggprojekt.se';
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Porträttet är 400x601, alltså högre än 4:5 – cover beskär topp/botten.
-       25% håller ansiktet kvar i rutan. */
+    /* Porträttet är redan beskuret till exakt 4:5, så cover skalar utan att
+       beskära. object-position står kvar och håller ansiktet kvar i rutan om
+       bilden någon gång byts mot en med annan proportion. */
     object-position: 50% 25%;
     display: block;
   }
