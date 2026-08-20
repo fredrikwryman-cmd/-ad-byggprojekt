@@ -51,7 +51,7 @@ const EPOST = 'andreas@adbyggprojekt.se';
       </div>
 
       <div class="vc-body">
-        <h1 class="vc-name">Andreas</h1>
+        <h1 class="vc-name"><span>Andreas</span> <span>Dahlgren</span></h1>
         <p class="vc-role">Byggledare · Platschef · Projektledare</p>
         <p class="vc-org">
           AD Byggprojekt Stockholm AB
@@ -215,7 +215,14 @@ const EPOST = 'andreas@adbyggprojekt.se';
     position: absolute;
     inset: auto 0 0 0;
     height: 45%;
-    background: linear-gradient(to bottom, rgba(7, 13, 26, 0) 0%, rgba(7, 13, 26, 0.82) 78%, rgba(7, 13, 26, 0.95) 100%);
+    background: linear-gradient(
+      to bottom,
+      rgba(9, 16, 29, 0) 0%,
+      rgba(9, 16, 29, 0.55) 45%,
+      rgba(9, 16, 29, 0.88) 75%,
+      rgba(9, 16, 29, 1) 92%,
+      rgba(9, 16, 29, 1) 100%
+    );
     pointer-events: none;
   }
 
@@ -249,6 +256,10 @@ const EPOST = 'andreas@adbyggprojekt.se';
     letter-spacing: 0.02em;
     color: #ffffff;
     margin: 0;
+  }
+
+  .vc-name span {
+    display: block;
   }
 
   .vc-role {
