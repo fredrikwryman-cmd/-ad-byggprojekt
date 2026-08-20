@@ -85,6 +85,18 @@ const projects = [
     featured: true,
   },
   {
+    title: 'Rivning betongbrygga, Sätra hamn',
+    location: 'Stockholm',
+    category: 'Anläggning',
+    year: '2024–pågår',
+    image: import.meta.env.BASE_URL + 'projekt/betongbrygga.jpg',
+    description: 'Rivning av en betongbrygga i Sätra hamn, inklusive upptagning av tolv 15-tons vikter på 20 meters djup.',
+    // Yta och entreprenadsumma är kända; någon tidsatgång finns inte i
+    // underlaget och ProjectCard hoppar över den posten.
+    stats: { area: '150 kvm', value: '10 mkr' },
+    featured: false,
+  },
+  {
     title: 'Wasaskolan, Södertälje',
     location: 'Södertälje',
     category: 'Renovering',
@@ -108,12 +120,6 @@ const moreProjects = [
     client: 'Metrolit / Trafikverket', category: 'Anläggning',
     description: 'Diverse anläggningsuppdrag åt Trafikverket.',
     value: '7 mkr', role: 'Platschef / Bas-U',
-  },
-  {
-    year: '2024–pågår', title: 'Rivning betongbrygga, Sätra hamn', location: 'Stockholm',
-    client: 'Metrolit / Trafikverket', category: 'Anläggning',
-    description: 'Rivning av betongbrygga i Sätra hamn.',
-    value: '10 mkr', role: 'Platschef',
   },
   {
     year: '2023–2024', title: 'Proj 23, Solna', location: 'Solna',
