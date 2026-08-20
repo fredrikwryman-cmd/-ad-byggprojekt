@@ -241,7 +241,10 @@ export const moreProjects = [
   },
   {
     slug: 'rivning-betongbrygga-satra',
-    gallery: [],
+    gallery: [
+      BASE + 'projekt/betongbrygga-g1.jpg',
+      BASE + 'projekt/betongbrygga-g2.jpg',
+    ],
     year: '2024–pågår',
     title: 'Rivning betongbrygga, Sätra hamn',
     location: 'Stockholm',

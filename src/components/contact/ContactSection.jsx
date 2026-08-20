@@ -6,7 +6,7 @@ const BASE = import.meta.env.BASE_URL;
 const contactInfo = [
   { icon: Phone, label: 'Telefon', value: '+46 70 462 99 43', href: 'tel:+46704629943' },
   { icon: Mail, label: 'E-post', value: 'andreas@adbyggprojekt.se', href: 'mailto:andreas@adbyggprojekt.se' },
-  { icon: MapPin, label: 'Adress', value: 'Kantarellvägen 4, 184 34 Åkersberga', href: 'https://maps.google.com/?q=Kantarellvägen+4,184+34+Åkersberga' },
+  { icon: MapPin, label: 'Besöksadress', value: 'Sågvägen 33, 184 40 Åkersberga', href: 'https://maps.google.com/?q=Sågvägen+33,184+40+Åkersberga' },
 ];
 
 export default function ContactSection() {

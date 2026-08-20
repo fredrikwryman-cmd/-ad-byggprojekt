@@ -1,12 +1,17 @@
 import { motion, MotionConfig } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, ArrowRight } from '../icons.jsx';
+import { MapPin, Building2, Phone, Mail, Clock, ArrowRight } from '../icons.jsx';
 
 const contactInfo = [
   {
     icon: MapPin,
     label: 'Besöksadress',
+    value: 'Sågvägen 33, 184 40 Åkersberga',
+    href: 'https://maps.google.com/?q=Sågvägen+33,184+40+Åkersberga',
+  },
+  {
+    icon: Building2,
+    label: 'Postadress',
     value: 'Kantarellvägen 4, 184 34 Åkersberga',
-    href: 'https://maps.google.com/?q=Kantarellvägen+4,184+34+Åkersberga',
   },
   {
     icon: Phone,
@@ -67,6 +72,23 @@ export default function ContactPage() {
                 <div key={item.label}>{content}</div>
               );
             })}
+          </div>
+
+          {/* GPS-karta – pekar på besöksadressen (Sågvägen 33). */}
+          <div className="mt-8 rounded-2xl overflow-hidden border border-[#e2e8f0] shadow-[0_10px_30px_rgba(2,6,23,0.08)]">
+            <div className="flex items-center gap-2 px-4 py-3 bg-[#f8fafc] border-b border-[#e2e8f0]">
+              <MapPin size={16} />
+              <span className="text-xs font-bold tracking-[0.12em] uppercase text-[#334155]">
+                Sågvägen 33 · Åkersberga
+              </span>
+            </div>
+            <iframe
+              title="Karta över besöksadressen Sågvägen 33, Åkersberga"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block w-full h-[280px] sm:h-[340px] border-0"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=18.2820%2C59.4730%2C18.3175%2C59.4865&layer=mapnik&marker=59.4794%2C18.2997"
+            />
           </div>
 
           <div className="mt-10 pt-8 border-t border-[#e2e8f0]">
