@@ -1,0 +1,439 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// BASE_URL slutar alltid med snedstreck – konkatenera därför utan inledande
+// snedstreck, annars bryts länkarna när sajten flyttas till egen domän.
+const BASE = import.meta.env.BASE_URL;
+
+const TEL = '+46704629943';
+const TEL_VISIBLE = '+46 70 462 99 43';
+const EPOST = 'andreas@adbyggprojekt.se';
+---
+
+<Layout
+  title="Andreas Dahlgren – Visitkort | AD Byggprojekt Stockholm AB"
+  description="Digitalt visitkort för Andreas Dahlgren, AD Byggprojekt Stockholm AB. Spara kontakten, ring, smsa eller begär offert direkt."
+  ogImage={`${BASE}og-visitkort.jpg`}
+  ogImageAlt="Andreas Dahlgren, AD Byggprojekt Stockholm AB – digitalt visitkort."
+  ogType="profile"
+>
+  <main id="main" class="vc-page">
+    <article class="vc-card">
+      {/* MEDIERUTA 4:5. Behållaren håller proportionen, inte innehållet, och
+          regeln nedan i <style> träffar barnet oavsett taggnamn. Därför kan
+          <picture>/<img> bytas mot <video autoplay muted loop playsinline>
+          utan en enda annan ändring och utan minsta layoutskift. */}
+      <div class="vc-media">
+        <picture>
+          <source srcset={`${BASE}andreas-portratt-400.webp`} type="image/webp" />
+          <img
+            src={`${BASE}andreas-portratt-400.jpg`}
+            width="400"
+            height="601"
+            alt="Andreas Dahlgren, byggledare och platschef på AD Byggprojekt Stockholm AB."
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+
+        {/* Mjuk toning i nederkanten så loggan vilar i bilden i stället för att
+            ligga klistrad ovanpå den. */}
+        <div class="vc-media-veil" aria-hidden="true"></div>
+
+        <div class="vc-media-foot">
+          <img
+            class="vc-logo"
+            src={`${BASE}ad-logo-vit-navbar.png`}
+            width="1141"
+            height="361"
+            alt="AD Byggprojekt Stockholm AB"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+
+      <div class="vc-body">
+        <h1 class="vc-name">Andreas</h1>
+        <p class="vc-role">Byggledare · Platschef · Projektledare</p>
+        <p class="vc-org">
+          AD Byggprojekt Stockholm AB
+          <span class="vc-place">Åkersberga · Stockholm</span>
+        </p>
+
+        <a class="vc-phone" href={`tel:${TEL}`}>{TEL_VISIBLE}</a>
+        <a class="vc-mail" href={`mailto:${EPOST}`}>{EPOST}</a>
+
+        <div class="vc-actions">
+          {/* Spara kontakt ligger först med avsikt – det är kortets huvudsyfte. */}
+          <a class="vc-btn vc-btn--primary" href={`${BASE}andreas/andreas.vcf`} download="andreas-dahlgren.vcf">
+            Spara kontakt
+          </a>
+          <a class="vc-btn vc-btn--primary" href={`tel:${TEL}`}>Ring</a>
+          <a class="vc-btn vc-btn--primary" href={`sms:${TEL}`}>Smsa</a>
+          <a class="vc-btn vc-btn--ghost" href={`${BASE}offert`}>Begär offert</a>
+        </div>
+
+        <p class="vc-biz">
+          Byggledning, platsledning och projektledning i Stockholm med omnejd.
+        </p>
+
+        <div class="vc-share">
+          <button type="button" id="vc-share-btn" class="vc-sharebtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.6" y1="10.5" x2="15.4" y2="6.5"></line>
+              <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line>
+            </svg>
+            Dela kortet
+          </button>
+          <span id="vc-share-status" class="vc-status" aria-live="polite"></span>
+        </div>
+
+        <div class="vc-foot">
+          <img
+            class="vc-qr"
+            src={`${BASE}andreas-qr.png`}
+            width="90"
+            height="90"
+            alt="QR-kod till Andreas digitala visitkort"
+            loading="lazy"
+            decoding="async"
+          />
+          <a class="vc-site" href={BASE}>adbyggprojekt.se</a>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<script>
+  const btn = document.getElementById('vc-share-btn');
+  const status = document.getElementById('vc-share-status');
+
+  if (btn && status) {
+    let timer;
+    const say = (msg) => {
+      status.textContent = msg;
+      clearTimeout(timer);
+      timer = setTimeout(() => { status.textContent = ''; }, 2000);
+    };
+
+    // Sista utväg när varken navigator.share eller clipboard finns (äldre iOS,
+    // osäker kontext). Misslyckas även den visas URL:en så den kan markeras.
+    const legacyCopy = (text) => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    };
+
+    btn.addEventListener('click', async () => {
+      const url = location.href;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: document.title, url });
+          return;
+        } catch (err) {
+          // Användaren avbröt delningen – det är inget fel, säg inget.
+          if (err && err.name === 'AbortError') return;
+        }
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(url);
+          say('Länk kopierad');
+          return;
+        } catch {
+          /* faller vidare till legacyCopy */
+        }
+      }
+
+      say(legacyCopy(url) ? 'Länk kopierad' : url);
+    });
+  }
+</script>
+
+<style>
+  .vc-page {
+    min-height: 100svh;
+    background-color: #020617;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(0, 120, 212, 0.16), transparent 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(0.75rem, 4vw, 2.5rem) clamp(0.75rem, 4vw, 2rem);
+    overflow-x: hidden;
+  }
+
+  .vc-card {
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    background: linear-gradient(180deg, #0b1220 0%, #070d1a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ===== MEDIERUTA ===== */
+  .vc-media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: #0f172a;
+    border-radius: 24px 24px 0 0;
+    overflow: hidden;
+  }
+
+  /* Gör <img> och <video> utbytbara: samma regel träffar båda (och bilden inuti
+     <picture>), så bytet kräver inga andra ändringar och ger inget layoutskift. */
+  .vc-media > img,
+  .vc-media > video,
+  .vc-media > picture > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Porträttet är 400x601, alltså högre än 4:5 – cover beskär topp/botten.
+       25% håller ansiktet kvar i rutan. */
+    object-position: 50% 25%;
+    display: block;
+  }
+
+  .vc-media-veil {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 45%;
+    background: linear-gradient(to bottom, rgba(7, 13, 26, 0) 0%, rgba(7, 13, 26, 0.82) 78%, rgba(7, 13, 26, 0.95) 100%);
+    pointer-events: none;
+  }
+
+  .vc-media-foot {
+    position: absolute;
+    left: clamp(1.1rem, 5vw, 1.6rem);
+    right: clamp(1.1rem, 5vw, 1.6rem);
+    bottom: clamp(0.85rem, 3.5vw, 1.15rem);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .vc-logo {
+    width: clamp(96px, 30%, 130px);
+    height: auto;
+    display: block;
+    opacity: 0.95;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6));
+  }
+
+  /* ===== TEXTBLOCK ===== */
+  .vc-body {
+    padding: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .vc-name {
+    font-family: 'Bebas Neue', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: clamp(2.75rem, 14vw, 4rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .vc-role {
+    margin-top: 0.5rem;
+    font-size: clamp(0.8125rem, 3.4vw, 0.9375rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #4a9eff;
+    line-height: 1.45;
+  }
+
+  .vc-org {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #94a3b8;
+  }
+
+  .vc-place {
+    display: block;
+    color: #64748b;
+  }
+
+  .vc-phone {
+    display: inline-block;
+    margin-top: 1.15rem;
+    font-size: clamp(1.5rem, 7vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .vc-phone:hover {
+    color: #4a9eff;
+  }
+
+  .vc-mail {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #94a3b8;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .vc-mail:hover {
+    color: #4a9eff;
+  }
+
+  /* ===== KNAPPAR ===== */
+  .vc-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-top: 1.5rem;
+  }
+
+  .vc-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    border: 1.5px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+
+  .vc-btn--primary {
+    background: #0078D4;
+    color: #ffffff;
+    box-shadow: 0 6px 18px -8px rgba(0, 120, 212, 0.9);
+  }
+
+  .vc-btn--primary:hover {
+    background: #005A9E;
+    transform: translateY(-1px);
+  }
+
+  .vc-btn--ghost {
+    background: transparent;
+    border-color: rgba(74, 158, 255, 0.55);
+    color: #4a9eff;
+  }
+
+  .vc-btn--ghost:hover {
+    background: rgba(0, 120, 212, 0.12);
+    border-color: #4a9eff;
+    transform: translateY(-1px);
+  }
+
+  /* ===== VERKSAMHETSRAD ===== */
+  .vc-biz {
+    margin-top: 1.35rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    text-wrap: balance;
+  }
+
+  /* ===== DELA ===== */
+  .vc-share {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.75rem;
+    margin-top: 1.1rem;
+  }
+
+  .vc-sharebtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.95rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 9999px;
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .vc-sharebtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .vc-status {
+    font-size: 0.75rem;
+    color: #4a9eff;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* ===== FOT: QR + SAJTLÄNK ===== */
+  .vc-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .vc-qr {
+    display: block;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .vc-site {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .vc-site:hover {
+    color: #4a9eff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vc-btn:hover {
+      transform: none;
+    }
+  }
+</style>

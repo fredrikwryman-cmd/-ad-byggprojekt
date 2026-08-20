@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { motion, MotionConfig } from 'framer-motion';
 import { Phone, Mail, MapPin, ArrowRight } from '../icons.jsx';
 
@@ -37,23 +38,41 @@ export default function ContactSection() {
               {contactInfo.map((item, i) => {
                 const Icon = item.icon;
                 return (
-                  <motion.a
-                    key={item.label}
-                    href={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    className="info-card"
-                  >
-                    <span className="icon-box">
-                      <Icon size={24} />
-                    </span>
-                    <div>
-                      <div className="info-label">{item.label}</div>
-                      <div className="info-value">{item.value}</div>
-                    </div>
-                  </motion.a>
+                  <Fragment key={item.label}>
+                    <motion.a
+                      href={item.href}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      className="info-card"
+                    >
+                      <span className="icon-box">
+                        <Icon size={24} />
+                      </span>
+                      <div>
+                        <div className="info-label">{item.label}</div>
+                        <div className="info-value">{item.value}</div>
+                      </div>
+                    </motion.a>
+
+                    {/* Visitkort – kantad knapp direkt under telefonnumret. Samma mått som
+                        btn-primary, men genomskinlig så att offertknappen förblir den enda
+                        fyllda uppmaningen i sektionen. Ligger på vitt kort → .btn-outline. */}
+                    {item.label === 'Telefon' && (
+                      <motion.a
+                        href={BASE + 'andreas'}
+                        aria-label="Andreas digitala visitkort"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: i * 0.1 + 0.05 }}
+                        className="btn-outline"
+                      >
+                        VISITKORT
+                      </motion.a>
+                    )}
+                  </Fragment>
                 );
               })}
             </div>

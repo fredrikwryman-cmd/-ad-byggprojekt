@@ -159,7 +159,14 @@ och en trasig länk. Skriv heller aldrig hårdkodade absoluta sökvägar som
 3. Uppdatera `public/sitemap.xml` manuellt — filen innehåller hårdkodade
    absoluta URL:er (se [Kända underhållspunkter](#kända-underhållspunkter)).
 4. Uppdatera `Sitemap:`-raden i `public/robots.txt`.
-5. Bygg om och deploya.
+5. Kontrollera det digitala visitkortets tillgångar. QR-koden
+   `public/andreas-qr.png` kodar `https://adbyggprojekt.se/andreas`, och
+   `URL`-fältet i vCard-filen `public/andreas/andreas.vcf` pekar på
+   `https://adbyggprojekt.se`. **Domänen är antagen** och måste stämmas av mot
+   den slutgiltiga domänen vid driftsättning. Blir domänen en annan måste
+   QR-koden genereras om och vCard-filens `URL`-fält uppdateras — annars leder
+   den QR-kod som tryckts på fordon och kläder fel.
+6. Bygg om och deploya.
 
 Ingen annan kod behöver ändras, eftersom allt går via `BASE_URL`.
 

@@ -11,6 +11,7 @@ const links = [
   { label: 'Om oss', href: BASE + 'om-oss' },
   { label: 'CV', href: BASE + 'cv' },
   { label: 'Kontakt', href: BASE + 'kontakt' },
+  { label: 'Visitkort', href: BASE + 'andreas' },
 ];
 
 const socials = [

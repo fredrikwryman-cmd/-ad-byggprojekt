@@ -1,0 +1,3 @@
+# vCard-standarden kräver CRLF som radslut. Markera .vcf som binär för Git så att
+# radsluten aldrig normaliseras vid checkin/checkout.
+*.vcf -text
