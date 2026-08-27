@@ -12,6 +12,13 @@ const videoSrc = base + video;
 <section class="sm-section bp-dark" aria-label={label || title}>
   <div class="sm-stage">
     <div class="stopmotion sm-feather">
+      {/* poster/src ligger i data-attribut, inte i poster= respektive src=.
+          preload="none" hindrar bara videofilen – poster-bilden hämtar
+          webbläsaren ändå direkt när sidan tolkas, och de två bårdernas
+          posters (~120 kB tillsammans) konkurrerade därmed med hero-bilden
+          om bandbredden i sidans första vy. Scriptet nedan sätter attributen
+          när bården närmar sig viewporten. <noscript> täcker fallet där
+          scriptet aldrig kör. */}
       <video
         class="sm-video"
         muted
@@ -19,13 +26,16 @@ const videoSrc = base + video;
         playsinline
         webkit-playsinline
         preload="none"
-        poster={posterSrc}
+        data-poster={posterSrc}
         aria-hidden="true"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
 
-      <img class="sm-poster" src={posterSrc} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <img class="sm-poster" data-src={posterSrc} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <noscript>
+        <img class="sm-poster sm-poster-noscript" src={posterSrc} alt="" aria-hidden="true" />
+      </noscript>
     </div>
 
     {/* Paus/spela-kontroll (WCAG 2.2.2). Ligger utanför feather-masken så den
@@ -76,6 +86,9 @@ const videoSrc = base + video;
     if (v.dataset.userPaused === 'true') return;
     // Hämta aldrig videofilen för en bård som ligger långt utanför viewporten.
     if (v.dataset.inView !== 'true') return;
+    // Postern ska alltid vara satt innan klippet startar (loadPoster är
+    // idempotent, så extra anrop kostar inget).
+    loadPoster(v);
     v.muted = true;
     v.defaultMuted = true;
     v.setAttribute('muted', '');
@@ -87,12 +100,41 @@ const videoSrc = base + video;
   };
 
   const vids = Array.prototype.slice.call(document.querySelectorAll('.sm-video'));
+
+  // Poster-bilden hämtas av webbläsaren så snart poster-attributet finns –
+  // preload="none" gäller bara själva videofilen. Därför sätts både videons
+  // poster och fallback-bildens src först när bården närmar sig viewporten,
+  // så att sidans första vy slipper konkurrensen om bandbredden.
+  // Marginalen är densamma som play-observerns (300 px) och den här observern
+  // registreras först, så postern hinner sättas innan klippet börjar spela.
+  // play() anropar dessutom loadPoster som bälte och hängslen.
+  const loadPoster = (v) => {
+    if (v.dataset.posterLoaded === 'true') return;
+    v.dataset.posterLoaded = 'true';
+    if (v.dataset.poster) v.poster = v.dataset.poster;
+    const root = v.closest('.stopmotion');
+    const still = root ? root.querySelector('img.sm-poster[data-src]') : null;
+    if (still) still.src = still.dataset.src;
+  };
+
+  vids.forEach((v) => {
+    if (!('IntersectionObserver' in window)) { loadPoster(v); return; }
+    const pio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        loadPoster(v);
+        pio.disconnect();
+      });
+    }, { rootMargin: '300px 0px', threshold: 0 });
+    pio.observe(v);
+  });
+
   vids.forEach((v) => {
     const btn = toggleFor(v);
     if (btn) {
       btn.addEventListener('click', () => {
         // Knappen syns bara när bården är i bild, så ett klick räknas alltid som i vy.
-        if (v.paused) { v.dataset.inView = 'true'; v.dataset.userPaused = 'false'; play(v); }
+        if (v.paused) { loadPoster(v); v.dataset.inView = 'true'; v.dataset.userPaused = 'false'; play(v); }
         else { v.dataset.userPaused = 'true'; v.pause(); }
         syncBtn(v);
       });
@@ -101,6 +143,8 @@ const videoSrc = base + video;
     v.addEventListener('play', () => syncBtn(v));
     v.addEventListener('pause', () => syncBtn(v));
     v.addEventListener('error', () => {
+      // Fallback-bilden ska visas – se till att den faktiskt har en src.
+      loadPoster(v);
       const root = v.closest('.stopmotion');
       if (root) root.classList.add('sm-fallback');
     }, { once: true });
@@ -260,6 +304,12 @@ const videoSrc = base + video;
   /* Poster visas bara som fallback (reduced-motion eller nekad autoplay) */
   .sm-poster {
     display: none;
+  }
+
+  /* Utan JavaScript sätts aldrig videons poster – då visas <noscript>-bilden
+     i stället för en tom navy ruta. Elementet finns bara när skript är av. */
+  .sm-poster-noscript {
+    display: block;
   }
 
   /* Fallback: om autoplay nekas (sätts av scriptet) – visa poster i stället */

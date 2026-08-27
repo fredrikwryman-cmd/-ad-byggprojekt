@@ -26,13 +26,32 @@ export default function HeroSection() {
         className="absolute inset-0"
         style={shouldReduceMotion ? undefined : { y: bgY, scale: bgScale }}
       >
-        <img
-          src={import.meta.env.BASE_URL + "adlogoherobanner.jpg"}
-          alt=""
-          className="w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-        />
+        {/* WebP-varianten har samma mått som JPEG:en men väger hälften, och det
+            är den här bilden som är sidans LCP-element. JPEG:en ligger kvar i
+            <img> och hämtas bara av webbläsare utan WebP-stöd.
+            Preloaden i Layout.astro pekar på exakt samma WebP-fil och har
+            type="image/webp" – en webbläsare utan WebP-stöd hoppar då över
+            preloaden i stället för att hämta fel fil. Ingen bild hämtas alltså
+            två gånger, oavsett stöd.
+            <picture> måste vara block + w/h-full, annars har img:ens h-full
+            inget höjdvärde att räkna procent mot (picture är inline som
+            standard och saknar Tailwinds preflight-regel för <img>). */}
+        <picture className="block w-full h-full">
+          <source
+            type="image/webp"
+            srcSet={import.meta.env.BASE_URL + 'adlogoherobanner.webp'}
+          />
+          <img
+            src={import.meta.env.BASE_URL + 'adlogoherobanner.jpg'}
+            alt=""
+            width="1376"
+            height="768"
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
       </motion.div>
 
       {/* Mörk gradient – håller vänstra halvan mörk nog för läsbar vit text. */}

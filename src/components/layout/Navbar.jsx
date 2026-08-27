@@ -155,8 +155,11 @@ export default function Navbar() {
             <img
               src={BASE + 'ad-logo-vit-navbar.png'}
               alt="AD Byggprojekt AB"
+              width="720"
+              height="228"
               className={`w-auto ${trans}`}
               style={{ height: scrolled ? '41px' : '53px' }}
+              decoding="async"
             />
           </a>
 

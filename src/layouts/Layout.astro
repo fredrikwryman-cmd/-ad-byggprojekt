@@ -25,7 +25,16 @@ const {
 // bild direkt i första vyn (i dag startsidans hero), så att webbläsaren kan
 // börja hämta den parallellt med stilmallen i stället för att vänta på den.
 // Sidor utan prop får ingen preload – en oanvänd preload kostar bandbredd.
-const preloadImageURL = preloadImage ? `${import.meta.env.BASE_URL}${preloadImage}` : null;
+//
+// Propen tar antingen ett filnamn ('hero.jpg', som förut) eller ett objekt
+// { file, type } när bilden serveras i ett format som alla webbläsare inte
+// klarar. type skrivs då ut på <link>, och webbläsare utan stöd för formatet
+// hoppar över preloaden helt i stället för att hämta en fil de ändå inte
+// kommer att använda. Det är så preloaden hålls identisk med det <picture>
+// faktiskt väljer: samma URL, samma format-villkor – aldrig två hämtningar.
+const preloadImageFile = typeof preloadImage === 'string' ? preloadImage : preloadImage?.file;
+const preloadImageType = typeof preloadImage === 'string' ? undefined : preloadImage?.type;
+const preloadImageURL = preloadImageFile ? `${import.meta.env.BASE_URL}${preloadImageFile}` : null;
 
 // BASE_URL innehåller ett avslutande snedstreck och konkateneras därför alltid
 // utan inledande snedstreck. new URL(..., Astro.site) ger absoluta URL:er, vilket
@@ -97,7 +106,7 @@ const jsonLd = {
     <meta name="robots" content={robots} />
 
     {preloadImageURL && (
-      <link rel="preload" as="image" href={preloadImageURL} fetchpriority="high" />
+      <link rel="preload" as="image" href={preloadImageURL} type={preloadImageType} fetchpriority="high" />
     )}
 
     <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}favicon-32.png`} />

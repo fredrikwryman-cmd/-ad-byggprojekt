@@ -37,6 +37,10 @@ export default function Footer() {
             <img
               src={BASE + 'ad-logo-vit-navbar.png'}
               alt="AD Byggprojekt AB"
+              width="720"
+              height="228"
+              loading="lazy"
+              decoding="async"
               className="w-48 md:w-56 h-auto drop-shadow-[0_6px_16px_rgba(0,0,0,0.65)] transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </a>
