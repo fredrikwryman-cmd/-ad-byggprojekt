@@ -1,7 +1,8 @@
 import { Linkedin, MapPin, Phone, Mail } from '../icons.jsx';
 
-// BASE_URL inkluderar avslutande slash (t.ex. '/-ad-byggprojekt/'),
-// så länkar konkateneras utan inledande slash. Följer automatiskt med om base ändras.
+// BASE_URL inkluderar avslutande slash (i dag '/', eftersom sajten ligger i
+// domänroten), så länkar konkateneras utan inledande slash. Följer automatiskt
+// med om base ändras.
 const BASE = import.meta.env.BASE_URL;
 
 const links = [

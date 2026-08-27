@@ -8,7 +8,7 @@ serverkod i det här repot. Bygget producerar rena HTML-, CSS- och JS-filer som
 publiceras på GitHub Pages. Formulärutskick sköts av en extern tjänst
 (Web3Forms), se avsnittet [Formulär](#formulär).
 
-Publicerad adress i dag: `https://fredrikwryman-cmd.github.io/-ad-byggprojekt/`
+Publicerad adress i dag: `https://ad.aimstudios.se/`
 
 ---
 
@@ -55,8 +55,8 @@ npm install
 npm run dev
 ```
 
-Dev-servern startar normalt på `http://localhost:4321`. Observera att sajten
-serveras under bassökvägen, alltså `http://localhost:4321/-ad-byggprojekt/`.
+Dev-servern startar normalt på `http://localhost:4321`. Sajten ligger i roten
+(`base: '/'`), så adressen är just `http://localhost:4321/`.
 
 ## Kommandon
 
@@ -127,15 +127,23 @@ laddas först när webbläsaren är ledig. Rena presentationsdelar (till exempel
 
 ## Bassökväg (base) — läs innan domänbyte
 
-Sajten ligger i dag i en **underkatalog** på GitHub Pages, inte i roten. Därför
-sätter `astro.config.mjs` en bassökväg:
+Sajten ligger sedan flytten till egen domän i **domänroten** på
+`https://ad.aimstudios.se`, inte längre i en underkatalog på github.io. Därför är
+bassökvägen `/`:
 
 ```js
-// astro.config.mjs, rad 6
-base: '/-ad-byggprojekt/',
-// astro.config.mjs, rad 7
-site: 'https://fredrikwryman-cmd.github.io',
+base: '/',
+site: 'https://ad.aimstudios.se',
 ```
+
+Custom-domänen hålls kvar av `public/CNAME` (en rad: `ad.aimstudios.se`). Astro
+kopierar `public/` rakt in i `dist/`, så filen följer med i varje deploy — **ta
+inte bort den**, annars kan nästa Actions-deploy nolla domäninställningen i
+GitHub Pages.
+
+Sajten är ett **arbetsprov i Fredriks portfölj**, inte kundens skarpa sajt. Den
+noindexas därför i sin helhet: `robots`-propen i `src/layouts/Layout.astro`
+defaultar till `noindex, follow`, och `public/robots.txt` har `Disallow: /`.
 
 Alla interna länkar och tillgångar i koden byggs mot `import.meta.env.BASE_URL`:
 
@@ -149,24 +157,27 @@ med ett inledande snedstreck — `BASE_URL + '/projekt'` ger en dubbel snedstrec
 och en trasig länk. Skriv heller aldrig hårdkodade absoluta sökvägar som
 `href="/projekt"`; de fungerar lokalt i roten men bryts på GitHub Pages.
 
-### Vid flytt till egen domän
+### Vid ett framtida domänbyte
 
-1. Ändra rad 6 i `astro.config.mjs` från `base: '/-ad-byggprojekt/'` till
-   `base: '/'`.
-2. Ändra rad 7, `site`, till den nya domänen (till exempel
-   `https://adbyggprojekt.se`). `site` styr canonical-URL:er, Open Graph-URL:er
-   och absoluta URL:er i den strukturerade datan.
-3. Uppdatera `public/sitemap.xml` manuellt — filen innehåller hårdkodade
+Flytten från github.io till `ad.aimstudios.se` är redan gjord. Byter domänen
+igen är det de här stegen som gäller:
+
+1. Sätt `base` i `astro.config.mjs` — `'/'` om sajten ligger i domänroten,
+   annars `'/undermapp/'` med snedstreck i båda ändar.
+2. Ändra `site` till den nya domänen. `site` styr canonical-URL:er,
+   Open Graph-URL:er och absoluta URL:er i den strukturerade datan.
+3. Uppdatera `public/CNAME` till den nya domänen (en rad, inget mer).
+4. Uppdatera `public/sitemap.xml` manuellt — filen innehåller hårdkodade
    absoluta URL:er (se [Kända underhållspunkter](#kända-underhållspunkter)).
-4. Uppdatera `Sitemap:`-raden i `public/robots.txt`.
-5. Kontrollera det digitala visitkortets tillgångar. QR-koden
-   `public/andreas-qr.png` kodar `https://adbyggprojekt.se/andreas`, och
-   `URL`-fältet i vCard-filen `public/andreas/andreas.vcf` pekar på
-   `https://adbyggprojekt.se`. **Domänen är antagen** och måste stämmas av mot
-   den slutgiltiga domänen vid driftsättning. Blir domänen en annan måste
-   QR-koden genereras om och vCard-filens `URL`-fält uppdateras — annars leder
-   den QR-kod som tryckts på fordon och kläder fel.
+5. Uppdatera `Sitemap:`-raden i `public/robots.txt`.
 6. Bygg om och deploya.
+
+**Visitkortets tillgångar ska inte följa med.** QR-koden `public/andreas-qr.png`
+kodar `https://adbyggprojekt.se/andreas` och `URL`-fältet i vCard-filen
+`public/andreas/andreas.vcf` pekar på `https://adbyggprojekt.se`. Det är
+**kundens tänkta egna domän**, inte arbetsprovets adress, och den ska stå kvar
+oförändrad — QR-koden är tryckt på fordon och kläder. Regenerera dem alltså
+inte vid domänbyten av den här sajten.
 
 Ingen annan kod behöver ändras, eftersom allt går via `BASE_URL`.
 
@@ -525,7 +536,7 @@ Motsvarande CSS ligger kvar i `global.css` under rubriken `OMDÖMESSEKTION`.
 
 | Punkt | Beskrivning | Förslag |
 | :-- | :-- | :-- |
-| Handskriven `public/sitemap.xml` | Filen innehåller 23 hårdkodade absoluta URL:er mot `https://fredrikwryman-cmd.github.io/-ad-byggprojekt/`. Den genereras **inte** av bygget. Den måste uppdateras manuellt både när projekt läggs till eller tas bort och vid domänbyte, annars pekar sitemapen fel. Samma gäller `Sitemap:`-raden i `public/robots.txt`. | Installera `@astrojs/sitemap`, lägg till integrationen i `astro.config.mjs` och radera den handskrivna filen. Då följer sitemapen automatiskt både `site`, `base` och antalet sidor. |
+| Handskriven `public/sitemap.xml` | Filen innehåller 23 hårdkodade absoluta URL:er mot `https://ad.aimstudios.se/`. Den genereras **inte** av bygget. Den måste uppdateras manuellt både när projekt läggs till eller tas bort och vid domänbyte, annars pekar sitemapen fel. Samma gäller `Sitemap:`-raden i `public/robots.txt`. | Installera `@astrojs/sitemap`, lägg till integrationen i `astro.config.mjs` och radera den handskrivna filen. Då följer sitemapen automatiskt både `site`, `base` och antalet sidor. |
 | Duplicerad projektdata | `src/components/pages/ProjectsPage.jsx` har egna kopior av projektlistorna och kopplas till `src/data/projects.js` enbart via `slugByTitle[title]`. Titlar måste matcha exakt mellan filerna. | Låt `ProjectsPage.jsx` importera `featuredProjects`/`moreProjects` ur datafilen och ta bort dubbletterna. |
 | Två vilande komponenter | `AndreasChat.jsx` (chatten "Fråga Heidi") och `TestimonialsSection.jsx` (kundomdömen med platshållardata) renderas inte. Kod och CSS ligger kvar. | Se [Vilande komponenter](#vilande-komponenter-och-hur-de-aktiveras). Omdömena kräver äkta citat innan publicering. |
 | Stora videofiler i `public/` | Fyra MP4-filer om totalt cirka 12,7 MB: `andreas-resa.mp4` 6,9 MB, `byggplats-stopmotion.mp4` 2,1 MB, `blueprint-reveal.mp4` 1,9 MB, `projektledning-stopmotion.mp4` 1,8 MB. De ligger i Git och laddas av besökare. | Komprimera om, överväg WebM/AV1 som komplement, och kontrollera att filerna verkligen behövs i sin nuvarande längd och upplösning. |

@@ -13,13 +13,13 @@ const {
   ogImage: ogImageProp,
   ogType = 'website',
   ogImageAlt = 'AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt.',
+  // Sajten är ett arbetsprov i Fredriks portfölj, inte kundens riktiga sajt. Den
+  // ska därför aldrig indexeras och konkurrera med AD Byggprojekts framtida
+  // skarpa sajt i sökresultaten – alltså noindex som standard för alla sidor.
+  // "follow" behålls så att crawlers ändå får följa länkarna vidare.
+  robots = 'noindex, follow',
   preloadImage,
 } = Astro.props;
-
-// Sajten är ett arbetsprov och får aldrig konkurrera med kundens riktiga sajt i
-// sökresultaten. Värdet är därför hårdkodat i stället för en prop – ingen enskild
-// sida ska kunna skicka in ett eget robots-värde som gör den indexerbar.
-const robots = 'noindex, nofollow';
 
 // Filnamn i public/ för sidans LCP-bild. Sätts bara av sidor som har en stor
 // bild direkt i första vyn (i dag startsidans hero), så att webbläsaren kan

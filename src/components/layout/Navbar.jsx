@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// BASE_URL inkluderar avslutande slash (t.ex. '/-ad-byggprojekt/'),
-// så länkar konkateneras utan inledande slash. Följer automatiskt med om base ändras.
+// BASE_URL inkluderar avslutande slash (i dag '/', eftersom sajten ligger i
+// domänroten), så länkar konkateneras utan inledande slash. Följer automatiskt
+// med om base ändras.
 const BASE = import.meta.env.BASE_URL;
 
 // Normaliserar bort avslutande slash så jämförelser fungerar oavsett om sidan
@@ -61,9 +62,10 @@ export default function Navbar() {
     };
   }, []);
 
-  // Aktiv sektion på startsidan (scroll-spy). Körs bara där: på GitHub Pages är
-  // startsidans sökväg BASE (t.ex. "/-ad-byggprojekt/"), inte "/", så vi jämför
-  // mot BASE. Samma sections-array driver både menyn och observern; poster vars id
+  // Aktiv sektion på startsidan (scroll-spy). Körs bara där: startsidans sökväg
+  // är alltid BASE (i dag "/"), så vi jämför mot BASE i stället för att anta "/"
+  // – då fungerar det även om sajten flyttas till en undermapp igen.
+  // Samma sections-array driver både menyn och observern; poster vars id
   // saknas i DOM:en (ankarlänkar till andra sidor) hoppas tyst över. Tröskeln 0.3
   // gör en sektion aktiv när 30 % av den syns.
   useEffect(() => {
