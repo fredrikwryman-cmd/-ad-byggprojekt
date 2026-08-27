@@ -1,5 +1,9 @@
 # AD Byggprojekt Stockholm AB — webbplats
 
+> **VID KUNDLANSERING:** sätt noindex på denna demosajt så den inte konkurrerar
+> med kundens riktiga sajt i Google. Ändra robots-propens defaultvärde i
+> src/layouts/Layout.astro till noindex, follow.
+
 Företagswebbplats för AD Byggprojekt Stockholm AB (byggledning, platsledning och
 projektledning i Stockholm med omnejd).
 

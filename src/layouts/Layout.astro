@@ -13,11 +13,9 @@ const {
   ogImage: ogImageProp,
   ogType = 'website',
   ogImageAlt = 'AD Byggprojekt Stockholm AB – byggarbetsplats i solnedgång med företagets skylt.',
-  // Sajten är ett arbetsprov i Fredriks portfölj, inte kundens riktiga sajt. Den
-  // ska därför aldrig indexeras och konkurrera med AD Byggprojekts framtida
-  // skarpa sajt i sökresultaten – alltså noindex som standard för alla sidor.
-  // "follow" behålls så att crawlers ändå får följa länkarna vidare.
-  robots = 'noindex, follow',
+  // Sidorna indexeras. Enbart 404-sidan skickar noindex – en felsida hör inte
+  // hemma i sökresultaten. Se påminnelsen i <head> nedan inför kundlansering.
+  robots = 'index, follow',
   preloadImage,
 } = Astro.props;
 
@@ -103,6 +101,9 @@ const jsonLd = {
 
     <meta name="description" content={description} />
     <meta name="theme-color" content="#020617" />
+    <!-- VID KUNDLANSERING: sätt noindex på denna demosajt så den inte konkurrerar
+         med kundens riktiga sajt i Google. Ändra defaultvärdet för robots-propen
+         ovan till noindex, follow. -->
     <meta name="robots" content={robots} />
 
     {preloadImageURL && (
