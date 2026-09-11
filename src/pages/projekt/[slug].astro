@@ -518,6 +518,10 @@ const breadcrumbSchema = {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
+    /* Grid-items har min-width:auto som standard. En lång projekttitel tvingade
+       därför kolumnen bredare än sitt 1fr-spår, och högerkortet rann ut ur
+       containern vid 320px. min-width:0 låter titeln radbrytas i stället. */
+    min-width: 0;
     padding: clamp(1rem, 3vw, 1.5rem);
     background: #0f172a;
     border: 1px solid rgba(255, 255, 255, 0.08);
