@@ -93,7 +93,7 @@ export default function ContactPage() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="block w-full h-[240px] lg:h-[260px] border-0"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=18.2940%2C59.4776%2C18.3054%2C59.4812&layer=mapnik&marker=59.4794%2C18.2997"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=18.2746%2C59.4773%2C18.2861%2C59.4809&layer=mapnik&marker=59.47911%2C18.28034"
               />
             </div>
 
