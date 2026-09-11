@@ -978,7 +978,9 @@ h3, h4, h5, h6 {
   min-width: 0;
 }
 
-.info-card > div {
+/* Undanta ikonen – annars äter flex:1 upp dess fasta 3rem och cirkeln
+   dras ut till en ellips (syns bara där ikonen är en div, dvs. kontaktsidan). */
+.info-card > div:not(.icon-box) {
   flex: 1;
   min-width: 0;
 }
@@ -1326,4 +1328,36 @@ select.form-input option {
 }
 .seam-from-dark::before {
   background: linear-gradient(to top, transparent, #020617);
+}
+
+/* === Kontaktsidans rutnät === */
+/* Grundorsaken till att telefonrutan blev lägre: gridets stretch bryts av
+   wrapper-elementet (<a>/<div>) runt kortet, så .info-card krympte till sitt
+   innehåll. grid-auto-rows + height:100% återkopplar kedjan – rutorna blir
+   lika höga oavsett hur många rader texten tar.
+   Scopat till .contact-info-grid så startsidans ContactSection är orörd. */
+/* Lika höga rader gäller från 640px, dvs. där rutnätet faktiskt har två
+   kolumner och ojämn höjd syns. I en kolumn får korten följa sitt innehåll –
+   annars tvingar den mest radbrytande rutan upp alla andra på smala skärmar. */
+@media (min-width: 640px) {
+  .contact-info-grid {
+    grid-auto-rows: 1fr;
+  }
+
+  .contact-info-grid > * {
+    height: 100%;
+  }
+}
+
+.contact-info-grid > * {
+  min-width: 0;
+}
+
+.contact-info-grid .info-card {
+  height: 100%;
+}
+
+/* Fullbreddsrutan (e-post) – dämpad hover, 6px blir för mycket på dubbel bredd. */
+.contact-info-grid .info-card--wide:hover {
+  transform: translateX(2px);
 }
