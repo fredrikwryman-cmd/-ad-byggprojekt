@@ -140,7 +140,7 @@ const moreProjects = [
     value: '15 mkr · 1 500 kvm', role: 'Bas-U',
   },
   {
-    year: '2023–2026', title: 'Stämstigen', location: 'Stockholm',
+    year: '2023–2026', title: 'Villa Lidingö', location: 'Stockholm',
     client: 'Privatperson', category: 'Renovering',
     description: 'Åtgärdande av byggfel på nybyggd villa.',
     value: '600 kvm', role: 'Byggledare',

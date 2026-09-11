@@ -358,10 +358,10 @@ export const moreProjects = [
     ],
   },
   {
-    slug: 'stamstigen',
+    slug: 'villa-lidingo',
     gallery: [],
     year: '2023–2026',
-    title: 'Stämstigen',
+    title: 'Villa Lidingö',
     location: 'Stockholm',
     client: 'Privatperson',
     category: 'Renovering',
