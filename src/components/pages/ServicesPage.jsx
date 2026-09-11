@@ -53,7 +53,7 @@ export const services = [
     icon: Building2,
     cm: true,
     external: true,
-    href: 'https://fredrikwryman-cmd.github.io/bopg/',
+    href: 'https://byggoprojektgruppen.se',
     linkLabel: 'Till Bygg & Projektgruppen',
     summary: 'Söker du Construction Management? Det hanteras av vårt systerbolag.',
     description: 'Construction Management (CM) hanteras av vårt systerbolag Bygg & Projektgruppen i Stockholm AB — en samlad byggpartner som håller ihop hela kedjan från projektledning till färdig byggnad. Behöver ditt projekt en helhetspartner snarare än enskild byggledning, lotsar vi dig vidare dit.',
