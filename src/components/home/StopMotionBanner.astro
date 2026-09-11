@@ -2,16 +2,28 @@
 // Återanvändbar "bård"-sektion: sömlös video-loop som dämpad bakgrund med
 // navy-overlay + ljus rubrik/underrad. Respekterar bassökväg och
 // prefers-reduced-motion (visar poster i stället för video vid minskad rörelse).
-// Props: video, poster (filnamn i public/), title, subtitle, label (valfri aria-label).
-const { video, poster, title, subtitle, label } = Astro.props;
+// Props: video, poster (filnamn i public/), title, subtitle, label (valfri aria-label),
+// fallbackPoster (valfritt filnamn i public/).
+//
+// poster sätts på <video> och är det som syns i ögonblicket innan uppspelningen
+// börjar. fallbackPoster sätts på stillbilden som visas i stället för filmen vid
+// prefers-reduced-motion eller nekad autoplay. Utelämnas fallbackPoster används
+// poster till båda, vilket är rätt för bårder vars klipp börjar på en vanlig
+// bildruta – då är postern redan en användbar stillbild.
+//
+// De skiljs åt när ett klipp tonar in från svart: /cv-bården har en helsvart
+// poster just för att undvika en ljus blixt vid uppspelningsstart, och den
+// svarta rutan duger inte som stillbild för den som valt minskad rörelse.
+const { video, poster, fallbackPoster, title, subtitle, label } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const posterSrc = base + poster;
+const fallbackSrc = fallbackPoster ? base + fallbackPoster : posterSrc;
 const videoSrc = base + video;
 ---
 
 <section class="sm-section bp-dark" aria-label={label || title}>
   <div class="sm-stage">
-    <div class="stopmotion sm-feather">
+    <div class="stopmotion sm-feather" data-still={fallbackSrc !== posterSrc ? 'true' : undefined}>
       {/* poster/src ligger i data-attribut, inte i poster= respektive src=.
           preload="none" hindrar bara videofilen – poster-bilden hämtar
           webbläsaren ändå direkt när sidan tolkas, och de två bårdernas
@@ -32,9 +44,9 @@ const videoSrc = base + video;
         <source src={videoSrc} type="video/mp4" />
       </video>
 
-      <img class="sm-poster" data-src={posterSrc} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      <img class="sm-poster" data-src={fallbackSrc} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <noscript>
-        <img class="sm-poster sm-poster-noscript" src={posterSrc} alt="" aria-hidden="true" />
+        <img class="sm-poster sm-poster-noscript" src={fallbackSrc} alt="" aria-hidden="true" />
       </noscript>
     </div>
 
@@ -115,6 +127,14 @@ const videoSrc = base + video;
     const root = v.closest('.stopmotion');
     const still = root ? root.querySelector('img.sm-poster[data-src]') : null;
     if (still) still.src = still.dataset.src;
+
+    // Vid minskad rörelse startar videon pausad och visar sin poster. För en bård
+    // som tonar in från svart är den postern helsvart (den sitter där just för att
+    // undvika en ljus blixt när uppspelningen börjar), så då visas stillbilden i
+    // stället. Klassen sätts först här, när stillbilden har fått sin src – och
+    // inte tidigare, eftersom en dold video aldrig skulle utlösa observern som
+    // anropar den här funktionen. Videons eget poster-attribut rörs aldrig.
+    if (reduced && root && root.dataset.still === 'true') root.classList.add('sm-still');
   };
 
   vids.forEach((v) => {
@@ -134,7 +154,13 @@ const videoSrc = base + video;
     if (btn) {
       btn.addEventListener('click', () => {
         // Knappen syns bara när bården är i bild, så ett klick räknas alltid som i vy.
-        if (v.paused) { loadPoster(v); v.dataset.inView = 'true'; v.dataset.userPaused = 'false'; play(v); }
+        if (v.paused) {
+          loadPoster(v);
+          // Stillbilden lämnar plats åt videon så fort användaren själv väljer att spela.
+          const root = v.closest('.stopmotion');
+          if (root) root.classList.remove('sm-still');
+          v.dataset.inView = 'true'; v.dataset.userPaused = 'false'; play(v);
+        }
         else { v.dataset.userPaused = 'true'; v.pause(); }
         syncBtn(v);
       });
@@ -317,6 +343,17 @@ const videoSrc = base + video;
     display: none;
   }
   .stopmotion.sm-fallback .sm-poster {
+    display: block;
+  }
+
+  /* Samma byte vid prefers-reduced-motion, men bara för bårder som fått en egen
+     fallbackPoster. Utan den regeln skulle den pausade videons poster synas, och
+     för /cv-bården är den avsiktligt helsvart. Tas bort av scriptet när
+     användaren trycker på spela. */
+  .stopmotion.sm-still .sm-video {
+    display: none;
+  }
+  .stopmotion.sm-still .sm-poster {
     display: block;
   }
 
