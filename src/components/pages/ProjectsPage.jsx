@@ -155,7 +155,7 @@ function ProjectCard({ project, index }) {
   return (
     <motion.a
       href={import.meta.env.BASE_URL + 'projekt/' + slugByTitle[title]}
-      aria-label={`Läs mer om projektet ${title}`}
+      aria-label={`${title} – läs mer om projektet`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -225,7 +225,7 @@ function MoreProjectCard({ project, index }) {
   return (
     <motion.a
       href={import.meta.env.BASE_URL + 'projekt/' + slugByTitle[title]}
-      aria-label={`Läs mer om projektet ${title}`}
+      aria-label={`${title} – läs mer om projektet`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}

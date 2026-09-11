@@ -41,7 +41,7 @@ export default function ProjectsSection() {
             <motion.a
               key={project.title}
               href={import.meta.env.BASE_URL + 'projekt/' + project.slug}
-              aria-label={`Läs mer om projektet ${project.title}`}
+              aria-label={`${project.title} – läs mer om projektet`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
