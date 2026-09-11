@@ -717,7 +717,7 @@ function OfferForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: 'ef4a060a-38a9-4591-add1-5a39a8ef7148',
+          access_key: '261ad82b-3af5-41db-849e-ad5a827543c7',
           subject: 'Ny offertförfrågan via chatten (Fråga Heidi)',
           from_name: 'AD Byggprojekt — chatt',
           botcheck: botcheckRef.current ? botcheckRef.current.checked : false,

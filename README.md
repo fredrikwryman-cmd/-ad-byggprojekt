@@ -88,7 +88,8 @@ Anmäl sitemapen i Google Search Console när domänen är verifierad.
 2. Ändra `robots`-standardvärdet i `src/layouts/Layout.astro` till `'index, follow'`.
 3. Återställ sitemapen (`npx astro add sitemap`) och lägg tillbaka
    `Sitemap:`-raden i `public/robots.txt`.
-4. Byt Web3Forms access key till kundens egen, se [Formulär](#formulär).
+4. Web3Forms access key är redan kundens egen och behöver inte bytas, se
+   [Formulär](#formulär).
 5. Kontrollera att QR-koden och vCard-filen pekar rätt, se
    [Digitalt visitkort](#digitalt-visitkort-andreas).
 6. Bygg, deploya och verifiera `robots`-taggen och sitemapen i den **byggda**
@@ -272,7 +273,9 @@ Så här går bytet till:
    till den nya custom-domänen. Vänta in certifikatet (`Enforce HTTPS`).
 4. **Noindex och sitemap** — se
    [MÅSTE GÖRAS VID DRIFTSÄTTNING](#måste-göras-vid-driftsättning).
-5. **Web3Forms** — byt access key, se [Formulär](#formulär).
+5. **Web3Forms** — access key är redan kundens egen, inget behöver göras. Ska
+   mottagaradressen ändras görs det i Web3Forms-kontot, inte i koden, se
+   [Formulär](#formulär).
 6. Bygg om och deploya.
 
 **Vad `site` styr.** Ingen annan kod behöver ändras, eftersom allt internt går
@@ -552,18 +555,18 @@ Offertformuläret på `/offert` skickas till **Web3Forms**
 (`https://api.web3forms.com/submit`). Det finns ingen serverkod i repot som tar
 emot inskick.
 
-### ⚠️ Access key måste bytas vid överlämning
+### Access key
 
-Nyckeln som ligger i koden i dag är knuten till **utvecklarens eget
-Web3Forms-konto**. Det kontot **följer inte med i överlämningen**. Så länge
-nyckeln står kvar landar alla offertförfrågningar i utvecklarens inkorg, inte
-hos kunden — och nyckeln kan när som helst sluta fungera om det kontot avslutas.
+Nyckeln i koden tillhör **kundens eget Web3Forms-konto**, registrerat på
+`andreas@adbyggprojekt.se`. Kontot ingår i överlämningen, så offertförfrågningar
+landar hos kunden och inget behöver bytas för att formuläret ska fungera.
 
-Så här byts den:
+Om kontot någon gång byts — nytt konto, ny mottagaradress eller ny nyckel —
+görs så här:
 
-1. Skapa ett konto på [web3forms.com](https://web3forms.com) och ange kundens
-   mottagaradress.
-2. Kopiera den nya access key:n.
+1. Skapa eller öppna kontot på [web3forms.com](https://web3forms.com) och ange
+   mottagaradressen.
+2. Kopiera access key:n.
 3. Ersätt nyckeln på **alla tre ställena**:
 
 | Fil | Rad | Sammanhang |
@@ -572,14 +575,14 @@ Så här byts den:
 | `src/components/pages/OffertPage.jsx` | 74 | I `<input type="hidden" name="access_key">`, fallback om JavaScript är av. |
 | `src/components/chat/AndreasChat.jsx` | 720 | Chattens offertinskick. Komponenten är vilande, se nedan, men nyckeln ska ändå bytas så den inte glöms om chatten aktiveras. |
 
-Sök gärna efter den gamla nyckeln för att säkerställa att inget missas:
+Sök efter nyckeln för att säkerställa att inget ställe missas:
 
 ```sh
 grep -rn "access_key" src/
 ```
 
 4. Bygg, deploya och **skicka ett skarpt testinskick** för att bekräfta att det
-   landar hos kunden.
+   landar hos rätt mottagare.
 
 ### Övrigt om formuläret
 
@@ -912,7 +915,6 @@ Motsvarande CSS ligger kvar i `global.css` under rubriken `OMDÖMESSEKTION`.
 | Punkt | Beskrivning | Förslag |
 | :-- | :-- | :-- |
 | **Noindex och saknad sitemap** | Sajten är noindexad i sin helhet och sitemapen är borttagen, eftersom den i dag är ett arbetsprov på en tillfällig subdomän. | **Måste åtgärdas vid driftsättning**, se [avsnittet högst upp](#måste-göras-vid-driftsättning). Detta är den enskilt viktigaste punkten i hela dokumentet. |
-| **Web3Forms-konto följer inte med** | Access key i koden tillhör utvecklarens konto. Offertförfrågningar landar hos fel mottagare tills nyckeln byts. | Skapa kundens eget konto och byt nyckeln på alla tre ställena, se [Formulär](#formulär). |
 | Duplicerad projektdata | `src/components/pages/ProjectsPage.jsx` har egna kopior av projektlistorna och kopplas till `src/data/projects.js` enbart via `slugByTitle[title]`. Titlar måste matcha exakt mellan filerna, även vid namnbyten. | Låt `ProjectsPage.jsx` importera `featuredProjects`/`moreProjects` ur datafilen och ta bort dubbletterna. |
 | Reduced-motion visar mörk ruta på `/cv` | Fallbacken vid `prefers-reduced-motion` visar poster-bilden i stället för filmen. Eftersom `andreas-resa.mp4` tonar in från svart är dess poster en mörk ruta, och bården blir därmed tom för de användarna. | Lägg en separat stillbild (en ljus bildruta ur filmen) på `img.sm-poster`-fallbacken och låt `video[poster]` behålla den mörka rutan. De är redan skilda element i `StopMotionBanner.astro`. |
 | Två vilande komponenter | `AndreasChat.jsx` (chatten "Fråga Heidi") och `TestimonialsSection.jsx` (kundomdömen med platshållardata) renderas inte. Kod och CSS ligger kvar. | Se [Vilande komponenter](#vilande-komponenter-och-hur-de-aktiveras). Omdömena kräver äkta citat innan publicering. |

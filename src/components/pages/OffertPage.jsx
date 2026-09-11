@@ -22,7 +22,7 @@ export default function OffertPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: 'ef4a060a-38a9-4591-add1-5a39a8ef7148',
+          access_key: '261ad82b-3af5-41db-849e-ad5a827543c7',
           subject: 'Ny offertförfrågan från adbyggprojekt.se',
           from_name: 'AD Byggprojekt webbplats',
           name: form.name,
@@ -71,7 +71,7 @@ export default function OffertPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} method="post" action="https://api.web3forms.com/submit" className="form-layout">
-              <input type="hidden" name="access_key" value="ef4a060a-38a9-4591-add1-5a39a8ef7148" />
+              <input type="hidden" name="access_key" value="261ad82b-3af5-41db-849e-ad5a827543c7" />
               <input type="hidden" name="subject" value="Ny offertförfrågan från adbyggprojekt.se" />
               <input type="hidden" name="from_name" value="AD Byggprojekt webbplats" />
               <input type="checkbox" name="botcheck" tabIndex={-1} aria-hidden="true" style={{ display: 'none' }} />
